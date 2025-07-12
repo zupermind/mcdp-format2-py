@@ -23,95 +23,163 @@ from typing import Any, Dict, cast
 import argparse
 import dataclasses
 import functools
+import os
+import re
+
+try:
+    from colorama import Fore, Style, init
+    init(autoreset=True)  # Auto-reset after each print
+    _HAS_COLORAMA = True
+except ImportError:
+    _HAS_COLORAMA = False
+    # Fallback to ANSI codes
+    class _MockStyle:
+        RESET_ALL = "\033[0m"
+        BRIGHT = "\033[1m"
+    
+    class _MockFore:
+        CYAN = "\033[36m"
+        GREEN = "\033[32m"
+        YELLOW = "\033[33m"
+        MAGENTA = "\033[35m"
+        RESET = "\033[0m"
+    
+    Style = _MockStyle()
+    Fore = _MockFore()
+
+
+def _get_terminal_width() -> int:
+    """Get terminal width from COLUMNS env var or default to 120."""
+    try:
+        return int(os.environ.get('COLUMNS', '120'))
+    except ValueError:
+        return 120
+
+
+def _screen_length(text: str) -> int:
+    """Calculate the visible screen length of text by removing ANSI/color codes."""
+    ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+    return len(ansi_escape.sub('', text))
+
 
 # ---------------------------------------------------------------------------
 # Human-friendly colorful visualization (returns string, recursive & cached)
 # ---------------------------------------------------------------------------
 
-_RESET = "\033[0m"
-_BOLD = "\033[1m"
-_CYAN = "\033[36m"
-_GREEN = "\033[32m"
-_YELLOW = "\033[33m"
-_MAGENTA = "\033[35m"
-
-
-# Cache formatted objects by id to avoid recomputation and cycles.
-_VIS_CACHE: dict[int, str] = {}
+# Cache formatted objects by (id, column_budget) to avoid recomputation and cycles.
+_VIS_CACHE: dict[tuple[int, int], str] = {}
 
 
 def _colorize_leaf(value: Any) -> str:
-    """Return *value* converted to string with ANSI color codes."""
+    """Return *value* converted to string with color codes."""
     if isinstance(value, str):
-        return f"{_GREEN}{value}{_RESET}"
+        return f"{Fore.GREEN}{value}{Style.RESET_ALL}"
     if isinstance(value, (int, float)):
-        return f"{_YELLOW}{value}{_RESET}"
+        return f"{Fore.YELLOW}{value}{Style.RESET_ALL}"
     if isinstance(value, bool):
-        return f"{_MAGENTA}{value}{_RESET}"
+        return f"{Fore.MAGENTA}{value}{Style.RESET_ALL}"
     if value is None:
-        return f"{_CYAN}null{_RESET}"
+        return f"{Fore.CYAN}None{Style.RESET_ALL}"
     return str(value)
 
 
 # Internal recursive formatter (use *_inner* suffix)
 
 
-def _format_obj_inner(obj: Any) -> str:
-    """Return colored representation of *obj* without any indentation."""
+def _format_obj_inner(obj: Any, column_budget: int = _get_terminal_width()) -> str:
+    """Return colored representation of *obj* without any indentation.
+    
+    Args:
+        obj: Object to format
+        column_budget: Maximum width for inline formatting of lists
+    """
     obj_id = id(obj)
-    if obj_id in _VIS_CACHE:
-        return _VIS_CACHE[obj_id]
+    cache_key = (obj_id, column_budget)
+    if cache_key in _VIS_CACHE:
+        return _VIS_CACHE[cache_key]
 
     # Dataclass
     if dataclasses.is_dataclass(obj) and not isinstance(obj, type):  # type: ignore[arg-type]
         cls_name = obj.__class__.__name__
-        lines = [f"{_BOLD}{_MAGENTA}{cls_name}{_RESET}:"]
+        lines = [f"{Style.BRIGHT}{Fore.MAGENTA}{cls_name}{Style.RESET_ALL}:"]
         for field in dataclasses.fields(obj):  # type: ignore[arg-type]
-            field_formatted = _format_key_value(field.name, getattr(obj, field.name))
+            field_formatted = _format_key_value(field.name, getattr(obj, field.name), column_budget)
             # Indent each line of the field
             for line in field_formatted.splitlines():
                 lines.append("  " + line)
         result = "\n".join(lines)
-        _VIS_CACHE[obj_id] = result
+        _VIS_CACHE[cache_key] = result
         return result
 
     # Dict
     if isinstance(obj, dict):  # type: ignore[arg-type]
+        # Empty dict
+        if not obj:
+            result = "{}"
+            _VIS_CACHE[cache_key] = result
+            return result
+        
         parts: list[str] = []
         for k, v in obj.items():  # type: ignore[arg-type]
-            parts.append(_format_key_value(str(k), v))  # type: ignore[arg-type]
+            parts.append(_format_key_value(str(k), v, column_budget))  # type: ignore[arg-type]
         result = "\n".join(parts)
-        _VIS_CACHE[obj_id] = result
+        _VIS_CACHE[cache_key] = result
         return result
 
     # List / tuple
     if isinstance(obj, (list, tuple)):
-        parts: list[str] = []
+        # Render all items first
+        rendered_items: list[str] = []
         for item in obj:  # type: ignore[arg-type]
             if dataclasses.is_dataclass(item) or isinstance(item, (dict, list, tuple)):  # type: ignore[arg-type]
-                parts.append("-")
-                item_formatted = _format_obj_inner(item)
-                for line in item_formatted.splitlines():
+                rendered_items.append(_format_obj_inner(item, column_budget))
+            else:
+                rendered_items.append(_colorize_leaf(item))
+        
+        # Check if all items are single-line and fit in budget
+        all_single_line = all("\n" not in item for item in rendered_items)  # type: ignore[arg-type]
+        if all_single_line:
+            inline_str = "[" + ", ".join(rendered_items) + "]"  # type: ignore[arg-type]
+            if _screen_length(inline_str) <= column_budget:
+                result = inline_str
+                _VIS_CACHE[cache_key] = result
+                return result
+        
+        # Multi-line format
+        parts: list[str] = []
+        for rendered_item in rendered_items:  # type: ignore[assignment]
+            lines = rendered_item.splitlines()  # type: ignore[attr-defined]
+            if lines:
+                # First line goes after the dash
+                parts.append(f"- {lines[0]}")
+                # Subsequent lines align with the content (2 spaces for "- ")
+                for line in lines[1:]:
                     parts.append("  " + line)
             else:
-                parts.append(f"- {_colorize_leaf(item)}")
+                parts.append("-")
         result = "\n".join(parts)
-        _VIS_CACHE[obj_id] = result
+        _VIS_CACHE[cache_key] = result
         return result
 
     # Primitive leaf
     leaf = _colorize_leaf(obj)
-    _VIS_CACHE[obj_id] = leaf
+    _VIS_CACHE[cache_key] = leaf
     return leaf
 
 
-def _format_key_value(key: str, value: Any) -> str:
+def _format_key_value(key: str, value: Any, column_budget: int = _get_terminal_width()) -> str:
     """Format *value* under *key* without any base indentation."""
-    key_col = f"{_BOLD}{_CYAN}{key}{_RESET}"
+    key_col = f"{Style.BRIGHT}{Fore.CYAN}{key}{Style.RESET_ALL}"
 
     # Complex value
     if dataclasses.is_dataclass(value) or isinstance(value, (dict, list, tuple)):  # type: ignore[arg-type]
-        formatted = _format_obj_inner(value)
+        formatted = _format_obj_inner(value, column_budget)
+        
+        # Use inline format if the representation has no newlines
+        if "\n" not in formatted:
+            return f"{key_col}: {formatted}"
+        
+        # Multi-line format
         lines = [f"{key_col}:"]
         for line in formatted.splitlines():
             lines.append("  " + line)
@@ -136,7 +204,7 @@ def _format_key_value(key: str, value: Any) -> str:
 
 def _format_obj(obj: Any) -> str:
     """Return colored representation of *obj* (wrapper, single argument)."""
-    return _format_obj_inner(obj)
+    return _format_obj_inner(obj, _get_terminal_width())
 
 
 def human_format(obj: Any) -> str:
