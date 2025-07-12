@@ -22,10 +22,11 @@ from pathlib import Path
 from typing import Any, Dict, cast
 import argparse
 import dataclasses
-# ---------------------------------------------------------------------------
-# Human-friendly colorful display (no quotes, no escapes)
-# ---------------------------------------------------------------------------
+import functools
 
+# ---------------------------------------------------------------------------
+# Human-friendly colorful visualization (returns string, recursive & cached)
+# ---------------------------------------------------------------------------
 
 _RESET = "\033[0m"
 _BOLD = "\033[1m"
@@ -33,6 +34,10 @@ _CYAN = "\033[36m"
 _GREEN = "\033[32m"
 _YELLOW = "\033[33m"
 _MAGENTA = "\033[35m"
+
+
+# Cache formatted objects by id to avoid recomputation and cycles.
+_VIS_CACHE: dict[int, str] = {}
 
 
 def _colorize_leaf(value: Any) -> str:
@@ -48,74 +53,96 @@ def _colorize_leaf(value: Any) -> str:
     return str(value)
 
 
-def _human_dump(obj: Any, indent: int = 0) -> None:
-    """Recursively print *obj* in a YAML-like style with colors."""
-    pad = " " * indent
+# Internal recursive formatter (use *_inner* suffix)
 
-    # Special handling for dataclass instances (show class name & fields)
+
+def _format_obj_inner(obj: Any) -> str:
+    """Return colored representation of *obj* without any indentation."""
+    obj_id = id(obj)
+    if obj_id in _VIS_CACHE:
+        return _VIS_CACHE[obj_id]
+
+    # Dataclass
     if dataclasses.is_dataclass(obj) and not isinstance(obj, type):  # type: ignore[arg-type]
         cls_name = obj.__class__.__name__
-        print(f"{pad}{_BOLD}{_MAGENTA}{cls_name}{_RESET}:")
-
+        lines = [f"{_BOLD}{_MAGENTA}{cls_name}{_RESET}:"]
         for field in dataclasses.fields(obj):  # type: ignore[arg-type]
-            field_name = field.name
-            value = getattr(obj, field_name)
+            field_formatted = _format_key_value(field.name, getattr(obj, field.name))
+            # Indent each line of the field
+            for line in field_formatted.splitlines():
+                lines.append("  " + line)
+        result = "\n".join(lines)
+        _VIS_CACHE[obj_id] = result
+        return result
 
-            # Determine if complex
-            if dataclasses.is_dataclass(value) or isinstance(value, (dict, list, tuple)):  # type: ignore[arg-type]
-                print(f"{pad}  {_BOLD}{_CYAN}{field_name}{_RESET}:")
-                _human_dump(value, indent + 4)
-            else:
-                if isinstance(value, str) and "\n" in value:
-                    lines = value.splitlines()
-                    first_rendered = _colorize_leaf(lines[0]) if lines else ""
-                    print(f"{pad}  {_BOLD}{_CYAN}{field_name}{_RESET}: {first_rendered}")
-                    follow_pad = " " * (len(field_name) + 4)
-                    for line in lines[1:]:
-                        print(f"{pad}  {follow_pad}{_colorize_leaf(line)}")
-                else:
-                    rendered = _colorize_leaf(value)
-                    print(f"{pad}  {_BOLD}{_CYAN}{field_name}{_RESET}: {rendered}")
-        return  # dataclass handled; stop further processing
-
+    # Dict
     if isinstance(obj, dict):  # type: ignore[arg-type]
-        for key, val in obj.items():  # type: ignore[assignment]
-            if dataclasses.is_dataclass(val) or isinstance(val, (dict, list, tuple)):  # type: ignore[arg-type]
-                # complex value – print key then newline and recurse with indent
-                print(f"{pad}{_BOLD}{_CYAN}{key}{_RESET}:")
-                _human_dump(val, indent + 2)
-            else:
-                # leaf value – could be multiline string
-                if isinstance(val, str) and "\n" in val:
-                    lines = val.splitlines()
-                    first_rendered = _colorize_leaf(lines[0]) if lines else ""
-                    # Print first line on the same line as the key
-                    print(f"{pad}{_BOLD}{_CYAN}{key}{_RESET}: {first_rendered}")
+        parts: list[str] = []
+        for k, v in obj.items():  # type: ignore[arg-type]
+            parts.append(_format_key_value(str(k), v))  # type: ignore[arg-type]
+        result = "\n".join(parts)
+        _VIS_CACHE[obj_id] = result
+        return result
 
-                    # Subsequent lines align under the value portion.
-                    follow_pad = " " * (len(str(key)) + 2)  # type: ignore[arg-type]
-                    for line in lines[1:]:
-                        print(f"{pad}{follow_pad}{_colorize_leaf(line)}")
-                else:
-                    rendered = _colorize_leaf(val)
-                    print(f"{pad}{_BOLD}{_CYAN}{key}{_RESET}: {rendered}")
-    elif isinstance(obj, (list, tuple)):
+    # List / tuple
+    if isinstance(obj, (list, tuple)):
+        parts: list[str] = []
         for item in obj:  # type: ignore[arg-type]
-            print(f"{pad}- ", end="")
-            if isinstance(item, (dict, list, tuple)) or dataclasses.is_dataclass(item):  # type: ignore[arg-type]
-                # complex item: newline then recurse with increased indent
-                print()
-                _human_dump(item, indent + 2)
+            if dataclasses.is_dataclass(item) or isinstance(item, (dict, list, tuple)):  # type: ignore[arg-type]
+                parts.append("-")
+                item_formatted = _format_obj_inner(item)
+                for line in item_formatted.splitlines():
+                    parts.append("  " + line)
             else:
-                print(_colorize_leaf(item))
-    else:
-        # leaf
-        print(f"{pad}{_colorize_leaf(obj)}")
+                parts.append(f"- {_colorize_leaf(item)}")
+        result = "\n".join(parts)
+        _VIS_CACHE[obj_id] = result
+        return result
+
+    # Primitive leaf
+    leaf = _colorize_leaf(obj)
+    _VIS_CACHE[obj_id] = leaf
+    return leaf
 
 
-def human_print(obj: Any) -> None:
-    """Public helper to display *obj* in human-friendly colorful form."""
-    _human_dump(obj)
+def _format_key_value(key: str, value: Any) -> str:
+    """Format *value* under *key* without any base indentation."""
+    key_col = f"{_BOLD}{_CYAN}{key}{_RESET}"
+
+    # Complex value
+    if dataclasses.is_dataclass(value) or isinstance(value, (dict, list, tuple)):  # type: ignore[arg-type]
+        formatted = _format_obj_inner(value)
+        lines = [f"{key_col}:"]
+        for line in formatted.splitlines():
+            lines.append("  " + line)
+        return "\n".join(lines)
+
+    # Multiline string
+    if isinstance(value, str) and "\n" in value:
+        split_lines = value.splitlines()
+        first = _colorize_leaf(split_lines[0]) if split_lines else ""
+        out = [f"{key_col}: {first}"]
+        align_pad = " " * (len(key) + 2)
+        for ln in split_lines[1:]:
+            out.append(f"{align_pad}{_colorize_leaf(ln)}")
+        return "\n".join(out)
+
+    # Simple leaf
+    return f"{key_col}: {_colorize_leaf(value)}"
+
+
+# Public API: takes only *obj* argument.
+
+
+def _format_obj(obj: Any) -> str:
+    """Return colored representation of *obj* (wrapper, single argument)."""
+    return _format_obj_inner(obj)
+
+
+def human_format(obj: Any) -> str:
+    """Return a cached, human-friendly colored string representation of *obj*."""
+    _VIS_CACHE.clear()
+    return _format_obj(obj)
 
 from mcdp_format2_py.schemas import load_Root
 
@@ -225,7 +252,7 @@ def _process_file(path: Path, *, verbose: bool = False) -> None:
         print(f"[ OK ] {path}: decoded as {obj_class} (kind={getattr(obj, 'kind', '?')})")
         
         if verbose:
-            human_print(obj)
+            print(human_format(obj))
 
         
     except Exception as exc:
