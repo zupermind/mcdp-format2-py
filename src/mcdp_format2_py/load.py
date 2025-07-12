@@ -7,50 +7,46 @@ on file extension and supports transparent gzip decompression.
 
 Usage:
     python -m mcdp_format2_py.load <file1> [<file2> ...]
-    
-Example:
-    python -m mcdp_format2_py.load schema.json
-    python -m mcdp_format2_py.load config.yaml data.cbor.gz
+
 """
 
 from __future__ import annotations
 
+import argparse
 import gzip
 import json
 import sys
 from pathlib import Path
-from typing import Any, Dict, cast
-import argparse
-import os
+from typing import Any
+from typing import cast
 
-from mcdp_format2_py.formatter import human_format
-
-from mcdp_format2_py.schemas import load_Root
+from .formatter import human_format
+from .schemas import load_Root
 
 # YAML: prefer ruamel.yaml for round-trip support; installed separately.
 try:
-    from ruamel.yaml import YAML   
+    from ruamel.yaml import YAML
 
     _RUAMEL_YAML: Any = YAML(typ="safe")  # safe loader/dumper
 except ModuleNotFoundError:  # pragma: no cover
     _RUAMEL_YAML = None
 
 try:
-    import cbor2 
+    import cbor2
 except ModuleNotFoundError:  # pragma: no cover
-    cbor2 = None  
+    cbor2 = None
 
 from mcdp_format2_py import Root
-
 
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _read_bytes(path: Path) -> bytes:
     """Read *path* and transparently decompress if it looks gzip-compressed."""
     # Detect gzip either via extension or magic number.
-    if path.suffix == ".gz" or path.name.endswith(('.tgz', '.tz')):
+    if path.suffix == ".gz" or path.name.endswith((".tgz", ".tz")):
         with gzip.open(path, "rb") as fh:
             return fh.read()
 
@@ -65,28 +61,28 @@ def _detect_format(path: Path) -> str:
     Possible return values: ``'json'``, ``'yaml'``, or ``'cbor'``.
     """
     name = path.name.lower()
-    if any(ext in name for ext in ('.yaml', '.yml')):
-        return 'yaml'
-    if '.json' in name:
-        return 'json'
-    if '.cbor' in name:
-        return 'cbor'
+    if any(ext in name for ext in (".yaml", ".yml")):
+        return "yaml"
+    if ".json" in name:
+        return "json"
+    if ".cbor" in name:
+        return "cbor"
     raise ValueError(f"Cannot determine format for file '{path}'.")
 
 
-def _parse_bytes(data: bytes, fmt: str) -> Dict[str, Any]:
+def _parse_bytes(data: bytes, fmt: str) -> dict[str, Any]:
     """Parse *data* according to *fmt* and return a Python ``dict``."""
-    if fmt == 'json':
-        return json.loads(data.decode('utf-8'))
-    if fmt == 'yaml':
+    if fmt == "json":
+        return json.loads(data.decode("utf-8"))
+    if fmt == "yaml":
         if _RUAMEL_YAML is None:
             raise RuntimeError("ruamel.yaml is required to parse YAML files. Install with 'pip install ruamel.yaml'.")
         # ruamel.yaml works with text streams/strings
-        return cast(Dict[str, Any], _RUAMEL_YAML.load(data.decode("utf-8")))
-    if fmt == 'cbor':
+        return cast(dict[str, Any], _RUAMEL_YAML.load(data.decode("utf-8")))
+    if fmt == "cbor":
         if cbor2 is None:
             raise RuntimeError("cbor2 is required to parse CBOR files. Install with 'pip install cbor2'.")
-        return cbor2.loads(data)   
+        return cbor2.loads(data)
     # Should not happen.
     raise AssertionError(fmt)
 
@@ -96,9 +92,14 @@ def _parse_bytes(data: bytes, fmt: str) -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 DEFAULT_PATTERNS = [
-    '*.json', '*.json.gz',
-    '*.yaml', '*.yml', '*.yaml.gz', '*.yml.gz',
-    '*.cbor', '*.cbor.gz',
+    "*.json",
+    "*.json.gz",
+    "*.yaml",
+    "*.yml",
+    "*.yaml.gz",
+    "*.yml.gz",
+    "*.cbor",
+    "*.cbor.gz",
 ]
 
 
@@ -123,19 +124,25 @@ def _iter_input_paths(paths: list[str], patterns: list[str] | None = None):
             yield p
 
 
+def load(path: Path) -> Root:
+    """Load a file and return a Root object."""
+    raw = _read_bytes(path)
+    fmt = _detect_format(path)
+    data = _parse_bytes(raw, fmt)
+    obj = load_Root(data)
+    return obj
+
+
 def _process_file(path: Path, *, verbose: bool = False) -> None:
     try:
-        raw = _read_bytes(path)
-        fmt = _detect_format(path)
-        data = _parse_bytes(raw, fmt)
-        obj = load_Root(data)
-        obj_class = obj.__class__.__name__ if obj is not None else 'None'
+        obj = load(path)
+
+        obj_class = obj.__class__.__name__
         print(f"[ OK ] {path}: decoded as {obj_class} (kind={getattr(obj, 'kind', '?')})")
-        
+
         if verbose:
             print(human_format(obj))
 
-        
     except Exception as exc:
         print(f"[FAIL] {path}: {exc}", file=sys.stderr)
 
@@ -145,23 +152,16 @@ def main(argv: list[str] | None = None) -> None:
 
     parser = argparse.ArgumentParser(
         prog="python -m mcdp_format2_py.load",
-        description="Load and validate MCDP Format2 files from JSON, YAML, or CBOR formats."
+        description="Load and validate MCDP Format2 files from JSON, YAML, or CBOR formats.",
     )
+    parser.add_argument("paths", nargs="+", help="File or directory paths to load. Directories are searched recursively.")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Print the raw parsed data after successful decoding.")
     parser.add_argument(
-        "paths",
-        nargs="+",
-        help="File or directory paths to load. Directories are searched recursively."
-    )
-    parser.add_argument(
-        "-v", "--verbose",
-        action="store_true",
-        help="Print the raw parsed data after successful decoding."
-    )
-    parser.add_argument(
-        "-p", "--pattern",
+        "-p",
+        "--pattern",
         action="append",
         metavar="GLOB",
-        help="Glob pattern(s) to use when searching directories (can be repeated). Defaults to typical JSON/YAML/CBOR patterns."
+        help="Glob pattern(s) to use when searching directories (can be repeated). Defaults to typical JSON/YAML/CBOR patterns.",
     )
 
     args = parser.parse_args(argv)
@@ -172,5 +172,5 @@ def main(argv: list[str] | None = None) -> None:
         _process_file(path, verbose=args.verbose)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
