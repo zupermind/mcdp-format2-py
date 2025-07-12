@@ -1,6 +1,6 @@
 ---
 
-package_name: mcdp-format2-python
+package_name: mcdp-format2-py
 srcdir: src
 version_file: '1'
 modules:
