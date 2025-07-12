@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Literal
+from typing import Any, Literal, cast
 from dataclasses import dataclass, field
 import json
 
@@ -30,25 +30,10 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_LCheck_Data(item) for item in value]
-
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_L1_Catalog_Options(item) for item in value]
-
-def load_list_of_str(value: object) -> list[str]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_str(item) for item in value]
-
-def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]:
+def validate_enum_4eeb(value: object) -> Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]
+    allowed_values = ["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -56,40 +41,85 @@ def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap",
 def load_list_of_SUMap(value: object) -> list[SUMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
     return [load_SUMap(item) for item in value]
 
-def load_list_of_DP(value: object) -> list[DP]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_DP(item) for item in value]
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
 
-def validate_enum_a17d(value: object) -> Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]:
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(value: object) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_L1_Explicit_Option(item) for item in value]
-
-def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_M_Explicit_Option(item) for item in value]
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
 
 def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
     return [load_SL1Check_Data(item) for item in value]
+
+def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
+
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MonotoneMap(item) for item in value]
 
 def validate_enum_b0de(value: object) -> Literal["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = ["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L_Catalog_Options(item) for item in value]
+
+def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_M_Explicit_Option(item) for item in value]
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
+
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -102,73 +132,6 @@ def validate_enum_1978(value: object) -> Literal["L1Check", "LCheck", "MapCheck"
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_bool(item) for item in value]
-
-def validate_enum_4eeb(value: object) -> Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_UMap(item) for item in value]
-
-def load_list_of_Unit(value: object) -> list[Unit]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_Unit(item) for item in value]
-
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_SLMap(value: object) -> list[SLMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_SLMap(item) for item in value]
-
-def validate_enum_5dfe(value: object) -> Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_SU1Check_Data(item) for item in value]
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_U1Check_Data(item) for item in value]
-
-def validate_enum_19fd(value: object) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_L1Map(item) for item in value]
-
 def validate_enum_5d65(value: object) -> Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
@@ -176,6 +139,66 @@ def validate_enum_5d65(value: object) -> Literal["SL1_C_CodSum", "SL1_C_CodSumSm
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
+
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Map(item) for item in value]
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Check_Data(item) for item in value]
+
+def validate_enum_4700(value: object) -> Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_17f66(value: object) -> Literal["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLCheck_Data(item) for item in value]
+
+def load_list_of_L1Map(value: object) -> list[L1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Map(item) for item in value]
+
+def load_list_of_DP(value: object) -> list[DP]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP(item) for item in value]
+
+def load_list_of_UMap(value: object) -> list[UMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UMap(item) for item in value]
 
 def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
     if not isinstance(value, str):
@@ -185,62 +208,70 @@ def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["U
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_MapCheck_Data(item) for item in value]
-
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_MonotoneMap(item) for item in value]
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_U1_Explicit_Option(item) for item in value]
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_L1Check_Data(item) for item in value]
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_L_Catalog_Options(item) for item in value]
-
-def load_list_of_Poset(value: object) -> list[Poset]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_Poset(item) for item in value]
-
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_SL1Map(item) for item in value]
-
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_U1Map(item) for item in value]
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_SU1Map(item) for item in value]
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(value: object) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLMap(item) for item in value]
+
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(value: object) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUCheck_Data(item) for item in value]
+
 def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
     if not isinstance(value, dict):
         raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
     return {k: load_Poset(v) for k, v in value.items()}
 
 def validate_enum_8a74(value: object) -> Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]:
@@ -251,65 +282,6 @@ def validate_enum_8a74(value: object) -> Literal["P_Bool", "P_C_Arrow", "P_C_Dis
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_list_of_str(item) for item in value]
-
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_SLCheck_Data(item) for item in value]
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_UCheck_Data(item) for item in value]
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_U1_Catalog_Options(item) for item in value]
-
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_Range(value: object) -> list[Range]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_Range(item) for item in value]
-
-def validate_enum_4700(value: object) -> Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_DP_Catalog_Options(item) for item in value]
-
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    return {k: load_NDP(v) for k, v in value.items()}
-
 def validate_enum_a898(value: object) -> Literal["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
@@ -318,41 +290,35 @@ def validate_enum_a898(value: object) -> Literal["U1_C_CodSum", "U1_C_CodSumSmas
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_LMap(item) for item in value]
-
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    return {k: load_Value(v) for k, v in value.items()}
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(value: object) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_any(item) for item in value]
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
 def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
     return [load_U_Catalog_Options(item) for item in value]
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
+
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_str(item) for item in value]
+
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
 
 def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
     if not isinstance(value, str):
@@ -362,28 +328,30 @@ def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f3
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_Connection(value: object) -> list[Connection]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_Connection(item) for item in value]
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_list_of_any(item) for item in value]
-
-def validate_enum_17f66(value: object) -> Literal["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]:
+def validate_enum_5dfe(value: object) -> Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]
+    allowed_values = ["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]:
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(value: object) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -391,6 +359,7 @@ def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Inters
 def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
     if not isinstance(value, dict):
         raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
     return {k: load_list_of_str(v) for k, v in value.items()}
 
 def validate_enum_477e(value: object) -> Literal["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"]:
@@ -401,23 +370,95 @@ def validate_enum_477e(value: object) -> Literal["U_C_ITransform", "U_C_Intersec
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UCheck_Data(item) for item in value]
+
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
     if not isinstance(value, dict):
         raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    return {k: load_NDPInterface(v) for k, v in value.items()}
+    value = cast(dict[object, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
 
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(value: object) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+def load_list_of_Range(value: object) -> list[Range]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Range(item) for item in value]
+
+def load_list_of_Unit(value: object) -> list[Unit]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Unit(item) for item in value]
+
+def validate_enum_19fd(value: object) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+def load_list_of_bool(value: object) -> list[bool]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
-    return [load_SUCheck_Data(item) for item in value]
+    value = cast(list[object], value)
+    return [load_bool(item) for item in value]
+
+def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LCheck_Data(item) for item in value]
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Explicit_Option(item) for item in value]
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
+
+def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Check_Data(item) for item in value]
+
+def validate_enum_a17d(value: object) -> Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_str(value: object) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_str(item) for item in value]
 
 
 # Schema loaders
@@ -468,7 +509,8 @@ def load_Root(data: object) -> "Root":
     """Load Root from a dictionary based on the 'kind' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('kind')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('kind')
     mapping = {
         'Check': load_Check,
         'DP': load_DP,
@@ -496,7 +538,8 @@ def load_Check(data: object) -> "Check":
     """Load Check from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'L1Check': load_L1Check,
         'LCheck': load_LCheck,
@@ -543,7 +586,8 @@ def load_ConnectionSource(data: object) -> "ConnectionSource":
     """Load ConnectionSource from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'ModelFunctionality': load_ModelFunctionality,
         'NodeRequirement': load_NodeRequirement,
@@ -556,7 +600,8 @@ def load_ConnectionTarget(data: object) -> "ConnectionTarget":
     """Load ConnectionTarget from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'ModelRequirement': load_ModelRequirement,
         'NodeFunctionality': load_NodeFunctionality,
@@ -569,7 +614,8 @@ def load_DP(data: object) -> "DP":
     """Load DP from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'DP_All_Constants_And_F_Leq_R': load_DP_All_Constants_And_F_Leq_R,
         'DP_All_Constants_Leq_R': load_DP_All_Constants_Leq_R,
@@ -631,10 +677,10 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -669,10 +715,10 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_All_Constants_And_F_Leq_R":
             raise ValueError(f"Expected 'DP_All_Constants_And_F_Leq_R', got {field_type_}'")
-        if field_type_ != 'DP_All_Constants_And_F_Leq_R':
+        if field_type_ is not None and field_type_ != 'DP_All_Constants_And_F_Leq_R':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_All_Constants_And_F_Leq_R', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_All_Constants_And_F_Leq_R\"")
     
     if 'constants' in data:
         field_constants = load_list_of_any(data['constants'])
@@ -718,10 +764,10 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -756,10 +802,10 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_All_Constants_Leq_R":
             raise ValueError(f"Expected 'DP_All_Constants_Leq_R', got {field_type_}'")
-        if field_type_ != 'DP_All_Constants_Leq_R':
+        if field_type_ is not None and field_type_ != 'DP_All_Constants_Leq_R':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_All_Constants_Leq_R', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_All_Constants_Leq_R\"")
     
     if 'constants' in data:
         field_constants = load_list_of_any(data['constants'])
@@ -805,10 +851,10 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -843,10 +889,10 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_All_Fi_Leq_R":
             raise ValueError(f"Expected 'DP_All_Fi_Leq_R', got {field_type_}'")
-        if field_type_ != 'DP_All_Fi_Leq_R':
+        if field_type_ is not None and field_type_ != 'DP_All_Fi_Leq_R':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_All_Fi_Leq_R', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_All_Fi_Leq_R\"")
     
     return DP_All_Fi_Leq_R(
         description=field_description,
@@ -886,10 +932,10 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -924,10 +970,10 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_AmbientConversion":
             raise ValueError(f"Expected 'DP_AmbientConversion', got {field_type_}'")
-        if field_type_ != 'DP_AmbientConversion':
+        if field_type_ is not None and field_type_ != 'DP_AmbientConversion':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_AmbientConversion', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_AmbientConversion\"")
     
     if 'common' in data:
         field_common = load_Poset(data['common'])
@@ -973,10 +1019,10 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1011,10 +1057,10 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Any_Constants_Or_F_Leq_R":
             raise ValueError(f"Expected 'DP_Any_Constants_Or_F_Leq_R', got {field_type_}'")
-        if field_type_ != 'DP_Any_Constants_Or_F_Leq_R':
+        if field_type_ is not None and field_type_ != 'DP_Any_Constants_Or_F_Leq_R':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Any_Constants_Or_F_Leq_R', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Any_Constants_Or_F_Leq_R\"")
     
     if 'constants' in data:
         field_constants = load_list_of_any(data['constants'])
@@ -1060,10 +1106,10 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1098,10 +1144,10 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Any_Fi_Leq_R":
             raise ValueError(f"Expected 'DP_Any_Fi_Leq_R', got {field_type_}'")
-        if field_type_ != 'DP_Any_Fi_Leq_R':
+        if field_type_ is not None and field_type_ != 'DP_Any_Fi_Leq_R':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Any_Fi_Leq_R', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Any_Fi_Leq_R\"")
     
     return DP_Any_Fi_Leq_R(
         description=field_description,
@@ -1141,10 +1187,10 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1179,10 +1225,10 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_C_ExplicitApprox":
             raise ValueError(f"Expected 'DP_C_ExplicitApprox', got {field_type_}'")
-        if field_type_ != 'DP_C_ExplicitApprox':
+        if field_type_ is not None and field_type_ != 'DP_C_ExplicitApprox':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_C_ExplicitApprox', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_C_ExplicitApprox\"")
     
     if 'optimistic' in data:
         field_optimistic = load_list_of_DP(data['optimistic'])
@@ -1254,10 +1300,10 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1292,10 +1338,10 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_C_Intersection":
             raise ValueError(f"Expected 'DP_C_Intersection', got {field_type_}'")
-        if field_type_ != 'DP_C_Intersection':
+        if field_type_ is not None and field_type_ != 'DP_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_C_Intersection\"")
     
     if 'dps' in data:
         field_dps = load_list_of_DP(data['dps'])
@@ -1351,10 +1397,10 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1389,10 +1435,10 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_C_Parallel":
             raise ValueError(f"Expected 'DP_C_Parallel', got {field_type_}'")
-        if field_type_ != 'DP_C_Parallel':
+        if field_type_ is not None and field_type_ != 'DP_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_C_Parallel\"")
     
     if 'dps' in data:
         field_dps = load_list_of_DP(data['dps'])
@@ -1448,10 +1494,10 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1486,10 +1532,10 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_C_Series":
             raise ValueError(f"Expected 'DP_C_Series', got {field_type_}'")
-        if field_type_ != 'DP_C_Series':
+        if field_type_ is not None and field_type_ != 'DP_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_C_Series\"")
     
     if 'dps' in data:
         field_dps = load_list_of_DP(data['dps'])
@@ -1545,10 +1591,10 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1583,10 +1629,10 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_C_Trace":
             raise ValueError(f"Expected 'DP_C_Trace', got {field_type_}'")
-        if field_type_ != 'DP_C_Trace':
+        if field_type_ is not None and field_type_ != 'DP_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_C_Trace\"")
     
     if 'dp' in data:
         field_dp = load_DP(data['dp'])
@@ -1632,10 +1678,10 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1670,10 +1716,10 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_C_Union":
             raise ValueError(f"Expected 'DP_C_Union', got {field_type_}'")
-        if field_type_ != 'DP_C_Union':
+        if field_type_ is not None and field_type_ != 'DP_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_C_Union\"")
     
     if 'dps' in data:
         field_dps = load_list_of_DP(data['dps'])
@@ -1729,10 +1775,10 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1767,10 +1813,10 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Catalog":
             raise ValueError(f"Expected 'DP_Catalog', got {field_type_}'")
-        if field_type_ != 'DP_Catalog':
+        if field_type_ is not None and field_type_ != 'DP_Catalog':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Catalog', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Catalog\"")
     
     if 'options' in data:
         field_options = load_list_of_DP_Catalog_Options(data['options'])
@@ -1847,10 +1893,10 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1885,10 +1931,10 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Compiled":
             raise ValueError(f"Expected 'DP_Compiled', got {field_type_}'")
-        if field_type_ != 'DP_Compiled':
+        if field_type_ is not None and field_type_ != 'DP_Compiled':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Compiled', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Compiled\"")
     
     if 'f_b_r' in data:
         field_f_b_r = load_SUMap(data['f_b_r'])
@@ -1994,10 +2040,10 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2032,10 +2078,10 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_F_Leq_All_Constants":
             raise ValueError(f"Expected 'DP_F_Leq_All_Constants', got {field_type_}'")
-        if field_type_ != 'DP_F_Leq_All_Constants':
+        if field_type_ is not None and field_type_ != 'DP_F_Leq_All_Constants':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_F_Leq_All_Constants', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_F_Leq_All_Constants\"")
     
     if 'constants' in data:
         field_constants = load_list_of_any(data['constants'])
@@ -2081,10 +2127,10 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2119,10 +2165,10 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_F_Leq_All_R_And_Constants":
             raise ValueError(f"Expected 'DP_F_Leq_All_R_And_Constants', got {field_type_}'")
-        if field_type_ != 'DP_F_Leq_All_R_And_Constants':
+        if field_type_ is not None and field_type_ != 'DP_F_Leq_All_R_And_Constants':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_F_Leq_All_R_And_Constants', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_F_Leq_All_R_And_Constants\"")
     
     if 'constants' in data:
         field_constants = load_list_of_any(data['constants'])
@@ -2168,10 +2214,10 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2206,10 +2252,10 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_F_Leq_All_Ri":
             raise ValueError(f"Expected 'DP_F_Leq_All_Ri', got {field_type_}'")
-        if field_type_ != 'DP_F_Leq_All_Ri':
+        if field_type_ is not None and field_type_ != 'DP_F_Leq_All_Ri':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_F_Leq_All_Ri', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_F_Leq_All_Ri\"")
     
     return DP_F_Leq_All_Ri(
         description=field_description,
@@ -2249,10 +2295,10 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2287,10 +2333,10 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_F_Leq_Any_R_And_Constants":
             raise ValueError(f"Expected 'DP_F_Leq_Any_R_And_Constants', got {field_type_}'")
-        if field_type_ != 'DP_F_Leq_Any_R_And_Constants':
+        if field_type_ is not None and field_type_ != 'DP_F_Leq_Any_R_And_Constants':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_F_Leq_Any_R_And_Constants', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_F_Leq_Any_R_And_Constants\"")
     
     if 'constants' in data:
         field_constants = load_list_of_any(data['constants'])
@@ -2336,10 +2382,10 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2374,10 +2420,10 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_F_Leq_Any_Ri":
             raise ValueError(f"Expected 'DP_F_Leq_Any_Ri', got {field_type_}'")
-        if field_type_ != 'DP_F_Leq_Any_Ri':
+        if field_type_ is not None and field_type_ != 'DP_F_Leq_Any_Ri':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_F_Leq_Any_Ri', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_F_Leq_Any_Ri\"")
     
     return DP_F_Leq_Any_Ri(
         description=field_description,
@@ -2417,10 +2463,10 @@ def load_DP_False(data: object) -> "DP_False":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2455,10 +2501,10 @@ def load_DP_False(data: object) -> "DP_False":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_False":
             raise ValueError(f"Expected 'DP_False', got {field_type_}'")
-        if field_type_ != 'DP_False':
+        if field_type_ is not None and field_type_ != 'DP_False':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_False', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_False\"")
     
     return DP_False(
         description=field_description,
@@ -2498,10 +2544,10 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2536,10 +2582,10 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_FuncNotMoreThan":
             raise ValueError(f"Expected 'DP_FuncNotMoreThan', got {field_type_}'")
-        if field_type_ != 'DP_FuncNotMoreThan':
+        if field_type_ is not None and field_type_ != 'DP_FuncNotMoreThan':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_FuncNotMoreThan', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_FuncNotMoreThan\"")
     
     if 'limit' in data:
         field_limit = load_any(data['limit'])
@@ -2585,10 +2631,10 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2623,10 +2669,10 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_GenericConstant":
             raise ValueError(f"Expected 'DP_GenericConstant', got {field_type_}'")
-        if field_type_ != 'DP_GenericConstant':
+        if field_type_ is not None and field_type_ != 'DP_GenericConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_GenericConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_GenericConstant\"")
     
     if 'b_value' in data:
         field_b_value = load_any(data['b_value'])
@@ -2684,10 +2730,10 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2722,10 +2768,10 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Identity":
             raise ValueError(f"Expected 'DP_Identity', got {field_type_}'")
-        if field_type_ != 'DP_Identity':
+        if field_type_ is not None and field_type_ != 'DP_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Identity\"")
     
     return DP_Identity(
         description=field_description,
@@ -2765,10 +2811,10 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2803,10 +2849,10 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Iso":
             raise ValueError(f"Expected 'DP_Iso', got {field_type_}'")
-        if field_type_ != 'DP_Iso':
+        if field_type_ is not None and field_type_ != 'DP_Iso':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Iso', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Iso\"")
     
     if 'bwd' in data:
         field_bwd = load_MonotoneMap(data['bwd'])
@@ -2858,10 +2904,10 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2896,10 +2942,10 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_LiftL":
             raise ValueError(f"Expected 'DP_LiftL', got {field_type_}'")
-        if field_type_ != 'DP_LiftL':
+        if field_type_ is not None and field_type_ != 'DP_LiftL':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_LiftL', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_LiftL\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -2945,10 +2991,10 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2983,10 +3029,10 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_LiftU":
             raise ValueError(f"Expected 'DP_LiftU', got {field_type_}'")
-        if field_type_ != 'DP_LiftU':
+        if field_type_ is not None and field_type_ != 'DP_LiftU':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_LiftU', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_LiftU\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -3032,10 +3078,10 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3070,10 +3116,10 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_ResNotLessThan":
             raise ValueError(f"Expected 'DP_ResNotLessThan', got {field_type_}'")
-        if field_type_ != 'DP_ResNotLessThan':
+        if field_type_ is not None and field_type_ != 'DP_ResNotLessThan':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_ResNotLessThan', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_ResNotLessThan\"")
     
     if 'limit' in data:
         field_limit = load_any(data['limit'])
@@ -3119,10 +3165,10 @@ def load_DP_True(data: object) -> "DP_True":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3157,10 +3203,10 @@ def load_DP_True(data: object) -> "DP_True":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_True":
             raise ValueError(f"Expected 'DP_True', got {field_type_}'")
-        if field_type_ != 'DP_True':
+        if field_type_ is not None and field_type_ != 'DP_True':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_True', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_True\"")
     
     if 'value' in data:
         field_value = load_Value(data['value'])
@@ -3206,10 +3252,10 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "DP":
             raise ValueError(f"Expected 'DP', got {field_kind}'")
-        if field_kind != 'DP':
+        if field_kind is not None and field_kind != 'DP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"DP\"")
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3244,10 +3290,10 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "DP_Unknown":
             raise ValueError(f"Expected 'DP_Unknown', got {field_type_}'")
-        if field_type_ != 'DP_Unknown':
+        if field_type_ is not None and field_type_ != 'DP_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'DP_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"DP_Unknown\"")
     
     return DP_Unknown(
         description=field_description,
@@ -3287,19 +3333,19 @@ def load_L1Check(data: object) -> "L1Check":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "L1Check":
             raise ValueError(f"Expected 'L1Check', got {field_type_}'")
-        if field_type_ != 'L1Check':
+        if field_type_ is not None and field_type_ != 'L1Check':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1Check', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1Check\"")
     
     if 'data' in data:
         field_data = load_list_of_L1Check_Data(data['data'])
@@ -3353,7 +3399,8 @@ def load_L1Map(data: object) -> "L1Map":
     """Load L1Map from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'L1_C_CodSum': load_L1_C_CodSum,
         'L1_C_CodSumSmash': load_L1_C_CodSumSmash,
@@ -3415,10 +3462,10 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3434,10 +3481,10 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_CodSum":
             raise ValueError(f"Expected 'L1_C_CodSum', got {field_type_}'")
-        if field_type_ != 'L1_C_CodSum':
+        if field_type_ is not None and field_type_ != 'L1_C_CodSum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_CodSum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_CodSum\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3490,10 +3537,10 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3509,10 +3556,10 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_CodSumSmash":
             raise ValueError(f"Expected 'L1_C_CodSumSmash', got {field_type_}'")
-        if field_type_ != 'L1_C_CodSumSmash':
+        if field_type_ is not None and field_type_ != 'L1_C_CodSumSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_CodSumSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_CodSumSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3565,10 +3612,10 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3584,10 +3631,10 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_DomUnion":
             raise ValueError(f"Expected 'L1_C_DomUnion', got {field_type_}'")
-        if field_type_ != 'L1_C_DomUnion':
+        if field_type_ is not None and field_type_ != 'L1_C_DomUnion':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_DomUnion', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_DomUnion\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3640,10 +3687,10 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3659,10 +3706,10 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_Intersection":
             raise ValueError(f"Expected 'L1_C_Intersection', got {field_type_}'")
-        if field_type_ != 'L1_C_Intersection':
+        if field_type_ is not None and field_type_ != 'L1_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3715,10 +3762,10 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3734,10 +3781,10 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_Parallel":
             raise ValueError(f"Expected 'L1_C_Parallel', got {field_type_}'")
-        if field_type_ != 'L1_C_Parallel':
+        if field_type_ is not None and field_type_ != 'L1_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3790,10 +3837,10 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3809,10 +3856,10 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_ProdIntersection":
             raise ValueError(f"Expected 'L1_C_ProdIntersection', got {field_type_}'")
-        if field_type_ != 'L1_C_ProdIntersection':
+        if field_type_ is not None and field_type_ != 'L1_C_ProdIntersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_ProdIntersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_ProdIntersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3865,10 +3912,10 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3884,10 +3931,10 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_Product":
             raise ValueError(f"Expected 'L1_C_Product', got {field_type_}'")
-        if field_type_ != 'L1_C_Product':
+        if field_type_ is not None and field_type_ != 'L1_C_Product':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_Product', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_Product\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -3940,10 +3987,10 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -3959,10 +4006,10 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_RefineDomain":
             raise ValueError(f"Expected 'L1_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'L1_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'L1_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_L1Map(data['m'])
@@ -4005,10 +4052,10 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4024,10 +4071,10 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_Series":
             raise ValueError(f"Expected 'L1_C_Series', got {field_type_}'")
-        if field_type_ != 'L1_C_Series':
+        if field_type_ is not None and field_type_ != 'L1_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -4080,10 +4127,10 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4099,10 +4146,10 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_Trace":
             raise ValueError(f"Expected 'L1_C_Trace', got {field_type_}'")
-        if field_type_ != 'L1_C_Trace':
+        if field_type_ is not None and field_type_ != 'L1_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_Trace\"")
     
     if 'm' in data:
         field_m = load_L1Map(data['m'])
@@ -4145,10 +4192,10 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4164,10 +4211,10 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_Union":
             raise ValueError(f"Expected 'L1_C_Union', got {field_type_}'")
-        if field_type_ != 'L1_C_Union':
+        if field_type_ is not None and field_type_ != 'L1_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -4220,10 +4267,10 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4239,10 +4286,10 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_C_WrapUnits":
             raise ValueError(f"Expected 'L1_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'L1_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'L1_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -4297,10 +4344,10 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4316,10 +4363,10 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Catalog":
             raise ValueError(f"Expected 'L1_Catalog', got {field_type_}'")
-        if field_type_ != 'L1_Catalog':
+        if field_type_ is not None and field_type_ != 'L1_Catalog':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Catalog', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Catalog\"")
     
     if 'options' in data:
         field_options = load_list_of_L1_Catalog_Options(data['options'])
@@ -4381,10 +4428,10 @@ def load_L1_Constant(data: object) -> "L1_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4400,10 +4447,10 @@ def load_L1_Constant(data: object) -> "L1_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Constant":
             raise ValueError(f"Expected 'L1_Constant', got {field_type_}'")
-        if field_type_ != 'L1_Constant':
+        if field_type_ is not None and field_type_ != 'L1_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Constant\"")
     
     if 'value' in data:
         field_value = load_LowerSet(data['value'])
@@ -4446,10 +4493,10 @@ def load_L1_Entire(data: object) -> "L1_Entire":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4465,10 +4512,10 @@ def load_L1_Entire(data: object) -> "L1_Entire":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Entire":
             raise ValueError(f"Expected 'L1_Entire', got {field_type_}'")
-        if field_type_ != 'L1_Entire':
+        if field_type_ is not None and field_type_ != 'L1_Entire':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Entire', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Entire\"")
     
     return L1_Entire(
         description=field_description,
@@ -4505,10 +4552,10 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4524,10 +4571,10 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Explicit":
             raise ValueError(f"Expected 'L1_Explicit', got {field_type_}'")
-        if field_type_ != 'L1_Explicit':
+        if field_type_ is not None and field_type_ != 'L1_Explicit':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Explicit', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Explicit\"")
     
     if 'options' in data:
         field_options = load_list_of_L1_Explicit_Option(data['options'])
@@ -4589,10 +4636,10 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4608,10 +4655,10 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_FromFilter":
             raise ValueError(f"Expected 'L1_FromFilter', got {field_type_}'")
-        if field_type_ != 'L1_FromFilter':
+        if field_type_ is not None and field_type_ != 'L1_FromFilter':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_FromFilter', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_FromFilter\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -4654,10 +4701,10 @@ def load_L1_Identity(data: object) -> "L1_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4673,10 +4720,10 @@ def load_L1_Identity(data: object) -> "L1_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Identity":
             raise ValueError(f"Expected 'L1_Identity', got {field_type_}'")
-        if field_type_ != 'L1_Identity':
+        if field_type_ is not None and field_type_ != 'L1_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Identity\"")
     
     return L1_Identity(
         description=field_description,
@@ -4713,10 +4760,10 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4732,10 +4779,10 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_IntersectionOfPrinLowerSets":
             raise ValueError(f"Expected 'L1_IntersectionOfPrinLowerSets', got {field_type_}'")
-        if field_type_ != 'L1_IntersectionOfPrinLowerSets':
+        if field_type_ is not None and field_type_ != 'L1_IntersectionOfPrinLowerSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_IntersectionOfPrinLowerSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_IntersectionOfPrinLowerSets\"")
     
     return L1_IntersectionOfPrinLowerSets(
         description=field_description,
@@ -4772,10 +4819,10 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4791,10 +4838,10 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_InvMul_Opt":
             raise ValueError(f"Expected 'L1_InvMul_Opt', got {field_type_}'")
-        if field_type_ != 'L1_InvMul_Opt':
+        if field_type_ is not None and field_type_ != 'L1_InvMul_Opt':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_InvMul_Opt', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_InvMul_Opt\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -4843,10 +4890,10 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4862,10 +4909,10 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_InvMul_Pes":
             raise ValueError(f"Expected 'L1_InvMul_Pes', got {field_type_}'")
-        if field_type_ != 'L1_InvMul_Pes':
+        if field_type_ is not None and field_type_ != 'L1_InvMul_Pes':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_InvMul_Pes', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_InvMul_Pes\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -4914,10 +4961,10 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4933,10 +4980,10 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_InvSum_Opt":
             raise ValueError(f"Expected 'L1_InvSum_Opt', got {field_type_}'")
-        if field_type_ != 'L1_InvSum_Opt':
+        if field_type_ is not None and field_type_ != 'L1_InvSum_Opt':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_InvSum_Opt', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_InvSum_Opt\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -4985,10 +5032,10 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5004,10 +5051,10 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_InvSum_Pes":
             raise ValueError(f"Expected 'L1_InvSum_Pes', got {field_type_}'")
-        if field_type_ != 'L1_InvSum_Pes':
+        if field_type_ is not None and field_type_ != 'L1_InvSum_Pes':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_InvSum_Pes', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_InvSum_Pes\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -5056,10 +5103,10 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5075,10 +5122,10 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_L_Linv":
             raise ValueError(f"Expected 'L1_L_Linv', got {field_type_}'")
-        if field_type_ != 'L1_L_Linv':
+        if field_type_ is not None and field_type_ != 'L1_L_Linv':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_L_Linv', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_L_Linv\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -5121,10 +5168,10 @@ def load_L1_Lift(data: object) -> "L1_Lift":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5140,10 +5187,10 @@ def load_L1_Lift(data: object) -> "L1_Lift":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Lift":
             raise ValueError(f"Expected 'L1_Lift', got {field_type_}'")
-        if field_type_ != 'L1_Lift':
+        if field_type_ is not None and field_type_ != 'L1_Lift':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Lift', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Lift\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -5186,10 +5233,10 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5205,10 +5252,10 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_RepresentPrincipalLowerSet":
             raise ValueError(f"Expected 'L1_RepresentPrincipalLowerSet', got {field_type_}'")
-        if field_type_ != 'L1_RepresentPrincipalLowerSet':
+        if field_type_ is not None and field_type_ != 'L1_RepresentPrincipalLowerSet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_RepresentPrincipalLowerSet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_RepresentPrincipalLowerSet\"")
     
     return L1_RepresentPrincipalLowerSet(
         description=field_description,
@@ -5245,10 +5292,10 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5264,10 +5311,10 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_TopAlternating":
             raise ValueError(f"Expected 'L1_TopAlternating', got {field_type_}'")
-        if field_type_ != 'L1_TopAlternating':
+        if field_type_ is not None and field_type_ != 'L1_TopAlternating':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_TopAlternating', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_TopAlternating\"")
     
     if 'upper_bounds' in data:
         field_upper_bounds = load_list_of_list_of_any(data['upper_bounds'])
@@ -5310,10 +5357,10 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5329,10 +5376,10 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_UnionOfPrinLowerSets":
             raise ValueError(f"Expected 'L1_UnionOfPrinLowerSets', got {field_type_}'")
-        if field_type_ != 'L1_UnionOfPrinLowerSets':
+        if field_type_ is not None and field_type_ != 'L1_UnionOfPrinLowerSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_UnionOfPrinLowerSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_UnionOfPrinLowerSets\"")
     
     return L1_UnionOfPrinLowerSets(
         description=field_description,
@@ -5369,10 +5416,10 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "L1Map":
             raise ValueError(f"Expected 'L1Map', got {field_kind}'")
-        if field_kind != 'L1Map':
+        if field_kind is not None and field_kind != 'L1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"L1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5388,10 +5435,10 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "L1_Unknown":
             raise ValueError(f"Expected 'L1_Unknown', got {field_type_}'")
-        if field_type_ != 'L1_Unknown':
+        if field_type_ is not None and field_type_ != 'L1_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L1_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L1_Unknown\"")
     
     return L1_Unknown(
         description=field_description,
@@ -5428,19 +5475,19 @@ def load_LCheck(data: object) -> "LCheck":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "LCheck":
             raise ValueError(f"Expected 'LCheck', got {field_type_}'")
-        if field_type_ != 'LCheck':
+        if field_type_ is not None and field_type_ != 'LCheck':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'LCheck', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"LCheck\"")
     
     if 'data' in data:
         field_data = load_list_of_LCheck_Data(data['data'])
@@ -5494,7 +5541,8 @@ def load_LMap(data: object) -> "LMap":
     """Load LMap from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'L_C_ITransform': load_L_C_ITransform,
         'L_C_Intersection': load_L_C_Intersection,
@@ -5541,10 +5589,10 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5565,10 +5613,10 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_ITransform":
             raise ValueError(f"Expected 'L_C_ITransform', got {field_type_}'")
-        if field_type_ != 'L_C_ITransform':
+        if field_type_ is not None and field_type_ != 'L_C_ITransform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_ITransform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_ITransform\"")
     
     if 'm' in data:
         field_m = load_LMap(data['m'])
@@ -5618,10 +5666,10 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5642,10 +5690,10 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_Intersection":
             raise ValueError(f"Expected 'L_C_Intersection', got {field_type_}'")
-        if field_type_ != 'L_C_Intersection':
+        if field_type_ is not None and field_type_ != 'L_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -5699,10 +5747,10 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5723,10 +5771,10 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_Parallel":
             raise ValueError(f"Expected 'L_C_Parallel', got {field_type_}'")
-        if field_type_ != 'L_C_Parallel':
+        if field_type_ is not None and field_type_ != 'L_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -5780,10 +5828,10 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5804,10 +5852,10 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_RefineDomain":
             raise ValueError(f"Expected 'L_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'L_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'L_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_LMap(data['m'])
@@ -5851,10 +5899,10 @@ def load_L_C_Series(data: object) -> "L_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5875,10 +5923,10 @@ def load_L_C_Series(data: object) -> "L_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_Series":
             raise ValueError(f"Expected 'L_C_Series', got {field_type_}'")
-        if field_type_ != 'L_C_Series':
+        if field_type_ is not None and field_type_ != 'L_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -5932,10 +5980,10 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5956,10 +6004,10 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_Trace":
             raise ValueError(f"Expected 'L_C_Trace', got {field_type_}'")
-        if field_type_ != 'L_C_Trace':
+        if field_type_ is not None and field_type_ != 'L_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_Trace\"")
     
     if 'm' in data:
         field_m = load_LMap(data['m'])
@@ -6009,10 +6057,10 @@ def load_L_C_Union(data: object) -> "L_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6033,10 +6081,10 @@ def load_L_C_Union(data: object) -> "L_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_Union":
             raise ValueError(f"Expected 'L_C_Union', got {field_type_}'")
-        if field_type_ != 'L_C_Union':
+        if field_type_ is not None and field_type_ != 'L_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -6090,10 +6138,10 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6114,10 +6162,10 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_C_WrapUnits":
             raise ValueError(f"Expected 'L_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'L_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'L_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -6179,10 +6227,10 @@ def load_L_Catalog(data: object) -> "L_Catalog":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6203,10 +6251,10 @@ def load_L_Catalog(data: object) -> "L_Catalog":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_Catalog":
             raise ValueError(f"Expected 'L_Catalog', got {field_type_}'")
-        if field_type_ != 'L_Catalog':
+        if field_type_ is not None and field_type_ != 'L_Catalog':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_Catalog', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_Catalog\"")
     
     if 'options' in data:
         field_options = load_list_of_L_Catalog_Options(data['options'])
@@ -6275,10 +6323,10 @@ def load_L_Constant(data: object) -> "L_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6299,10 +6347,10 @@ def load_L_Constant(data: object) -> "L_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_Constant":
             raise ValueError(f"Expected 'L_Constant', got {field_type_}'")
-        if field_type_ != 'L_Constant':
+        if field_type_ is not None and field_type_ != 'L_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_Constant\"")
     
     if 'value' in data:
         field_value = load_LowerSet(data['value'])
@@ -6346,10 +6394,10 @@ def load_L_Identity(data: object) -> "L_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6370,10 +6418,10 @@ def load_L_Identity(data: object) -> "L_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_Identity":
             raise ValueError(f"Expected 'L_Identity', got {field_type_}'")
-        if field_type_ != 'L_Identity':
+        if field_type_ is not None and field_type_ != 'L_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_Identity\"")
     
     return L_Identity(
         description=field_description,
@@ -6411,10 +6459,10 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6435,10 +6483,10 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_L_Lift1_Constant":
             raise ValueError(f"Expected 'L_L_Lift1_Constant', got {field_type_}'")
-        if field_type_ != 'L_L_Lift1_Constant':
+        if field_type_ is not None and field_type_ != 'L_L_Lift1_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_L_Lift1_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_L_Lift1_Constant\"")
     
     if 'm' in data:
         field_m = load_L1Map(data['m'])
@@ -6488,10 +6536,10 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6512,10 +6560,10 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_L_Lift1_Transform":
             raise ValueError(f"Expected 'L_L_Lift1_Transform', got {field_type_}'")
-        if field_type_ != 'L_L_Lift1_Transform':
+        if field_type_ is not None and field_type_ != 'L_L_Lift1_Transform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_L_Lift1_Transform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_L_Lift1_Transform\"")
     
     if 'm' in data:
         field_m = load_L1Map(data['m'])
@@ -6565,10 +6613,10 @@ def load_L_Unknown(data: object) -> "L_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "LMap":
             raise ValueError(f"Expected 'LMap', got {field_kind}'")
-        if field_kind != 'LMap':
+        if field_kind is not None and field_kind != 'LMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"LMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6589,10 +6637,10 @@ def load_L_Unknown(data: object) -> "L_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "L_Unknown":
             raise ValueError(f"Expected 'L_Unknown', got {field_type_}'")
-        if field_type_ != 'L_Unknown':
+        if field_type_ is not None and field_type_ != 'L_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'L_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"L_Unknown\"")
     
     return L_Unknown(
         description=field_description,
@@ -6608,7 +6656,8 @@ def load_LowerSet(data: object) -> "LowerSet":
     """Load LowerSet from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'LowerSet_LowerClosure': load_LowerSet_LowerClosure,
         'LowerSet_Unused': load_LowerSet_Unused,
@@ -6632,10 +6681,10 @@ def load_LowerSet_LowerClosure(data: object) -> "LowerSet_LowerClosure":
         field_type_ = load_str(data['type'])
         if field_type_ != "LowerSet_LowerClosure":
             raise ValueError(f"Expected 'LowerSet_LowerClosure', got {field_type_}'")
-        if field_type_ != 'LowerSet_LowerClosure':
+        if field_type_ is not None and field_type_ != 'LowerSet_LowerClosure':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'LowerSet_LowerClosure', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"LowerSet_LowerClosure\"")
     
     if 'points' in data:
         field_points = load_list_of_any(data['points'])
@@ -6663,10 +6712,10 @@ def load_LowerSet_Unused(data: object) -> "LowerSet_Unused":
         field_type_ = load_str(data['type'])
         if field_type_ != "LowerSet_Unused":
             raise ValueError(f"Expected 'LowerSet_Unused', got {field_type_}'")
-        if field_type_ != 'LowerSet_Unused':
+        if field_type_ is not None and field_type_ != 'LowerSet_Unused':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'LowerSet_Unused', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"LowerSet_Unused\"")
     
     return LowerSet_Unused(
         kind=field_kind,
@@ -6677,7 +6726,8 @@ def load_MonotoneMap(data: object) -> "MonotoneMap":
     """Load MonotoneMap from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'M_AddL': load_M_AddL,
         'M_AddLConstant': load_M_AddLConstant,
@@ -6781,10 +6831,10 @@ def load_M_AddL(data: object) -> "M_AddL":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -6800,10 +6850,10 @@ def load_M_AddL(data: object) -> "M_AddL":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_AddL":
             raise ValueError(f"Expected 'M_AddL', got {field_type_}'")
-        if field_type_ != 'M_AddL':
+        if field_type_ is not None and field_type_ != 'M_AddL':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_AddL', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_AddL\"")
     
     if 'opspaces' in data:
         field_opspaces = load_list_of_Poset(data['opspaces'])
@@ -6846,10 +6896,10 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -6865,10 +6915,10 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_AddLConstant":
             raise ValueError(f"Expected 'M_AddLConstant', got {field_type_}'")
-        if field_type_ != 'M_AddLConstant':
+        if field_type_ is not None and field_type_ != 'M_AddLConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_AddLConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_AddLConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -6917,10 +6967,10 @@ def load_M_AddU(data: object) -> "M_AddU":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -6936,10 +6986,10 @@ def load_M_AddU(data: object) -> "M_AddU":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_AddU":
             raise ValueError(f"Expected 'M_AddU', got {field_type_}'")
-        if field_type_ != 'M_AddU':
+        if field_type_ is not None and field_type_ != 'M_AddU':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_AddU', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_AddU\"")
     
     if 'opspaces' in data:
         field_opspaces = load_list_of_Poset(data['opspaces'])
@@ -6982,10 +7032,10 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7001,10 +7051,10 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_AddUConstant":
             raise ValueError(f"Expected 'M_AddUConstant', got {field_type_}'")
-        if field_type_ != 'M_AddUConstant':
+        if field_type_ is not None and field_type_ != 'M_AddUConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_AddUConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_AddUConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -7053,10 +7103,10 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7072,10 +7122,10 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_BottomIfNotTop":
             raise ValueError(f"Expected 'M_BottomIfNotTop', got {field_type_}'")
-        if field_type_ != 'M_BottomIfNotTop':
+        if field_type_ is not None and field_type_ != 'M_BottomIfNotTop':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_BottomIfNotTop', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_BottomIfNotTop\"")
     
     return M_BottomIfNotTop(
         description=field_description,
@@ -7112,10 +7162,10 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7131,10 +7181,10 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Coproduct":
             raise ValueError(f"Expected 'M_C_Coproduct', got {field_type_}'")
-        if field_type_ != 'M_C_Coproduct':
+        if field_type_ is not None and field_type_ != 'M_C_Coproduct':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Coproduct', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Coproduct\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7187,10 +7237,10 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7206,10 +7256,10 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_CoproductSmash":
             raise ValueError(f"Expected 'M_C_CoproductSmash', got {field_type_}'")
-        if field_type_ != 'M_C_CoproductSmash':
+        if field_type_ is not None and field_type_ != 'M_C_CoproductSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_CoproductSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_CoproductSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7262,10 +7312,10 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7281,10 +7331,10 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_DomProdCodSmash":
             raise ValueError(f"Expected 'M_C_DomProdCodSmash', got {field_type_}'")
-        if field_type_ != 'M_C_DomProdCodSmash':
+        if field_type_ is not None and field_type_ != 'M_C_DomProdCodSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_DomProdCodSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_DomProdCodSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7337,10 +7387,10 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7356,10 +7406,10 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_DomSmashCodProd":
             raise ValueError(f"Expected 'M_C_DomSmashCodProd', got {field_type_}'")
-        if field_type_ != 'M_C_DomSmashCodProd':
+        if field_type_ is not None and field_type_ != 'M_C_DomSmashCodProd':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_DomSmashCodProd', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_DomSmashCodProd\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7412,10 +7462,10 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7431,10 +7481,10 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_DomUnion":
             raise ValueError(f"Expected 'M_C_DomUnion', got {field_type_}'")
-        if field_type_ != 'M_C_DomUnion':
+        if field_type_ is not None and field_type_ != 'M_C_DomUnion':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_DomUnion', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_DomUnion\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7487,10 +7537,10 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7506,10 +7556,10 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Leq_X":
             raise ValueError(f"Expected 'M_C_Leq_X', got {field_type_}'")
-        if field_type_ != 'M_C_Leq_X':
+        if field_type_ is not None and field_type_ != 'M_C_Leq_X':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Leq_X', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Leq_X\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -7558,10 +7608,10 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7577,10 +7627,10 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_LiftToSubsets":
             raise ValueError(f"Expected 'M_C_LiftToSubsets', got {field_type_}'")
-        if field_type_ != 'M_C_LiftToSubsets':
+        if field_type_ is not None and field_type_ != 'M_C_LiftToSubsets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_LiftToSubsets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_LiftToSubsets\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -7623,10 +7673,10 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7642,10 +7692,10 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Lt_X":
             raise ValueError(f"Expected 'M_C_Lt_X', got {field_type_}'")
-        if field_type_ != 'M_C_Lt_X':
+        if field_type_ is not None and field_type_ != 'M_C_Lt_X':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Lt_X', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Lt_X\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -7694,10 +7744,10 @@ def load_M_C_Op(data: object) -> "M_C_Op":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7713,10 +7763,10 @@ def load_M_C_Op(data: object) -> "M_C_Op":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Op":
             raise ValueError(f"Expected 'M_C_Op', got {field_type_}'")
-        if field_type_ != 'M_C_Op':
+        if field_type_ is not None and field_type_ != 'M_C_Op':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Op', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Op\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -7759,10 +7809,10 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7778,10 +7828,10 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Parallel":
             raise ValueError(f"Expected 'M_C_Parallel', got {field_type_}'")
-        if field_type_ != 'M_C_Parallel':
+        if field_type_ is not None and field_type_ != 'M_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7834,10 +7884,10 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7853,10 +7903,10 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_ParallelSmash":
             raise ValueError(f"Expected 'M_C_ParallelSmash', got {field_type_}'")
-        if field_type_ != 'M_C_ParallelSmash':
+        if field_type_ is not None and field_type_ != 'M_C_ParallelSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_ParallelSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_ParallelSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7909,10 +7959,10 @@ def load_M_C_Product(data: object) -> "M_C_Product":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7928,10 +7978,10 @@ def load_M_C_Product(data: object) -> "M_C_Product":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Product":
             raise ValueError(f"Expected 'M_C_Product', got {field_type_}'")
-        if field_type_ != 'M_C_Product':
+        if field_type_ is not None and field_type_ != 'M_C_Product':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Product', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Product\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -7984,10 +8034,10 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8003,10 +8053,10 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_ProductSmash":
             raise ValueError(f"Expected 'M_C_ProductSmash', got {field_type_}'")
-        if field_type_ != 'M_C_ProductSmash':
+        if field_type_ is not None and field_type_ != 'M_C_ProductSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_ProductSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_ProductSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -8059,10 +8109,10 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8078,10 +8128,10 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_RefineDomain":
             raise ValueError(f"Expected 'M_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'M_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'M_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -8124,10 +8174,10 @@ def load_M_C_Series(data: object) -> "M_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8143,10 +8193,10 @@ def load_M_C_Series(data: object) -> "M_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Series":
             raise ValueError(f"Expected 'M_C_Series', got {field_type_}'")
-        if field_type_ != 'M_C_Series':
+        if field_type_ is not None and field_type_ != 'M_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -8199,10 +8249,10 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8218,10 +8268,10 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_Sum":
             raise ValueError(f"Expected 'M_C_Sum', got {field_type_}'")
-        if field_type_ != 'M_C_Sum':
+        if field_type_ is not None and field_type_ != 'M_C_Sum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_Sum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_Sum\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -8274,10 +8324,10 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8293,10 +8343,10 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_SumSmash":
             raise ValueError(f"Expected 'M_C_SumSmash', got {field_type_}'")
-        if field_type_ != 'M_C_SumSmash':
+        if field_type_ is not None and field_type_ != 'M_C_SumSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_SumSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_SumSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -8349,10 +8399,10 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8368,10 +8418,10 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_C_WrapUnits":
             raise ValueError(f"Expected 'M_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'M_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'M_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_C_WrapUnits\"")
     
     if 'cod_units' in data:
         field_cod_units = load_Unit(data['cod_units'])
@@ -8426,10 +8476,10 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8445,10 +8495,10 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Ceil0":
             raise ValueError(f"Expected 'M_Ceil0', got {field_type_}'")
-        if field_type_ != 'M_Ceil0':
+        if field_type_ is not None and field_type_ != 'M_Ceil0':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Ceil0', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Ceil0\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -8491,10 +8541,10 @@ def load_M_Coerce(data: object) -> "M_Coerce":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8510,10 +8560,10 @@ def load_M_Coerce(data: object) -> "M_Coerce":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Coerce":
             raise ValueError(f"Expected 'M_Coerce', got {field_type_}'")
-        if field_type_ != 'M_Coerce':
+        if field_type_ is not None and field_type_ != 'M_Coerce':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Coerce', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Coerce\"")
     
     return M_Coerce(
         description=field_description,
@@ -8550,10 +8600,10 @@ def load_M_Constant(data: object) -> "M_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8569,10 +8619,10 @@ def load_M_Constant(data: object) -> "M_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Constant":
             raise ValueError(f"Expected 'M_Constant', got {field_type_}'")
-        if field_type_ != 'M_Constant':
+        if field_type_ is not None and field_type_ != 'M_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Constant\"")
     
     if 'value' in data:
         field_value = load_Value(data['value'])
@@ -8615,10 +8665,10 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8634,10 +8684,10 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_ContainedInLowerSet":
             raise ValueError(f"Expected 'M_ContainedInLowerSet', got {field_type_}'")
-        if field_type_ != 'M_ContainedInLowerSet':
+        if field_type_ is not None and field_type_ != 'M_ContainedInLowerSet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_ContainedInLowerSet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_ContainedInLowerSet\"")
     
     if 'lower_set' in data:
         field_lower_set = load_LowerSet(data['lower_set'])
@@ -8686,10 +8736,10 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8705,10 +8755,10 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_ContainedInUpperSet":
             raise ValueError(f"Expected 'M_ContainedInUpperSet', got {field_type_}'")
-        if field_type_ != 'M_ContainedInUpperSet':
+        if field_type_ is not None and field_type_ != 'M_ContainedInUpperSet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_ContainedInUpperSet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_ContainedInUpperSet\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -8757,10 +8807,10 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8776,10 +8826,10 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_DivideLConstant":
             raise ValueError(f"Expected 'M_DivideLConstant', got {field_type_}'")
-        if field_type_ != 'M_DivideLConstant':
+        if field_type_ is not None and field_type_ != 'M_DivideLConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_DivideLConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_DivideLConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -8828,10 +8878,10 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8847,10 +8897,10 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_DivideUConstant":
             raise ValueError(f"Expected 'M_DivideUConstant', got {field_type_}'")
-        if field_type_ != 'M_DivideUConstant':
+        if field_type_ is not None and field_type_ != 'M_DivideUConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_DivideUConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_DivideUConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -8899,10 +8949,10 @@ def load_M_Empty(data: object) -> "M_Empty":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8918,10 +8968,10 @@ def load_M_Empty(data: object) -> "M_Empty":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Empty":
             raise ValueError(f"Expected 'M_Empty', got {field_type_}'")
-        if field_type_ != 'M_Empty':
+        if field_type_ is not None and field_type_ != 'M_Empty':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Empty', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Empty\"")
     
     return M_Empty(
         description=field_description,
@@ -8958,10 +9008,10 @@ def load_M_Explicit(data: object) -> "M_Explicit":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8977,10 +9027,10 @@ def load_M_Explicit(data: object) -> "M_Explicit":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Explicit":
             raise ValueError(f"Expected 'M_Explicit', got {field_type_}'")
-        if field_type_ != 'M_Explicit':
+        if field_type_ is not None and field_type_ != 'M_Explicit':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Explicit', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Explicit\"")
     
     if 'options' in data:
         field_options = load_list_of_M_Explicit_Option(data['options'])
@@ -9042,10 +9092,10 @@ def load_M_Floor0(data: object) -> "M_Floor0":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9061,10 +9111,10 @@ def load_M_Floor0(data: object) -> "M_Floor0":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Floor0":
             raise ValueError(f"Expected 'M_Floor0', got {field_type_}'")
-        if field_type_ != 'M_Floor0':
+        if field_type_ is not None and field_type_ != 'M_Floor0':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Floor0', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Floor0\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -9107,10 +9157,10 @@ def load_M_Id(data: object) -> "M_Id":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9126,10 +9176,10 @@ def load_M_Id(data: object) -> "M_Id":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Id":
             raise ValueError(f"Expected 'M_Id', got {field_type_}'")
-        if field_type_ != 'M_Id':
+        if field_type_ is not None and field_type_ != 'M_Id':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Id', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Id\"")
     
     return M_Id(
         description=field_description,
@@ -9166,10 +9216,10 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9185,10 +9235,10 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_IdentityBelowThreshold":
             raise ValueError(f"Expected 'M_IdentityBelowThreshold', got {field_type_}'")
-        if field_type_ != 'M_IdentityBelowThreshold':
+        if field_type_ is not None and field_type_ != 'M_IdentityBelowThreshold':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_IdentityBelowThreshold', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_IdentityBelowThreshold\"")
     
     if 'threshold' in data:
         field_threshold = load_Value(data['threshold'])
@@ -9237,10 +9287,10 @@ def load_M_Injection(data: object) -> "M_Injection":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9256,10 +9306,10 @@ def load_M_Injection(data: object) -> "M_Injection":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Injection":
             raise ValueError(f"Expected 'M_Injection', got {field_type_}'")
-        if field_type_ != 'M_Injection':
+        if field_type_ is not None and field_type_ != 'M_Injection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Injection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Injection\"")
     
     if 'index' in data:
         field_index = load_int(data['index'])
@@ -9302,10 +9352,10 @@ def load_M_Join(data: object) -> "M_Join":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9321,10 +9371,10 @@ def load_M_Join(data: object) -> "M_Join":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Join":
             raise ValueError(f"Expected 'M_Join', got {field_type_}'")
-        if field_type_ != 'M_Join':
+        if field_type_ is not None and field_type_ != 'M_Join':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Join', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Join\"")
     
     if 'opspaces' in data:
         field_opspaces = load_list_of_Poset(data['opspaces'])
@@ -9367,10 +9417,10 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9386,10 +9436,10 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_JoinConstant":
             raise ValueError(f"Expected 'M_JoinConstant', got {field_type_}'")
-        if field_type_ != 'M_JoinConstant':
+        if field_type_ is not None and field_type_ != 'M_JoinConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_JoinConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_JoinConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -9438,10 +9488,10 @@ def load_M_Leq(data: object) -> "M_Leq":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9457,10 +9507,10 @@ def load_M_Leq(data: object) -> "M_Leq":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Leq":
             raise ValueError(f"Expected 'M_Leq', got {field_type_}'")
-        if field_type_ != 'M_Leq':
+        if field_type_ is not None and field_type_ != 'M_Leq':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Leq', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Leq\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -9503,10 +9553,10 @@ def load_M_Lift(data: object) -> "M_Lift":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9522,10 +9572,10 @@ def load_M_Lift(data: object) -> "M_Lift":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Lift":
             raise ValueError(f"Expected 'M_Lift', got {field_type_}'")
-        if field_type_ != 'M_Lift':
+        if field_type_ is not None and field_type_ != 'M_Lift':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Lift', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Lift\"")
     
     return M_Lift(
         description=field_description,
@@ -9562,10 +9612,10 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9581,10 +9631,10 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_LiftToLowerSets":
             raise ValueError(f"Expected 'M_LiftToLowerSets', got {field_type_}'")
-        if field_type_ != 'M_LiftToLowerSets':
+        if field_type_ is not None and field_type_ != 'M_LiftToLowerSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_LiftToLowerSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_LiftToLowerSets\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -9627,10 +9677,10 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9646,10 +9696,10 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_LiftToUpperSets":
             raise ValueError(f"Expected 'M_LiftToUpperSets', got {field_type_}'")
-        if field_type_ != 'M_LiftToUpperSets':
+        if field_type_ is not None and field_type_ != 'M_LiftToUpperSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_LiftToUpperSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_LiftToUpperSets\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -9692,10 +9742,10 @@ def load_M_Meet(data: object) -> "M_Meet":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9711,10 +9761,10 @@ def load_M_Meet(data: object) -> "M_Meet":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Meet":
             raise ValueError(f"Expected 'M_Meet', got {field_type_}'")
-        if field_type_ != 'M_Meet':
+        if field_type_ is not None and field_type_ != 'M_Meet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Meet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Meet\"")
     
     if 'opspaces' in data:
         field_opspaces = load_list_of_Poset(data['opspaces'])
@@ -9757,10 +9807,10 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9776,10 +9826,10 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_MeetConstant":
             raise ValueError(f"Expected 'M_MeetConstant', got {field_type_}'")
-        if field_type_ != 'M_MeetConstant':
+        if field_type_ is not None and field_type_ != 'M_MeetConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_MeetConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_MeetConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -9828,10 +9878,10 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9847,10 +9897,10 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_MultiplyL":
             raise ValueError(f"Expected 'M_MultiplyL', got {field_type_}'")
-        if field_type_ != 'M_MultiplyL':
+        if field_type_ is not None and field_type_ != 'M_MultiplyL':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_MultiplyL', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_MultiplyL\"")
     
     if 'opspaces' in data:
         field_opspaces = load_list_of_Poset(data['opspaces'])
@@ -9893,10 +9943,10 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9912,10 +9962,10 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_MultiplyLConstant":
             raise ValueError(f"Expected 'M_MultiplyLConstant', got {field_type_}'")
-        if field_type_ != 'M_MultiplyLConstant':
+        if field_type_ is not None and field_type_ != 'M_MultiplyLConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_MultiplyLConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_MultiplyLConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -9964,10 +10014,10 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -9983,10 +10033,10 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_MultiplyU":
             raise ValueError(f"Expected 'M_MultiplyU', got {field_type_}'")
-        if field_type_ != 'M_MultiplyU':
+        if field_type_ is not None and field_type_ != 'M_MultiplyU':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_MultiplyU', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_MultiplyU\"")
     
     if 'opspaces' in data:
         field_opspaces = load_list_of_Poset(data['opspaces'])
@@ -10029,10 +10079,10 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10048,10 +10098,10 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_MultiplyUConstant":
             raise ValueError(f"Expected 'M_MultiplyUConstant', got {field_type_}'")
-        if field_type_ != 'M_MultiplyUConstant':
+        if field_type_ is not None and field_type_ != 'M_MultiplyUConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_MultiplyUConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_MultiplyUConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -10100,10 +10150,10 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10119,10 +10169,10 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_PowerFracL":
             raise ValueError(f"Expected 'M_PowerFracL', got {field_type_}'")
-        if field_type_ != 'M_PowerFracL':
+        if field_type_ is not None and field_type_ != 'M_PowerFracL':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_PowerFracL', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_PowerFracL\"")
     
     if 'den' in data:
         field_den = load_str(data['den'])
@@ -10177,10 +10227,10 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10196,10 +10246,10 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_PowerFracU":
             raise ValueError(f"Expected 'M_PowerFracU', got {field_type_}'")
-        if field_type_ != 'M_PowerFracU':
+        if field_type_ is not None and field_type_ != 'M_PowerFracU':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_PowerFracU', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_PowerFracU\"")
     
     if 'den' in data:
         field_den = load_str(data['den'])
@@ -10254,10 +10304,10 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10273,10 +10323,10 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_ReprLowerSet":
             raise ValueError(f"Expected 'M_ReprLowerSet', got {field_type_}'")
-        if field_type_ != 'M_ReprLowerSet':
+        if field_type_ is not None and field_type_ != 'M_ReprLowerSet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_ReprLowerSet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_ReprLowerSet\"")
     
     return M_ReprLowerSet(
         description=field_description,
@@ -10313,10 +10363,10 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10332,10 +10382,10 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_ReprUpperSet":
             raise ValueError(f"Expected 'M_ReprUpperSet', got {field_type_}'")
-        if field_type_ != 'M_ReprUpperSet':
+        if field_type_ is not None and field_type_ != 'M_ReprUpperSet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_ReprUpperSet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_ReprUpperSet\"")
     
     return M_ReprUpperSet(
         description=field_description,
@@ -10372,10 +10422,10 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10391,10 +10441,10 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
         field_type_ = load_str(data['type'])
         if field_type_ != "M_RepresentPrincipalLowerSet_TotalOrderBounded":
             raise ValueError(f"Expected 'M_RepresentPrincipalLowerSet_TotalOrderBounded', got {field_type_}'")
-        if field_type_ != 'M_RepresentPrincipalLowerSet_TotalOrderBounded':
+        if field_type_ is not None and field_type_ != 'M_RepresentPrincipalLowerSet_TotalOrderBounded':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_RepresentPrincipalLowerSet_TotalOrderBounded', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_RepresentPrincipalLowerSet_TotalOrderBounded\"")
     
     return M_RepresentPrincipalLowerSet_TotalOrderBounded(
         description=field_description,
@@ -10431,10 +10481,10 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10450,10 +10500,10 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
         field_type_ = load_str(data['type'])
         if field_type_ != "M_RepresentPrincipalUpperSet_TotalOrderBounded":
             raise ValueError(f"Expected 'M_RepresentPrincipalUpperSet_TotalOrderBounded', got {field_type_}'")
-        if field_type_ != 'M_RepresentPrincipalUpperSet_TotalOrderBounded':
+        if field_type_ is not None and field_type_ != 'M_RepresentPrincipalUpperSet_TotalOrderBounded':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_RepresentPrincipalUpperSet_TotalOrderBounded', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_RepresentPrincipalUpperSet_TotalOrderBounded\"")
     
     return M_RepresentPrincipalUpperSet_TotalOrderBounded(
         description=field_description,
@@ -10490,10 +10540,10 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10509,10 +10559,10 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_RoundDown":
             raise ValueError(f"Expected 'M_RoundDown', got {field_type_}'")
-        if field_type_ != 'M_RoundDown':
+        if field_type_ is not None and field_type_ != 'M_RoundDown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_RoundDown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_RoundDown\"")
     
     if 'offset' in data:
         field_offset = load_any(data['offset'])
@@ -10567,10 +10617,10 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10586,10 +10636,10 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_RoundUp":
             raise ValueError(f"Expected 'M_RoundUp', got {field_type_}'")
-        if field_type_ != 'M_RoundUp':
+        if field_type_ is not None and field_type_ != 'M_RoundUp':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_RoundUp', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_RoundUp\"")
     
     if 'offset' in data:
         field_offset = load_any(data['offset'])
@@ -10644,10 +10694,10 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10663,10 +10713,10 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_ScaleL":
             raise ValueError(f"Expected 'M_ScaleL', got {field_type_}'")
-        if field_type_ != 'M_ScaleL':
+        if field_type_ is not None and field_type_ != 'M_ScaleL':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_ScaleL', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_ScaleL\"")
     
     if 'den' in data:
         field_den = load_str(data['den'])
@@ -10721,10 +10771,10 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10740,10 +10790,10 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_ScaleU":
             raise ValueError(f"Expected 'M_ScaleU', got {field_type_}'")
-        if field_type_ != 'M_ScaleU':
+        if field_type_ is not None and field_type_ != 'M_ScaleU':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_ScaleU', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_ScaleU\"")
     
     if 'den' in data:
         field_den = load_str(data['den'])
@@ -10798,10 +10848,10 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10817,10 +10867,10 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_SmashInjection":
             raise ValueError(f"Expected 'M_SmashInjection', got {field_type_}'")
-        if field_type_ != 'M_SmashInjection':
+        if field_type_ is not None and field_type_ != 'M_SmashInjection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_SmashInjection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_SmashInjection\"")
     
     if 'index' in data:
         field_index = load_int(data['index'])
@@ -10863,10 +10913,10 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10882,10 +10932,10 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_SubLConstant":
             raise ValueError(f"Expected 'M_SubLConstant', got {field_type_}'")
-        if field_type_ != 'M_SubLConstant':
+        if field_type_ is not None and field_type_ != 'M_SubLConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_SubLConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_SubLConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -10934,10 +10984,10 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10953,10 +11003,10 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_SubUConstant":
             raise ValueError(f"Expected 'M_SubUConstant', got {field_type_}'")
-        if field_type_ != 'M_SubUConstant':
+        if field_type_ is not None and field_type_ != 'M_SubUConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_SubUConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_SubUConstant\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -11005,10 +11055,10 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11024,10 +11074,10 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_TakeIndex":
             raise ValueError(f"Expected 'M_TakeIndex', got {field_type_}'")
-        if field_type_ != 'M_TakeIndex':
+        if field_type_ is not None and field_type_ != 'M_TakeIndex':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_TakeIndex', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_TakeIndex\"")
     
     if 'projection' in data:
         field_projection = load_Projection(data['projection'])
@@ -11070,10 +11120,10 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11089,10 +11139,10 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_TakeRange":
             raise ValueError(f"Expected 'M_TakeRange', got {field_type_}'")
-        if field_type_ != 'M_TakeRange':
+        if field_type_ is not None and field_type_ != 'M_TakeRange':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_TakeRange', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_TakeRange\"")
     
     if 'range' in data:
         field_range = load_Range(data['range'])
@@ -11135,10 +11185,10 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11154,10 +11204,10 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Threshold1":
             raise ValueError(f"Expected 'M_Threshold1', got {field_type_}'")
-        if field_type_ != 'M_Threshold1':
+        if field_type_ is not None and field_type_ != 'M_Threshold1':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Threshold1', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Threshold1\"")
     
     if 'value' in data:
         field_value = load_Value(data['value'])
@@ -11200,10 +11250,10 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11219,10 +11269,10 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Threshold2":
             raise ValueError(f"Expected 'M_Threshold2', got {field_type_}'")
-        if field_type_ != 'M_Threshold2':
+        if field_type_ is not None and field_type_ != 'M_Threshold2':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Threshold2', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Threshold2\"")
     
     if 'value' in data:
         field_value = load_Value(data['value'])
@@ -11265,10 +11315,10 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11284,10 +11334,10 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_TopIfNotBottom":
             raise ValueError(f"Expected 'M_TopIfNotBottom', got {field_type_}'")
-        if field_type_ != 'M_TopIfNotBottom':
+        if field_type_ is not None and field_type_ != 'M_TopIfNotBottom':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_TopIfNotBottom', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_TopIfNotBottom\"")
     
     return M_TopIfNotBottom(
         description=field_description,
@@ -11324,10 +11374,10 @@ def load_M_Undefined(data: object) -> "M_Undefined":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11343,10 +11393,10 @@ def load_M_Undefined(data: object) -> "M_Undefined":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Undefined":
             raise ValueError(f"Expected 'M_Undefined', got {field_type_}'")
-        if field_type_ != 'M_Undefined':
+        if field_type_ is not None and field_type_ != 'M_Undefined':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Undefined', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Undefined\"")
     
     return M_Undefined(
         description=field_description,
@@ -11383,10 +11433,10 @@ def load_M_Unknown(data: object) -> "M_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11402,10 +11452,10 @@ def load_M_Unknown(data: object) -> "M_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Unknown":
             raise ValueError(f"Expected 'M_Unknown', got {field_type_}'")
-        if field_type_ != 'M_Unknown':
+        if field_type_ is not None and field_type_ != 'M_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Unknown\"")
     
     return M_Unknown(
         description=field_description,
@@ -11442,10 +11492,10 @@ def load_M_Unlift(data: object) -> "M_Unlift":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11461,10 +11511,10 @@ def load_M_Unlift(data: object) -> "M_Unlift":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_Unlift":
             raise ValueError(f"Expected 'M_Unlift', got {field_type_}'")
-        if field_type_ != 'M_Unlift':
+        if field_type_ is not None and field_type_ != 'M_Unlift':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_Unlift', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_Unlift\"")
     
     return M_Unlift(
         description=field_description,
@@ -11501,10 +11551,10 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11520,10 +11570,10 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_X_Leq_C":
             raise ValueError(f"Expected 'M_X_Leq_C', got {field_type_}'")
-        if field_type_ != 'M_X_Leq_C':
+        if field_type_ is not None and field_type_ != 'M_X_Leq_C':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_X_Leq_C', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_X_Leq_C\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -11572,10 +11622,10 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
         field_kind = load_str(data['kind'])
         if field_kind != "MonotoneMap":
             raise ValueError(f"Expected 'MonotoneMap', got {field_kind}'")
-        if field_kind != 'MonotoneMap':
+        if field_kind is not None and field_kind != 'MonotoneMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"MonotoneMap\"")
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -11591,10 +11641,10 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
         field_type_ = load_str(data['type'])
         if field_type_ != "M_X_Lt_C":
             raise ValueError(f"Expected 'M_X_Lt_C', got {field_type_}'")
-        if field_type_ != 'M_X_Lt_C':
+        if field_type_ is not None and field_type_ != 'M_X_Lt_C':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'M_X_Lt_C', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"M_X_Lt_C\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -11643,19 +11693,19 @@ def load_MapCheck(data: object) -> "MapCheck":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "MapCheck":
             raise ValueError(f"Expected 'MapCheck', got {field_type_}'")
-        if field_type_ != 'MapCheck':
+        if field_type_ is not None and field_type_ != 'MapCheck':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'MapCheck', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"MapCheck\"")
     
     if 'data' in data:
         field_data = load_list_of_MapCheck_Data(data['data'])
@@ -11713,10 +11763,10 @@ def load_ModelFunctionality(data: object) -> "ModelFunctionality":
         field_type_ = load_str(data['type'])
         if field_type_ != "ModelFunctionality":
             raise ValueError(f"Expected 'ModelFunctionality', got {field_type_}'")
-        if field_type_ != 'ModelFunctionality':
+        if field_type_ is not None and field_type_ != 'ModelFunctionality':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'ModelFunctionality', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"ModelFunctionality\"")
     
     if 'functionality' in data:
         field_functionality = load_str(data['functionality'])
@@ -11736,10 +11786,10 @@ def load_ModelRequirement(data: object) -> "ModelRequirement":
         field_type_ = load_str(data['type'])
         if field_type_ != "ModelRequirement":
             raise ValueError(f"Expected 'ModelRequirement', got {field_type_}'")
-        if field_type_ != 'ModelRequirement':
+        if field_type_ is not None and field_type_ != 'ModelRequirement':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'ModelRequirement', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"ModelRequirement\"")
     
     if 'requirement' in data:
         field_requirement = load_str(data['requirement'])
@@ -11755,7 +11805,8 @@ def load_NDP(data: object) -> "NDP":
     """Load NDP from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'NDP_Composite': load_NDP_Composite,
         'NDP_Simple': load_NDP_Simple,
@@ -11770,7 +11821,8 @@ def load_NDPInterface(data: object) -> "NDPInterface":
     """Load NDPInterface from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'NDPInterface_Explicit': load_NDPInterface_Explicit,
     }
@@ -11804,10 +11856,10 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
         field_kind = load_str(data['kind'])
         if field_kind != "NDPInterface":
             raise ValueError(f"Expected 'NDPInterface', got {field_kind}'")
-        if field_kind != 'NDPInterface':
+        if field_kind is not None and field_kind != 'NDPInterface':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDPInterface', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"NDPInterface\"")
     
     if 'address' in data:
         value = data['address']
@@ -11822,10 +11874,10 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
         field_type_ = load_str(data['type'])
         if field_type_ != "NDPInterface_Explicit":
             raise ValueError(f"Expected 'NDPInterface_Explicit', got {field_type_}'")
-        if field_type_ != 'NDPInterface_Explicit':
+        if field_type_ is not None and field_type_ != 'NDPInterface_Explicit':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NDPInterface_Explicit', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NDPInterface_Explicit\"")
     
     if 'fs' in data:
         field_fs = load_dict_of_str_Poset(data['fs'])
@@ -11851,7 +11903,8 @@ def load_NDPTemplate(data: object) -> "NDPTemplate":
     """Load NDPTemplate from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'NDPTemplate_Simple': load_NDPTemplate_Simple,
     }
@@ -11885,10 +11938,10 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
         field_kind = load_str(data['kind'])
         if field_kind != "NDPTemplate":
             raise ValueError(f"Expected 'NDPTemplate', got {field_kind}'")
-        if field_kind != 'NDPTemplate':
+        if field_kind is not None and field_kind != 'NDPTemplate':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDPTemplate', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"NDPTemplate\"")
     
     if 'address' in data:
         value = data['address']
@@ -11903,10 +11956,10 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
         field_type_ = load_str(data['type'])
         if field_type_ != "NDPTemplate_Simple":
             raise ValueError(f"Expected 'NDPTemplate_Simple', got {field_type_}'")
-        if field_type_ != 'NDPTemplate_Simple':
+        if field_type_ is not None and field_type_ != 'NDPTemplate_Simple':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NDPTemplate_Simple', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NDPTemplate_Simple\"")
     
     if 'ndp' in data:
         field_ndp = load_NDP(data['ndp'])
@@ -11954,10 +12007,10 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
         field_kind = load_str(data['kind'])
         if field_kind != "NDP":
             raise ValueError(f"Expected 'NDP', got {field_kind}'")
-        if field_kind != 'NDP':
+        if field_kind is not None and field_kind != 'NDP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"NDP\"")
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -11992,10 +12045,10 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
         field_type_ = load_str(data['type'])
         if field_type_ != "NDP_Composite":
             raise ValueError(f"Expected 'NDP_Composite', got {field_type_}'")
-        if field_type_ != 'NDP_Composite':
+        if field_type_ is not None and field_type_ != 'NDP_Composite':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NDP_Composite', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NDP_Composite\"")
     
     if 'connections' in data:
         field_connections = load_list_of_Connection(data['connections'])
@@ -12047,10 +12100,10 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
         field_kind = load_str(data['kind'])
         if field_kind != "NDP":
             raise ValueError(f"Expected 'NDP', got {field_kind}'")
-        if field_kind != 'NDP':
+        if field_kind is not None and field_kind != 'NDP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"NDP\"")
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12085,10 +12138,10 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
         field_type_ = load_str(data['type'])
         if field_type_ != "NDP_Simple":
             raise ValueError(f"Expected 'NDP_Simple', got {field_type_}'")
-        if field_type_ != 'NDP_Simple':
+        if field_type_ is not None and field_type_ != 'NDP_Simple':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NDP_Simple', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NDP_Simple\"")
     
     if 'dp' in data:
         field_dp = load_DP(data['dp'])
@@ -12134,10 +12187,10 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
         field_kind = load_str(data['kind'])
         if field_kind != "NDP":
             raise ValueError(f"Expected 'NDP', got {field_kind}'")
-        if field_kind != 'NDP':
+        if field_kind is not None and field_kind != 'NDP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"NDP\"")
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12172,10 +12225,10 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
         field_type_ = load_str(data['type'])
         if field_type_ != "NDP_Sum":
             raise ValueError(f"Expected 'NDP_Sum', got {field_type_}'")
-        if field_type_ != 'NDP_Sum':
+        if field_type_ is not None and field_type_ != 'NDP_Sum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NDP_Sum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NDP_Sum\"")
     
     if 'dps' in data:
         field_dps = load_dict_of_str_NDP(data['dps'])
@@ -12231,10 +12284,10 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
         field_kind = load_str(data['kind'])
         if field_kind != "NDP":
             raise ValueError(f"Expected 'NDP', got {field_kind}'")
-        if field_kind != 'NDP':
+        if field_kind is not None and field_kind != 'NDP':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"NDP\"")
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12269,10 +12322,10 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
         field_type_ = load_str(data['type'])
         if field_type_ != "NDP_TemplateHole":
             raise ValueError(f"Expected 'NDP_TemplateHole', got {field_type_}'")
-        if field_type_ != 'NDP_TemplateHole':
+        if field_type_ is not None and field_type_ != 'NDP_TemplateHole':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NDP_TemplateHole', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NDP_TemplateHole\"")
     
     if 'parameter_name' in data:
         field_parameter_name = load_str(data['parameter_name'])
@@ -12300,10 +12353,10 @@ def load_NodeFunctionality(data: object) -> "NodeFunctionality":
         field_type_ = load_str(data['type'])
         if field_type_ != "NodeFunctionality":
             raise ValueError(f"Expected 'NodeFunctionality', got {field_type_}'")
-        if field_type_ != 'NodeFunctionality':
+        if field_type_ is not None and field_type_ != 'NodeFunctionality':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NodeFunctionality', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NodeFunctionality\"")
     
     if 'node' in data:
         field_node = load_str(data['node'])
@@ -12329,10 +12382,10 @@ def load_NodeRequirement(data: object) -> "NodeRequirement":
         field_type_ = load_str(data['type'])
         if field_type_ != "NodeRequirement":
             raise ValueError(f"Expected 'NodeRequirement', got {field_type_}'")
-        if field_type_ != 'NodeRequirement':
+        if field_type_ is not None and field_type_ != 'NodeRequirement':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'NodeRequirement', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"NodeRequirement\"")
     
     if 'node' in data:
         field_node = load_str(data['node'])
@@ -12354,7 +12407,8 @@ def load_Poset(data: object) -> "Poset":
     """Load Poset from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'P_Bool': load_P_Bool,
         'P_C_Arrow': load_P_C_Arrow,
@@ -12416,10 +12470,10 @@ def load_P_Bool(data: object) -> "P_Bool":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12434,10 +12488,10 @@ def load_P_Bool(data: object) -> "P_Bool":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Bool":
             raise ValueError(f"Expected 'P_Bool', got {field_type_}'")
-        if field_type_ != 'P_Bool':
+        if field_type_ is not None and field_type_ != 'P_Bool':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Bool', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Bool\"")
     
     return P_Bool(
         description=field_description,
@@ -12473,10 +12527,10 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12491,10 +12545,10 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Arrow":
             raise ValueError(f"Expected 'P_C_Arrow', got {field_type_}'")
-        if field_type_ != 'P_C_Arrow':
+        if field_type_ is not None and field_type_ != 'P_C_Arrow':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Arrow', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Arrow\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -12536,10 +12590,10 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12554,10 +12608,10 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Discretized":
             raise ValueError(f"Expected 'P_C_Discretized', got {field_type_}'")
-        if field_type_ != 'P_C_Discretized':
+        if field_type_ is not None and field_type_ != 'P_C_Discretized':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Discretized', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Discretized\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -12599,10 +12653,10 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12617,10 +12671,10 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Lexicographic":
             raise ValueError(f"Expected 'P_C_Lexicographic', got {field_type_}'")
-        if field_type_ != 'P_C_Lexicographic':
+        if field_type_ is not None and field_type_ != 'P_C_Lexicographic':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Lexicographic', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Lexicographic\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -12672,10 +12726,10 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12690,10 +12744,10 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_LowerSets":
             raise ValueError(f"Expected 'P_C_LowerSets', got {field_type_}'")
-        if field_type_ != 'P_C_LowerSets':
+        if field_type_ is not None and field_type_ != 'P_C_LowerSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_LowerSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_LowerSets\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -12735,10 +12789,10 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12753,10 +12807,10 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Multisets":
             raise ValueError(f"Expected 'P_C_Multisets', got {field_type_}'")
-        if field_type_ != 'P_C_Multisets':
+        if field_type_ is not None and field_type_ != 'P_C_Multisets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Multisets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Multisets\"")
     
     if 'counts' in data:
         field_counts = load_Poset(data['counts'])
@@ -12804,10 +12858,10 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12822,10 +12876,10 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Opposite":
             raise ValueError(f"Expected 'P_C_Opposite', got {field_type_}'")
-        if field_type_ != 'P_C_Opposite':
+        if field_type_ is not None and field_type_ != 'P_C_Opposite':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Opposite', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Opposite\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -12867,10 +12921,10 @@ def load_P_C_Power(data: object) -> "P_C_Power":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12885,10 +12939,10 @@ def load_P_C_Power(data: object) -> "P_C_Power":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Power":
             raise ValueError(f"Expected 'P_C_Power', got {field_type_}'")
-        if field_type_ != 'P_C_Power':
+        if field_type_ is not None and field_type_ != 'P_C_Power':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Power', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Power\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -12930,10 +12984,10 @@ def load_P_C_Product(data: object) -> "P_C_Product":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -12948,10 +13002,10 @@ def load_P_C_Product(data: object) -> "P_C_Product":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Product":
             raise ValueError(f"Expected 'P_C_Product', got {field_type_}'")
-        if field_type_ != 'P_C_Product':
+        if field_type_ is not None and field_type_ != 'P_C_Product':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Product', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Product\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -13003,10 +13057,10 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13021,10 +13075,10 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_ProductDS":
             raise ValueError(f"Expected 'P_C_ProductDS', got {field_type_}'")
-        if field_type_ != 'P_C_ProductDS':
+        if field_type_ is not None and field_type_ != 'P_C_ProductDS':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_ProductDS', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_ProductDS\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -13076,10 +13130,10 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13094,10 +13148,10 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_ProductSmash":
             raise ValueError(f"Expected 'P_C_ProductSmash', got {field_type_}'")
-        if field_type_ != 'P_C_ProductSmash':
+        if field_type_ is not None and field_type_ != 'P_C_ProductSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_ProductSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_ProductSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -13161,10 +13215,10 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13179,10 +13233,10 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Sum":
             raise ValueError(f"Expected 'P_C_Sum', got {field_type_}'")
-        if field_type_ != 'P_C_Sum':
+        if field_type_ is not None and field_type_ != 'P_C_Sum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Sum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Sum\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -13234,10 +13288,10 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13252,10 +13306,10 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_SumSmash":
             raise ValueError(f"Expected 'P_C_SumSmash', got {field_type_}'")
-        if field_type_ != 'P_C_SumSmash':
+        if field_type_ is not None and field_type_ != 'P_C_SumSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_SumSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_SumSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -13325,10 +13379,10 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13343,10 +13397,10 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Twisted":
             raise ValueError(f"Expected 'P_C_Twisted', got {field_type_}'")
-        if field_type_ != 'P_C_Twisted':
+        if field_type_ is not None and field_type_ != 'P_C_Twisted':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Twisted', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Twisted\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -13388,10 +13442,10 @@ def load_P_C_Units(data: object) -> "P_C_Units":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13406,10 +13460,10 @@ def load_P_C_Units(data: object) -> "P_C_Units":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_Units":
             raise ValueError(f"Expected 'P_C_Units', got {field_type_}'")
-        if field_type_ != 'P_C_Units':
+        if field_type_ is not None and field_type_ != 'P_C_Units':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_Units', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_Units\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -13457,10 +13511,10 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13475,10 +13529,10 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_C_UpperSets":
             raise ValueError(f"Expected 'P_C_UpperSets', got {field_type_}'")
-        if field_type_ != 'P_C_UpperSets':
+        if field_type_ is not None and field_type_ != 'P_C_UpperSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_C_UpperSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_C_UpperSets\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -13520,10 +13574,10 @@ def load_P_Decimal(data: object) -> "P_Decimal":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13538,15 +13592,15 @@ def load_P_Decimal(data: object) -> "P_Decimal":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Decimal":
             raise ValueError(f"Expected 'P_Decimal', got {field_type_}'")
-        if field_type_ != 'P_Decimal':
+        if field_type_ is not None and field_type_ != 'P_Decimal':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Decimal', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Decimal\"")
     
     if 'precision' in data:
         field_precision = load_int(data['precision'])
     else:
-        raise ValueError("Missing required field 'precision'")
+        field_precision = json.loads("9")
     
     return P_Decimal(
         description=field_description,
@@ -13583,10 +13637,10 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13601,10 +13655,10 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_Bounded":
             raise ValueError(f"Expected 'P_F_Bounded', got {field_type_}'")
-        if field_type_ != 'P_F_Bounded':
+        if field_type_ is not None and field_type_ != 'P_F_Bounded':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_Bounded', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_Bounded\"")
     
     if 'bottom' in data:
         field_bottom = load_any(data['bottom'])
@@ -13682,10 +13736,10 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13700,10 +13754,10 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_C_Intersection":
             raise ValueError(f"Expected 'P_F_C_Intersection', got {field_type_}'")
-        if field_type_ != 'P_F_C_Intersection':
+        if field_type_ is not None and field_type_ != 'P_F_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_C_Intersection\"")
     
     if 'ambient' in data:
         field_ambient = load_Poset(data['ambient'])
@@ -13761,10 +13815,10 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13779,10 +13833,10 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_C_Union":
             raise ValueError(f"Expected 'P_F_C_Union', got {field_type_}'")
-        if field_type_ != 'P_F_C_Union':
+        if field_type_ is not None and field_type_ != 'P_F_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_C_Union\"")
     
     if 'ambient' in data:
         field_ambient = load_Poset(data['ambient'])
@@ -13840,10 +13894,10 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13858,10 +13912,10 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_Interval":
             raise ValueError(f"Expected 'P_F_Interval', got {field_type_}'")
-        if field_type_ != 'P_F_Interval':
+        if field_type_ is not None and field_type_ != 'P_F_Interval':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_Interval', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_Interval\"")
     
     if 'high' in data:
         field_high = load_any(data['high'])
@@ -13915,10 +13969,10 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -13933,10 +13987,10 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_LowerClosure":
             raise ValueError(f"Expected 'P_F_LowerClosure', got {field_type_}'")
-        if field_type_ != 'P_F_LowerClosure':
+        if field_type_ is not None and field_type_ != 'P_F_LowerClosure':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_LowerClosure', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_LowerClosure\"")
     
     if 'ls' in data:
         field_ls = load_LowerSet(data['ls'])
@@ -13984,10 +14038,10 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14002,10 +14056,10 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_Subposet":
             raise ValueError(f"Expected 'P_F_Subposet', got {field_type_}'")
-        if field_type_ != 'P_F_Subposet':
+        if field_type_ is not None and field_type_ != 'P_F_Subposet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_Subposet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_Subposet\"")
     
     if 'elements' in data:
         field_elements = load_list_of_any(data['elements'])
@@ -14053,10 +14107,10 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14071,10 +14125,10 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_F_UpperClosure":
             raise ValueError(f"Expected 'P_F_UpperClosure', got {field_type_}'")
-        if field_type_ != 'P_F_UpperClosure':
+        if field_type_ is not None and field_type_ != 'P_F_UpperClosure':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_F_UpperClosure', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_F_UpperClosure\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -14122,10 +14176,10 @@ def load_P_Finite(data: object) -> "P_Finite":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14140,10 +14194,10 @@ def load_P_Finite(data: object) -> "P_Finite":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Finite":
             raise ValueError(f"Expected 'P_Finite', got {field_type_}'")
-        if field_type_ != 'P_Finite':
+        if field_type_ is not None and field_type_ != 'P_Finite':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Finite', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Finite\"")
     
     if 'aliases' in data:
         value = data['aliases']
@@ -14201,10 +14255,10 @@ def load_P_Float(data: object) -> "P_Float":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14219,10 +14273,10 @@ def load_P_Float(data: object) -> "P_Float":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Float":
             raise ValueError(f"Expected 'P_Float', got {field_type_}'")
-        if field_type_ != 'P_Float':
+        if field_type_ is not None and field_type_ != 'P_Float':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Float', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Float\"")
     
     if 'size' in data:
         field_size = load_enum_f8_f16_f32_f64_f80_f128(data['size'])
@@ -14264,10 +14318,10 @@ def load_P_Fractions(data: object) -> "P_Fractions":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14282,10 +14336,10 @@ def load_P_Fractions(data: object) -> "P_Fractions":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Fractions":
             raise ValueError(f"Expected 'P_Fractions', got {field_type_}'")
-        if field_type_ != 'P_Fractions':
+        if field_type_ is not None and field_type_ != 'P_Fractions':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Fractions', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Fractions\"")
     
     if 'max_abs_denominator' in data:
         field_max_abs_denominator = load_int(data['max_abs_denominator'])
@@ -14339,10 +14393,10 @@ def load_P_Integer(data: object) -> "P_Integer":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14357,10 +14411,10 @@ def load_P_Integer(data: object) -> "P_Integer":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Integer":
             raise ValueError(f"Expected 'P_Integer', got {field_type_}'")
-        if field_type_ != 'P_Integer':
+        if field_type_ is not None and field_type_ != 'P_Integer':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Integer', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Integer\"")
     
     if 'size' in data:
         field_size = load_enum_i8_i16_i32_i64_i128(data['size'])
@@ -14402,10 +14456,10 @@ def load_P_Unknown(data: object) -> "P_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "Poset":
             raise ValueError(f"Expected 'Poset', got {field_kind}'")
-        if field_kind != 'Poset':
+        if field_kind is not None and field_kind != 'Poset':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Poset\"")
     
     if 'address' in data:
         value = data['address']
@@ -14420,10 +14474,10 @@ def load_P_Unknown(data: object) -> "P_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "P_Unknown":
             raise ValueError(f"Expected 'P_Unknown', got {field_type_}'")
-        if field_type_ != 'P_Unknown':
+        if field_type_ is not None and field_type_ != 'P_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'P_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"P_Unknown\"")
     
     return P_Unknown(
         description=field_description,
@@ -14464,7 +14518,8 @@ def load_Query(data: object) -> "Query":
     """Load Query from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'Query_Single': load_Query_Single,
     }
@@ -14476,7 +14531,8 @@ def load_QueryData(data: object) -> "QueryData":
     """Load QueryData from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'QueryFixFunMinReqData': load_QueryFixFunMinReqData,
         'QueryFixReqMaxFunData': load_QueryFixReqMaxFunData,
@@ -14493,10 +14549,10 @@ def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
         field_type_ = load_str(data['type'])
         if field_type_ != "QueryFixFunMinReqData":
             raise ValueError(f"Expected 'QueryFixFunMinReqData', got {field_type_}'")
-        if field_type_ != 'QueryFixFunMinReqData':
+        if field_type_ is not None and field_type_ != 'QueryFixFunMinReqData':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'QueryFixFunMinReqData', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"QueryFixFunMinReqData\"")
     
     if 'f' in data:
         value = data['f']
@@ -14540,10 +14596,10 @@ def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
         field_type_ = load_str(data['type'])
         if field_type_ != "QueryFixReqMaxFunData":
             raise ValueError(f"Expected 'QueryFixReqMaxFunData', got {field_type_}'")
-        if field_type_ != 'QueryFixReqMaxFunData':
+        if field_type_ is not None and field_type_ != 'QueryFixReqMaxFunData':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'QueryFixReqMaxFunData', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"QueryFixReqMaxFunData\"")
     
     if 'f' in data:
         value = data['f']
@@ -14605,10 +14661,10 @@ def load_Query_Single(data: object) -> "Query_Single":
         field_kind = load_str(data['kind'])
         if field_kind != "Query":
             raise ValueError(f"Expected 'Query', got {field_kind}'")
-        if field_kind != 'Query':
+        if field_kind is not None and field_kind != 'Query':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Query', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Query\"")
     
     if 'address' in data:
         value = data['address']
@@ -14623,10 +14679,10 @@ def load_Query_Single(data: object) -> "Query_Single":
         field_type_ = load_str(data['type'])
         if field_type_ != "Query_Single":
             raise ValueError(f"Expected 'Query_Single', got {field_type_}'")
-        if field_type_ != 'Query_Single':
+        if field_type_ is not None and field_type_ != 'Query_Single':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'Query_Single', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"Query_Single\"")
     
     if 'model' in data:
         field_model = load_NDP(data['model'])
@@ -14711,19 +14767,19 @@ def load_SL1Check(data: object) -> "SL1Check":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1Check":
             raise ValueError(f"Expected 'SL1Check', got {field_type_}'")
-        if field_type_ != 'SL1Check':
+        if field_type_ is not None and field_type_ != 'SL1Check':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1Check', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1Check\"")
     
     if 'data' in data:
         field_data = load_list_of_SL1Check_Data(data['data'])
@@ -14805,7 +14861,8 @@ def load_SL1Map(data: object) -> "SL1Map":
     """Load SL1Map from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'SL1_C_CodSum': load_SL1_C_CodSum,
         'SL1_C_CodSumSmash': load_SL1_C_CodSumSmash,
@@ -14855,10 +14912,10 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -14884,10 +14941,10 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_CodSum":
             raise ValueError(f"Expected 'SL1_C_CodSum', got {field_type_}'")
-        if field_type_ != 'SL1_C_CodSum':
+        if field_type_ is not None and field_type_ != 'SL1_C_CodSum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_CodSum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_CodSum\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -14942,10 +14999,10 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -14971,10 +15028,10 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_CodSumSmash":
             raise ValueError(f"Expected 'SL1_C_CodSumSmash', got {field_type_}'")
-        if field_type_ != 'SL1_C_CodSumSmash':
+        if field_type_ is not None and field_type_ != 'SL1_C_CodSumSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_CodSumSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_CodSumSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15029,10 +15086,10 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15058,10 +15115,10 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_ExplicitApprox":
             raise ValueError(f"Expected 'SL1_C_ExplicitApprox', got {field_type_}'")
-        if field_type_ != 'SL1_C_ExplicitApprox':
+        if field_type_ is not None and field_type_ != 'SL1_C_ExplicitApprox':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_ExplicitApprox', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_ExplicitApprox\"")
     
     if 'optimistic' in data:
         field_optimistic = load_list_of_L1Map(data['optimistic'])
@@ -15132,10 +15189,10 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15161,10 +15218,10 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_Intersection":
             raise ValueError(f"Expected 'SL1_C_Intersection', got {field_type_}'")
-        if field_type_ != 'SL1_C_Intersection':
+        if field_type_ is not None and field_type_ != 'SL1_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15219,10 +15276,10 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15248,10 +15305,10 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_Parallel":
             raise ValueError(f"Expected 'SL1_C_Parallel', got {field_type_}'")
-        if field_type_ != 'SL1_C_Parallel':
+        if field_type_ is not None and field_type_ != 'SL1_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15306,10 +15363,10 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15335,10 +15392,10 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_ProdIntersection":
             raise ValueError(f"Expected 'SL1_C_ProdIntersection', got {field_type_}'")
-        if field_type_ != 'SL1_C_ProdIntersection':
+        if field_type_ is not None and field_type_ != 'SL1_C_ProdIntersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_ProdIntersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_ProdIntersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15393,10 +15450,10 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15422,10 +15479,10 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_Product":
             raise ValueError(f"Expected 'SL1_C_Product', got {field_type_}'")
-        if field_type_ != 'SL1_C_Product':
+        if field_type_ is not None and field_type_ != 'SL1_C_Product':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_Product', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_Product\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15480,10 +15537,10 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15509,10 +15566,10 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_RefineDomain":
             raise ValueError(f"Expected 'SL1_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'SL1_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'SL1_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_SL1Map(data['m'])
@@ -15557,10 +15614,10 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15586,10 +15643,10 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_Series":
             raise ValueError(f"Expected 'SL1_C_Series', got {field_type_}'")
-        if field_type_ != 'SL1_C_Series':
+        if field_type_ is not None and field_type_ != 'SL1_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15644,10 +15701,10 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15673,10 +15730,10 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_Trace":
             raise ValueError(f"Expected 'SL1_C_Trace', got {field_type_}'")
-        if field_type_ != 'SL1_C_Trace':
+        if field_type_ is not None and field_type_ != 'SL1_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_Trace\"")
     
     if 'm' in data:
         field_m = load_SL1Map(data['m'])
@@ -15721,10 +15778,10 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15750,10 +15807,10 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_Union":
             raise ValueError(f"Expected 'SL1_C_Union', got {field_type_}'")
-        if field_type_ != 'SL1_C_Union':
+        if field_type_ is not None and field_type_ != 'SL1_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -15808,10 +15865,10 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15837,10 +15894,10 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_C_WrapUnits":
             raise ValueError(f"Expected 'SL1_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'SL1_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'SL1_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -15897,10 +15954,10 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15926,10 +15983,10 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_Exact":
             raise ValueError(f"Expected 'SL1_Exact', got {field_type_}'")
-        if field_type_ != 'SL1_Exact':
+        if field_type_ is not None and field_type_ != 'SL1_Exact':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_Exact', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_Exact\"")
     
     if 'm' in data:
         field_m = load_L1Map(data['m'])
@@ -15974,10 +16031,10 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16003,10 +16060,10 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_Identity":
             raise ValueError(f"Expected 'SL1_Identity', got {field_type_}'")
-        if field_type_ != 'SL1_Identity':
+        if field_type_ is not None and field_type_ != 'SL1_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_Identity\"")
     
     return SL1_Identity(
         description=field_description,
@@ -16045,10 +16102,10 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16074,10 +16131,10 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_InvMultiply":
             raise ValueError(f"Expected 'SL1_InvMultiply', got {field_type_}'")
-        if field_type_ != 'SL1_InvMultiply':
+        if field_type_ is not None and field_type_ != 'SL1_InvMultiply':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_InvMultiply', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_InvMultiply\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -16122,10 +16179,10 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16151,10 +16208,10 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_InvSum":
             raise ValueError(f"Expected 'SL1_InvSum', got {field_type_}'")
-        if field_type_ != 'SL1_InvSum':
+        if field_type_ is not None and field_type_ != 'SL1_InvSum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_InvSum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_InvSum\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -16199,10 +16256,10 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "SL1Map":
             raise ValueError(f"Expected 'SL1Map', got {field_kind}'")
-        if field_kind != 'SL1Map':
+        if field_kind is not None and field_kind != 'SL1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SL1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16228,10 +16285,10 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1_Unknown":
             raise ValueError(f"Expected 'SL1_Unknown', got {field_type_}'")
-        if field_type_ != 'SL1_Unknown':
+        if field_type_ is not None and field_type_ != 'SL1_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL1_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL1_Unknown\"")
     
     return SL1_Unknown(
         description=field_description,
@@ -16270,19 +16327,19 @@ def load_SLCheck(data: object) -> "SLCheck":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SLCheck":
             raise ValueError(f"Expected 'SLCheck', got {field_type_}'")
-        if field_type_ != 'SLCheck':
+        if field_type_ is not None and field_type_ != 'SLCheck':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SLCheck', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SLCheck\"")
     
     if 'data' in data:
         field_data = load_list_of_SLCheck_Data(data['data'])
@@ -16364,7 +16421,8 @@ def load_SLMap(data: object) -> "SLMap":
     """Load SLMap from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'SL_C_ITransform': load_SL_C_ITransform,
         'SL_C_Intersection': load_SL_C_Intersection,
@@ -16411,10 +16469,10 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16445,10 +16503,10 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_ITransform":
             raise ValueError(f"Expected 'SL_C_ITransform', got {field_type_}'")
-        if field_type_ != 'SL_C_ITransform':
+        if field_type_ is not None and field_type_ != 'SL_C_ITransform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_ITransform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_ITransform\"")
     
     if 'm' in data:
         field_m = load_SLMap(data['m'])
@@ -16500,10 +16558,10 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16534,10 +16592,10 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_Intersection":
             raise ValueError(f"Expected 'SL_C_Intersection', got {field_type_}'")
-        if field_type_ != 'SL_C_Intersection':
+        if field_type_ is not None and field_type_ != 'SL_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -16593,10 +16651,10 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16627,10 +16685,10 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_Parallel":
             raise ValueError(f"Expected 'SL_C_Parallel', got {field_type_}'")
-        if field_type_ != 'SL_C_Parallel':
+        if field_type_ is not None and field_type_ != 'SL_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -16686,10 +16744,10 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16720,10 +16778,10 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_RefineDomain":
             raise ValueError(f"Expected 'SL_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'SL_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'SL_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_SLMap(data['m'])
@@ -16769,10 +16827,10 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16803,10 +16861,10 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_Series":
             raise ValueError(f"Expected 'SL_C_Series', got {field_type_}'")
-        if field_type_ != 'SL_C_Series':
+        if field_type_ is not None and field_type_ != 'SL_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -16862,10 +16920,10 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16896,10 +16954,10 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_Trace":
             raise ValueError(f"Expected 'SL_C_Trace', got {field_type_}'")
-        if field_type_ != 'SL_C_Trace':
+        if field_type_ is not None and field_type_ != 'SL_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_Trace\"")
     
     if 'm' in data:
         field_m = load_SLMap(data['m'])
@@ -16951,10 +17009,10 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16985,10 +17043,10 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_Union":
             raise ValueError(f"Expected 'SL_C_Union', got {field_type_}'")
-        if field_type_ != 'SL_C_Union':
+        if field_type_ is not None and field_type_ != 'SL_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -17044,10 +17102,10 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17078,10 +17136,10 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_C_WrapUnits":
             raise ValueError(f"Expected 'SL_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'SL_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'SL_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -17145,10 +17203,10 @@ def load_SL_Identity(data: object) -> "SL_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17179,10 +17237,10 @@ def load_SL_Identity(data: object) -> "SL_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_Identity":
             raise ValueError(f"Expected 'SL_Identity', got {field_type_}'")
-        if field_type_ != 'SL_Identity':
+        if field_type_ is not None and field_type_ != 'SL_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_Identity\"")
     
     return SL_Identity(
         description=field_description,
@@ -17222,10 +17280,10 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17256,10 +17314,10 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_L_Exact":
             raise ValueError(f"Expected 'SL_L_Exact', got {field_type_}'")
-        if field_type_ != 'SL_L_Exact':
+        if field_type_ is not None and field_type_ != 'SL_L_Exact':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_L_Exact', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_L_Exact\"")
     
     if 'm' in data:
         field_m = load_LMap(data['m'])
@@ -17305,10 +17363,10 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17339,10 +17397,10 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_L_Explicit_Approx":
             raise ValueError(f"Expected 'SL_L_Explicit_Approx', got {field_type_}'")
-        if field_type_ != 'SL_L_Explicit_Approx':
+        if field_type_ is not None and field_type_ != 'SL_L_Explicit_Approx':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_L_Explicit_Approx', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_L_Explicit_Approx\"")
     
     if 'optimistic' in data:
         field_optimistic = load_list_of_LMap(data['optimistic'])
@@ -17414,10 +17472,10 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17448,10 +17506,10 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_L_Lift1_Constant":
             raise ValueError(f"Expected 'SL_L_Lift1_Constant', got {field_type_}'")
-        if field_type_ != 'SL_L_Lift1_Constant':
+        if field_type_ is not None and field_type_ != 'SL_L_Lift1_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_L_Lift1_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_L_Lift1_Constant\"")
     
     if 'm' in data:
         field_m = load_SL1Map(data['m'])
@@ -17503,10 +17561,10 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17537,10 +17595,10 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_L_Lift1_Transform":
             raise ValueError(f"Expected 'SL_L_Lift1_Transform', got {field_type_}'")
-        if field_type_ != 'SL_L_Lift1_Transform':
+        if field_type_ is not None and field_type_ != 'SL_L_Lift1_Transform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_L_Lift1_Transform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_L_Lift1_Transform\"")
     
     if 'm' in data:
         field_m = load_SL1Map(data['m'])
@@ -17592,10 +17650,10 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "SLMap":
             raise ValueError(f"Expected 'SLMap', got {field_kind}'")
-        if field_kind != 'SLMap':
+        if field_kind is not None and field_kind != 'SLMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SLMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17626,10 +17684,10 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "SL_Unknown":
             raise ValueError(f"Expected 'SL_Unknown', got {field_type_}'")
-        if field_type_ != 'SL_Unknown':
+        if field_type_ is not None and field_type_ != 'SL_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SL_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SL_Unknown\"")
     
     return SL_Unknown(
         description=field_description,
@@ -17669,19 +17727,19 @@ def load_SU1Check(data: object) -> "SU1Check":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1Check":
             raise ValueError(f"Expected 'SU1Check', got {field_type_}'")
-        if field_type_ != 'SU1Check':
+        if field_type_ is not None and field_type_ != 'SU1Check':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1Check', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1Check\"")
     
     if 'data' in data:
         field_data = load_list_of_SU1Check_Data(data['data'])
@@ -17763,7 +17821,8 @@ def load_SU1Map(data: object) -> "SU1Map":
     """Load SU1Map from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'SU1_C_CodSum': load_SU1_C_CodSum,
         'SU1_C_CodSumSmash': load_SU1_C_CodSumSmash,
@@ -17813,10 +17872,10 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17842,10 +17901,10 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_CodSum":
             raise ValueError(f"Expected 'SU1_C_CodSum', got {field_type_}'")
-        if field_type_ != 'SU1_C_CodSum':
+        if field_type_ is not None and field_type_ != 'SU1_C_CodSum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_CodSum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_CodSum\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -17900,10 +17959,10 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17929,10 +17988,10 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_CodSumSmash":
             raise ValueError(f"Expected 'SU1_C_CodSumSmash', got {field_type_}'")
-        if field_type_ != 'SU1_C_CodSumSmash':
+        if field_type_ is not None and field_type_ != 'SU1_C_CodSumSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_CodSumSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_CodSumSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -17987,10 +18046,10 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18016,10 +18075,10 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_ExplicitApprox":
             raise ValueError(f"Expected 'SU1_C_ExplicitApprox', got {field_type_}'")
-        if field_type_ != 'SU1_C_ExplicitApprox':
+        if field_type_ is not None and field_type_ != 'SU1_C_ExplicitApprox':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_ExplicitApprox', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_ExplicitApprox\"")
     
     if 'optimistic' in data:
         field_optimistic = load_list_of_U1Map(data['optimistic'])
@@ -18090,10 +18149,10 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18119,10 +18178,10 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_Intersection":
             raise ValueError(f"Expected 'SU1_C_Intersection', got {field_type_}'")
-        if field_type_ != 'SU1_C_Intersection':
+        if field_type_ is not None and field_type_ != 'SU1_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -18177,10 +18236,10 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18206,10 +18265,10 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_Parallel":
             raise ValueError(f"Expected 'SU1_C_Parallel', got {field_type_}'")
-        if field_type_ != 'SU1_C_Parallel':
+        if field_type_ is not None and field_type_ != 'SU1_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -18264,10 +18323,10 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18293,10 +18352,10 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_ProdIntersection":
             raise ValueError(f"Expected 'SU1_C_ProdIntersection', got {field_type_}'")
-        if field_type_ != 'SU1_C_ProdIntersection':
+        if field_type_ is not None and field_type_ != 'SU1_C_ProdIntersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_ProdIntersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_ProdIntersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -18351,10 +18410,10 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18380,10 +18439,10 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_Product":
             raise ValueError(f"Expected 'SU1_C_Product', got {field_type_}'")
-        if field_type_ != 'SU1_C_Product':
+        if field_type_ is not None and field_type_ != 'SU1_C_Product':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_Product', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_Product\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -18438,10 +18497,10 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18467,10 +18526,10 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_RefineDomain":
             raise ValueError(f"Expected 'SU1_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'SU1_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'SU1_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_SU1Map(data['m'])
@@ -18515,10 +18574,10 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18544,10 +18603,10 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_Series":
             raise ValueError(f"Expected 'SU1_C_Series', got {field_type_}'")
-        if field_type_ != 'SU1_C_Series':
+        if field_type_ is not None and field_type_ != 'SU1_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -18602,10 +18661,10 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18631,10 +18690,10 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_Trace":
             raise ValueError(f"Expected 'SU1_C_Trace', got {field_type_}'")
-        if field_type_ != 'SU1_C_Trace':
+        if field_type_ is not None and field_type_ != 'SU1_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_Trace\"")
     
     if 'm' in data:
         field_m = load_SU1Map(data['m'])
@@ -18679,10 +18738,10 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18708,10 +18767,10 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_Union":
             raise ValueError(f"Expected 'SU1_C_Union', got {field_type_}'")
-        if field_type_ != 'SU1_C_Union':
+        if field_type_ is not None and field_type_ != 'SU1_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -18766,10 +18825,10 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18795,10 +18854,10 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_C_WrapUnits":
             raise ValueError(f"Expected 'SU1_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'SU1_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'SU1_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -18855,10 +18914,10 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18884,10 +18943,10 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_Exact":
             raise ValueError(f"Expected 'SU1_Exact', got {field_type_}'")
-        if field_type_ != 'SU1_Exact':
+        if field_type_ is not None and field_type_ != 'SU1_Exact':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_Exact', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_Exact\"")
     
     if 'm' in data:
         field_m = load_U1Map(data['m'])
@@ -18932,10 +18991,10 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18961,10 +19020,10 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_Identity":
             raise ValueError(f"Expected 'SU1_Identity', got {field_type_}'")
-        if field_type_ != 'SU1_Identity':
+        if field_type_ is not None and field_type_ != 'SU1_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_Identity\"")
     
     return SU1_Identity(
         description=field_description,
@@ -19003,10 +19062,10 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19032,10 +19091,10 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_InvMultiply":
             raise ValueError(f"Expected 'SU1_InvMultiply', got {field_type_}'")
-        if field_type_ != 'SU1_InvMultiply':
+        if field_type_ is not None and field_type_ != 'SU1_InvMultiply':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_InvMultiply', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_InvMultiply\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -19080,10 +19139,10 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19109,10 +19168,10 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_InvSum":
             raise ValueError(f"Expected 'SU1_InvSum', got {field_type_}'")
-        if field_type_ != 'SU1_InvSum':
+        if field_type_ is not None and field_type_ != 'SU1_InvSum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_InvSum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_InvSum\"")
     
     if 'opspace' in data:
         field_opspace = load_Poset(data['opspace'])
@@ -19157,10 +19216,10 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "SU1Map":
             raise ValueError(f"Expected 'SU1Map', got {field_kind}'")
-        if field_kind != 'SU1Map':
+        if field_kind is not None and field_kind != 'SU1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SU1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19186,10 +19245,10 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1_Unknown":
             raise ValueError(f"Expected 'SU1_Unknown', got {field_type_}'")
-        if field_type_ != 'SU1_Unknown':
+        if field_type_ is not None and field_type_ != 'SU1_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU1_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU1_Unknown\"")
     
     return SU1_Unknown(
         description=field_description,
@@ -19228,19 +19287,19 @@ def load_SUCheck(data: object) -> "SUCheck":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SUCheck":
             raise ValueError(f"Expected 'SUCheck', got {field_type_}'")
-        if field_type_ != 'SUCheck':
+        if field_type_ is not None and field_type_ != 'SUCheck':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SUCheck', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SUCheck\"")
     
     if 'data' in data:
         field_data = load_list_of_SUCheck_Data(data['data'])
@@ -19322,7 +19381,8 @@ def load_SUMap(data: object) -> "SUMap":
     """Load SUMap from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'SU_C_ITransform': load_SU_C_ITransform,
         'SU_C_Intersection': load_SU_C_Intersection,
@@ -19369,10 +19429,10 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19403,10 +19463,10 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_ITransform":
             raise ValueError(f"Expected 'SU_C_ITransform', got {field_type_}'")
-        if field_type_ != 'SU_C_ITransform':
+        if field_type_ is not None and field_type_ != 'SU_C_ITransform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_ITransform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_ITransform\"")
     
     if 'm' in data:
         field_m = load_SUMap(data['m'])
@@ -19458,10 +19518,10 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19492,10 +19552,10 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_Intersection":
             raise ValueError(f"Expected 'SU_C_Intersection', got {field_type_}'")
-        if field_type_ != 'SU_C_Intersection':
+        if field_type_ is not None and field_type_ != 'SU_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -19551,10 +19611,10 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19585,10 +19645,10 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_Parallel":
             raise ValueError(f"Expected 'SU_C_Parallel', got {field_type_}'")
-        if field_type_ != 'SU_C_Parallel':
+        if field_type_ is not None and field_type_ != 'SU_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -19644,10 +19704,10 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19678,10 +19738,10 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_RefineDomain":
             raise ValueError(f"Expected 'SU_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'SU_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'SU_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_SUMap(data['m'])
@@ -19727,10 +19787,10 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19761,10 +19821,10 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_Series":
             raise ValueError(f"Expected 'SU_C_Series', got {field_type_}'")
-        if field_type_ != 'SU_C_Series':
+        if field_type_ is not None and field_type_ != 'SU_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -19820,10 +19880,10 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19854,10 +19914,10 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_Trace":
             raise ValueError(f"Expected 'SU_C_Trace', got {field_type_}'")
-        if field_type_ != 'SU_C_Trace':
+        if field_type_ is not None and field_type_ != 'SU_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_Trace\"")
     
     if 'm' in data:
         field_m = load_SUMap(data['m'])
@@ -19909,10 +19969,10 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19943,10 +20003,10 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_Union":
             raise ValueError(f"Expected 'SU_C_Union', got {field_type_}'")
-        if field_type_ != 'SU_C_Union':
+        if field_type_ is not None and field_type_ != 'SU_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -20002,10 +20062,10 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20036,10 +20096,10 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_C_WrapUnits":
             raise ValueError(f"Expected 'SU_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'SU_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'SU_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -20103,10 +20163,10 @@ def load_SU_Identity(data: object) -> "SU_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20137,10 +20197,10 @@ def load_SU_Identity(data: object) -> "SU_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_Identity":
             raise ValueError(f"Expected 'SU_Identity', got {field_type_}'")
-        if field_type_ != 'SU_Identity':
+        if field_type_ is not None and field_type_ != 'SU_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_Identity\"")
     
     return SU_Identity(
         description=field_description,
@@ -20180,10 +20240,10 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20214,10 +20274,10 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_L_Exact":
             raise ValueError(f"Expected 'SU_L_Exact', got {field_type_}'")
-        if field_type_ != 'SU_L_Exact':
+        if field_type_ is not None and field_type_ != 'SU_L_Exact':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_L_Exact', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_L_Exact\"")
     
     if 'm' in data:
         field_m = load_UMap(data['m'])
@@ -20263,10 +20323,10 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20297,10 +20357,10 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_L_Explicit_Approx":
             raise ValueError(f"Expected 'SU_L_Explicit_Approx', got {field_type_}'")
-        if field_type_ != 'SU_L_Explicit_Approx':
+        if field_type_ is not None and field_type_ != 'SU_L_Explicit_Approx':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_L_Explicit_Approx', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_L_Explicit_Approx\"")
     
     if 'optimistic' in data:
         field_optimistic = load_list_of_UMap(data['optimistic'])
@@ -20372,10 +20432,10 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20406,10 +20466,10 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_L_Lift1_Constant":
             raise ValueError(f"Expected 'SU_L_Lift1_Constant', got {field_type_}'")
-        if field_type_ != 'SU_L_Lift1_Constant':
+        if field_type_ is not None and field_type_ != 'SU_L_Lift1_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_L_Lift1_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_L_Lift1_Constant\"")
     
     if 'm' in data:
         field_m = load_SU1Map(data['m'])
@@ -20461,10 +20521,10 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20495,10 +20555,10 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_L_Lift1_Transform":
             raise ValueError(f"Expected 'SU_L_Lift1_Transform', got {field_type_}'")
-        if field_type_ != 'SU_L_Lift1_Transform':
+        if field_type_ is not None and field_type_ != 'SU_L_Lift1_Transform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_L_Lift1_Transform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_L_Lift1_Transform\"")
     
     if 'm' in data:
         field_m = load_SU1Map(data['m'])
@@ -20550,10 +20610,10 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "SUMap":
             raise ValueError(f"Expected 'SUMap', got {field_kind}'")
-        if field_kind != 'SUMap':
+        if field_kind is not None and field_kind != 'SUMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"SUMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20584,10 +20644,10 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "SU_Unknown":
             raise ValueError(f"Expected 'SU_Unknown', got {field_type_}'")
-        if field_type_ != 'SU_Unknown':
+        if field_type_ is not None and field_type_ != 'SU_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'SU_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"SU_Unknown\"")
     
     return SU_Unknown(
         description=field_description,
@@ -20627,19 +20687,19 @@ def load_U1Check(data: object) -> "U1Check":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "U1Check":
             raise ValueError(f"Expected 'U1Check', got {field_type_}'")
-        if field_type_ != 'U1Check':
+        if field_type_ is not None and field_type_ != 'U1Check':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1Check', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1Check\"")
     
     if 'data' in data:
         field_data = load_list_of_U1Check_Data(data['data'])
@@ -20693,7 +20753,8 @@ def load_U1Map(data: object) -> "U1Map":
     """Load U1Map from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'U1_C_CodSum': load_U1_C_CodSum,
         'U1_C_CodSumSmash': load_U1_C_CodSumSmash,
@@ -20756,10 +20817,10 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20775,10 +20836,10 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_CodSum":
             raise ValueError(f"Expected 'U1_C_CodSum', got {field_type_}'")
-        if field_type_ != 'U1_C_CodSum':
+        if field_type_ is not None and field_type_ != 'U1_C_CodSum':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_CodSum', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_CodSum\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -20831,10 +20892,10 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20850,10 +20911,10 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_CodSumSmash":
             raise ValueError(f"Expected 'U1_C_CodSumSmash', got {field_type_}'")
-        if field_type_ != 'U1_C_CodSumSmash':
+        if field_type_ is not None and field_type_ != 'U1_C_CodSumSmash':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_CodSumSmash', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_CodSumSmash\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -20906,10 +20967,10 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20925,10 +20986,10 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_DomUnion":
             raise ValueError(f"Expected 'U1_C_DomUnion', got {field_type_}'")
-        if field_type_ != 'U1_C_DomUnion':
+        if field_type_ is not None and field_type_ != 'U1_C_DomUnion':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_DomUnion', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_DomUnion\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -20981,10 +21042,10 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21000,10 +21061,10 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_Intersection":
             raise ValueError(f"Expected 'U1_C_Intersection', got {field_type_}'")
-        if field_type_ != 'U1_C_Intersection':
+        if field_type_ is not None and field_type_ != 'U1_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -21056,10 +21117,10 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21075,10 +21136,10 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_Parallel":
             raise ValueError(f"Expected 'U1_C_Parallel', got {field_type_}'")
-        if field_type_ != 'U1_C_Parallel':
+        if field_type_ is not None and field_type_ != 'U1_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -21131,10 +21192,10 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21150,10 +21211,10 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_ProdIntersection":
             raise ValueError(f"Expected 'U1_C_ProdIntersection', got {field_type_}'")
-        if field_type_ != 'U1_C_ProdIntersection':
+        if field_type_ is not None and field_type_ != 'U1_C_ProdIntersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_ProdIntersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_ProdIntersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -21206,10 +21267,10 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21225,10 +21286,10 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_Product":
             raise ValueError(f"Expected 'U1_C_Product', got {field_type_}'")
-        if field_type_ != 'U1_C_Product':
+        if field_type_ is not None and field_type_ != 'U1_C_Product':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_Product', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_Product\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -21281,10 +21342,10 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21300,10 +21361,10 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_RefineDomain":
             raise ValueError(f"Expected 'U1_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'U1_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'U1_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_U1Map(data['m'])
@@ -21346,10 +21407,10 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21365,10 +21426,10 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_Series":
             raise ValueError(f"Expected 'U1_C_Series', got {field_type_}'")
-        if field_type_ != 'U1_C_Series':
+        if field_type_ is not None and field_type_ != 'U1_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -21421,10 +21482,10 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21440,10 +21501,10 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_Trace":
             raise ValueError(f"Expected 'U1_C_Trace', got {field_type_}'")
-        if field_type_ != 'U1_C_Trace':
+        if field_type_ is not None and field_type_ != 'U1_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_Trace\"")
     
     if 'm' in data:
         field_m = load_U1Map(data['m'])
@@ -21486,10 +21547,10 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21505,10 +21566,10 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_Union":
             raise ValueError(f"Expected 'U1_C_Union', got {field_type_}'")
-        if field_type_ != 'U1_C_Union':
+        if field_type_ is not None and field_type_ != 'U1_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -21561,10 +21622,10 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21580,10 +21641,10 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_C_WrapUnits":
             raise ValueError(f"Expected 'U1_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'U1_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'U1_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -21638,10 +21699,10 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21657,10 +21718,10 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Catalog":
             raise ValueError(f"Expected 'U1_Catalog', got {field_type_}'")
-        if field_type_ != 'U1_Catalog':
+        if field_type_ is not None and field_type_ != 'U1_Catalog':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Catalog', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Catalog\"")
     
     if 'options' in data:
         field_options = load_list_of_U1_Catalog_Options(data['options'])
@@ -21722,10 +21783,10 @@ def load_U1_Constant(data: object) -> "U1_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21741,10 +21802,10 @@ def load_U1_Constant(data: object) -> "U1_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Constant":
             raise ValueError(f"Expected 'U1_Constant', got {field_type_}'")
-        if field_type_ != 'U1_Constant':
+        if field_type_ is not None and field_type_ != 'U1_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Constant\"")
     
     if 'value' in data:
         field_value = load_UpperSet(data['value'])
@@ -21787,10 +21848,10 @@ def load_U1_Entire(data: object) -> "U1_Entire":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21806,10 +21867,10 @@ def load_U1_Entire(data: object) -> "U1_Entire":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Entire":
             raise ValueError(f"Expected 'U1_Entire', got {field_type_}'")
-        if field_type_ != 'U1_Entire':
+        if field_type_ is not None and field_type_ != 'U1_Entire':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Entire', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Entire\"")
     
     return U1_Entire(
         description=field_description,
@@ -21846,10 +21907,10 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21865,10 +21926,10 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Explicit":
             raise ValueError(f"Expected 'U1_Explicit', got {field_type_}'")
-        if field_type_ != 'U1_Explicit':
+        if field_type_ is not None and field_type_ != 'U1_Explicit':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Explicit', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Explicit\"")
     
     if 'options' in data:
         field_options = load_list_of_U1_Explicit_Option(data['options'])
@@ -21930,10 +21991,10 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21949,10 +22010,10 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_FromFilter":
             raise ValueError(f"Expected 'U1_FromFilter', got {field_type_}'")
-        if field_type_ != 'U1_FromFilter':
+        if field_type_ is not None and field_type_ != 'U1_FromFilter':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_FromFilter', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_FromFilter\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -21995,10 +22056,10 @@ def load_U1_Identity(data: object) -> "U1_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22014,10 +22075,10 @@ def load_U1_Identity(data: object) -> "U1_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Identity":
             raise ValueError(f"Expected 'U1_Identity', got {field_type_}'")
-        if field_type_ != 'U1_Identity':
+        if field_type_ is not None and field_type_ != 'U1_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Identity\"")
     
     return U1_Identity(
         description=field_description,
@@ -22054,10 +22115,10 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22073,10 +22134,10 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_IntersectionOfPrinUpperSets":
             raise ValueError(f"Expected 'U1_IntersectionOfPrinUpperSets', got {field_type_}'")
-        if field_type_ != 'U1_IntersectionOfPrinUpperSets':
+        if field_type_ is not None and field_type_ != 'U1_IntersectionOfPrinUpperSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_IntersectionOfPrinUpperSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_IntersectionOfPrinUpperSets\"")
     
     return U1_IntersectionOfPrinUpperSets(
         description=field_description,
@@ -22113,10 +22174,10 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22132,10 +22193,10 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_InvMul_Opt":
             raise ValueError(f"Expected 'U1_InvMul_Opt', got {field_type_}'")
-        if field_type_ != 'U1_InvMul_Opt':
+        if field_type_ is not None and field_type_ != 'U1_InvMul_Opt':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_InvMul_Opt', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_InvMul_Opt\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -22184,10 +22245,10 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22203,10 +22264,10 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_InvMul_Pes":
             raise ValueError(f"Expected 'U1_InvMul_Pes', got {field_type_}'")
-        if field_type_ != 'U1_InvMul_Pes':
+        if field_type_ is not None and field_type_ != 'U1_InvMul_Pes':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_InvMul_Pes', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_InvMul_Pes\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -22255,10 +22316,10 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22274,10 +22335,10 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_InvSum_Opt":
             raise ValueError(f"Expected 'U1_InvSum_Opt', got {field_type_}'")
-        if field_type_ != 'U1_InvSum_Opt':
+        if field_type_ is not None and field_type_ != 'U1_InvSum_Opt':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_InvSum_Opt', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_InvSum_Opt\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -22326,10 +22387,10 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22345,10 +22406,10 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_InvSum_Pes":
             raise ValueError(f"Expected 'U1_InvSum_Pes', got {field_type_}'")
-        if field_type_ != 'U1_InvSum_Pes':
+        if field_type_ is not None and field_type_ != 'U1_InvSum_Pes':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_InvSum_Pes', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_InvSum_Pes\"")
     
     if 'n' in data:
         field_n = load_int(data['n'])
@@ -22397,10 +22458,10 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22416,10 +22477,10 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_L_Uinv":
             raise ValueError(f"Expected 'U1_L_Uinv', got {field_type_}'")
-        if field_type_ != 'U1_L_Uinv':
+        if field_type_ is not None and field_type_ != 'U1_L_Uinv':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_L_Uinv', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_L_Uinv\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -22462,10 +22523,10 @@ def load_U1_Lift(data: object) -> "U1_Lift":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22481,10 +22542,10 @@ def load_U1_Lift(data: object) -> "U1_Lift":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Lift":
             raise ValueError(f"Expected 'U1_Lift', got {field_type_}'")
-        if field_type_ != 'U1_Lift':
+        if field_type_ is not None and field_type_ != 'U1_Lift':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Lift', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Lift\"")
     
     if 'm' in data:
         field_m = load_MonotoneMap(data['m'])
@@ -22527,10 +22588,10 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22546,10 +22607,10 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_RepresentPrincipalUpperSet":
             raise ValueError(f"Expected 'U1_RepresentPrincipalUpperSet', got {field_type_}'")
-        if field_type_ != 'U1_RepresentPrincipalUpperSet':
+        if field_type_ is not None and field_type_ != 'U1_RepresentPrincipalUpperSet':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_RepresentPrincipalUpperSet', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_RepresentPrincipalUpperSet\"")
     
     return U1_RepresentPrincipalUpperSet(
         description=field_description,
@@ -22586,10 +22647,10 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22605,10 +22666,10 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Uinv_Join":
             raise ValueError(f"Expected 'U1_Uinv_Join', got {field_type_}'")
-        if field_type_ != 'U1_Uinv_Join':
+        if field_type_ is not None and field_type_ != 'U1_Uinv_Join':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Uinv_Join', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Uinv_Join\"")
     
     if 'lower_bounds' in data:
         field_lower_bounds = load_list_of_list_of_any(data['lower_bounds'])
@@ -22651,10 +22712,10 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22670,10 +22731,10 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Uinv_JoinConstant":
             raise ValueError(f"Expected 'U1_Uinv_JoinConstant', got {field_type_}'")
-        if field_type_ != 'U1_Uinv_JoinConstant':
+        if field_type_ is not None and field_type_ != 'U1_Uinv_JoinConstant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Uinv_JoinConstant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Uinv_JoinConstant\"")
     
     if 'join1_dom' in data:
         field_join1_dom = load_Poset(data['join1_dom'])
@@ -22722,10 +22783,10 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22741,10 +22802,10 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_UnionOfPrinUpperSets":
             raise ValueError(f"Expected 'U1_UnionOfPrinUpperSets', got {field_type_}'")
-        if field_type_ != 'U1_UnionOfPrinUpperSets':
+        if field_type_ is not None and field_type_ != 'U1_UnionOfPrinUpperSets':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_UnionOfPrinUpperSets', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_UnionOfPrinUpperSets\"")
     
     return U1_UnionOfPrinUpperSets(
         description=field_description,
@@ -22781,10 +22842,10 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "U1Map":
             raise ValueError(f"Expected 'U1Map', got {field_kind}'")
-        if field_kind != 'U1Map':
+        if field_kind is not None and field_kind != 'U1Map':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"U1Map\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22800,10 +22861,10 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "U1_Unknown":
             raise ValueError(f"Expected 'U1_Unknown', got {field_type_}'")
-        if field_type_ != 'U1_Unknown':
+        if field_type_ is not None and field_type_ != 'U1_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U1_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U1_Unknown\"")
     
     return U1_Unknown(
         description=field_description,
@@ -22840,19 +22901,19 @@ def load_UCheck(data: object) -> "UCheck":
         field_kind = load_str(data['kind'])
         if field_kind != "Check":
             raise ValueError(f"Expected 'Check', got {field_kind}'")
-        if field_kind != 'Check':
+        if field_kind is not None and field_kind != 'Check':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Check', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Check\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "UCheck":
             raise ValueError(f"Expected 'UCheck', got {field_type_}'")
-        if field_type_ != 'UCheck':
+        if field_type_ is not None and field_type_ != 'UCheck':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'UCheck', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"UCheck\"")
     
     if 'data' in data:
         field_data = load_list_of_UCheck_Data(data['data'])
@@ -22906,7 +22967,8 @@ def load_UMap(data: object) -> "UMap":
     """Load UMap from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'U_C_ITransform': load_U_C_ITransform,
         'U_C_Intersection': load_U_C_Intersection,
@@ -22953,10 +23015,10 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -22977,10 +23039,10 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_ITransform":
             raise ValueError(f"Expected 'U_C_ITransform', got {field_type_}'")
-        if field_type_ != 'U_C_ITransform':
+        if field_type_ is not None and field_type_ != 'U_C_ITransform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_ITransform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_ITransform\"")
     
     if 'm' in data:
         field_m = load_UMap(data['m'])
@@ -23030,10 +23092,10 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23054,10 +23116,10 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_Intersection":
             raise ValueError(f"Expected 'U_C_Intersection', got {field_type_}'")
-        if field_type_ != 'U_C_Intersection':
+        if field_type_ is not None and field_type_ != 'U_C_Intersection':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_Intersection', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_Intersection\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -23111,10 +23173,10 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23135,10 +23197,10 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_Parallel":
             raise ValueError(f"Expected 'U_C_Parallel', got {field_type_}'")
-        if field_type_ != 'U_C_Parallel':
+        if field_type_ is not None and field_type_ != 'U_C_Parallel':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_Parallel', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_Parallel\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -23192,10 +23254,10 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23216,10 +23278,10 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_RefineDomain":
             raise ValueError(f"Expected 'U_C_RefineDomain', got {field_type_}'")
-        if field_type_ != 'U_C_RefineDomain':
+        if field_type_ is not None and field_type_ != 'U_C_RefineDomain':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_RefineDomain', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_RefineDomain\"")
     
     if 'm' in data:
         field_m = load_UMap(data['m'])
@@ -23263,10 +23325,10 @@ def load_U_C_Series(data: object) -> "U_C_Series":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23287,10 +23349,10 @@ def load_U_C_Series(data: object) -> "U_C_Series":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_Series":
             raise ValueError(f"Expected 'U_C_Series', got {field_type_}'")
-        if field_type_ != 'U_C_Series':
+        if field_type_ is not None and field_type_ != 'U_C_Series':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_Series', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_Series\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -23344,10 +23406,10 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23368,10 +23430,10 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_Trace":
             raise ValueError(f"Expected 'U_C_Trace', got {field_type_}'")
-        if field_type_ != 'U_C_Trace':
+        if field_type_ is not None and field_type_ != 'U_C_Trace':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_Trace', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_Trace\"")
     
     if 'm' in data:
         field_m = load_UMap(data['m'])
@@ -23421,10 +23483,10 @@ def load_U_C_Union(data: object) -> "U_C_Union":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23445,10 +23507,10 @@ def load_U_C_Union(data: object) -> "U_C_Union":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_Union":
             raise ValueError(f"Expected 'U_C_Union', got {field_type_}'")
-        if field_type_ != 'U_C_Union':
+        if field_type_ is not None and field_type_ != 'U_C_Union':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_Union', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_Union\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -23502,10 +23564,10 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23526,10 +23588,10 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_C_WrapUnits":
             raise ValueError(f"Expected 'U_C_WrapUnits', got {field_type_}'")
-        if field_type_ != 'U_C_WrapUnits':
+        if field_type_ is not None and field_type_ != 'U_C_WrapUnits':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_C_WrapUnits', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_C_WrapUnits\"")
     
     if 'kcod_units' in data:
         field_kcod_units = load_Unit(data['kcod_units'])
@@ -23591,10 +23653,10 @@ def load_U_Catalog(data: object) -> "U_Catalog":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23615,10 +23677,10 @@ def load_U_Catalog(data: object) -> "U_Catalog":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_Catalog":
             raise ValueError(f"Expected 'U_Catalog', got {field_type_}'")
-        if field_type_ != 'U_Catalog':
+        if field_type_ is not None and field_type_ != 'U_Catalog':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_Catalog', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_Catalog\"")
     
     if 'options' in data:
         field_options = load_list_of_U_Catalog_Options(data['options'])
@@ -23687,10 +23749,10 @@ def load_U_Constant(data: object) -> "U_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23711,10 +23773,10 @@ def load_U_Constant(data: object) -> "U_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_Constant":
             raise ValueError(f"Expected 'U_Constant', got {field_type_}'")
-        if field_type_ != 'U_Constant':
+        if field_type_ is not None and field_type_ != 'U_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_Constant\"")
     
     if 'value' in data:
         field_value = load_UpperSet(data['value'])
@@ -23758,10 +23820,10 @@ def load_U_Identity(data: object) -> "U_Identity":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23782,10 +23844,10 @@ def load_U_Identity(data: object) -> "U_Identity":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_Identity":
             raise ValueError(f"Expected 'U_Identity', got {field_type_}'")
-        if field_type_ != 'U_Identity':
+        if field_type_ is not None and field_type_ != 'U_Identity':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_Identity', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_Identity\"")
     
     return U_Identity(
         description=field_description,
@@ -23823,10 +23885,10 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23847,10 +23909,10 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_L_Lift1_Constant":
             raise ValueError(f"Expected 'U_L_Lift1_Constant', got {field_type_}'")
-        if field_type_ != 'U_L_Lift1_Constant':
+        if field_type_ is not None and field_type_ != 'U_L_Lift1_Constant':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_L_Lift1_Constant', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_L_Lift1_Constant\"")
     
     if 'm' in data:
         field_m = load_U1Map(data['m'])
@@ -23900,10 +23962,10 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23924,10 +23986,10 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_L_Lift1_Transform":
             raise ValueError(f"Expected 'U_L_Lift1_Transform', got {field_type_}'")
-        if field_type_ != 'U_L_Lift1_Transform':
+        if field_type_ is not None and field_type_ != 'U_L_Lift1_Transform':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_L_Lift1_Transform', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_L_Lift1_Transform\"")
     
     if 'm' in data:
         field_m = load_U1Map(data['m'])
@@ -23977,10 +24039,10 @@ def load_U_Unknown(data: object) -> "U_Unknown":
         field_kind = load_str(data['kind'])
         if field_kind != "UMap":
             raise ValueError(f"Expected 'UMap', got {field_kind}'")
-        if field_kind != 'UMap':
+        if field_kind is not None and field_kind != 'UMap':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"UMap\"")
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -24001,10 +24063,10 @@ def load_U_Unknown(data: object) -> "U_Unknown":
         field_type_ = load_str(data['type'])
         if field_type_ != "U_Unknown":
             raise ValueError(f"Expected 'U_Unknown', got {field_type_}'")
-        if field_type_ != 'U_Unknown':
+        if field_type_ is not None and field_type_ != 'U_Unknown':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'U_Unknown', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"U_Unknown\"")
     
     return U_Unknown(
         description=field_description,
@@ -24020,7 +24082,8 @@ def load_Unit(data: object) -> "Unit":
     """Load Unit from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'Unit_None': load_Unit_None,
         'Unit_Single': load_Unit_Single,
@@ -24049,16 +24112,16 @@ def load_Unit_None(data: object) -> "Unit_None":
         if field_kind != "Unit":
             raise ValueError(f"Expected 'Unit', got {field_kind}'")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Unit\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "Unit_None":
             raise ValueError(f"Expected 'Unit_None', got {field_type_}'")
-        if field_type_ != 'Unit_None':
+        if field_type_ is not None and field_type_ != 'Unit_None':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'Unit_None', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"Unit_None\"")
     
     return Unit_None(
         description=field_description,
@@ -24084,16 +24147,16 @@ def load_Unit_Single(data: object) -> "Unit_Single":
         if field_kind != "Unit":
             raise ValueError(f"Expected 'Unit', got {field_kind}'")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Unit\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "Unit_Single":
             raise ValueError(f"Expected 'Unit_Single', got {field_type_}'")
-        if field_type_ != 'Unit_Single':
+        if field_type_ is not None and field_type_ != 'Unit_Single':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'Unit_Single', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"Unit_Single\"")
     
     if 'units' in data:
         field_units = load_str(data['units'])
@@ -24125,16 +24188,16 @@ def load_Unit_Vector(data: object) -> "Unit_Vector":
         if field_kind != "Unit":
             raise ValueError(f"Expected 'Unit', got {field_kind}'")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Unit\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "Unit_Vector":
             raise ValueError(f"Expected 'Unit_Vector', got {field_type_}'")
-        if field_type_ != 'Unit_Vector':
+        if field_type_ is not None and field_type_ != 'Unit_Vector':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'Unit_Vector', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"Unit_Vector\"")
     
     if 'labels' in data:
         value = data['labels']
@@ -24176,16 +24239,16 @@ def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
         if field_kind != "Unit":
             raise ValueError(f"Expected 'Unit', got {field_kind}'")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Unit\"")
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "Unit_Wrapped":
             raise ValueError(f"Expected 'Unit_Wrapped', got {field_type_}'")
-        if field_type_ != 'Unit_Wrapped':
+        if field_type_ is not None and field_type_ != 'Unit_Wrapped':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'Unit_Wrapped', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"Unit_Wrapped\"")
     
     if 'inside' in data:
         field_inside = load_list_of_Unit(data['inside'])
@@ -24215,7 +24278,8 @@ def load_UpperSet(data: object) -> "UpperSet":
     """Load UpperSet from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'UpperSet_Unused': load_UpperSet_Unused,
         'UpperSet_UpperClosure': load_UpperSet_UpperClosure,
@@ -24239,10 +24303,10 @@ def load_UpperSet_Unused(data: object) -> "UpperSet_Unused":
         field_type_ = load_str(data['type'])
         if field_type_ != "UpperSet_Unused":
             raise ValueError(f"Expected 'UpperSet_Unused', got {field_type_}'")
-        if field_type_ != 'UpperSet_Unused':
+        if field_type_ is not None and field_type_ != 'UpperSet_Unused':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'UpperSet_Unused', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"UpperSet_Unused\"")
     
     return UpperSet_Unused(
         kind=field_kind,
@@ -24264,10 +24328,10 @@ def load_UpperSet_UpperClosure(data: object) -> "UpperSet_UpperClosure":
         field_type_ = load_str(data['type'])
         if field_type_ != "UpperSet_UpperClosure":
             raise ValueError(f"Expected 'UpperSet_UpperClosure', got {field_type_}'")
-        if field_type_ != 'UpperSet_UpperClosure':
+        if field_type_ is not None and field_type_ != 'UpperSet_UpperClosure':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'UpperSet_UpperClosure', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"UpperSet_UpperClosure\"")
     
     if 'points' in data:
         field_points = load_list_of_any(data['points'])
@@ -24284,7 +24348,8 @@ def load_Value(data: object) -> "Value":
     """Load Value from a dictionary based on the 'type' discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
-    discriminator = data.get('type')
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get('type')
     mapping = {
         'VU': load_VU,
     }
@@ -24318,10 +24383,10 @@ def load_VU(data: object) -> "VU":
         field_kind = load_str(data['kind'])
         if field_kind != "Value":
             raise ValueError(f"Expected 'Value', got {field_kind}'")
-        if field_kind != 'Value':
+        if field_kind is not None and field_kind != 'Value':
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Value', got {field_kind}")
     else:
-        raise ValueError("Missing required field 'kind'")
+        field_kind = json.loads("\"Value\"")
     
     if 'address' in data:
         value = data['address']
@@ -24336,10 +24401,10 @@ def load_VU(data: object) -> "VU":
         field_type_ = load_str(data['type'])
         if field_type_ != "VU":
             raise ValueError(f"Expected 'VU', got {field_type_}'")
-        if field_type_ != 'VU':
+        if field_type_ is not None and field_type_ != 'VU':
             raise ValueError(f"Invalid discriminator value for 'type': expected 'VU', got {field_type_}")
     else:
-        raise ValueError("Missing required field 'type'")
+        field_type_ = json.loads("\"VU\"")
     
     if 'poset' in data:
         field_poset = load_Poset(data['poset'])
@@ -29566,45 +29631,7 @@ class VU(Value):
 
 # Test functions for serialization/deserialization
 
-def test_serialization_dp__c__explicit_approx_01():
-    """Test serialization/deserialization of DP_C_ExplicitApprox example 1."""
-    # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"DP","optimistic":[{"F":{"kind":"Poset","type":"P_Decimals"},"R":{"kind":"Poset","type":"P_Decimals"},"kind":"DP","type":"DP_True"}],"pessimistic":[{"F":{"kind":"Poset","type":"P_Decimals"},"R":{"kind":"Poset","type":"P_Decimals"},"kind":"DP","type":"DP_False"}],"type":"DP_C_ExplicitApprox"}')
-    
-    # Create instance from data
-    instance = load_DP_C_ExplicitApprox(data)
-    assert instance is not None
-    
-    # Test round-trip serialization
-    serialized = instance.to_data()
-    instance2 = load_DP_C_ExplicitApprox(serialized)
-    assert instance2 is not None
-    
-    # Test that serialized data matches
-    assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_dp__c__explicit_approx_01 passed")
-
-
-def test_serialization_dp__true_01():
-    """Test serialization/deserialization of DP_True example 1."""
-    # Test data from OpenAPI schema example
-    data = json.loads('{"B":{"kind":"Poset","naked":true,"ranges":"...","subs":[{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"},"F":{"kind":"Poset","subs":[],"type":"P_C_Product"},"I":{"kind":"Poset","subs":[],"type":"P_C_ProductSmash"},"R":{"kind":"Poset","subs":[],"type":"P_C_Product"},"kind":"DP","type":"DP_True","value":{"kind":"Value","poset":{"kind":"Poset","naked":true,"ranges":"...","subs":[{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"},"type":"VU","value":[15]}}')
-    
-    # Create instance from data
-    instance = load_DP_True(data)
-    assert instance is not None
-    
-    # Test round-trip serialization
-    serialized = instance.to_data()
-    instance2 = load_DP_True(serialized)
-    assert instance2 is not None
-    
-    # Test that serialized data matches
-    assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_dp__true_01 passed")
-
-
-def test_serialization_p__bool_01():
+def test_serialization_P_Bool_01():
     """Test serialization/deserialization of P_Bool example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","type":"P_Bool"}')
@@ -29620,10 +29647,10 @@ def test_serialization_p__bool_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__bool_01 passed")
+    print(f"✓ test_serialization_P_Bool_01 passed")
 
 
-def test_serialization_p__c__arrow_01():
+def test_serialization_P_C_Arrow_01():
     """Test serialization/deserialization of P_C_Arrow example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Arrow"}')
@@ -29639,10 +29666,10 @@ def test_serialization_p__c__arrow_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__arrow_01 passed")
+    print(f"✓ test_serialization_P_C_Arrow_01 passed")
 
 
-def test_serialization_p__c__discretized_01():
+def test_serialization_P_C_Discretized_01():
     """Test serialization/deserialization of P_C_Discretized example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Bool"},"type":"P_C_Discretized"}')
@@ -29658,10 +29685,10 @@ def test_serialization_p__c__discretized_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__discretized_01 passed")
+    print(f"✓ test_serialization_P_C_Discretized_01 passed")
 
 
-def test_serialization_p__c__lexicographic_01():
+def test_serialization_P_C_Lexicographic_01():
     """Test serialization/deserialization of P_C_Lexicographic example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Lexicographic"}')
@@ -29677,10 +29704,10 @@ def test_serialization_p__c__lexicographic_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__lexicographic_01 passed")
+    print(f"✓ test_serialization_P_C_Lexicographic_01 passed")
 
 
-def test_serialization_p__c__lower_sets_01():
+def test_serialization_P_C_LowerSets_01():
     """Test serialization/deserialization of P_C_LowerSets example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_LowerSets"}')
@@ -29696,10 +29723,10 @@ def test_serialization_p__c__lower_sets_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__lower_sets_01 passed")
+    print(f"✓ test_serialization_P_C_LowerSets_01 passed")
 
 
-def test_serialization_p__c__opposite_01():
+def test_serialization_P_C_Opposite_01():
     """Test serialization/deserialization of P_C_Opposite example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Opposite"}')
@@ -29715,10 +29742,10 @@ def test_serialization_p__c__opposite_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__opposite_01 passed")
+    print(f"✓ test_serialization_P_C_Opposite_01 passed")
 
 
-def test_serialization_p__c__power_01():
+def test_serialization_P_C_Power_01():
     """Test serialization/deserialization of P_C_Power example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Power"}')
@@ -29734,10 +29761,10 @@ def test_serialization_p__c__power_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__power_01 passed")
+    print(f"✓ test_serialization_P_C_Power_01 passed")
 
 
-def test_serialization_p__c__product_01():
+def test_serialization_P_C_Product_01():
     """Test serialization/deserialization of P_C_Product example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"}')
@@ -29753,10 +29780,10 @@ def test_serialization_p__c__product_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__product_01 passed")
+    print(f"✓ test_serialization_P_C_Product_01 passed")
 
 
-def test_serialization_p__c__product_02():
+def test_serialization_P_C_Product_02():
     """Test serialization/deserialization of P_C_Product example 2."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","subs":[],"type":"P_C_Product"}')
@@ -29772,10 +29799,10 @@ def test_serialization_p__c__product_02():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__product_02 passed")
+    print(f"✓ test_serialization_P_C_Product_02 passed")
 
 
-def test_serialization_p__c__product_smash_01():
+def test_serialization_P_C_ProductSmash_01():
     """Test serialization/deserialization of P_C_ProductSmash example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","naked":[],"ranges":[],"subs":[],"type":"P_C_ProductSmash"}')
@@ -29791,13 +29818,13 @@ def test_serialization_p__c__product_smash_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__product_smash_01 passed")
+    print(f"✓ test_serialization_P_C_ProductSmash_01 passed")
 
 
-def test_serialization_p__c__product_smash_02():
+def test_serialization_P_C_ProductSmash_02():
     """Test serialization/deserialization of P_C_ProductSmash example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","naked":[true,false,true],"ranges":[{"kind":"Range","ntot":4,"start":0,"stop":1},{"kind":"Range","ntot":4,"start":1,"stop":3},{"kind":"Range","ntot":4,"start":3,"stop":4}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}')
+    data = json.loads('{"kind":"Poset","naked":[true,false,true],"ranges":[{"kind":"Range","ntot":4,"start":0,"stop":1},{"kind":"Range","ntot":4,"start":1,"stop":3},{"kind":"Range","ntot":4,"start":3,"stop":4}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","naked":[true,true],"ranges":[{"kind":"Range","ntot":2,"start":0,"stop":1},{"kind":"Range","ntot":2,"start":1,"stop":2}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}')
     
     # Create instance from data
     instance = load_P_C_ProductSmash(data)
@@ -29810,10 +29837,10 @@ def test_serialization_p__c__product_smash_02():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__product_smash_02 passed")
+    print(f"✓ test_serialization_P_C_ProductSmash_02 passed")
 
 
-def test_serialization_p__c__sum_01():
+def test_serialization_P_C_Sum_01():
     """Test serialization/deserialization of P_C_Sum example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Sum"}')
@@ -29829,13 +29856,13 @@ def test_serialization_p__c__sum_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__sum_01 passed")
+    print(f"✓ test_serialization_P_C_Sum_01 passed")
 
 
-def test_serialization_p__c__sum_smash_01():
+def test_serialization_P_C_SumSmash_01():
     """Test serialization/deserialization of P_C_SumSmash example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"trivial":false,"type":"P_C_Sum_Smash"}')
+    data = json.loads('{"kind":"Poset","naked":[true,true],"ranges":[{"kind":"Range","ntot":2,"start":0,"stop":1},{"kind":"Range","ntot":2,"start":0,"stop":1}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"trivial":false,"type":"P_C_SumSmash"}')
     
     # Create instance from data
     instance = load_P_C_SumSmash(data)
@@ -29848,10 +29875,10 @@ def test_serialization_p__c__sum_smash_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__sum_smash_01 passed")
+    print(f"✓ test_serialization_P_C_SumSmash_01 passed")
 
 
-def test_serialization_p__c__twisted_01():
+def test_serialization_P_C_Twisted_01():
     """Test serialization/deserialization of P_C_Twisted example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Twisted"}')
@@ -29867,13 +29894,13 @@ def test_serialization_p__c__twisted_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__twisted_01 passed")
+    print(f"✓ test_serialization_P_C_Twisted_01 passed")
 
 
-def test_serialization_p__c__units_01():
+def test_serialization_P_C_Units_01():
     """Test serialization/deserialization of P_C_Units example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Units","units":{"kind":"Unit","type":"UnitSingle","units":"m^2/s"}}')
+    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Units","units":{"kind":"Unit","type":"Unit_Single","units":"m^2/s"}}')
     
     # Create instance from data
     instance = load_P_C_Units(data)
@@ -29886,13 +29913,13 @@ def test_serialization_p__c__units_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__units_01 passed")
+    print(f"✓ test_serialization_P_C_Units_01 passed")
 
 
-def test_serialization_p__c__units_02():
+def test_serialization_P_C_Units_02():
     """Test serialization/deserialization of P_C_Units example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_Product"},"type":"P_C_Units","units":{"kind":"Unit","subs":[{"kind":"Unit","type":"UnitSingle","units":"m"},{"kind":"Unit","type":"UnitSingle","units":"g"}],"type":"UnitVector"}}')
+    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_Product"},"type":"P_C_Units","units":{"kind":"Unit","subs":[{"kind":"Unit","type":"Unit_Single","units":"m"},{"kind":"Unit","type":"Unit_Single","units":"g"}],"type":"Unit_Vector"}}')
     
     # Create instance from data
     instance = load_P_C_Units(data)
@@ -29905,10 +29932,10 @@ def test_serialization_p__c__units_02():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__units_02 passed")
+    print(f"✓ test_serialization_P_C_Units_02 passed")
 
 
-def test_serialization_p__c__upper_sets_01():
+def test_serialization_P_C_UpperSets_01():
     """Test serialization/deserialization of P_C_UpperSets example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_UpperSets"}')
@@ -29924,10 +29951,10 @@ def test_serialization_p__c__upper_sets_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__c__upper_sets_01 passed")
+    print(f"✓ test_serialization_P_C_UpperSets_01 passed")
 
 
-def test_serialization_p__decimal_01():
+def test_serialization_P_Decimal_01():
     """Test serialization/deserialization of P_Decimal example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","precision":9,"type":"P_Decimal"}')
@@ -29943,13 +29970,13 @@ def test_serialization_p__decimal_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__decimal_01 passed")
+    print(f"✓ test_serialization_P_Decimal_01 passed")
 
 
-def test_serialization_p__f__bounded_01():
+def test_serialization_P_F_Bounded_01():
     """Test serialization/deserialization of P_F_Bounded example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"bottom":"0","bound_high":"+inf","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimals"},"step":"1","top":"+inf","type":"P_F_Bounded"}')
+    data = json.loads('{"bottom":"0","bound_high":"+inf","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimal"},"step":"1","top":"+inf","type":"P_F_Bounded"}')
     
     # Create instance from data
     instance = load_P_F_Bounded(data)
@@ -29962,13 +29989,13 @@ def test_serialization_p__f__bounded_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__bounded_01 passed")
+    print(f"✓ test_serialization_P_F_Bounded_01 passed")
 
 
-def test_serialization_p__f__bounded_02():
+def test_serialization_P_F_Bounded_02():
     """Test serialization/deserialization of P_F_Bounded example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"bottom":"-inf","bound_high":"+inf","bound_low":"-inf","kind":"Poset","offset":"1","poset":{"kind":"Poset","type":"P_Decimals"},"step":"2","top":"+inf","type":"P_F_Bounded"}')
+    data = json.loads('{"bottom":"-inf","bound_high":"+inf","bound_low":"-inf","kind":"Poset","offset":"1","poset":{"kind":"Poset","type":"P_Decimal"},"step":"2","top":"+inf","type":"P_F_Bounded"}')
     
     # Create instance from data
     instance = load_P_F_Bounded(data)
@@ -29981,13 +30008,13 @@ def test_serialization_p__f__bounded_02():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__bounded_02 passed")
+    print(f"✓ test_serialization_P_F_Bounded_02 passed")
 
 
-def test_serialization_p__f__bounded_03():
+def test_serialization_P_F_Bounded_03():
     """Test serialization/deserialization of P_F_Bounded example 3."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"bottom":"-inf","bound_high":"6","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimals"},"step":"1.5","top":"+inf","type":"P_F_Bounded"}')
+    data = json.loads('{"bottom":"-inf","bound_high":"6","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimal"},"step":"1.5","top":"+inf","type":"P_F_Bounded"}')
     
     # Create instance from data
     instance = load_P_F_Bounded(data)
@@ -30000,13 +30027,13 @@ def test_serialization_p__f__bounded_03():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__bounded_03 passed")
+    print(f"✓ test_serialization_P_F_Bounded_03 passed")
 
 
-def test_serialization_p__f__c__union_01():
+def test_serialization_P_F_C_Union_01():
     """Test serialization/deserialization of P_F_C_Union example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"ambient":{"kind":"Poset","type":"P_C_Decimal"},"kind":"Poset","subs":[{"high":"20","kind":"Poset","low":"10","poset":{"kind":"Poset","type":"P_C_Decimal"},"type":"P_C_Interval"},{"high":"35","kind":"Poset","low":"30","poset":{"kind":"Poset","type":"P_C_Decimal"},"type":"P_C_Interval"}],"type":"P_F_Union"}')
+    data = json.loads('{"ambient":{"kind":"Poset","type":"P_Decimal"},"kind":"Poset","subs":[{"high":"20","kind":"Poset","low":"10","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"},{"high":"35","kind":"Poset","low":"30","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"}],"type":"P_F_C_Union"}')
     
     # Create instance from data
     instance = load_P_F_C_Union(data)
@@ -30019,10 +30046,10 @@ def test_serialization_p__f__c__union_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__c__union_01 passed")
+    print(f"✓ test_serialization_P_F_C_Union_01 passed")
 
 
-def test_serialization_p__f__interval_01():
+def test_serialization_P_F_Interval_01():
     """Test serialization/deserialization of P_F_Interval example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"high":"20","kind":"Poset","low":"10","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"}')
@@ -30038,13 +30065,13 @@ def test_serialization_p__f__interval_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__interval_01 passed")
+    print(f"✓ test_serialization_P_F_Interval_01 passed")
 
 
-def test_serialization_p__f__lower_closure_01():
+def test_serialization_P_F_LowerClosure_01():
     """Test serialization/deserialization of P_F_LowerClosure example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","ls":{"elements":[["10",true],["20",false]],"kind":"LowerSet","type":"LowerSet_LowerClosure"},"poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_LowerClosure"}')
+    data = json.loads('{"kind":"Poset","ls":{"kind":"LowerSet","points":[["10",true],["20",false]],"type":"LowerSet_LowerClosure"},"poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_LowerClosure"}')
     
     # Create instance from data
     instance = load_P_F_LowerClosure(data)
@@ -30057,10 +30084,10 @@ def test_serialization_p__f__lower_closure_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__lower_closure_01 passed")
+    print(f"✓ test_serialization_P_F_LowerClosure_01 passed")
 
 
-def test_serialization_p__f__subposet_01():
+def test_serialization_P_F_Subposet_01():
     """Test serialization/deserialization of P_F_Subposet example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"elements":["0.1","0.2"],"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Subposet"}')
@@ -30076,10 +30103,10 @@ def test_serialization_p__f__subposet_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__subposet_01 passed")
+    print(f"✓ test_serialization_P_F_Subposet_01 passed")
 
 
-def test_serialization_p__f__subposet_02():
+def test_serialization_P_F_Subposet_02():
     """Test serialization/deserialization of P_F_Subposet example 2."""
     # Test data from OpenAPI schema example
     data = json.loads('{"elements":[],"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Subposet"}')
@@ -30095,13 +30122,13 @@ def test_serialization_p__f__subposet_02():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__subposet_02 passed")
+    print(f"✓ test_serialization_P_F_Subposet_02 passed")
 
 
-def test_serialization_p__f__upper_closure_01():
+def test_serialization_P_F_UpperClosure_01():
     """Test serialization/deserialization of P_F_UpperClosure example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_UpperClosure","us":{"elements":[["10",true],["20",false]],"kind":"UpperSet","type":"UpperSet_UpperClosure"}}')
+    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_UpperClosure","us":{"kind":"UpperSet","points":[["10",true],["20",false]],"type":"UpperSet_UpperClosure"}}')
     
     # Create instance from data
     instance = load_P_F_UpperClosure(data)
@@ -30114,10 +30141,10 @@ def test_serialization_p__f__upper_closure_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__f__upper_closure_01 passed")
+    print(f"✓ test_serialization_P_F_UpperClosure_01 passed")
 
 
-def test_serialization_p__finite_01():
+def test_serialization_P_Finite_01():
     """Test serialization/deserialization of P_Finite example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"aliases":{},"elements":[],"kind":"Poset","relations":[],"type":"P_Finite"}')
@@ -30133,10 +30160,10 @@ def test_serialization_p__finite_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__finite_01 passed")
+    print(f"✓ test_serialization_P_Finite_01 passed")
 
 
-def test_serialization_p__finite_02():
+def test_serialization_P_Finite_02():
     """Test serialization/deserialization of P_Finite example 2."""
     # Test data from OpenAPI schema example
     data = json.loads('{"elements":["a","b"],"kind":"Poset","relations":[],"type":"P_Finite"}')
@@ -30152,10 +30179,10 @@ def test_serialization_p__finite_02():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__finite_02 passed")
+    print(f"✓ test_serialization_P_Finite_02 passed")
 
 
-def test_serialization_p__finite_03():
+def test_serialization_P_Finite_03():
     """Test serialization/deserialization of P_Finite example 3."""
     # Test data from OpenAPI schema example
     data = json.loads('{"elements":["a","b"],"kind":"Poset","relations":[["a","b"]],"type":"P_Finite"}')
@@ -30171,10 +30198,10 @@ def test_serialization_p__finite_03():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__finite_03 passed")
+    print(f"✓ test_serialization_P_Finite_03 passed")
 
 
-def test_serialization_p__finite_04():
+def test_serialization_P_Finite_04():
     """Test serialization/deserialization of P_Finite example 4."""
     # Test data from OpenAPI schema example
     data = json.loads('{"aliases":{"a":["a1","a2"]},"elements":["a","b","c"],"kind":"Poset","relations":[["a","b"],["b","c"]],"type":"P_Finite"}')
@@ -30190,10 +30217,10 @@ def test_serialization_p__finite_04():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__finite_04 passed")
+    print(f"✓ test_serialization_P_Finite_04 passed")
 
 
-def test_serialization_p__float_01():
+def test_serialization_P_Float_01():
     """Test serialization/deserialization of P_Float example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","size":"f32","type":"P_Float"}')
@@ -30209,10 +30236,10 @@ def test_serialization_p__float_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__float_01 passed")
+    print(f"✓ test_serialization_P_Float_01 passed")
 
 
-def test_serialization_p__fractions_01():
+def test_serialization_P_Fractions_01():
     """Test serialization/deserialization of P_Fractions example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","max_abs_denominator":1000,"max_abs_numerator":1000,"size":"i32","type":"P_Fractions"}')
@@ -30228,10 +30255,10 @@ def test_serialization_p__fractions_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__fractions_01 passed")
+    print(f"✓ test_serialization_P_Fractions_01 passed")
 
 
-def test_serialization_p__integer_01():
+def test_serialization_P_Integer_01():
     """Test serialization/deserialization of P_Integer example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","size":"i32","type":"P_Integer"}')
@@ -30247,10 +30274,10 @@ def test_serialization_p__integer_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__integer_01 passed")
+    print(f"✓ test_serialization_P_Integer_01 passed")
 
 
-def test_serialization_p__unknown_01():
+def test_serialization_P_Unknown_01():
     """Test serialization/deserialization of P_Unknown example 1."""
     # Test data from OpenAPI schema example
     data = json.loads('{"kind":"Poset","type":"P_Unknown"}')
@@ -30266,7 +30293,7 @@ def test_serialization_p__unknown_01():
     
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_p__unknown_01 passed")
+    print(f"✓ test_serialization_P_Unknown_01 passed")
 
 
 if __name__ == "__main__":
@@ -30274,43 +30301,41 @@ if __name__ == "__main__":
     import sys
     
     test_functions = [
-        test_serialization_dp__c__explicit_approx_01,
-        test_serialization_dp__true_01,
-        test_serialization_p__bool_01,
-        test_serialization_p__c__arrow_01,
-        test_serialization_p__c__discretized_01,
-        test_serialization_p__c__lexicographic_01,
-        test_serialization_p__c__lower_sets_01,
-        test_serialization_p__c__opposite_01,
-        test_serialization_p__c__power_01,
-        test_serialization_p__c__product_01,
-        test_serialization_p__c__product_02,
-        test_serialization_p__c__product_smash_01,
-        test_serialization_p__c__product_smash_02,
-        test_serialization_p__c__sum_01,
-        test_serialization_p__c__sum_smash_01,
-        test_serialization_p__c__twisted_01,
-        test_serialization_p__c__units_01,
-        test_serialization_p__c__units_02,
-        test_serialization_p__c__upper_sets_01,
-        test_serialization_p__decimal_01,
-        test_serialization_p__f__bounded_01,
-        test_serialization_p__f__bounded_02,
-        test_serialization_p__f__bounded_03,
-        test_serialization_p__f__c__union_01,
-        test_serialization_p__f__interval_01,
-        test_serialization_p__f__lower_closure_01,
-        test_serialization_p__f__subposet_01,
-        test_serialization_p__f__subposet_02,
-        test_serialization_p__f__upper_closure_01,
-        test_serialization_p__finite_01,
-        test_serialization_p__finite_02,
-        test_serialization_p__finite_03,
-        test_serialization_p__finite_04,
-        test_serialization_p__float_01,
-        test_serialization_p__fractions_01,
-        test_serialization_p__integer_01,
-        test_serialization_p__unknown_01,
+        test_serialization_P_Bool_01,
+        test_serialization_P_C_Arrow_01,
+        test_serialization_P_C_Discretized_01,
+        test_serialization_P_C_Lexicographic_01,
+        test_serialization_P_C_LowerSets_01,
+        test_serialization_P_C_Opposite_01,
+        test_serialization_P_C_Power_01,
+        test_serialization_P_C_Product_01,
+        test_serialization_P_C_Product_02,
+        test_serialization_P_C_ProductSmash_01,
+        test_serialization_P_C_ProductSmash_02,
+        test_serialization_P_C_Sum_01,
+        test_serialization_P_C_SumSmash_01,
+        test_serialization_P_C_Twisted_01,
+        test_serialization_P_C_Units_01,
+        test_serialization_P_C_Units_02,
+        test_serialization_P_C_UpperSets_01,
+        test_serialization_P_Decimal_01,
+        test_serialization_P_F_Bounded_01,
+        test_serialization_P_F_Bounded_02,
+        test_serialization_P_F_Bounded_03,
+        test_serialization_P_F_C_Union_01,
+        test_serialization_P_F_Interval_01,
+        test_serialization_P_F_LowerClosure_01,
+        test_serialization_P_F_Subposet_01,
+        test_serialization_P_F_Subposet_02,
+        test_serialization_P_F_UpperClosure_01,
+        test_serialization_P_Finite_01,
+        test_serialization_P_Finite_02,
+        test_serialization_P_Finite_03,
+        test_serialization_P_Finite_04,
+        test_serialization_P_Float_01,
+        test_serialization_P_Fractions_01,
+        test_serialization_P_Integer_01,
+        test_serialization_P_Unknown_01,
     ]
     
     failed = 0

@@ -23,6 +23,9 @@ dependencies = [
     # Add your dependencies here
 ]
 
+[project.scripts]
+mcdp-format2-py-load = "mcdp_format2_py.load:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0",
