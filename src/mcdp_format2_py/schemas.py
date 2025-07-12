@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from dataclasses import field
 from typing import Any
 from typing import Literal
+from typing import Self
 from typing import cast
 
 
@@ -38,11 +39,169 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Explicit_Option(item) for item in value]
+
+
+def load_list_of_SUMap(value: object) -> list[SUMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUMap(item) for item in value]
+
+
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
 def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_UCheck_Data(item) for item in value]
+
+
+def validate_enum_4700(
+    value: object,
+) -> Literal[
+    "L_C_ITransform",
+    "L_C_Intersection",
+    "L_C_Parallel",
+    "L_C_RefineDomain",
+    "L_C_Series",
+    "L_C_Trace",
+    "L_C_Union",
+    "L_C_WrapUnits",
+    "L_Catalog",
+    "L_Constant",
+    "L_Identity",
+    "L_L_Lift1_Constant",
+    "L_L_Lift1_Transform",
+    "L_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L_C_ITransform",
+        "L_C_Intersection",
+        "L_C_Parallel",
+        "L_C_RefineDomain",
+        "L_C_Series",
+        "L_C_Trace",
+        "L_C_Union",
+        "L_C_WrapUnits",
+        "L_Catalog",
+        "L_Constant",
+        "L_Identity",
+        "L_L_Lift1_Constant",
+        "L_L_Lift1_Transform",
+        "L_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_a898(
+    value: object,
+) -> Literal[
+    "U1_C_CodSum",
+    "U1_C_CodSumSmash",
+    "U1_C_DomUnion",
+    "U1_C_Intersection",
+    "U1_C_Parallel",
+    "U1_C_ProdIntersection",
+    "U1_C_Product",
+    "U1_C_RefineDomain",
+    "U1_C_Series",
+    "U1_C_Trace",
+    "U1_C_Union",
+    "U1_C_WrapUnits",
+    "U1_Catalog",
+    "U1_Constant",
+    "U1_Entire",
+    "U1_Explicit",
+    "U1_FromFilter",
+    "U1_Identity",
+    "U1_IntersectionOfPrinUpperSets",
+    "U1_InvMul_Opt",
+    "U1_InvMul_Pes",
+    "U1_InvSum_Opt",
+    "U1_InvSum_Pes",
+    "U1_L_Uinv",
+    "U1_Lift",
+    "U1_RepresentPrincipalUpperSet",
+    "U1_Uinv_Join",
+    "U1_Uinv_JoinConstant",
+    "U1_UnionOfPrinUpperSets",
+    "U1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "U1_C_CodSum",
+        "U1_C_CodSumSmash",
+        "U1_C_DomUnion",
+        "U1_C_Intersection",
+        "U1_C_Parallel",
+        "U1_C_ProdIntersection",
+        "U1_C_Product",
+        "U1_C_RefineDomain",
+        "U1_C_Series",
+        "U1_C_Trace",
+        "U1_C_Union",
+        "U1_C_WrapUnits",
+        "U1_Catalog",
+        "U1_Constant",
+        "U1_Entire",
+        "U1_Explicit",
+        "U1_FromFilter",
+        "U1_Identity",
+        "U1_IntersectionOfPrinUpperSets",
+        "U1_InvMul_Opt",
+        "U1_InvMul_Pes",
+        "U1_InvSum_Opt",
+        "U1_InvSum_Pes",
+        "U1_L_Uinv",
+        "U1_Lift",
+        "U1_RepresentPrincipalUpperSet",
+        "U1_Uinv_Join",
+        "U1_Uinv_JoinConstant",
+        "U1_UnionOfPrinUpperSets",
+        "U1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLCheck_Data(item) for item in value]
+
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
 
 
 def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
@@ -52,320 +211,91 @@ def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
     return {k: load_Poset(v) for k, v in value.items()}
 
 
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-
-def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_list_of_str(v) for k, v in value.items()}
-
-
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
-
-
-def validate_enum_5dfe(
+def validate_enum_b0de(
     value: object,
 ) -> Literal[
-    "SU1_C_CodSum",
-    "SU1_C_CodSumSmash",
-    "SU1_C_ExplicitApprox",
-    "SU1_C_Intersection",
-    "SU1_C_Parallel",
-    "SU1_C_ProdIntersection",
-    "SU1_C_Product",
-    "SU1_C_RefineDomain",
-    "SU1_C_Series",
-    "SU1_C_Trace",
-    "SU1_C_Union",
-    "SU1_C_WrapUnits",
-    "SU1_Exact",
-    "SU1_Identity",
-    "SU1_InvMultiply",
-    "SU1_InvSum",
-    "SU1_Unknown",
+    "DP_All_Constants_And_F_Leq_R",
+    "DP_All_Constants_Leq_R",
+    "DP_All_Fi_Leq_R",
+    "DP_AmbientConversion",
+    "DP_Any_Constants_Or_F_Leq_R",
+    "DP_Any_Fi_Leq_R",
+    "DP_C_ExplicitApprox",
+    "DP_C_Intersection",
+    "DP_C_Parallel",
+    "DP_C_Series",
+    "DP_C_Trace",
+    "DP_C_Union",
+    "DP_Catalog",
+    "DP_Compiled",
+    "DP_F_Leq_All_Constants",
+    "DP_F_Leq_All_R_And_Constants",
+    "DP_F_Leq_All_Ri",
+    "DP_F_Leq_Any_R_And_Constants",
+    "DP_F_Leq_Any_Ri",
+    "DP_False",
+    "DP_FuncNotMoreThan",
+    "DP_GenericConstant",
+    "DP_Identity",
+    "DP_Iso",
+    "DP_LiftL",
+    "DP_LiftU",
+    "DP_ResNotLessThan",
+    "DP_True",
+    "DP_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "SU1_C_CodSum",
-        "SU1_C_CodSumSmash",
-        "SU1_C_ExplicitApprox",
-        "SU1_C_Intersection",
-        "SU1_C_Parallel",
-        "SU1_C_ProdIntersection",
-        "SU1_C_Product",
-        "SU1_C_RefineDomain",
-        "SU1_C_Series",
-        "SU1_C_Trace",
-        "SU1_C_Union",
-        "SU1_C_WrapUnits",
-        "SU1_Exact",
-        "SU1_Identity",
-        "SU1_InvMultiply",
-        "SU1_InvSum",
-        "SU1_Unknown",
+        "DP_All_Constants_And_F_Leq_R",
+        "DP_All_Constants_Leq_R",
+        "DP_All_Fi_Leq_R",
+        "DP_AmbientConversion",
+        "DP_Any_Constants_Or_F_Leq_R",
+        "DP_Any_Fi_Leq_R",
+        "DP_C_ExplicitApprox",
+        "DP_C_Intersection",
+        "DP_C_Parallel",
+        "DP_C_Series",
+        "DP_C_Trace",
+        "DP_C_Union",
+        "DP_Catalog",
+        "DP_Compiled",
+        "DP_F_Leq_All_Constants",
+        "DP_F_Leq_All_R_And_Constants",
+        "DP_F_Leq_All_Ri",
+        "DP_F_Leq_Any_R_And_Constants",
+        "DP_F_Leq_Any_Ri",
+        "DP_False",
+        "DP_FuncNotMoreThan",
+        "DP_GenericConstant",
+        "DP_Identity",
+        "DP_Iso",
+        "DP_LiftL",
+        "DP_LiftU",
+        "DP_ResNotLessThan",
+        "DP_True",
+        "DP_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
 
 
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
+    return [load_list_of_str(item) for item in value]
 
 
-def validate_enum_8a74(
-    value: object,
-) -> Literal[
-    "P_Bool",
-    "P_C_Arrow",
-    "P_C_Discretized",
-    "P_C_Lexicographic",
-    "P_C_LowerSets",
-    "P_C_Multisets",
-    "P_C_Opposite",
-    "P_C_Power",
-    "P_C_Product",
-    "P_C_ProductDS",
-    "P_C_ProductSmash",
-    "P_C_Sum",
-    "P_C_SumSmash",
-    "P_C_Twisted",
-    "P_C_Units",
-    "P_C_UpperSets",
-    "P_Decimal",
-    "P_F_Bounded",
-    "P_F_C_Intersection",
-    "P_F_C_Union",
-    "P_F_Interval",
-    "P_F_LowerClosure",
-    "P_F_Subposet",
-    "P_F_UpperClosure",
-    "P_Finite",
-    "P_Float",
-    "P_Fractions",
-    "P_Integer",
-    "P_Unknown",
-]:
+def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "P_Bool",
-        "P_C_Arrow",
-        "P_C_Discretized",
-        "P_C_Lexicographic",
-        "P_C_LowerSets",
-        "P_C_Multisets",
-        "P_C_Opposite",
-        "P_C_Power",
-        "P_C_Product",
-        "P_C_ProductDS",
-        "P_C_ProductSmash",
-        "P_C_Sum",
-        "P_C_SumSmash",
-        "P_C_Twisted",
-        "P_C_Units",
-        "P_C_UpperSets",
-        "P_Decimal",
-        "P_F_Bounded",
-        "P_F_C_Intersection",
-        "P_F_C_Union",
-        "P_F_Interval",
-        "P_F_LowerClosure",
-        "P_F_Subposet",
-        "P_F_UpperClosure",
-        "P_Finite",
-        "P_Float",
-        "P_Fractions",
-        "P_Integer",
-        "P_Unknown",
-    ]
+    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L_Catalog_Options(item) for item in value]
-
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Check_Data(item) for item in value]
-
-
-def validate_enum_a17d(
-    value: object,
-) -> Literal[
-    "L1_C_CodSum",
-    "L1_C_CodSumSmash",
-    "L1_C_DomUnion",
-    "L1_C_Intersection",
-    "L1_C_Parallel",
-    "L1_C_ProdIntersection",
-    "L1_C_Product",
-    "L1_C_RefineDomain",
-    "L1_C_Series",
-    "L1_C_Trace",
-    "L1_C_Union",
-    "L1_C_WrapUnits",
-    "L1_Catalog",
-    "L1_Constant",
-    "L1_Entire",
-    "L1_Explicit",
-    "L1_FromFilter",
-    "L1_Identity",
-    "L1_IntersectionOfPrinLowerSets",
-    "L1_InvMul_Opt",
-    "L1_InvMul_Pes",
-    "L1_InvSum_Opt",
-    "L1_InvSum_Pes",
-    "L1_L_Linv",
-    "L1_Lift",
-    "L1_RepresentPrincipalLowerSet",
-    "L1_TopAlternating",
-    "L1_UnionOfPrinLowerSets",
-    "L1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L1_C_CodSum",
-        "L1_C_CodSumSmash",
-        "L1_C_DomUnion",
-        "L1_C_Intersection",
-        "L1_C_Parallel",
-        "L1_C_ProdIntersection",
-        "L1_C_Product",
-        "L1_C_RefineDomain",
-        "L1_C_Series",
-        "L1_C_Trace",
-        "L1_C_Union",
-        "L1_C_WrapUnits",
-        "L1_Catalog",
-        "L1_Constant",
-        "L1_Entire",
-        "L1_Explicit",
-        "L1_FromFilter",
-        "L1_Identity",
-        "L1_IntersectionOfPrinLowerSets",
-        "L1_InvMul_Opt",
-        "L1_InvMul_Pes",
-        "L1_InvSum_Opt",
-        "L1_InvSum_Pes",
-        "L1_L_Linv",
-        "L1_Lift",
-        "L1_RepresentPrincipalLowerSet",
-        "L1_TopAlternating",
-        "L1_UnionOfPrinLowerSets",
-        "L1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_any(item) for item in value]
-
-
-def validate_enum_4f69(
-    value: object,
-) -> Literal[
-    "SU_C_ITransform",
-    "SU_C_Intersection",
-    "SU_C_Parallel",
-    "SU_C_RefineDomain",
-    "SU_C_Series",
-    "SU_C_Trace",
-    "SU_C_Union",
-    "SU_C_WrapUnits",
-    "SU_Identity",
-    "SU_L_Exact",
-    "SU_L_Explicit_Approx",
-    "SU_L_Lift1_Constant",
-    "SU_L_Lift1_Transform",
-    "SU_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SU_C_ITransform",
-        "SU_C_Intersection",
-        "SU_C_Parallel",
-        "SU_C_RefineDomain",
-        "SU_C_Series",
-        "SU_C_Trace",
-        "SU_C_Union",
-        "SU_C_WrapUnits",
-        "SU_Identity",
-        "SU_L_Exact",
-        "SU_L_Explicit_Approx",
-        "SU_L_Lift1_Constant",
-        "SU_L_Lift1_Transform",
-        "SU_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Value(v) for k, v in value.items()}
-
-
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUCheck_Data(item) for item in value]
-
-
-def load_list_of_Unit(value: object) -> list[Unit]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Unit(item) for item in value]
-
-
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
 
 
 def validate_enum_29e4(
@@ -462,56 +392,13 @@ def validate_enum_5d65(
     return value  # type: ignore
 
 
-def validate_enum_1978(
-    value: object,
-) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
-    value: object,
-) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
-
-def load_list_of_Connection(value: object) -> list[Connection]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Connection(item) for item in value]
-
-
-def load_list_of_SLMap(value: object) -> list[SLMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLMap(item) for item in value]
 
 
 def load_list_of_Range(value: object) -> list[Range]:
@@ -521,93 +408,178 @@ def load_list_of_Range(value: object) -> list[Range]:
     return [load_Range(item) for item in value]
 
 
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
-    value: object,
-) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
-
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-
-def validate_enum_4eeb(
+def validate_enum_5dfe(
     value: object,
 ) -> Literal[
-    "SL_C_ITransform",
-    "SL_C_Intersection",
-    "SL_C_Parallel",
-    "SL_C_RefineDomain",
-    "SL_C_Series",
-    "SL_C_Trace",
-    "SL_C_Union",
-    "SL_C_WrapUnits",
-    "SL_Identity",
-    "SL_L_Exact",
-    "SL_L_Explicit_Approx",
-    "SL_L_Lift1_Constant",
-    "SL_L_Lift1_Transform",
-    "SL_Unknown",
+    "SU1_C_CodSum",
+    "SU1_C_CodSumSmash",
+    "SU1_C_ExplicitApprox",
+    "SU1_C_Intersection",
+    "SU1_C_Parallel",
+    "SU1_C_ProdIntersection",
+    "SU1_C_Product",
+    "SU1_C_RefineDomain",
+    "SU1_C_Series",
+    "SU1_C_Trace",
+    "SU1_C_Union",
+    "SU1_C_WrapUnits",
+    "SU1_Exact",
+    "SU1_Identity",
+    "SU1_InvMultiply",
+    "SU1_InvSum",
+    "SU1_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "SL_C_ITransform",
-        "SL_C_Intersection",
-        "SL_C_Parallel",
-        "SL_C_RefineDomain",
-        "SL_C_Series",
-        "SL_C_Trace",
-        "SL_C_Union",
-        "SL_C_WrapUnits",
-        "SL_Identity",
-        "SL_L_Exact",
-        "SL_L_Explicit_Approx",
-        "SL_L_Lift1_Constant",
-        "SL_L_Lift1_Transform",
-        "SL_Unknown",
+        "SU1_C_CodSum",
+        "SU1_C_CodSumSmash",
+        "SU1_C_ExplicitApprox",
+        "SU1_C_Intersection",
+        "SU1_C_Parallel",
+        "SU1_C_ProdIntersection",
+        "SU1_C_Product",
+        "SU1_C_RefineDomain",
+        "SU1_C_Series",
+        "SU1_C_Trace",
+        "SU1_C_Union",
+        "SU1_C_WrapUnits",
+        "SU1_Exact",
+        "SU1_Identity",
+        "SU1_InvMultiply",
+        "SU1_InvSum",
+        "SU1_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
 
 
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
-
-
-def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+def validate_enum_8a74(
+    value: object,
+) -> Literal[
+    "P_Bool",
+    "P_C_Arrow",
+    "P_C_Discretized",
+    "P_C_Lexicographic",
+    "P_C_LowerSets",
+    "P_C_Multisets",
+    "P_C_Opposite",
+    "P_C_Power",
+    "P_C_Product",
+    "P_C_ProductDS",
+    "P_C_ProductSmash",
+    "P_C_Sum",
+    "P_C_SumSmash",
+    "P_C_Twisted",
+    "P_C_Units",
+    "P_C_UpperSets",
+    "P_Decimal",
+    "P_F_Bounded",
+    "P_F_C_Intersection",
+    "P_F_C_Union",
+    "P_F_Interval",
+    "P_F_LowerClosure",
+    "P_F_Subposet",
+    "P_F_UpperClosure",
+    "P_Finite",
+    "P_Float",
+    "P_Fractions",
+    "P_Integer",
+    "P_Unknown",
+]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    allowed_values = [
+        "P_Bool",
+        "P_C_Arrow",
+        "P_C_Discretized",
+        "P_C_Lexicographic",
+        "P_C_LowerSets",
+        "P_C_Multisets",
+        "P_C_Opposite",
+        "P_C_Power",
+        "P_C_Product",
+        "P_C_ProductDS",
+        "P_C_ProductSmash",
+        "P_C_Sum",
+        "P_C_SumSmash",
+        "P_C_Twisted",
+        "P_C_Units",
+        "P_C_UpperSets",
+        "P_Decimal",
+        "P_F_Bounded",
+        "P_F_C_Intersection",
+        "P_F_C_Union",
+        "P_F_Interval",
+        "P_F_LowerClosure",
+        "P_F_Subposet",
+        "P_F_UpperClosure",
+        "P_Finite",
+        "P_Float",
+        "P_Fractions",
+        "P_Integer",
+        "P_Unknown",
+    ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
 
 
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SL1Map(item) for item in value]
+    return [load_U_Catalog_Options(item) for item in value]
+
+
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Check_Data(item) for item in value]
+
+
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+
+def load_list_of_str(value: object) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_str(item) for item in value]
+
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
+
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Check_Data(item) for item in value]
+
+
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
+
+
+def load_list_of_L1Map(value: object) -> list[L1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Map(item) for item in value]
 
 
 def validate_enum_477e(
@@ -651,17 +623,263 @@ def validate_enum_477e(
     return value  # type: ignore
 
 
-def load_list_of_str(value: object) -> list[str]:
+def validate_enum_19fd(
+    value: object,
+) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_4eeb(
+    value: object,
+) -> Literal[
+    "SL_C_ITransform",
+    "SL_C_Intersection",
+    "SL_C_Parallel",
+    "SL_C_RefineDomain",
+    "SL_C_Series",
+    "SL_C_Trace",
+    "SL_C_Union",
+    "SL_C_WrapUnits",
+    "SL_Identity",
+    "SL_L_Exact",
+    "SL_L_Explicit_Approx",
+    "SL_L_Lift1_Constant",
+    "SL_L_Lift1_Transform",
+    "SL_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SL_C_ITransform",
+        "SL_C_Intersection",
+        "SL_C_Parallel",
+        "SL_C_RefineDomain",
+        "SL_C_Series",
+        "SL_C_Trace",
+        "SL_C_Union",
+        "SL_C_WrapUnits",
+        "SL_Identity",
+        "SL_L_Exact",
+        "SL_L_Explicit_Approx",
+        "SL_L_Lift1_Constant",
+        "SL_L_Lift1_Transform",
+        "SL_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_str(item) for item in value]
+    return [load_SLMap(item) for item in value]
 
 
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+def validate_enum_1978(
+    value: object,
+) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_4f69(
+    value: object,
+) -> Literal[
+    "SU_C_ITransform",
+    "SU_C_Intersection",
+    "SU_C_Parallel",
+    "SU_C_RefineDomain",
+    "SU_C_Series",
+    "SU_C_Trace",
+    "SU_C_Union",
+    "SU_C_WrapUnits",
+    "SU_Identity",
+    "SU_L_Exact",
+    "SU_L_Explicit_Approx",
+    "SU_L_Lift1_Constant",
+    "SU_L_Lift1_Transform",
+    "SU_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SU_C_ITransform",
+        "SU_C_Intersection",
+        "SU_C_Parallel",
+        "SU_C_RefineDomain",
+        "SU_C_Series",
+        "SU_C_Trace",
+        "SU_C_Union",
+        "SU_C_WrapUnits",
+        "SU_Identity",
+        "SU_L_Exact",
+        "SU_L_Explicit_Approx",
+        "SU_L_Lift1_Constant",
+        "SU_L_Lift1_Transform",
+        "SU_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
+
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+
+def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_list_of_str(v) for k, v in value.items()}
+
+
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
+
+
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
+    value: object,
+) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
+
+
+def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_a17d(
+    value: object,
+) -> Literal[
+    "L1_C_CodSum",
+    "L1_C_CodSumSmash",
+    "L1_C_DomUnion",
+    "L1_C_Intersection",
+    "L1_C_Parallel",
+    "L1_C_ProdIntersection",
+    "L1_C_Product",
+    "L1_C_RefineDomain",
+    "L1_C_Series",
+    "L1_C_Trace",
+    "L1_C_Union",
+    "L1_C_WrapUnits",
+    "L1_Catalog",
+    "L1_Constant",
+    "L1_Entire",
+    "L1_Explicit",
+    "L1_FromFilter",
+    "L1_Identity",
+    "L1_IntersectionOfPrinLowerSets",
+    "L1_InvMul_Opt",
+    "L1_InvMul_Pes",
+    "L1_InvSum_Opt",
+    "L1_InvSum_Pes",
+    "L1_L_Linv",
+    "L1_Lift",
+    "L1_RepresentPrincipalLowerSet",
+    "L1_TopAlternating",
+    "L1_UnionOfPrinLowerSets",
+    "L1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L1_C_CodSum",
+        "L1_C_CodSumSmash",
+        "L1_C_DomUnion",
+        "L1_C_Intersection",
+        "L1_C_Parallel",
+        "L1_C_ProdIntersection",
+        "L1_C_Product",
+        "L1_C_RefineDomain",
+        "L1_C_Series",
+        "L1_C_Trace",
+        "L1_C_Union",
+        "L1_C_WrapUnits",
+        "L1_Catalog",
+        "L1_Constant",
+        "L1_Entire",
+        "L1_Explicit",
+        "L1_FromFilter",
+        "L1_Identity",
+        "L1_IntersectionOfPrinLowerSets",
+        "L1_InvMul_Opt",
+        "L1_InvMul_Pes",
+        "L1_InvSum_Opt",
+        "L1_InvSum_Pes",
+        "L1_L_Linv",
+        "L1_Lift",
+        "L1_RepresentPrincipalLowerSet",
+        "L1_TopAlternating",
+        "L1_UnionOfPrinLowerSets",
+        "L1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_Unit(value: object) -> list[Unit]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Unit(item) for item in value]
+
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
+
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
+    value: object,
+) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
@@ -676,34 +894,11 @@ def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f3
     return value  # type: ignore
 
 
-def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
-
-
-def load_list_of_Poset(value: object) -> list[Poset]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
-
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
+    return [load_MonotoneMap(item) for item in value]
 
 
 def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
@@ -713,114 +908,32 @@ def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
     return [load_LCheck_Data(item) for item in value]
 
 
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
+    return [load_SL1Map(item) for item in value]
 
 
-def load_list_of_SUMap(value: object) -> list[SUMap]:
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
+    return [load_SL1Check_Data(item) for item in value]
 
 
-def load_list_of_DP(value: object) -> list[DP]:
+def load_list_of_U1Map(value: object) -> list[U1Map]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_DP(item) for item in value]
+    return [load_U1Map(item) for item in value]
 
 
-def validate_enum_b0de(
-    value: object,
-) -> Literal[
-    "DP_All_Constants_And_F_Leq_R",
-    "DP_All_Constants_Leq_R",
-    "DP_All_Fi_Leq_R",
-    "DP_AmbientConversion",
-    "DP_Any_Constants_Or_F_Leq_R",
-    "DP_Any_Fi_Leq_R",
-    "DP_C_ExplicitApprox",
-    "DP_C_Intersection",
-    "DP_C_Parallel",
-    "DP_C_Series",
-    "DP_C_Trace",
-    "DP_C_Union",
-    "DP_Catalog",
-    "DP_Compiled",
-    "DP_F_Leq_All_Constants",
-    "DP_F_Leq_All_R_And_Constants",
-    "DP_F_Leq_All_Ri",
-    "DP_F_Leq_Any_R_And_Constants",
-    "DP_F_Leq_Any_Ri",
-    "DP_False",
-    "DP_FuncNotMoreThan",
-    "DP_GenericConstant",
-    "DP_Identity",
-    "DP_Iso",
-    "DP_LiftL",
-    "DP_LiftU",
-    "DP_ResNotLessThan",
-    "DP_True",
-    "DP_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "DP_All_Constants_And_F_Leq_R",
-        "DP_All_Constants_Leq_R",
-        "DP_All_Fi_Leq_R",
-        "DP_AmbientConversion",
-        "DP_Any_Constants_Or_F_Leq_R",
-        "DP_Any_Fi_Leq_R",
-        "DP_C_ExplicitApprox",
-        "DP_C_Intersection",
-        "DP_C_Parallel",
-        "DP_C_Series",
-        "DP_C_Trace",
-        "DP_C_Union",
-        "DP_Catalog",
-        "DP_Compiled",
-        "DP_F_Leq_All_Constants",
-        "DP_F_Leq_All_R_And_Constants",
-        "DP_F_Leq_All_Ri",
-        "DP_F_Leq_Any_R_And_Constants",
-        "DP_F_Leq_Any_Ri",
-        "DP_False",
-        "DP_FuncNotMoreThan",
-        "DP_GenericConstant",
-        "DP_Identity",
-        "DP_Iso",
-        "DP_LiftL",
-        "DP_LiftU",
-        "DP_ResNotLessThan",
-        "DP_True",
-        "DP_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+def load_list_of_UMap(value: object) -> list[UMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
-
-
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
-    value: object,
-) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
+    return [load_UMap(item) for item in value]
 
 
 def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
@@ -830,18 +943,76 @@ def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
     return [load_M_Explicit_Option(item) for item in value]
 
 
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Check_Data(item) for item in value]
-
-
 def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_U1Check_Data(item) for item in value]
+
+
+def load_list_of_DP(value: object) -> list[DP]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP(item) for item in value]
+
+
+def load_list_of_bool(value: object) -> list[bool]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_bool(item) for item in value]
+
+
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
+
+
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
+
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
+
+
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUCheck_Data(item) for item in value]
+
+
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L_Catalog_Options(item) for item in value]
 
 
 def validate_enum_17f66(
@@ -999,185 +1170,15 @@ def validate_enum_17f66(
     return value  # type: ignore
 
 
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLCheck_Data(item) for item in value]
-
-
-def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U_Catalog_Options(item) for item in value]
-
-
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_str(item) for item in value]
-
-
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDPInterface(v) for k, v in value.items()}
-
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
-
-
-def validate_enum_4700(
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
     value: object,
-) -> Literal[
-    "L_C_ITransform",
-    "L_C_Intersection",
-    "L_C_Parallel",
-    "L_C_RefineDomain",
-    "L_C_Series",
-    "L_C_Trace",
-    "L_C_Union",
-    "L_C_WrapUnits",
-    "L_Catalog",
-    "L_Constant",
-    "L_Identity",
-    "L_L_Lift1_Constant",
-    "L_L_Lift1_Transform",
-    "L_Unknown",
-]:
+) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L_C_ITransform",
-        "L_C_Intersection",
-        "L_C_Parallel",
-        "L_C_RefineDomain",
-        "L_C_Series",
-        "L_C_Trace",
-        "L_C_Union",
-        "L_C_WrapUnits",
-        "L_Catalog",
-        "L_Constant",
-        "L_Identity",
-        "L_L_Lift1_Constant",
-        "L_L_Lift1_Transform",
-        "L_Unknown",
-    ]
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def validate_enum_19fd(
-    value: object,
-) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
-
-
-def validate_enum_a898(
-    value: object,
-) -> Literal[
-    "U1_C_CodSum",
-    "U1_C_CodSumSmash",
-    "U1_C_DomUnion",
-    "U1_C_Intersection",
-    "U1_C_Parallel",
-    "U1_C_ProdIntersection",
-    "U1_C_Product",
-    "U1_C_RefineDomain",
-    "U1_C_Series",
-    "U1_C_Trace",
-    "U1_C_Union",
-    "U1_C_WrapUnits",
-    "U1_Catalog",
-    "U1_Constant",
-    "U1_Entire",
-    "U1_Explicit",
-    "U1_FromFilter",
-    "U1_Identity",
-    "U1_IntersectionOfPrinUpperSets",
-    "U1_InvMul_Opt",
-    "U1_InvMul_Pes",
-    "U1_InvSum_Opt",
-    "U1_InvSum_Pes",
-    "U1_L_Uinv",
-    "U1_Lift",
-    "U1_RepresentPrincipalUpperSet",
-    "U1_Uinv_Join",
-    "U1_Uinv_JoinConstant",
-    "U1_UnionOfPrinUpperSets",
-    "U1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "U1_C_CodSum",
-        "U1_C_CodSumSmash",
-        "U1_C_DomUnion",
-        "U1_C_Intersection",
-        "U1_C_Parallel",
-        "U1_C_ProdIntersection",
-        "U1_C_Product",
-        "U1_C_RefineDomain",
-        "U1_C_Series",
-        "U1_C_Trace",
-        "U1_C_Union",
-        "U1_C_WrapUnits",
-        "U1_Catalog",
-        "U1_Constant",
-        "U1_Entire",
-        "U1_Explicit",
-        "U1_FromFilter",
-        "U1_Identity",
-        "U1_IntersectionOfPrinUpperSets",
-        "U1_InvMul_Opt",
-        "U1_InvMul_Pes",
-        "U1_InvSum_Opt",
-        "U1_InvSum_Pes",
-        "U1_L_Uinv",
-        "U1_Lift",
-        "U1_RepresentPrincipalUpperSet",
-        "U1_Uinv_Join",
-        "U1_Uinv_JoinConstant",
-        "U1_UnionOfPrinUpperSets",
-        "U1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_bool(item) for item in value]
 
 
 # Schema loaders
@@ -29044,6 +29045,25 @@ class Address:
         result["type"] = self.type_
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        library: str,
+        spec: Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"],
+        thing: str,
+        repo: str | None = None,
+    ) -> Self:
+        """Create a new Address instance."""
+        type_ = "Address"
+        return cls(
+            library=library,
+            repo=repo,
+            spec=spec,
+            thing=thing,
+            type_=type_,
+        )
+
 
 """The Root schema contains as subtypes all kinds of objects that can serialized in a MCDP file during an export operation."""
 
@@ -29108,6 +29128,16 @@ class Connection:
         result["target"] = self.target.to_data()
         result["type"] = self.type_
         return result
+
+    @classmethod
+    def make(cls, *, source: ConnectionSource, target: ConnectionTarget) -> Self:
+        """Create a new Connection instance."""
+        type_ = "Connection"
+        return cls(
+            source=source,
+            target=target,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29195,6 +29225,37 @@ class DP_All_Constants_And_F_Leq_R(DP):
         result["constants"] = self.constants
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        constants: list[Any],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_All_Constants_And_F_Leq_R instance."""
+        kind = "DP"
+        type_ = "DP_All_Constants_And_F_Leq_R"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            constants=constants,
+        )
+
 
 @dataclass(frozen=True)
 class DP_All_Constants_Leq_R(DP):
@@ -29207,6 +29268,37 @@ class DP_All_Constants_Leq_R(DP):
         result["constants"] = self.constants
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        constants: list[Any],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_All_Constants_Leq_R instance."""
+        kind = "DP"
+        type_ = "DP_All_Constants_Leq_R"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            constants=constants,
+        )
+
 
 @dataclass(frozen=True)
 class DP_All_Fi_Leq_R(DP):
@@ -29216,6 +29308,35 @@ class DP_All_Fi_Leq_R(DP):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_All_Fi_Leq_R instance."""
+        kind = "DP"
+        type_ = "DP_All_Fi_Leq_R"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29229,6 +29350,37 @@ class DP_AmbientConversion(DP):
         result["common"] = self.common.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        common: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_AmbientConversion instance."""
+        kind = "DP"
+        type_ = "DP_AmbientConversion"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            common=common,
+        )
+
 
 @dataclass(frozen=True)
 class DP_Any_Constants_Or_F_Leq_R(DP):
@@ -29241,6 +29393,37 @@ class DP_Any_Constants_Or_F_Leq_R(DP):
         result["constants"] = self.constants
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        constants: list[Any],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Any_Constants_Or_F_Leq_R instance."""
+        kind = "DP"
+        type_ = "DP_Any_Constants_Or_F_Leq_R"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            constants=constants,
+        )
+
 
 @dataclass(frozen=True)
 class DP_Any_Fi_Leq_R(DP):
@@ -29250,6 +29433,35 @@ class DP_Any_Fi_Leq_R(DP):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Any_Fi_Leq_R instance."""
+        kind = "DP"
+        type_ = "DP_Any_Fi_Leq_R"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29271,6 +29483,43 @@ class DP_C_ExplicitApprox(DP):
             result["pessimistic_labels"] = self.pessimistic_labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        optimistic: list[DP],
+        pessimistic: list[DP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+        optimistic_labels: list[str] | None = None,
+        pessimistic_labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new DP_C_ExplicitApprox instance."""
+        kind = "DP"
+        type_ = "DP_C_ExplicitApprox"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            optimistic=optimistic,
+            optimistic_labels=optimistic_labels,
+            pessimistic=pessimistic,
+            pessimistic_labels=pessimistic_labels,
+        )
+
 
 @dataclass(frozen=True)
 class DP_C_Intersection(DP):
@@ -29285,6 +29534,39 @@ class DP_C_Intersection(DP):
         if self.labels is not None:
             result["labels"] = self.labels
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        dps: list[DP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new DP_C_Intersection instance."""
+        kind = "DP"
+        type_ = "DP_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            dps=dps,
+            labels=labels,
+        )
 
 
 @dataclass(frozen=True)
@@ -29301,6 +29583,39 @@ class DP_C_Parallel(DP):
             result["labels"] = self.labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        dps: list[DP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new DP_C_Parallel instance."""
+        kind = "DP"
+        type_ = "DP_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            dps=dps,
+            labels=labels,
+        )
+
 
 @dataclass(frozen=True)
 class DP_C_Series(DP):
@@ -29316,6 +29631,39 @@ class DP_C_Series(DP):
             result["labels"] = self.labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        dps: list[DP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new DP_C_Series instance."""
+        kind = "DP"
+        type_ = "DP_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            dps=dps,
+            labels=labels,
+        )
+
 
 @dataclass(frozen=True)
 class DP_C_Trace(DP):
@@ -29327,6 +29675,37 @@ class DP_C_Trace(DP):
         result = super().to_data()
         result["dp"] = self.dp.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        dp: DP,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_C_Trace instance."""
+        kind = "DP"
+        type_ = "DP_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            dp=dp,
+        )
 
 
 @dataclass(frozen=True)
@@ -29343,6 +29722,39 @@ class DP_C_Union(DP):
             result["labels"] = self.labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        dps: list[DP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new DP_C_Union instance."""
+        kind = "DP"
+        type_ = "DP_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            dps=dps,
+            labels=labels,
+        )
+
 
 @dataclass(frozen=True)
 class DP_Catalog(DP):
@@ -29354,6 +29766,37 @@ class DP_Catalog(DP):
         result = super().to_data()
         result["options"] = [item.to_data() for item in self.options]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        options: list[DP_Catalog_Options],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Catalog instance."""
+        kind = "DP"
+        type_ = "DP_Catalog"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            options=options,
+        )
 
 
 @dataclass(frozen=True)
@@ -29370,6 +29813,16 @@ class DP_Catalog_Options:
         result["i"] = self.i
         result["r"] = self.r
         return result
+
+    @classmethod
+    def make(cls, *, b: Any, f: Any, i: Any, r: Any) -> Self:
+        """Create a new DP_Catalog_Options instance."""
+        return cls(
+            b=b,
+            f=f,
+            i=i,
+            r=r,
+        )
 
 
 @dataclass(frozen=True)
@@ -29403,6 +29856,57 @@ class DP_Compiled(DP):
         result["req"] = self.req.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        f_b_r: SUMap,
+        f_i_r: SUMap,
+        f_r: SU1Map,
+        i_availability: MonotoneMap,
+        i_b: MonotoneMap,
+        i_codfeas: MonotoneMap,
+        prov: MonotoneMap,
+        r_b_f: SLMap,
+        r_f: SL1Map,
+        r_i_f: SLMap,
+        req: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Compiled instance."""
+        kind = "DP"
+        type_ = "DP_Compiled"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            f_b_r=f_b_r,
+            f_i_r=f_i_r,
+            f_r=f_r,
+            i_availability=i_availability,
+            i_b=i_b,
+            i_codfeas=i_codfeas,
+            prov=prov,
+            r_b_f=r_b_f,
+            r_f=r_f,
+            r_i_f=r_i_f,
+            req=req,
+        )
+
 
 @dataclass(frozen=True)
 class DP_F_Leq_All_Constants(DP):
@@ -29414,6 +29918,37 @@ class DP_F_Leq_All_Constants(DP):
         result = super().to_data()
         result["constants"] = self.constants
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        constants: list[Any],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_F_Leq_All_Constants instance."""
+        kind = "DP"
+        type_ = "DP_F_Leq_All_Constants"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            constants=constants,
+        )
 
 
 @dataclass(frozen=True)
@@ -29427,6 +29962,37 @@ class DP_F_Leq_All_R_And_Constants(DP):
         result["constants"] = self.constants
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        constants: list[Any],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_F_Leq_All_R_And_Constants instance."""
+        kind = "DP"
+        type_ = "DP_F_Leq_All_R_And_Constants"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            constants=constants,
+        )
+
 
 @dataclass(frozen=True)
 class DP_F_Leq_All_Ri(DP):
@@ -29436,6 +30002,35 @@ class DP_F_Leq_All_Ri(DP):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_F_Leq_All_Ri instance."""
+        kind = "DP"
+        type_ = "DP_F_Leq_All_Ri"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29449,6 +30044,37 @@ class DP_F_Leq_Any_R_And_Constants(DP):
         result["constants"] = self.constants
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        constants: list[Any],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_F_Leq_Any_R_And_Constants instance."""
+        kind = "DP"
+        type_ = "DP_F_Leq_Any_R_And_Constants"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            constants=constants,
+        )
+
 
 @dataclass(frozen=True)
 class DP_F_Leq_Any_Ri(DP):
@@ -29459,6 +30085,35 @@ class DP_F_Leq_Any_Ri(DP):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_F_Leq_Any_Ri instance."""
+        kind = "DP"
+        type_ = "DP_F_Leq_Any_Ri"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class DP_False(DP):
@@ -29468,6 +30123,35 @@ class DP_False(DP):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_False instance."""
+        kind = "DP"
+        type_ = "DP_False"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29480,6 +30164,37 @@ class DP_FuncNotMoreThan(DP):
         result = super().to_data()
         result["limit"] = self.limit
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        limit: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_FuncNotMoreThan instance."""
+        kind = "DP"
+        type_ = "DP_FuncNotMoreThan"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            limit=limit,
+        )
 
 
 @dataclass(frozen=True)
@@ -29497,6 +30212,41 @@ class DP_GenericConstant(DP):
         result["upper_set"] = self.upper_set.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        b_value: Any,
+        lower_set: LowerSet,
+        upper_set: UpperSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_GenericConstant instance."""
+        kind = "DP"
+        type_ = "DP_GenericConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            b_value=b_value,
+            lower_set=lower_set,
+            upper_set=upper_set,
+        )
+
 
 @dataclass(frozen=True)
 class DP_Identity(DP):
@@ -29506,6 +30256,35 @@ class DP_Identity(DP):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Identity instance."""
+        kind = "DP"
+        type_ = "DP_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29521,6 +30300,39 @@ class DP_Iso(DP):
         result["fwd"] = self.fwd.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        bwd: MonotoneMap,
+        fwd: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Iso instance."""
+        kind = "DP"
+        type_ = "DP_Iso"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            bwd=bwd,
+            fwd=fwd,
+        )
+
 
 @dataclass(frozen=True)
 class DP_LiftL(DP):
@@ -29532,6 +30344,37 @@ class DP_LiftL(DP):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_LiftL instance."""
+        kind = "DP"
+        type_ = "DP_LiftL"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -29545,6 +30388,37 @@ class DP_LiftU(DP):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_LiftU instance."""
+        kind = "DP"
+        type_ = "DP_LiftU"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class DP_ResNotLessThan(DP):
@@ -29556,6 +30430,37 @@ class DP_ResNotLessThan(DP):
         result = super().to_data()
         result["limit"] = self.limit
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        limit: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_ResNotLessThan instance."""
+        kind = "DP"
+        type_ = "DP_ResNotLessThan"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            limit=limit,
+        )
 
 
 @dataclass(frozen=True)
@@ -29569,6 +30474,37 @@ class DP_True(DP):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_True instance."""
+        kind = "DP"
+        type_ = "DP_True"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class DP_Unknown(DP):
@@ -29578,6 +30514,35 @@ class DP_Unknown(DP):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        F: Poset,
+        R: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        B: Poset | None = None,
+        I: Poset | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new DP_Unknown instance."""
+        kind = "DP"
+        type_ = "DP_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            B=B,
+            F=F,
+            I=I,
+            R=R,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29593,6 +30558,29 @@ class L1Check(Check):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[L1Check_Data],
+        m: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1Check instance."""
+        kind = "Check"
+        type_ = "L1Check"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class L1Check_Data:
@@ -29607,6 +30595,15 @@ class L1Check_Data:
         result["x"] = self.x
         result["y"] = self.y.to_data()
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: LowerSet, elapsed: float | None = None) -> Self:
+        """Create a new L1Check_Data instance."""
+        return cls(
+            elapsed=elapsed,
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -29668,6 +30665,33 @@ class L1_C_CodSum(L1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_CodSum instance."""
+        kind = "L1Map"
+        type_ = "L1_C_CodSum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L1_C_CodSumSmash(L1Map):
@@ -29682,6 +30706,33 @@ class L1_C_CodSumSmash(L1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_CodSumSmash instance."""
+        kind = "L1Map"
+        type_ = "L1_C_CodSumSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -29698,6 +30749,33 @@ class L1_C_DomUnion(L1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_DomUnion instance."""
+        kind = "L1Map"
+        type_ = "L1_C_DomUnion"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L1_C_Intersection(L1Map):
@@ -29712,6 +30790,33 @@ class L1_C_Intersection(L1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_Intersection instance."""
+        kind = "L1Map"
+        type_ = "L1_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -29728,6 +30833,33 @@ class L1_C_Parallel(L1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_Parallel instance."""
+        kind = "L1Map"
+        type_ = "L1_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L1_C_ProdIntersection(L1Map):
@@ -29742,6 +30874,33 @@ class L1_C_ProdIntersection(L1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_ProdIntersection instance."""
+        kind = "L1Map"
+        type_ = "L1_C_ProdIntersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -29758,6 +30917,33 @@ class L1_C_Product(L1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_Product instance."""
+        kind = "L1Map"
+        type_ = "L1_C_Product"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L1_C_RefineDomain(L1Map):
@@ -29769,6 +30955,31 @@ class L1_C_RefineDomain(L1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_C_RefineDomain instance."""
+        kind = "L1Map"
+        type_ = "L1_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -29785,6 +30996,33 @@ class L1_C_Series(L1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_Series instance."""
+        kind = "L1Map"
+        type_ = "L1_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L1_C_Trace(L1Map):
@@ -29796,6 +31034,31 @@ class L1_C_Trace(L1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_C_Trace instance."""
+        kind = "L1Map"
+        type_ = "L1_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -29811,6 +31074,33 @@ class L1_C_Union(L1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L1_C_Union instance."""
+        kind = "L1Map"
+        type_ = "L1_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -29828,6 +31118,35 @@ class L1_C_WrapUnits(L1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        m: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_C_WrapUnits instance."""
+        kind = "L1Map"
+        type_ = "L1_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class L1_Catalog(L1Map):
@@ -29839,6 +31158,31 @@ class L1_Catalog(L1Map):
         result = super().to_data()
         result["options"] = [item.to_data() for item in self.options]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        options: list[L1_Catalog_Options],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_Catalog instance."""
+        kind = "L1Map"
+        type_ = "L1_Catalog"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            options=options,
+        )
 
 
 @dataclass(frozen=True)
@@ -29852,6 +31196,14 @@ class L1_Catalog_Options:
         result["r"] = self.r
         return result
 
+    @classmethod
+    def make(cls, *, f: Any, r: Any) -> Self:
+        """Create a new L1_Catalog_Options instance."""
+        return cls(
+            f=f,
+            r=r,
+        )
+
 
 @dataclass(frozen=True)
 class L1_Constant(L1Map):
@@ -29864,6 +31216,31 @@ class L1_Constant(L1Map):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        value: LowerSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_Constant instance."""
+        kind = "L1Map"
+        type_ = "L1_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class L1_Entire(L1Map):
@@ -29873,6 +31250,23 @@ class L1_Entire(L1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new L1_Entire instance."""
+        kind = "L1Map"
+        type_ = "L1_Entire"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29886,6 +31280,31 @@ class L1_Explicit(L1Map):
         result["options"] = [item.to_data() for item in self.options]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        options: list[L1_Explicit_Option],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_Explicit instance."""
+        kind = "L1Map"
+        type_ = "L1_Explicit"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            options=options,
+        )
+
 
 @dataclass(frozen=True)
 class L1_Explicit_Option:
@@ -29897,6 +31316,14 @@ class L1_Explicit_Option:
         result["x"] = self.x
         result["y"] = self.y.to_data()
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: LowerSet) -> Self:
+        """Create a new L1_Explicit_Option instance."""
+        return cls(
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -29910,6 +31337,31 @@ class L1_FromFilter(L1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_FromFilter instance."""
+        kind = "L1Map"
+        type_ = "L1_FromFilter"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class L1_Identity(L1Map):
@@ -29920,6 +31372,23 @@ class L1_Identity(L1Map):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new L1_Identity instance."""
+        kind = "L1Map"
+        type_ = "L1_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class L1_IntersectionOfPrinLowerSets(L1Map):
@@ -29929,6 +31398,23 @@ class L1_IntersectionOfPrinLowerSets(L1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new L1_IntersectionOfPrinLowerSets instance."""
+        kind = "L1Map"
+        type_ = "L1_IntersectionOfPrinLowerSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -29944,6 +31430,33 @@ class L1_InvMul_Opt(L1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_InvMul_Opt instance."""
+        kind = "L1Map"
+        type_ = "L1_InvMul_Opt"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class L1_InvMul_Pes(L1Map):
@@ -29957,6 +31470,33 @@ class L1_InvMul_Pes(L1Map):
         result["n"] = self.n
         result["opspace"] = self.opspace.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_InvMul_Pes instance."""
+        kind = "L1Map"
+        type_ = "L1_InvMul_Pes"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
 
 
 @dataclass(frozen=True)
@@ -29972,6 +31512,33 @@ class L1_InvSum_Opt(L1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_InvSum_Opt instance."""
+        kind = "L1Map"
+        type_ = "L1_InvSum_Opt"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class L1_InvSum_Pes(L1Map):
@@ -29986,6 +31553,33 @@ class L1_InvSum_Pes(L1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_InvSum_Pes instance."""
+        kind = "L1Map"
+        type_ = "L1_InvSum_Pes"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class L1_L_Linv(L1Map):
@@ -29997,6 +31591,31 @@ class L1_L_Linv(L1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_L_Linv instance."""
+        kind = "L1Map"
+        type_ = "L1_L_Linv"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -30010,6 +31629,31 @@ class L1_Lift(L1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_Lift instance."""
+        kind = "L1Map"
+        type_ = "L1_Lift"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class L1_RepresentPrincipalLowerSet(L1Map):
@@ -30019,6 +31663,23 @@ class L1_RepresentPrincipalLowerSet(L1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new L1_RepresentPrincipalLowerSet instance."""
+        kind = "L1Map"
+        type_ = "L1_RepresentPrincipalLowerSet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30032,6 +31693,31 @@ class L1_TopAlternating(L1Map):
         result["upper_bounds"] = self.upper_bounds
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        upper_bounds: list[list[Any]],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L1_TopAlternating instance."""
+        kind = "L1Map"
+        type_ = "L1_TopAlternating"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            upper_bounds=upper_bounds,
+        )
+
 
 @dataclass(frozen=True)
 class L1_UnionOfPrinLowerSets(L1Map):
@@ -30042,6 +31728,23 @@ class L1_UnionOfPrinLowerSets(L1Map):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new L1_UnionOfPrinLowerSets instance."""
+        kind = "L1Map"
+        type_ = "L1_UnionOfPrinLowerSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class L1_Unknown(L1Map):
@@ -30051,6 +31754,23 @@ class L1_Unknown(L1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new L1_Unknown instance."""
+        kind = "L1Map"
+        type_ = "L1_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30066,6 +31786,29 @@ class LCheck(Check):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[LCheck_Data],
+        m: LMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new LCheck instance."""
+        kind = "Check"
+        type_ = "LCheck"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class LCheck_Data:
@@ -30080,6 +31823,15 @@ class LCheck_Data:
         result["x"] = self.x
         result["y"] = self.y.to_data()
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: LowerSet, elapsed: float | None = None) -> Self:
+        """Create a new LCheck_Data instance."""
+        return cls(
+            elapsed=elapsed,
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -30127,6 +31879,35 @@ class L_C_ITransform(LMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: LMap,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_C_ITransform instance."""
+        kind = "LMap"
+        type_ = "L_C_ITransform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class L_C_Intersection(LMap):
@@ -30141,6 +31922,35 @@ class L_C_Intersection(LMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[LMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L_C_Intersection instance."""
+        kind = "LMap"
+        type_ = "L_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -30157,6 +31967,35 @@ class L_C_Parallel(LMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[LMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L_C_Parallel instance."""
+        kind = "LMap"
+        type_ = "L_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L_C_RefineDomain(LMap):
@@ -30168,6 +32007,33 @@ class L_C_RefineDomain(LMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: LMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_C_RefineDomain instance."""
+        kind = "LMap"
+        type_ = "L_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -30184,6 +32050,35 @@ class L_C_Series(LMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[LMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L_C_Series instance."""
+        kind = "LMap"
+        type_ = "L_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class L_C_Trace(LMap):
@@ -30197,6 +32092,35 @@ class L_C_Trace(LMap):
         result["m"] = self.m.to_data()
         result["m_proj"] = self.m_proj.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: LMap,
+        m_proj: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_C_Trace instance."""
+        kind = "LMap"
+        type_ = "L_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
 
 
 @dataclass(frozen=True)
@@ -30212,6 +32136,35 @@ class L_C_Union(LMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[LMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new L_C_Union instance."""
+        kind = "LMap"
+        type_ = "L_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -30231,6 +32184,39 @@ class L_C_WrapUnits(LMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        kimp_units: Unit,
+        m: LMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_C_WrapUnits instance."""
+        kind = "LMap"
+        type_ = "L_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            kimp_units=kimp_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class L_Catalog(LMap):
@@ -30242,6 +32228,33 @@ class L_Catalog(LMap):
         result = super().to_data()
         result["options"] = [item.to_data() for item in self.options]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        options: list[L_Catalog_Options],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_Catalog instance."""
+        kind = "LMap"
+        type_ = "L_Catalog"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            options=options,
+        )
 
 
 @dataclass(frozen=True)
@@ -30257,6 +32270,15 @@ class L_Catalog_Options:
         result["r"] = self.r
         return result
 
+    @classmethod
+    def make(cls, *, f: Any, i: Any, r: Any) -> Self:
+        """Create a new L_Catalog_Options instance."""
+        return cls(
+            f=f,
+            i=i,
+            r=r,
+        )
+
 
 @dataclass(frozen=True)
 class L_Constant(LMap):
@@ -30269,6 +32291,33 @@ class L_Constant(LMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        value: LowerSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_Constant instance."""
+        kind = "LMap"
+        type_ = "L_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class L_Identity(LMap):
@@ -30278,6 +32327,31 @@ class L_Identity(LMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_Identity instance."""
+        kind = "LMap"
+        type_ = "L_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30293,6 +32367,35 @@ class L_L_Lift1_Constant(LMap):
         result["value"] = self.value
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: L1Map,
+        value: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_L_Lift1_Constant instance."""
+        kind = "LMap"
+        type_ = "L_L_Lift1_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class L_L_Lift1_Transform(LMap):
@@ -30307,6 +32410,35 @@ class L_L_Lift1_Transform(LMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: L1Map,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_L_Lift1_Transform instance."""
+        kind = "LMap"
+        type_ = "L_L_Lift1_Transform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class L_Unknown(LMap):
@@ -30316,6 +32448,31 @@ class L_Unknown(LMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_Unknown instance."""
+        kind = "LMap"
+        type_ = "L_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30340,6 +32497,17 @@ class LowerSet_LowerClosure(LowerSet):
         result["points"] = self.points
         return result
 
+    @classmethod
+    def make(cls, *, points: list[Any]) -> Self:
+        """Create a new LowerSet_LowerClosure instance."""
+        kind = "LowerSet"
+        type_ = "LowerSet_LowerClosure"
+        return cls(
+            kind=kind,
+            type_=type_,
+            points=points,
+        )
+
 
 @dataclass(frozen=True)
 class LowerSet_Unused(LowerSet):
@@ -30348,6 +32516,16 @@ class LowerSet_Unused(LowerSet):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(cls) -> Self:
+        """Create a new LowerSet_Unused instance."""
+        kind = "LowerSet"
+        type_ = "LowerSet_Unused"
+        return cls(
+            kind=kind,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30448,6 +32626,31 @@ class M_AddL(MonotoneMap):
         result["opspaces"] = [item.to_data() for item in self.opspaces]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspaces: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_AddL instance."""
+        kind = "MonotoneMap"
+        type_ = "M_AddL"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspaces=opspaces,
+        )
+
 
 @dataclass(frozen=True)
 class M_AddLConstant(MonotoneMap):
@@ -30462,6 +32665,33 @@ class M_AddLConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_AddLConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_AddLConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_AddU(MonotoneMap):
@@ -30473,6 +32703,31 @@ class M_AddU(MonotoneMap):
         result = super().to_data()
         result["opspaces"] = [item.to_data() for item in self.opspaces]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspaces: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_AddU instance."""
+        kind = "MonotoneMap"
+        type_ = "M_AddU"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspaces=opspaces,
+        )
 
 
 @dataclass(frozen=True)
@@ -30488,6 +32743,33 @@ class M_AddUConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_AddUConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_AddUConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_BottomIfNotTop(MonotoneMap):
@@ -30497,6 +32779,23 @@ class M_BottomIfNotTop(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_BottomIfNotTop instance."""
+        kind = "MonotoneMap"
+        type_ = "M_BottomIfNotTop"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30513,6 +32812,33 @@ class M_C_Coproduct(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_Coproduct instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Coproduct"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_CoproductSmash(MonotoneMap):
@@ -30527,6 +32853,33 @@ class M_C_CoproductSmash(MonotoneMap):
             result["labels"] = self.labels
         result["maps"] = [item.to_data() for item in self.maps]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_CoproductSmash instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_CoproductSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
 
 
 @dataclass(frozen=True)
@@ -30543,6 +32896,33 @@ class M_C_DomProdCodSmash(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_DomProdCodSmash instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_DomProdCodSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_DomSmashCodProd(MonotoneMap):
@@ -30557,6 +32937,33 @@ class M_C_DomSmashCodProd(MonotoneMap):
             result["labels"] = self.labels
         result["maps"] = [item.to_data() for item in self.maps]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_DomSmashCodProd instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_DomSmashCodProd"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
 
 
 @dataclass(frozen=True)
@@ -30573,6 +32980,33 @@ class M_C_DomUnion(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_DomUnion instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_DomUnion"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_Leq_X(MonotoneMap):
@@ -30587,6 +33021,33 @@ class M_C_Leq_X(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_C_Leq_X instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Leq_X"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_LiftToSubsets(MonotoneMap):
@@ -30598,6 +33059,31 @@ class M_C_LiftToSubsets(MonotoneMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_C_LiftToSubsets instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_LiftToSubsets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -30613,6 +33099,33 @@ class M_C_Lt_X(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_C_Lt_X instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Lt_X"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_Op(MonotoneMap):
@@ -30624,6 +33137,31 @@ class M_C_Op(MonotoneMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_C_Op instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Op"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -30640,6 +33178,33 @@ class M_C_Parallel(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_Parallel instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_ParallelSmash(MonotoneMap):
@@ -30654,6 +33219,33 @@ class M_C_ParallelSmash(MonotoneMap):
             result["labels"] = self.labels
         result["maps"] = [item.to_data() for item in self.maps]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_ParallelSmash instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_ParallelSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
 
 
 @dataclass(frozen=True)
@@ -30670,6 +33262,33 @@ class M_C_Product(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_Product instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Product"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_ProductSmash(MonotoneMap):
@@ -30685,6 +33304,33 @@ class M_C_ProductSmash(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_ProductSmash instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_ProductSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_RefineDomain(MonotoneMap):
@@ -30696,6 +33342,31 @@ class M_C_RefineDomain(MonotoneMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_C_RefineDomain instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -30712,6 +33383,33 @@ class M_C_Series(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_Series instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_Sum(MonotoneMap):
@@ -30727,6 +33425,33 @@ class M_C_Sum(MonotoneMap):
         result["maps"] = [item.to_data() for item in self.maps]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_Sum instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_Sum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
+
 
 @dataclass(frozen=True)
 class M_C_SumSmash(MonotoneMap):
@@ -30741,6 +33466,33 @@ class M_C_SumSmash(MonotoneMap):
             result["labels"] = self.labels
         result["maps"] = [item.to_data() for item in self.maps]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        maps: list[MonotoneMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new M_C_SumSmash instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_SumSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            labels=labels,
+            maps=maps,
+        )
 
 
 @dataclass(frozen=True)
@@ -30758,6 +33510,35 @@ class M_C_WrapUnits(MonotoneMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        cod_units: Unit,
+        dom_units: Unit,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_C_WrapUnits instance."""
+        kind = "MonotoneMap"
+        type_ = "M_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            cod_units=cod_units,
+            dom_units=dom_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class M_Ceil0(MonotoneMap):
@@ -30770,6 +33551,31 @@ class M_Ceil0(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Ceil0 instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Ceil0"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_Coerce(MonotoneMap):
@@ -30779,6 +33585,23 @@ class M_Coerce(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Coerce instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Coerce"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30791,6 +33614,31 @@ class M_Constant(MonotoneMap):
         result = super().to_data()
         result["value"] = self.value.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Constant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            value=value,
+        )
 
 
 @dataclass(frozen=True)
@@ -30806,6 +33654,33 @@ class M_ContainedInLowerSet(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        lower_set: LowerSet,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_ContainedInLowerSet instance."""
+        kind = "MonotoneMap"
+        type_ = "M_ContainedInLowerSet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            lower_set=lower_set,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_ContainedInUpperSet(MonotoneMap):
@@ -30819,6 +33694,33 @@ class M_ContainedInUpperSet(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         result["upper_set"] = self.upper_set.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        upper_set: UpperSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_ContainedInUpperSet instance."""
+        kind = "MonotoneMap"
+        type_ = "M_ContainedInUpperSet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            upper_set=upper_set,
+        )
 
 
 @dataclass(frozen=True)
@@ -30834,6 +33736,33 @@ class M_DivideLConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_DivideLConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_DivideLConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_DivideUConstant(MonotoneMap):
@@ -30848,6 +33777,33 @@ class M_DivideUConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_DivideUConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_DivideUConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_Empty(MonotoneMap):
@@ -30857,6 +33813,23 @@ class M_Empty(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Empty instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Empty"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30870,6 +33843,31 @@ class M_Explicit(MonotoneMap):
         result["options"] = [item.to_data() for item in self.options]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        options: list[M_Explicit_Option],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Explicit instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Explicit"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            options=options,
+        )
+
 
 @dataclass(frozen=True)
 class M_Explicit_Option:
@@ -30881,6 +33879,14 @@ class M_Explicit_Option:
         result["x"] = self.x
         result["y"] = self.y
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: Any) -> Self:
+        """Create a new M_Explicit_Option instance."""
+        return cls(
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -30894,6 +33900,31 @@ class M_Floor0(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Floor0 instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Floor0"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_Id(MonotoneMap):
@@ -30903,6 +33934,23 @@ class M_Id(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Id instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Id"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30918,6 +33966,33 @@ class M_IdentityBelowThreshold(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        threshold: Value,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_IdentityBelowThreshold instance."""
+        kind = "MonotoneMap"
+        type_ = "M_IdentityBelowThreshold"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            threshold=threshold,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_Injection(MonotoneMap):
@@ -30930,6 +34005,31 @@ class M_Injection(MonotoneMap):
         result["index"] = self.index
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        index: int,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Injection instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Injection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            index=index,
+        )
+
 
 @dataclass(frozen=True)
 class M_Join(MonotoneMap):
@@ -30941,6 +34041,31 @@ class M_Join(MonotoneMap):
         result = super().to_data()
         result["opspaces"] = [item.to_data() for item in self.opspaces]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspaces: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Join instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Join"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspaces=opspaces,
+        )
 
 
 @dataclass(frozen=True)
@@ -30956,6 +34081,33 @@ class M_JoinConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_JoinConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_JoinConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_Leq(MonotoneMap):
@@ -30968,6 +34120,31 @@ class M_Leq(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Leq instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Leq"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_Lift(MonotoneMap):
@@ -30977,6 +34154,23 @@ class M_Lift(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Lift instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Lift"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -30990,6 +34184,31 @@ class M_LiftToLowerSets(MonotoneMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_LiftToLowerSets instance."""
+        kind = "MonotoneMap"
+        type_ = "M_LiftToLowerSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class M_LiftToUpperSets(MonotoneMap):
@@ -31002,6 +34221,31 @@ class M_LiftToUpperSets(MonotoneMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_LiftToUpperSets instance."""
+        kind = "MonotoneMap"
+        type_ = "M_LiftToUpperSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class M_Meet(MonotoneMap):
@@ -31013,6 +34257,31 @@ class M_Meet(MonotoneMap):
         result = super().to_data()
         result["opspaces"] = [item.to_data() for item in self.opspaces]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspaces: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Meet instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Meet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspaces=opspaces,
+        )
 
 
 @dataclass(frozen=True)
@@ -31028,6 +34297,33 @@ class M_MeetConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_MeetConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_MeetConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_MultiplyL(MonotoneMap):
@@ -31039,6 +34335,31 @@ class M_MultiplyL(MonotoneMap):
         result = super().to_data()
         result["opspaces"] = [item.to_data() for item in self.opspaces]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspaces: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_MultiplyL instance."""
+        kind = "MonotoneMap"
+        type_ = "M_MultiplyL"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspaces=opspaces,
+        )
 
 
 @dataclass(frozen=True)
@@ -31054,6 +34375,33 @@ class M_MultiplyLConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_MultiplyLConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_MultiplyLConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_MultiplyU(MonotoneMap):
@@ -31065,6 +34413,31 @@ class M_MultiplyU(MonotoneMap):
         result = super().to_data()
         result["opspaces"] = [item.to_data() for item in self.opspaces]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspaces: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_MultiplyU instance."""
+        kind = "MonotoneMap"
+        type_ = "M_MultiplyU"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspaces=opspaces,
+        )
 
 
 @dataclass(frozen=True)
@@ -31079,6 +34452,33 @@ class M_MultiplyUConstant(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         result["value"] = self.value.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_MultiplyUConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_MultiplyUConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
 
 
 @dataclass(frozen=True)
@@ -31096,6 +34496,35 @@ class M_PowerFracL(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        den: str,
+        num: str,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_PowerFracL instance."""
+        kind = "MonotoneMap"
+        type_ = "M_PowerFracL"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            den=den,
+            num=num,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_PowerFracU(MonotoneMap):
@@ -31112,6 +34541,35 @@ class M_PowerFracU(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        den: str,
+        num: str,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_PowerFracU instance."""
+        kind = "MonotoneMap"
+        type_ = "M_PowerFracU"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            den=den,
+            num=num,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_ReprLowerSet(MonotoneMap):
@@ -31121,6 +34579,23 @@ class M_ReprLowerSet(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_ReprLowerSet instance."""
+        kind = "MonotoneMap"
+        type_ = "M_ReprLowerSet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -31132,6 +34607,23 @@ class M_ReprUpperSet(MonotoneMap):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_ReprUpperSet instance."""
+        kind = "MonotoneMap"
+        type_ = "M_ReprUpperSet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class M_RepresentPrincipalLowerSet_TotalOrderBounded(MonotoneMap):
@@ -31142,6 +34634,23 @@ class M_RepresentPrincipalLowerSet_TotalOrderBounded(MonotoneMap):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_RepresentPrincipalLowerSet_TotalOrderBounded instance."""
+        kind = "MonotoneMap"
+        type_ = "M_RepresentPrincipalLowerSet_TotalOrderBounded"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class M_RepresentPrincipalUpperSet_TotalOrderBounded(MonotoneMap):
@@ -31151,6 +34660,23 @@ class M_RepresentPrincipalUpperSet_TotalOrderBounded(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_RepresentPrincipalUpperSet_TotalOrderBounded instance."""
+        kind = "MonotoneMap"
+        type_ = "M_RepresentPrincipalUpperSet_TotalOrderBounded"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -31168,6 +34694,35 @@ class M_RoundDown(MonotoneMap):
         result["step"] = self.step
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        offset: Any,
+        opspace: Poset,
+        step: str,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_RoundDown instance."""
+        kind = "MonotoneMap"
+        type_ = "M_RoundDown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            offset=offset,
+            opspace=opspace,
+            step=step,
+        )
+
 
 @dataclass(frozen=True)
 class M_RoundUp(MonotoneMap):
@@ -31183,6 +34738,35 @@ class M_RoundUp(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         result["step"] = self.step
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        offset: Any,
+        opspace: Poset,
+        step: str,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_RoundUp instance."""
+        kind = "MonotoneMap"
+        type_ = "M_RoundUp"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            offset=offset,
+            opspace=opspace,
+            step=step,
+        )
 
 
 @dataclass(frozen=True)
@@ -31200,6 +34784,35 @@ class M_ScaleL(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        den: str,
+        num: str,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_ScaleL instance."""
+        kind = "MonotoneMap"
+        type_ = "M_ScaleL"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            den=den,
+            num=num,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_ScaleU(MonotoneMap):
@@ -31216,6 +34829,35 @@ class M_ScaleU(MonotoneMap):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        den: str,
+        num: str,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_ScaleU instance."""
+        kind = "MonotoneMap"
+        type_ = "M_ScaleU"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            den=den,
+            num=num,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class M_SmashInjection(MonotoneMap):
@@ -31227,6 +34869,31 @@ class M_SmashInjection(MonotoneMap):
         result = super().to_data()
         result["index"] = self.index
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        index: int,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_SmashInjection instance."""
+        kind = "MonotoneMap"
+        type_ = "M_SmashInjection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            index=index,
+        )
 
 
 @dataclass(frozen=True)
@@ -31242,6 +34909,33 @@ class M_SubLConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_SubLConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_SubLConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_SubUConstant(MonotoneMap):
@@ -31256,6 +34950,33 @@ class M_SubUConstant(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_SubUConstant instance."""
+        kind = "MonotoneMap"
+        type_ = "M_SubUConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_TakeIndex(MonotoneMap):
@@ -31267,6 +34988,31 @@ class M_TakeIndex(MonotoneMap):
         result = super().to_data()
         result["projection"] = self.projection.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        projection: Projection,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_TakeIndex instance."""
+        kind = "MonotoneMap"
+        type_ = "M_TakeIndex"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            projection=projection,
+        )
 
 
 @dataclass(frozen=True)
@@ -31280,6 +35026,31 @@ class M_TakeRange(MonotoneMap):
         result["range"] = self.range.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        range: Range,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_TakeRange instance."""
+        kind = "MonotoneMap"
+        type_ = "M_TakeRange"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            range=range,
+        )
+
 
 @dataclass(frozen=True)
 class M_Threshold1(MonotoneMap):
@@ -31291,6 +35062,31 @@ class M_Threshold1(MonotoneMap):
         result = super().to_data()
         result["value"] = self.value.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Threshold1 instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Threshold1"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            value=value,
+        )
 
 
 @dataclass(frozen=True)
@@ -31304,6 +35100,31 @@ class M_Threshold2(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_Threshold2 instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Threshold2"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_TopIfNotBottom(MonotoneMap):
@@ -31313,6 +35134,23 @@ class M_TopIfNotBottom(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_TopIfNotBottom instance."""
+        kind = "MonotoneMap"
+        type_ = "M_TopIfNotBottom"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -31324,6 +35162,23 @@ class M_Undefined(MonotoneMap):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Undefined instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Undefined"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class M_Unknown(MonotoneMap):
@@ -31334,6 +35189,23 @@ class M_Unknown(MonotoneMap):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Unknown instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class M_Unlift(MonotoneMap):
@@ -31343,6 +35215,23 @@ class M_Unlift(MonotoneMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new M_Unlift instance."""
+        kind = "MonotoneMap"
+        type_ = "M_Unlift"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -31358,6 +35247,33 @@ class M_X_Leq_C(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_X_Leq_C instance."""
+        kind = "MonotoneMap"
+        type_ = "M_X_Leq_C"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class M_X_Lt_C(MonotoneMap):
@@ -31372,6 +35288,33 @@ class M_X_Lt_C(MonotoneMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        cod: Poset,
+        dom: Poset,
+        opspace: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new M_X_Lt_C instance."""
+        kind = "MonotoneMap"
+        type_ = "M_X_Lt_C"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            cod=cod,
+            dom=dom,
+            type_=type_,
+            opspace=opspace,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class MapCheck(Check):
@@ -31385,6 +35328,29 @@ class MapCheck(Check):
         result["data"] = [item.to_data() for item in self.data]
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[MapCheck_Data],
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new MapCheck instance."""
+        kind = "Check"
+        type_ = "MapCheck"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -31401,6 +35367,15 @@ class MapCheck_Data:
         result["y"] = self.y
         return result
 
+    @classmethod
+    def make(cls, *, x: Any, y: Any, elapsed: float | None = None) -> Self:
+        """Create a new MapCheck_Data instance."""
+        return cls(
+            elapsed=elapsed,
+            x=x,
+            y=y,
+        )
+
 
 @dataclass(frozen=True)
 class ModelFunctionality(ConnectionSource):
@@ -31412,6 +35387,15 @@ class ModelFunctionality(ConnectionSource):
         result["functionality"] = self.functionality
         return result
 
+    @classmethod
+    def make(cls, *, functionality: str) -> Self:
+        """Create a new ModelFunctionality instance."""
+        type_ = "ModelFunctionality"
+        return cls(
+            type_=type_,
+            functionality=functionality,
+        )
+
 
 @dataclass(frozen=True)
 class ModelRequirement(ConnectionTarget):
@@ -31422,6 +35406,15 @@ class ModelRequirement(ConnectionTarget):
         result = super().to_data()
         result["requirement"] = self.requirement
         return result
+
+    @classmethod
+    def make(cls, *, requirement: str) -> Self:
+        """Create a new ModelRequirement instance."""
+        type_ = "ModelRequirement"
+        return cls(
+            type_=type_,
+            requirement=requirement,
+        )
 
 
 @dataclass(frozen=True)
@@ -31472,6 +35465,31 @@ class NDPInterface_Explicit(NDPInterface):
         result["rs"] = {k: v.to_data() for k, v in self.rs.items()}
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        fs: dict[str, Poset],
+        rs: dict[str, Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new NDPInterface_Explicit instance."""
+        kind = "NDPInterface"
+        type_ = "NDPInterface_Explicit"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            fs=fs,
+            rs=rs,
+        )
+
 
 @dataclass(frozen=True)
 class NDPTemplate(Root):
@@ -31499,6 +35517,31 @@ class NDPTemplate_Simple(NDPTemplate):
         result["parameters"] = {k: v.to_data() for k, v in self.parameters.items()}
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        ndp: NDP,
+        parameters: dict[str, NDPInterface],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new NDPTemplate_Simple instance."""
+        kind = "NDPTemplate"
+        type_ = "NDPTemplate_Simple"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            ndp=ndp,
+            parameters=parameters,
+        )
+
 
 @dataclass(frozen=True)
 class NDP_Composite(NDP):
@@ -31513,6 +35556,39 @@ class NDP_Composite(NDP):
         result["nodes"] = {k: v.to_data() for k, v in self.nodes.items()}
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        C: Poset,
+        F: dict[str, Poset],
+        J: Poset,
+        R: dict[str, Poset],
+        connections: list[Connection],
+        nodes: dict[str, NDP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new NDP_Composite instance."""
+        kind = "NDP"
+        type_ = "NDP_Composite"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            C=C,
+            F=F,
+            J=J,
+            R=R,
+            address=address,
+            type_=type_,
+            connections=connections,
+            nodes=nodes,
+        )
+
 
 @dataclass(frozen=True)
 class NDP_Simple(NDP):
@@ -31524,6 +35600,37 @@ class NDP_Simple(NDP):
         result = super().to_data()
         result["dp"] = self.dp.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        C: Poset,
+        F: dict[str, Poset],
+        J: Poset,
+        R: dict[str, Poset],
+        dp: DP,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new NDP_Simple instance."""
+        kind = "NDP"
+        type_ = "NDP_Simple"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            C=C,
+            F=F,
+            J=J,
+            R=R,
+            address=address,
+            type_=type_,
+            dp=dp,
+        )
 
 
 @dataclass(frozen=True)
@@ -31540,6 +35647,39 @@ class NDP_Sum(NDP):
             result["labels"] = self.labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        C: Poset,
+        F: dict[str, Poset],
+        J: Poset,
+        R: dict[str, Poset],
+        dps: dict[str, NDP],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new NDP_Sum instance."""
+        kind = "NDP"
+        type_ = "NDP_Sum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            C=C,
+            F=F,
+            J=J,
+            R=R,
+            address=address,
+            type_=type_,
+            dps=dps,
+            labels=labels,
+        )
+
 
 @dataclass(frozen=True)
 class NDP_TemplateHole(NDP):
@@ -31551,6 +35691,37 @@ class NDP_TemplateHole(NDP):
         result = super().to_data()
         result["parameter_name"] = self.parameter_name
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        C: Poset,
+        F: dict[str, Poset],
+        J: Poset,
+        R: dict[str, Poset],
+        parameter_name: str,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new NDP_TemplateHole instance."""
+        kind = "NDP"
+        type_ = "NDP_TemplateHole"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            C=C,
+            F=F,
+            J=J,
+            R=R,
+            address=address,
+            type_=type_,
+            parameter_name=parameter_name,
+        )
 
 
 @dataclass(frozen=True)
@@ -31565,6 +35736,16 @@ class NodeFunctionality(ConnectionTarget):
         result["node_functionality"] = self.node_functionality
         return result
 
+    @classmethod
+    def make(cls, *, node: str, node_functionality: str) -> Self:
+        """Create a new NodeFunctionality instance."""
+        type_ = "NodeFunctionality"
+        return cls(
+            type_=type_,
+            node=node,
+            node_functionality=node_functionality,
+        )
+
 
 @dataclass(frozen=True)
 class NodeRequirement(ConnectionSource):
@@ -31577,6 +35758,16 @@ class NodeRequirement(ConnectionSource):
         result["node"] = self.node
         result["node_requirement"] = self.node_requirement
         return result
+
+    @classmethod
+    def make(cls, *, node: str, node_requirement: str) -> Self:
+        """Create a new NodeRequirement instance."""
+        type_ = "NodeRequirement"
+        return cls(
+            type_=type_,
+            node=node,
+            node_requirement=node_requirement,
+        )
 
 
 @dataclass(frozen=True)
@@ -31632,6 +35823,27 @@ class P_Bool(Poset):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_Bool instance."""
+        kind = "Poset"
+        type_ = "P_Bool"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_Arrow(Poset):
@@ -31644,6 +35856,29 @@ class P_C_Arrow(Poset):
         result["poset"] = self.poset.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Arrow instance."""
+        kind = "Poset"
+        type_ = "P_C_Arrow"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_Discretized(Poset):
@@ -31655,6 +35890,29 @@ class P_C_Discretized(Poset):
         result = super().to_data()
         result["poset"] = self.poset.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Discretized instance."""
+        kind = "Poset"
+        type_ = "P_C_Discretized"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
 
 
 @dataclass(frozen=True)
@@ -31671,6 +35929,31 @@ class P_C_Lexicographic(Poset):
         result["subs"] = [item.to_data() for item in self.subs]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_C_Lexicographic instance."""
+        kind = "Poset"
+        type_ = "P_C_Lexicographic"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            labels=labels,
+            subs=subs,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_LowerSets(Poset):
@@ -31682,6 +35965,29 @@ class P_C_LowerSets(Poset):
         result = super().to_data()
         result["poset"] = self.poset.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_LowerSets instance."""
+        kind = "Poset"
+        type_ = "P_C_LowerSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
 
 
 @dataclass(frozen=True)
@@ -31697,6 +36003,31 @@ class P_C_Multisets(Poset):
         result["values"] = self.values.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        counts: Poset,
+        values: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Multisets instance."""
+        kind = "Poset"
+        type_ = "P_C_Multisets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            counts=counts,
+            values=values,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_Opposite(Poset):
@@ -31709,6 +36040,29 @@ class P_C_Opposite(Poset):
         result["poset"] = self.poset.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Opposite instance."""
+        kind = "Poset"
+        type_ = "P_C_Opposite"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_Power(Poset):
@@ -31720,6 +36074,29 @@ class P_C_Power(Poset):
         result = super().to_data()
         result["poset"] = self.poset.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Power instance."""
+        kind = "Poset"
+        type_ = "P_C_Power"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
 
 
 @dataclass(frozen=True)
@@ -31736,6 +36113,31 @@ class P_C_Product(Poset):
         result["subs"] = [item.to_data() for item in self.subs]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_C_Product instance."""
+        kind = "Poset"
+        type_ = "P_C_Product"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            labels=labels,
+            subs=subs,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_ProductDS(Poset):
@@ -31750,6 +36152,31 @@ class P_C_ProductDS(Poset):
             result["labels"] = self.labels
         result["subs"] = [item.to_data() for item in self.subs]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_C_ProductDS instance."""
+        kind = "Poset"
+        type_ = "P_C_ProductDS"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            labels=labels,
+            subs=subs,
+        )
 
 
 @dataclass(frozen=True)
@@ -31770,6 +36197,35 @@ class P_C_ProductSmash(Poset):
         result["subs"] = [item.to_data() for item in self.subs]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        naked: list[bool],
+        ranges: list[Range],
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_C_ProductSmash instance."""
+        kind = "Poset"
+        type_ = "P_C_ProductSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            labels=labels,
+            naked=naked,
+            ranges=ranges,
+            subs=subs,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_Sum(Poset):
@@ -31784,6 +36240,31 @@ class P_C_Sum(Poset):
             result["labels"] = self.labels
         result["subs"] = [item.to_data() for item in self.subs]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_C_Sum instance."""
+        kind = "Poset"
+        type_ = "P_C_Sum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            labels=labels,
+            subs=subs,
+        )
 
 
 @dataclass(frozen=True)
@@ -31806,6 +36287,37 @@ class P_C_SumSmash(Poset):
         result["trivial"] = self.trivial
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        naked: list[bool],
+        ranges: list[Range],
+        subs: list[Poset],
+        trivial: bool,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_C_SumSmash instance."""
+        kind = "Poset"
+        type_ = "P_C_SumSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            labels=labels,
+            naked=naked,
+            ranges=ranges,
+            subs=subs,
+            trivial=trivial,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_Twisted(Poset):
@@ -31817,6 +36329,29 @@ class P_C_Twisted(Poset):
         result = super().to_data()
         result["poset"] = self.poset.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Twisted instance."""
+        kind = "Poset"
+        type_ = "P_C_Twisted"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
 
 
 @dataclass(frozen=True)
@@ -31832,6 +36367,31 @@ class P_C_Units(Poset):
         result["units"] = self.units.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        units: Unit,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_Units instance."""
+        kind = "Poset"
+        type_ = "P_C_Units"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+            units=units,
+        )
+
 
 @dataclass(frozen=True)
 class P_C_UpperSets(Poset):
@@ -31844,6 +36404,29 @@ class P_C_UpperSets(Poset):
         result["poset"] = self.poset.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_C_UpperSets instance."""
+        kind = "Poset"
+        type_ = "P_C_UpperSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+        )
+
 
 @dataclass(frozen=True)
 class P_Decimal(Poset):
@@ -31855,6 +36438,29 @@ class P_Decimal(Poset):
         result = super().to_data()
         result["precision"] = self.precision
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        precision: int = json.loads("9"),
+    ) -> Self:
+        """Create a new P_Decimal instance."""
+        kind = "Poset"
+        type_ = "P_Decimal"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            precision=precision,
+        )
 
 
 @dataclass(frozen=True)
@@ -31880,6 +36486,41 @@ class P_F_Bounded(Poset):
         result["top"] = self.top
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        bottom: Any,
+        bound_high: Any,
+        bound_low: Any,
+        offset: Any,
+        poset: Poset,
+        step: str,
+        top: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_F_Bounded instance."""
+        kind = "Poset"
+        type_ = "P_F_Bounded"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            bottom=bottom,
+            bound_high=bound_high,
+            bound_low=bound_low,
+            offset=offset,
+            poset=poset,
+            step=step,
+            top=top,
+        )
+
 
 @dataclass(frozen=True)
 class P_F_C_Intersection(Poset):
@@ -31896,6 +36537,33 @@ class P_F_C_Intersection(Poset):
             result["labels"] = self.labels
         result["subs"] = [item.to_data() for item in self.subs]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        ambient: Poset,
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_F_C_Intersection instance."""
+        kind = "Poset"
+        type_ = "P_F_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            ambient=ambient,
+            labels=labels,
+            subs=subs,
+        )
 
 
 @dataclass(frozen=True)
@@ -31914,6 +36582,33 @@ class P_F_C_Union(Poset):
         result["subs"] = [item.to_data() for item in self.subs]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        ambient: Poset,
+        subs: list[Poset],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new P_F_C_Union instance."""
+        kind = "Poset"
+        type_ = "P_F_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            ambient=ambient,
+            labels=labels,
+            subs=subs,
+        )
+
 
 @dataclass(frozen=True)
 class P_F_Interval(Poset):
@@ -31930,6 +36625,33 @@ class P_F_Interval(Poset):
         result["poset"] = self.poset.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        high: Any,
+        low: Any,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_F_Interval instance."""
+        kind = "Poset"
+        type_ = "P_F_Interval"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            high=high,
+            low=low,
+            poset=poset,
+        )
+
 
 @dataclass(frozen=True)
 class P_F_LowerClosure(Poset):
@@ -31943,6 +36665,31 @@ class P_F_LowerClosure(Poset):
         result["ls"] = self.ls.to_data()
         result["poset"] = self.poset.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        ls: LowerSet,
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_F_LowerClosure instance."""
+        kind = "Poset"
+        type_ = "P_F_LowerClosure"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            ls=ls,
+            poset=poset,
+        )
 
 
 @dataclass(frozen=True)
@@ -31958,6 +36705,31 @@ class P_F_Subposet(Poset):
         result["poset"] = self.poset.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        elements: list[Any],
+        poset: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_F_Subposet instance."""
+        kind = "Poset"
+        type_ = "P_F_Subposet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            elements=elements,
+            poset=poset,
+        )
+
 
 @dataclass(frozen=True)
 class P_F_UpperClosure(Poset):
@@ -31971,6 +36743,31 @@ class P_F_UpperClosure(Poset):
         result["poset"] = self.poset.to_data()
         result["us"] = self.us.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        us: UpperSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_F_UpperClosure instance."""
+        kind = "Poset"
+        type_ = "P_F_UpperClosure"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+            us=us,
+        )
 
 
 @dataclass(frozen=True)
@@ -31989,6 +36786,33 @@ class P_Finite(Poset):
         result["relations"] = self.relations
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        elements: list[str],
+        relations: list[list[str]],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        aliases: dict[str, list[str]] | None = None,
+    ) -> Self:
+        """Create a new P_Finite instance."""
+        kind = "Poset"
+        type_ = "P_Finite"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            aliases=aliases,
+            elements=elements,
+            relations=relations,
+        )
+
 
 @dataclass(frozen=True)
 class P_Float(Poset):
@@ -32000,6 +36824,29 @@ class P_Float(Poset):
         result = super().to_data()
         result["size"] = self.size
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        size: Literal["f8", "f16", "f32", "f64", "f80", "f128"],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_Float instance."""
+        kind = "Poset"
+        type_ = "P_Float"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            size=size,
+        )
 
 
 @dataclass(frozen=True)
@@ -32017,6 +36864,33 @@ class P_Fractions(Poset):
         result["size"] = self.size
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        max_abs_denominator: int,
+        max_abs_numerator: int,
+        size: Literal["i8", "i16", "i32", "i64", "i128"],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_Fractions instance."""
+        kind = "Poset"
+        type_ = "P_Fractions"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            max_abs_denominator=max_abs_denominator,
+            max_abs_numerator=max_abs_numerator,
+            size=size,
+        )
+
 
 @dataclass(frozen=True)
 class P_Integer(Poset):
@@ -32029,6 +36903,29 @@ class P_Integer(Poset):
         result["size"] = self.size
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        size: Literal["i8", "i16", "i32", "i64", "i128"],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_Integer instance."""
+        kind = "Poset"
+        type_ = "P_Integer"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            size=size,
+        )
+
 
 @dataclass(frozen=True)
 class P_Unknown(Poset):
@@ -32038,6 +36935,27 @@ class P_Unknown(Poset):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new P_Unknown instance."""
+        kind = "Poset"
+        type_ = "P_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -32052,6 +36970,16 @@ class Projection:
         result["ntot"] = self.ntot
         result["type"] = self.type_
         return result
+
+    @classmethod
+    def make(cls, *, index: int, ntot: int) -> Self:
+        """Create a new Projection instance."""
+        type_ = "Projection"
+        return cls(
+            index=index,
+            ntot=ntot,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -32095,6 +37023,19 @@ class QueryFixFunMinReqData(QueryData):
             result["r"] = {k: v.to_data() for k, v in self.r.items()}
         return result
 
+    @classmethod
+    def make(
+        cls, *, f: dict[str, Value] | None = None, optimize_for: list[str] | None = None, r: dict[str, Value] | None = None
+    ) -> Self:
+        """Create a new QueryFixFunMinReqData instance."""
+        type_ = "QueryFixFunMinReqData"
+        return cls(
+            type_=type_,
+            f=f,
+            optimize_for=optimize_for,
+            r=r,
+        )
+
 
 @dataclass(frozen=True)
 class QueryFixReqMaxFunData(QueryData):
@@ -32113,6 +37054,19 @@ class QueryFixReqMaxFunData(QueryData):
             result["r"] = {k: v.to_data() for k, v in self.r.items()}
         return result
 
+    @classmethod
+    def make(
+        cls, *, f: dict[str, Value] | None = None, optimize_for: list[str] | None = None, r: dict[str, Value] | None = None
+    ) -> Self:
+        """Create a new QueryFixReqMaxFunData instance."""
+        type_ = "QueryFixReqMaxFunData"
+        return cls(
+            type_=type_,
+            f=f,
+            optimize_for=optimize_for,
+            r=r,
+        )
+
 
 @dataclass(frozen=True)
 class Query_Single(Query):
@@ -32125,6 +37079,31 @@ class Query_Single(Query):
         result["model"] = self.model.to_data()
         result["query_data"] = self.query_data.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        model: NDP,
+        query_data: QueryData,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new Query_Single instance."""
+        kind = "Query"
+        type_ = "Query_Single"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            model=model,
+            query_data=query_data,
+        )
 
 
 @dataclass(frozen=True)
@@ -32142,6 +37121,17 @@ class Range:
         result["type"] = self.type_
         return result
 
+    @classmethod
+    def make(cls, *, ntot: int, start: int, stop: int) -> Self:
+        """Create a new Range instance."""
+        type_ = "Range"
+        return cls(
+            ntot=ntot,
+            start=start,
+            stop=stop,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class SL1Check(Check):
@@ -32155,6 +37145,29 @@ class SL1Check(Check):
         result["data"] = [item.to_data() for item in self.data]
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[SL1Check_Data],
+        m: SL1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1Check instance."""
+        kind = "Check"
+        type_ = "SL1Check"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32179,6 +37192,29 @@ class SL1Check_Data:
         result["pess_y"] = self.pess_y.to_data()
         result["x"] = self.x
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        opt: Any,
+        opt_y: LowerSet,
+        pess: Any,
+        pess_y: LowerSet,
+        x: Any,
+        opt_elapsed: float | None = None,
+        pess_elapsed: float | None = None,
+    ) -> Self:
+        """Create a new SL1Check_Data instance."""
+        return cls(
+            opt=opt,
+            opt_elapsed=opt_elapsed,
+            opt_y=opt_y,
+            pess=pess,
+            pess_elapsed=pess_elapsed,
+            pess_y=pess_y,
+            x=x,
+        )
 
 
 @dataclass(frozen=True)
@@ -32232,6 +37268,37 @@ class SL1_C_CodSum(SL1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_CodSum instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_CodSum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_C_CodSumSmash(SL1Map):
@@ -32246,6 +37313,37 @@ class SL1_C_CodSumSmash(SL1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_CodSumSmash instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_CodSumSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32267,6 +37365,41 @@ class SL1_C_ExplicitApprox(SL1Map):
             result["pessimistic_labels"] = self.pessimistic_labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        optimistic: list[L1Map],
+        pessimistic: list[L1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        optimistic_labels: list[str] | None = None,
+        pessimistic_labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_ExplicitApprox instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_ExplicitApprox"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            optimistic=optimistic,
+            optimistic_labels=optimistic_labels,
+            pessimistic=pessimistic,
+            pessimistic_labels=pessimistic_labels,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_C_Intersection(SL1Map):
@@ -32281,6 +37414,37 @@ class SL1_C_Intersection(SL1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_Intersection instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32297,6 +37461,37 @@ class SL1_C_Parallel(SL1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_Parallel instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_C_ProdIntersection(SL1Map):
@@ -32311,6 +37506,37 @@ class SL1_C_ProdIntersection(SL1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_ProdIntersection instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_ProdIntersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32327,6 +37553,37 @@ class SL1_C_Product(SL1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_Product instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_Product"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_C_RefineDomain(SL1Map):
@@ -32338,6 +37595,35 @@ class SL1_C_RefineDomain(SL1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SL1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_C_RefineDomain instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32354,6 +37640,37 @@ class SL1_C_Series(SL1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_Series instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_C_Trace(SL1Map):
@@ -32365,6 +37682,35 @@ class SL1_C_Trace(SL1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SL1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_C_Trace instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32380,6 +37726,37 @@ class SL1_C_Union(SL1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SL1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL1_C_Union instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32397,6 +37774,39 @@ class SL1_C_WrapUnits(SL1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        m: SL1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_C_WrapUnits instance."""
+        kind = "SL1Map"
+        type_ = "SL1_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_Exact(SL1Map):
@@ -32409,6 +37819,35 @@ class SL1_Exact(SL1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_Exact instance."""
+        kind = "SL1Map"
+        type_ = "SL1_Exact"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_Identity(SL1Map):
@@ -32418,6 +37857,33 @@ class SL1_Identity(SL1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_Identity instance."""
+        kind = "SL1Map"
+        type_ = "SL1_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -32431,6 +37897,35 @@ class SL1_InvMultiply(SL1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_InvMultiply instance."""
+        kind = "SL1Map"
+        type_ = "SL1_InvMultiply"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_InvSum(SL1Map):
@@ -32443,6 +37938,35 @@ class SL1_InvSum(SL1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_InvSum instance."""
+        kind = "SL1Map"
+        type_ = "SL1_InvSum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class SL1_Unknown(SL1Map):
@@ -32452,6 +37976,33 @@ class SL1_Unknown(SL1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL1_Unknown instance."""
+        kind = "SL1Map"
+        type_ = "SL1_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -32466,6 +38017,29 @@ class SLCheck(Check):
         result["data"] = [item.to_data() for item in self.data]
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[SLCheck_Data],
+        m: SLMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SLCheck instance."""
+        kind = "Check"
+        type_ = "SLCheck"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32490,6 +38064,29 @@ class SLCheck_Data:
         result["pess_y"] = self.pess_y.to_data()
         result["x"] = self.x
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        opt: Any,
+        opt_y: LowerSet,
+        pess: Any,
+        pess_y: LowerSet,
+        x: Any,
+        opt_elapsed: float | None = None,
+        pess_elapsed: float | None = None,
+    ) -> Self:
+        """Create a new SLCheck_Data instance."""
+        return cls(
+            opt=opt,
+            opt_elapsed=opt_elapsed,
+            opt_y=opt_y,
+            pess=pess,
+            pess_elapsed=pess_elapsed,
+            pess_y=pess_y,
+            x=x,
+        )
 
 
 @dataclass(frozen=True)
@@ -32541,6 +38138,39 @@ class SL_C_ITransform(SLMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SLMap,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_C_ITransform instance."""
+        kind = "SLMap"
+        type_ = "SL_C_ITransform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class SL_C_Intersection(SLMap):
@@ -32555,6 +38185,39 @@ class SL_C_Intersection(SLMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SLMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL_C_Intersection instance."""
+        kind = "SLMap"
+        type_ = "SL_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32571,6 +38234,39 @@ class SL_C_Parallel(SLMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SLMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL_C_Parallel instance."""
+        kind = "SLMap"
+        type_ = "SL_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SL_C_RefineDomain(SLMap):
@@ -32582,6 +38278,37 @@ class SL_C_RefineDomain(SLMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SLMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_C_RefineDomain instance."""
+        kind = "SLMap"
+        type_ = "SL_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32598,6 +38325,39 @@ class SL_C_Series(SLMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SLMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL_C_Series instance."""
+        kind = "SLMap"
+        type_ = "SL_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SL_C_Trace(SLMap):
@@ -32611,6 +38371,39 @@ class SL_C_Trace(SLMap):
         result["m"] = self.m.to_data()
         result["m_proj"] = self.m_proj.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SLMap,
+        m_proj: SL1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_C_Trace instance."""
+        kind = "SLMap"
+        type_ = "SL_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
 
 
 @dataclass(frozen=True)
@@ -32626,6 +38419,39 @@ class SL_C_Union(SLMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SLMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL_C_Union instance."""
+        kind = "SLMap"
+        type_ = "SL_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32645,6 +38471,43 @@ class SL_C_WrapUnits(SLMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        kimp_units: Unit,
+        m: SLMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_C_WrapUnits instance."""
+        kind = "SLMap"
+        type_ = "SL_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            kimp_units=kimp_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class SL_Identity(SLMap):
@@ -32654,6 +38517,35 @@ class SL_Identity(SLMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_Identity instance."""
+        kind = "SLMap"
+        type_ = "SL_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -32666,6 +38558,37 @@ class SL_L_Exact(SLMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: LMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_L_Exact instance."""
+        kind = "SLMap"
+        type_ = "SL_L_Exact"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32687,6 +38610,43 @@ class SL_L_Explicit_Approx(SLMap):
             result["pessimistic_labels"] = self.pessimistic_labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        optimistic: list[LMap],
+        pessimistic: list[LMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        optimistic_labels: list[str] | None = None,
+        pessimistic_labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SL_L_Explicit_Approx instance."""
+        kind = "SLMap"
+        type_ = "SL_L_Explicit_Approx"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            optimistic=optimistic,
+            optimistic_labels=optimistic_labels,
+            pessimistic=pessimistic,
+            pessimistic_labels=pessimistic_labels,
+        )
+
 
 @dataclass(frozen=True)
 class SL_L_Lift1_Constant(SLMap):
@@ -32700,6 +38660,39 @@ class SL_L_Lift1_Constant(SLMap):
         result["m"] = self.m.to_data()
         result["value"] = self.value
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SL1Map,
+        value: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_L_Lift1_Constant instance."""
+        kind = "SLMap"
+        type_ = "SL_L_Lift1_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            value=value,
+        )
 
 
 @dataclass(frozen=True)
@@ -32715,6 +38708,39 @@ class SL_L_Lift1_Transform(SLMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SL1Map,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_L_Lift1_Transform instance."""
+        kind = "SLMap"
+        type_ = "SL_L_Lift1_Transform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class SL_Unknown(SLMap):
@@ -32724,6 +38750,35 @@ class SL_Unknown(SLMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_Unknown instance."""
+        kind = "SLMap"
+        type_ = "SL_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -32738,6 +38793,29 @@ class SU1Check(Check):
         result["data"] = [item.to_data() for item in self.data]
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[SU1Check_Data],
+        m: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1Check instance."""
+        kind = "Check"
+        type_ = "SU1Check"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32762,6 +38840,29 @@ class SU1Check_Data:
         result["pess_y"] = self.pess_y.to_data()
         result["x"] = self.x
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        opt: Any,
+        opt_y: UpperSet,
+        pess: Any,
+        pess_y: UpperSet,
+        x: Any,
+        opt_elapsed: float | None = None,
+        pess_elapsed: float | None = None,
+    ) -> Self:
+        """Create a new SU1Check_Data instance."""
+        return cls(
+            opt=opt,
+            opt_elapsed=opt_elapsed,
+            opt_y=opt_y,
+            pess=pess,
+            pess_elapsed=pess_elapsed,
+            pess_y=pess_y,
+            x=x,
+        )
 
 
 @dataclass(frozen=True)
@@ -32815,6 +38916,37 @@ class SU1_C_CodSum(SU1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_CodSum instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_CodSum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_C_CodSumSmash(SU1Map):
@@ -32829,6 +38961,37 @@ class SU1_C_CodSumSmash(SU1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_CodSumSmash instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_CodSumSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32850,6 +39013,41 @@ class SU1_C_ExplicitApprox(SU1Map):
             result["pessimistic_labels"] = self.pessimistic_labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        optimistic: list[U1Map],
+        pessimistic: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        optimistic_labels: list[str] | None = None,
+        pessimistic_labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_ExplicitApprox instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_ExplicitApprox"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            optimistic=optimistic,
+            optimistic_labels=optimistic_labels,
+            pessimistic=pessimistic,
+            pessimistic_labels=pessimistic_labels,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_C_Intersection(SU1Map):
@@ -32864,6 +39062,37 @@ class SU1_C_Intersection(SU1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_Intersection instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32880,6 +39109,37 @@ class SU1_C_Parallel(SU1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_Parallel instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_C_ProdIntersection(SU1Map):
@@ -32894,6 +39154,37 @@ class SU1_C_ProdIntersection(SU1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_ProdIntersection instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_ProdIntersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32910,6 +39201,37 @@ class SU1_C_Product(SU1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_Product instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_Product"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_C_RefineDomain(SU1Map):
@@ -32921,6 +39243,35 @@ class SU1_C_RefineDomain(SU1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_C_RefineDomain instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32937,6 +39288,37 @@ class SU1_C_Series(SU1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_Series instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_C_Trace(SU1Map):
@@ -32948,6 +39330,35 @@ class SU1_C_Trace(SU1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_C_Trace instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -32963,6 +39374,37 @@ class SU1_C_Union(SU1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SU1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU1_C_Union instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -32980,6 +39422,39 @@ class SU1_C_WrapUnits(SU1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        m: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_C_WrapUnits instance."""
+        kind = "SU1Map"
+        type_ = "SU1_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_Exact(SU1Map):
@@ -32992,6 +39467,35 @@ class SU1_Exact(SU1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_Exact instance."""
+        kind = "SU1Map"
+        type_ = "SU1_Exact"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_Identity(SU1Map):
@@ -33001,6 +39505,33 @@ class SU1_Identity(SU1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_Identity instance."""
+        kind = "SU1Map"
+        type_ = "SU1_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33014,6 +39545,35 @@ class SU1_InvMultiply(SU1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_InvMultiply instance."""
+        kind = "SU1Map"
+        type_ = "SU1_InvMultiply"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_InvSum(SU1Map):
@@ -33026,6 +39586,35 @@ class SU1_InvSum(SU1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_InvSum instance."""
+        kind = "SU1Map"
+        type_ = "SU1_InvSum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class SU1_Unknown(SU1Map):
@@ -33035,6 +39624,33 @@ class SU1_Unknown(SU1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU1_Unknown instance."""
+        kind = "SU1Map"
+        type_ = "SU1_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33049,6 +39665,29 @@ class SUCheck(Check):
         result["data"] = [item.to_data() for item in self.data]
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[SUCheck_Data],
+        m: SUMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SUCheck instance."""
+        kind = "Check"
+        type_ = "SUCheck"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33073,6 +39712,29 @@ class SUCheck_Data:
         result["pess_y"] = self.pess_y.to_data()
         result["x"] = self.x
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        opt: Any,
+        opt_y: UpperSet,
+        pess: Any,
+        pess_y: UpperSet,
+        x: Any,
+        opt_elapsed: float | None = None,
+        pess_elapsed: float | None = None,
+    ) -> Self:
+        """Create a new SUCheck_Data instance."""
+        return cls(
+            opt=opt,
+            opt_elapsed=opt_elapsed,
+            opt_y=opt_y,
+            pess=pess,
+            pess_elapsed=pess_elapsed,
+            pess_y=pess_y,
+            x=x,
+        )
 
 
 @dataclass(frozen=True)
@@ -33124,6 +39786,39 @@ class SU_C_ITransform(SUMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SUMap,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_C_ITransform instance."""
+        kind = "SUMap"
+        type_ = "SU_C_ITransform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class SU_C_Intersection(SUMap):
@@ -33138,6 +39833,39 @@ class SU_C_Intersection(SUMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SUMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU_C_Intersection instance."""
+        kind = "SUMap"
+        type_ = "SU_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33154,6 +39882,39 @@ class SU_C_Parallel(SUMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SUMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU_C_Parallel instance."""
+        kind = "SUMap"
+        type_ = "SU_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SU_C_RefineDomain(SUMap):
@@ -33165,6 +39926,37 @@ class SU_C_RefineDomain(SUMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SUMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_C_RefineDomain instance."""
+        kind = "SUMap"
+        type_ = "SU_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33181,6 +39973,39 @@ class SU_C_Series(SUMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SUMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU_C_Series instance."""
+        kind = "SUMap"
+        type_ = "SU_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class SU_C_Trace(SUMap):
@@ -33194,6 +40019,39 @@ class SU_C_Trace(SUMap):
         result["m"] = self.m.to_data()
         result["m_proj"] = self.m_proj.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SUMap,
+        m_proj: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_C_Trace instance."""
+        kind = "SUMap"
+        type_ = "SU_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
 
 
 @dataclass(frozen=True)
@@ -33209,6 +40067,39 @@ class SU_C_Union(SUMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        ms: list[SUMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU_C_Union instance."""
+        kind = "SUMap"
+        type_ = "SU_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33228,6 +40119,43 @@ class SU_C_WrapUnits(SUMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        kimp_units: Unit,
+        m: SUMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_C_WrapUnits instance."""
+        kind = "SUMap"
+        type_ = "SU_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            kimp_units=kimp_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class SU_Identity(SUMap):
@@ -33237,6 +40165,35 @@ class SU_Identity(SUMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_Identity instance."""
+        kind = "SUMap"
+        type_ = "SU_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33249,6 +40206,37 @@ class SU_L_Exact(SUMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: UMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_L_Exact instance."""
+        kind = "SUMap"
+        type_ = "SU_L_Exact"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33270,6 +40258,43 @@ class SU_L_Explicit_Approx(SUMap):
             result["pessimistic_labels"] = self.pessimistic_labels
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        optimistic: list[UMap],
+        pessimistic: list[UMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        optimistic_labels: list[str] | None = None,
+        pessimistic_labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new SU_L_Explicit_Approx instance."""
+        kind = "SUMap"
+        type_ = "SU_L_Explicit_Approx"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            optimistic=optimistic,
+            optimistic_labels=optimistic_labels,
+            pessimistic=pessimistic,
+            pessimistic_labels=pessimistic_labels,
+        )
+
 
 @dataclass(frozen=True)
 class SU_L_Lift1_Constant(SUMap):
@@ -33283,6 +40308,39 @@ class SU_L_Lift1_Constant(SUMap):
         result["m"] = self.m.to_data()
         result["value"] = self.value
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SU1Map,
+        value: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_L_Lift1_Constant instance."""
+        kind = "SUMap"
+        type_ = "SU_L_Lift1_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            value=value,
+        )
 
 
 @dataclass(frozen=True)
@@ -33298,6 +40356,39 @@ class SU_L_Lift1_Transform(SUMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SU1Map,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_L_Lift1_Transform instance."""
+        kind = "SUMap"
+        type_ = "SU_L_Lift1_Transform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class SU_Unknown(SUMap):
@@ -33307,6 +40398,35 @@ class SU_Unknown(SUMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_Unknown instance."""
+        kind = "SUMap"
+        type_ = "SU_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33322,6 +40442,29 @@ class U1Check(Check):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[U1Check_Data],
+        m: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1Check instance."""
+        kind = "Check"
+        type_ = "U1Check"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class U1Check_Data:
@@ -33336,6 +40479,15 @@ class U1Check_Data:
         result["x"] = self.x
         result["y"] = self.y.to_data()
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: UpperSet, elapsed: float | None = None) -> Self:
+        """Create a new U1Check_Data instance."""
+        return cls(
+            elapsed=elapsed,
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -33398,6 +40550,33 @@ class U1_C_CodSum(U1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_CodSum instance."""
+        kind = "U1Map"
+        type_ = "U1_C_CodSum"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U1_C_CodSumSmash(U1Map):
@@ -33412,6 +40591,33 @@ class U1_C_CodSumSmash(U1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_CodSumSmash instance."""
+        kind = "U1Map"
+        type_ = "U1_C_CodSumSmash"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33428,6 +40634,33 @@ class U1_C_DomUnion(U1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_DomUnion instance."""
+        kind = "U1Map"
+        type_ = "U1_C_DomUnion"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U1_C_Intersection(U1Map):
@@ -33442,6 +40675,33 @@ class U1_C_Intersection(U1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_Intersection instance."""
+        kind = "U1Map"
+        type_ = "U1_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33458,6 +40718,33 @@ class U1_C_Parallel(U1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_Parallel instance."""
+        kind = "U1Map"
+        type_ = "U1_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U1_C_ProdIntersection(U1Map):
@@ -33472,6 +40759,33 @@ class U1_C_ProdIntersection(U1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_ProdIntersection instance."""
+        kind = "U1Map"
+        type_ = "U1_C_ProdIntersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33488,6 +40802,33 @@ class U1_C_Product(U1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_Product instance."""
+        kind = "U1Map"
+        type_ = "U1_C_Product"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U1_C_RefineDomain(U1Map):
@@ -33499,6 +40840,31 @@ class U1_C_RefineDomain(U1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_C_RefineDomain instance."""
+        kind = "U1Map"
+        type_ = "U1_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33515,6 +40881,33 @@ class U1_C_Series(U1Map):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_Series instance."""
+        kind = "U1Map"
+        type_ = "U1_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U1_C_Trace(U1Map):
@@ -33526,6 +40919,31 @@ class U1_C_Trace(U1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_C_Trace instance."""
+        kind = "U1Map"
+        type_ = "U1_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33541,6 +40959,33 @@ class U1_C_Union(U1Map):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        ms: list[U1Map],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U1_C_Union instance."""
+        kind = "U1Map"
+        type_ = "U1_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33558,6 +41003,35 @@ class U1_C_WrapUnits(U1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        m: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_C_WrapUnits instance."""
+        kind = "U1Map"
+        type_ = "U1_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class U1_Catalog(U1Map):
@@ -33569,6 +41043,31 @@ class U1_Catalog(U1Map):
         result = super().to_data()
         result["options"] = [item.to_data() for item in self.options]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        options: list[U1_Catalog_Options],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_Catalog instance."""
+        kind = "U1Map"
+        type_ = "U1_Catalog"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            options=options,
+        )
 
 
 @dataclass(frozen=True)
@@ -33582,6 +41081,14 @@ class U1_Catalog_Options:
         result["r"] = self.r
         return result
 
+    @classmethod
+    def make(cls, *, f: Any, r: Any) -> Self:
+        """Create a new U1_Catalog_Options instance."""
+        return cls(
+            f=f,
+            r=r,
+        )
+
 
 @dataclass(frozen=True)
 class U1_Constant(U1Map):
@@ -33594,6 +41101,31 @@ class U1_Constant(U1Map):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        value: UpperSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_Constant instance."""
+        kind = "U1Map"
+        type_ = "U1_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class U1_Entire(U1Map):
@@ -33603,6 +41135,23 @@ class U1_Entire(U1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new U1_Entire instance."""
+        kind = "U1Map"
+        type_ = "U1_Entire"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33616,6 +41165,31 @@ class U1_Explicit(U1Map):
         result["options"] = [item.to_data() for item in self.options]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        options: list[U1_Explicit_Option],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_Explicit instance."""
+        kind = "U1Map"
+        type_ = "U1_Explicit"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            options=options,
+        )
+
 
 @dataclass(frozen=True)
 class U1_Explicit_Option:
@@ -33627,6 +41201,14 @@ class U1_Explicit_Option:
         result["x"] = self.x
         result["y"] = self.y.to_data()
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: UpperSet) -> Self:
+        """Create a new U1_Explicit_Option instance."""
+        return cls(
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -33640,6 +41222,31 @@ class U1_FromFilter(U1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_FromFilter instance."""
+        kind = "U1Map"
+        type_ = "U1_FromFilter"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class U1_Identity(U1Map):
@@ -33650,6 +41257,23 @@ class U1_Identity(U1Map):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new U1_Identity instance."""
+        kind = "U1Map"
+        type_ = "U1_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class U1_IntersectionOfPrinUpperSets(U1Map):
@@ -33659,6 +41283,23 @@ class U1_IntersectionOfPrinUpperSets(U1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new U1_IntersectionOfPrinUpperSets instance."""
+        kind = "U1Map"
+        type_ = "U1_IntersectionOfPrinUpperSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33674,6 +41315,33 @@ class U1_InvMul_Opt(U1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_InvMul_Opt instance."""
+        kind = "U1Map"
+        type_ = "U1_InvMul_Opt"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class U1_InvMul_Pes(U1Map):
@@ -33687,6 +41355,33 @@ class U1_InvMul_Pes(U1Map):
         result["n"] = self.n
         result["opspace"] = self.opspace.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_InvMul_Pes instance."""
+        kind = "U1Map"
+        type_ = "U1_InvMul_Pes"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
 
 
 @dataclass(frozen=True)
@@ -33702,6 +41397,33 @@ class U1_InvSum_Opt(U1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_InvSum_Opt instance."""
+        kind = "U1Map"
+        type_ = "U1_InvSum_Opt"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class U1_InvSum_Pes(U1Map):
@@ -33716,6 +41438,33 @@ class U1_InvSum_Pes(U1Map):
         result["opspace"] = self.opspace.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        n: int,
+        opspace: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_InvSum_Pes instance."""
+        kind = "U1Map"
+        type_ = "U1_InvSum_Pes"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            n=n,
+            opspace=opspace,
+        )
+
 
 @dataclass(frozen=True)
 class U1_L_Uinv(U1Map):
@@ -33727,6 +41476,31 @@ class U1_L_Uinv(U1Map):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_L_Uinv instance."""
+        kind = "U1Map"
+        type_ = "U1_L_Uinv"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33740,6 +41514,31 @@ class U1_Lift(U1Map):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        m: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_Lift instance."""
+        kind = "U1Map"
+        type_ = "U1_Lift"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class U1_RepresentPrincipalUpperSet(U1Map):
@@ -33749,6 +41548,23 @@ class U1_RepresentPrincipalUpperSet(U1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new U1_RepresentPrincipalUpperSet instance."""
+        kind = "U1Map"
+        type_ = "U1_RepresentPrincipalUpperSet"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33761,6 +41577,31 @@ class U1_Uinv_Join(U1Map):
         result = super().to_data()
         result["lower_bounds"] = self.lower_bounds
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        lower_bounds: list[list[Any]],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_Uinv_Join instance."""
+        kind = "U1Map"
+        type_ = "U1_Uinv_Join"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            lower_bounds=lower_bounds,
+        )
 
 
 @dataclass(frozen=True)
@@ -33776,6 +41617,33 @@ class U1_Uinv_JoinConstant(U1Map):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        join1_dom: Poset,
+        value: Value,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U1_Uinv_JoinConstant instance."""
+        kind = "U1Map"
+        type_ = "U1_Uinv_JoinConstant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+            join1_dom=join1_dom,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class U1_UnionOfPrinUpperSets(U1Map):
@@ -33786,6 +41654,23 @@ class U1_UnionOfPrinUpperSets(U1Map):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new U1_UnionOfPrinUpperSets instance."""
+        kind = "U1Map"
+        type_ = "U1_UnionOfPrinUpperSets"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class U1_Unknown(U1Map):
@@ -33795,6 +41680,23 @@ class U1_Unknown(U1Map):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
+    ) -> Self:
+        """Create a new U1_Unknown instance."""
+        kind = "U1Map"
+        type_ = "U1_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -33810,6 +41712,29 @@ class UCheck(Check):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        data: list[UCheck_Data],
+        m: UMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new UCheck instance."""
+        kind = "Check"
+        type_ = "UCheck"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            type_=type_,
+            data=data,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class UCheck_Data:
@@ -33824,6 +41749,15 @@ class UCheck_Data:
         result["x"] = self.x
         result["y"] = self.y.to_data()
         return result
+
+    @classmethod
+    def make(cls, *, x: Any, y: UpperSet, elapsed: float | None = None) -> Self:
+        """Create a new UCheck_Data instance."""
+        return cls(
+            elapsed=elapsed,
+            x=x,
+            y=y,
+        )
 
 
 @dataclass(frozen=True)
@@ -33871,6 +41805,35 @@ class U_C_ITransform(UMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: UMap,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_C_ITransform instance."""
+        kind = "UMap"
+        type_ = "U_C_ITransform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class U_C_Intersection(UMap):
@@ -33885,6 +41848,35 @@ class U_C_Intersection(UMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[UMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U_C_Intersection instance."""
+        kind = "UMap"
+        type_ = "U_C_Intersection"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33901,6 +41893,35 @@ class U_C_Parallel(UMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[UMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U_C_Parallel instance."""
+        kind = "UMap"
+        type_ = "U_C_Parallel"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U_C_RefineDomain(UMap):
@@ -33912,6 +41933,33 @@ class U_C_RefineDomain(UMap):
         result = super().to_data()
         result["m"] = self.m.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: UMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_C_RefineDomain instance."""
+        kind = "UMap"
+        type_ = "U_C_RefineDomain"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+        )
 
 
 @dataclass(frozen=True)
@@ -33928,6 +41976,35 @@ class U_C_Series(UMap):
         result["ms"] = [item.to_data() for item in self.ms]
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[UMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U_C_Series instance."""
+        kind = "UMap"
+        type_ = "U_C_Series"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
+
 
 @dataclass(frozen=True)
 class U_C_Trace(UMap):
@@ -33941,6 +42018,35 @@ class U_C_Trace(UMap):
         result["m"] = self.m.to_data()
         result["m_proj"] = self.m_proj.to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: UMap,
+        m_proj: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_C_Trace instance."""
+        kind = "UMap"
+        type_ = "U_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
 
 
 @dataclass(frozen=True)
@@ -33956,6 +42062,35 @@ class U_C_Union(UMap):
             result["labels"] = self.labels
         result["ms"] = [item.to_data() for item in self.ms]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        ms: list[UMap],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        labels: list[str] | None = None,
+    ) -> Self:
+        """Create a new U_C_Union instance."""
+        kind = "UMap"
+        type_ = "U_C_Union"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            labels=labels,
+            ms=ms,
+        )
 
 
 @dataclass(frozen=True)
@@ -33975,6 +42110,39 @@ class U_C_WrapUnits(UMap):
         result["m"] = self.m.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        kcod_units: Unit,
+        kdom_units: Unit,
+        kimp_units: Unit,
+        m: UMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_C_WrapUnits instance."""
+        kind = "UMap"
+        type_ = "U_C_WrapUnits"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            kcod_units=kcod_units,
+            kdom_units=kdom_units,
+            kimp_units=kimp_units,
+            m=m,
+        )
+
 
 @dataclass(frozen=True)
 class U_Catalog(UMap):
@@ -33986,6 +42154,33 @@ class U_Catalog(UMap):
         result = super().to_data()
         result["options"] = [item.to_data() for item in self.options]
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        options: list[U_Catalog_Options],
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_Catalog instance."""
+        kind = "UMap"
+        type_ = "U_Catalog"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            options=options,
+        )
 
 
 @dataclass(frozen=True)
@@ -34001,6 +42196,15 @@ class U_Catalog_Options:
         result["r"] = self.r
         return result
 
+    @classmethod
+    def make(cls, *, f: Any, i: Any, r: Any) -> Self:
+        """Create a new U_Catalog_Options instance."""
+        return cls(
+            f=f,
+            i=i,
+            r=r,
+        )
+
 
 @dataclass(frozen=True)
 class U_Constant(UMap):
@@ -34013,6 +42217,33 @@ class U_Constant(UMap):
         result["value"] = self.value.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        value: UpperSet,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_Constant instance."""
+        kind = "UMap"
+        type_ = "U_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class U_Identity(UMap):
@@ -34022,6 +42253,31 @@ class U_Identity(UMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_Identity instance."""
+        kind = "UMap"
+        type_ = "U_Identity"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -34037,6 +42293,35 @@ class U_L_Lift1_Constant(UMap):
         result["value"] = self.value
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: U1Map,
+        value: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_L_Lift1_Constant instance."""
+        kind = "UMap"
+        type_ = "U_L_Lift1_Constant"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            value=value,
+        )
+
 
 @dataclass(frozen=True)
 class U_L_Lift1_Transform(UMap):
@@ -34051,6 +42336,35 @@ class U_L_Lift1_Transform(UMap):
         result["transform"] = self.transform.to_data()
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: U1Map,
+        transform: MonotoneMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_L_Lift1_Transform instance."""
+        kind = "UMap"
+        type_ = "U_L_Lift1_Transform"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            transform=transform,
+        )
+
 
 @dataclass(frozen=True)
 class U_Unknown(UMap):
@@ -34060,6 +42374,31 @@ class U_Unknown(UMap):
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
         return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_Unknown instance."""
+        kind = "UMap"
+        type_ = "U_Unknown"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+        )
 
 
 @dataclass(frozen=True)
@@ -34085,6 +42424,17 @@ class Unit_None(Unit):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(cls, *, description: str | None = None) -> Self:
+        """Create a new Unit_None instance."""
+        kind = "Unit"
+        type_ = "Unit_None"
+        return cls(
+            description=description,
+            kind=kind,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class Unit_Single(Unit):
@@ -34095,6 +42445,18 @@ class Unit_Single(Unit):
         result = super().to_data()
         result["units"] = self.units
         return result
+
+    @classmethod
+    def make(cls, *, units: str, description: str | None = None) -> Self:
+        """Create a new Unit_Single instance."""
+        kind = "Unit"
+        type_ = "Unit_Single"
+        return cls(
+            description=description,
+            kind=kind,
+            type_=type_,
+            units=units,
+        )
 
 
 @dataclass(frozen=True)
@@ -34110,6 +42472,19 @@ class Unit_Vector(Unit):
         result["subs"] = [item.to_data() for item in self.subs]
         return result
 
+    @classmethod
+    def make(cls, *, subs: list[Unit], description: str | None = None, labels: list[str] | None = None) -> Self:
+        """Create a new Unit_Vector instance."""
+        kind = "Unit"
+        type_ = "Unit_Vector"
+        return cls(
+            description=description,
+            kind=kind,
+            type_=type_,
+            labels=labels,
+            subs=subs,
+        )
+
 
 @dataclass(frozen=True)
 class Unit_Wrapped(Unit):
@@ -34124,6 +42499,20 @@ class Unit_Wrapped(Unit):
         result["name"] = self.name
         result["shape"] = self.shape
         return result
+
+    @classmethod
+    def make(cls, *, inside: list[Unit], name: str, shape: Any, description: str | None = None) -> Self:
+        """Create a new Unit_Wrapped instance."""
+        kind = "Unit"
+        type_ = "Unit_Wrapped"
+        return cls(
+            description=description,
+            kind=kind,
+            type_=type_,
+            inside=inside,
+            name=name,
+            shape=shape,
+        )
 
 
 @dataclass(frozen=True)
@@ -34146,6 +42535,16 @@ class UpperSet_Unused(UpperSet):
         result = super().to_data()
         return result
 
+    @classmethod
+    def make(cls) -> Self:
+        """Create a new UpperSet_Unused instance."""
+        kind = "UpperSet"
+        type_ = "UpperSet_Unused"
+        return cls(
+            kind=kind,
+            type_=type_,
+        )
+
 
 @dataclass(frozen=True)
 class UpperSet_UpperClosure(UpperSet):
@@ -34156,6 +42555,17 @@ class UpperSet_UpperClosure(UpperSet):
         result = super().to_data()
         result["points"] = self.points
         return result
+
+    @classmethod
+    def make(cls, *, points: list[Any]) -> Self:
+        """Create a new UpperSet_UpperClosure instance."""
+        kind = "UpperSet"
+        type_ = "UpperSet_UpperClosure"
+        return cls(
+            kind=kind,
+            type_=type_,
+            points=points,
+        )
 
 
 @dataclass(frozen=True)
@@ -34184,6 +42594,31 @@ class VU(Value):
         result["value"] = self.value
         return result
 
+    @classmethod
+    def make(
+        cls,
+        *,
+        poset: Poset,
+        value: Any,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+    ) -> Self:
+        """Create a new VU instance."""
+        kind = "Value"
+        type_ = "VU"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            type_=type_,
+            poset=poset,
+            value=value,
+        )
+
 
 # Test functions for serialization/deserialization
 
@@ -34192,7 +42627,7 @@ def test_serialization_DP_C_ExplicitApprox_01():
     """Test serialization/deserialization of DP_C_ExplicitApprox example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"DP","optimistic":[{"F":{"kind":"Poset","type":"P_Decimals"},"R":{"kind":"Poset","type":"P_Decimals"},"kind":"DP","type":"DP_True","value":[]}],"pessimistic":[{"F":{"kind":"Poset","type":"P_Decimals"},"R":{"kind":"Poset","type":"P_Decimals"},"kind":"DP","type":"DP_False","value":[]}],"type":"DP_C_ExplicitApprox"}'
+        '{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","optimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_True","value":{"kind":"Value","poset":{"kind":"Poset","naked":[],"ranges":[],"subs":[],"type":"P_C_ProductSmash"},"type":"VU","value":[]}}],"pessimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_False"}],"type":"DP_C_ExplicitApprox"}'
     )
 
     # Create instance from data
@@ -34908,7 +43343,11 @@ if __name__ == "__main__":
     # Run all test functions
     import sys
 
+    def dummy():
+        pass
+
     test_functions = [
+        dummy,
         test_serialization_DP_C_ExplicitApprox_01,
         test_serialization_P_Bool_01,
         test_serialization_P_C_Arrow_01,
