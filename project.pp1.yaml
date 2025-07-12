@@ -1,0 +1,38 @@
+---
+
+package_name: mcdp-format2-python
+srcdir: src
+version_file: '1'
+modules:
+- mcdp_format2_py
+
+install_requires:
+- colorama>=0.4.0
+- ruamel.yaml>=0.17.0
+- cbor2>=5.0.0
+
+tests_require: []
+
+console_scripts: {}
+nose:
+  modules: []
+
+
+pypi:
+  upload: []
+
+circleci:
+  active: true
+  test_python_versions: ['3.12']
+
+python_syntax_version: '3.12'
+
+url: https://github.com/zupermind/mcdp-format2-py
+author: Andrea Censi
+author_email: AndreaCensi@users.noreply.github.com
+short_description: ''
+full_description: ''
+
+version_style:
+  storage: only_init
+  numbering: semver

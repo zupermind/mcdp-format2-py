@@ -1,0 +1,28 @@
+{
+  "install_requires": [
+    "cbor2>=5.0.0",
+    "colorama>=0.4.0",
+    "ruamel.yaml>=0.17.0"
+  ],
+  "tests_require": [],
+  "srcdir": "src",
+  "package_name": "mcdp-format2-python",
+  "entry_points": {
+    "console_scripts": []
+  },
+  "zip_safe": true,
+  "include_package_data": true,
+  "packages": [
+    "mcdp_format2_py"
+  ],
+  "py_modules": [
+    "mcdp_format2_py",
+    "mcdp_format2_py.formatter",
+    "mcdp_format2_py.load",
+    "mcdp_format2_py.schemas"
+  ],
+  "version": "0.1.0",
+  "author": "Andrea Censi",
+  "author_email": "AndreaCensi@users.noreply.github.com",
+  "url": "https://github.com/zupermind/mcdp-format2-py"
+}
