@@ -30,33 +30,151 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
+    return [load_M_Explicit_Option(item) for item in value]
 
-def load_list_of_LMap(value: object) -> list[LMap]:
+def load_list_of_Range(value: object) -> list[Range]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
+    return [load_Range(item) for item in value]
 
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(value: object) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MonotoneMap(item) for item in value]
+
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
+
+def validate_enum_8a74(value: object) -> Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    allowed_values = ["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def validate_enum_b0de(value: object) -> Literal["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]:
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Explicit_Option(item) for item in value]
+
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
+
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Map(item) for item in value]
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
+
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
+
+def load_list_of_SUMap(value: object) -> list[SUMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUMap(item) for item in value]
+
+def validate_enum_4700(value: object) -> Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]
+    allowed_values = ["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
+
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
+
+def validate_enum_17f66(value: object) -> Literal["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
+
+def validate_enum_1978(value: object) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_5d65(value: object) -> Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UCheck_Data(item) for item in value]
+
+def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Poset(v) for k, v in value.items()}
 
 def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(value: object) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
     if not isinstance(value, str):
@@ -72,11 +190,11 @@ def load_list_of_DP(value: object) -> list[DP]:
     value = cast(list[object], value)
     return [load_DP(item) for item in value]
 
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
+    return [load_L1Check_Data(item) for item in value]
 
 def load_list_of_bool(value: object) -> list[bool]:
     if not isinstance(value, list):
@@ -84,298 +202,16 @@ def load_list_of_bool(value: object) -> list[bool]:
     value = cast(list[object], value)
     return [load_bool(item) for item in value]
 
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Check_Data(item) for item in value]
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L_Catalog_Options(item) for item in value]
-
-def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LCheck_Data(item) for item in value]
-
-def validate_enum_5dfe(value: object) -> Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Check_Data(item) for item in value]
-
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-def validate_enum_a17d(value: object) -> Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Map(item) for item in value]
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def validate_enum_17f66(value: object) -> Literal["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_M_Explicit_Option(item) for item in value]
-
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
-
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
-
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_Value(v) for k, v in value.items()}
-
-def validate_enum_5d65(value: object) -> Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUCheck_Data(item) for item in value]
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def validate_enum_4700(value: object) -> Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
 def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_SLCheck_Data(item) for item in value]
 
-def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U_Catalog_Options(item) for item in value]
-
-def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_Poset(value: object) -> list[Poset]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UCheck_Data(item) for item in value]
-
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
-
-def validate_enum_a898(value: object) -> Literal["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_Poset(v) for k, v in value.items()}
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
-
-def load_list_of_SLMap(value: object) -> list[SLMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLMap(item) for item in value]
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Check_Data(item) for item in value]
-
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_NDPInterface(v) for k, v in value.items()}
-
-def validate_enum_4eeb(value: object) -> Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(value: object) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_Connection(value: object) -> list[Connection]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Connection(item) for item in value]
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
 def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def validate_enum_8a74(value: object) -> Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -388,11 +224,193 @@ def validate_enum_477e(value: object) -> Literal["U_C_ITransform", "U_C_Intersec
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_Unit(value: object) -> list[Unit]:
+def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Unit(item) for item in value]
+    return [load_SU1Check_Data(item) for item in value]
+
+def validate_enum_b0de(value: object) -> Literal["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLMap(item) for item in value]
+
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Check_Data(item) for item in value]
+
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(value: object) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_5dfe(value: object) -> Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
+
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUCheck_Data(item) for item in value]
+
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
+
+def validate_enum_a898(value: object) -> Literal["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_a17d(value: object) -> Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LCheck_Data(item) for item in value]
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(value: object) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_4eeb(value: object) -> Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
+
+def load_list_of_str(value: object) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_str(item) for item in value]
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L_Catalog_Options(item) for item in value]
+
+def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U_Catalog_Options(item) for item in value]
+
+def load_list_of_L1Map(value: object) -> list[L1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Map(item) for item in value]
 
 def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
     if not isinstance(value, str):
@@ -402,20 +420,6 @@ def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["L
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def validate_enum_1978(value: object) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_Range(value: object) -> list[Range]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Range(item) for item in value]
-
 def validate_enum_19fd(value: object) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
@@ -424,35 +428,31 @@ def validate_enum_19fd(value: object) -> Literal["models", "templates", "values"
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
 def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
     if not isinstance(value, dict):
         raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
+    value = cast(dict[str, object], value)
     return {k: load_list_of_str(v) for k, v in value.items()}
 
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
+def load_list_of_UMap(value: object) -> list[UMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
+    return [load_UMap(item) for item in value]
 
-def load_list_of_SUMap(value: object) -> list[SUMap]:
+def load_list_of_Unit(value: object) -> list[Unit]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
-
-def load_list_of_str(value: object) -> list[str]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_str(item) for item in value]
-
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_any(item) for item in value]
+    return [load_Unit(item) for item in value]
 
 def load_list_of_list_of_str(value: object) -> list[list[str]]:
     if not isinstance(value, list):
@@ -465,6 +465,7 @@ def load_list_of_list_of_str(value: object) -> list[list[str]]:
 def load_Address(data: object) -> "Address":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'library' in data:
         field_library = load_str(data['library'])
@@ -558,6 +559,7 @@ def load_Check(data: object) -> "Check":
 def load_Connection(data: object) -> "Connection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'source' in data:
         field_source = load_ConnectionSource(data['source'])
@@ -654,6 +656,7 @@ def load_DP(data: object) -> "DP":
 def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_Leq_R":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -692,9 +695,13 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -702,9 +709,13 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -751,6 +762,7 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
 def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -789,9 +801,13 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -799,9 +815,13 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -848,6 +868,7 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
 def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -886,9 +907,13 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -896,9 +921,13 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -939,6 +968,7 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
 def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -977,9 +1007,13 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -987,9 +1021,13 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1036,6 +1074,7 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
 def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq_R":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1074,9 +1113,13 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1084,9 +1127,13 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1133,6 +1180,7 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
 def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1171,9 +1219,13 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1181,9 +1233,13 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1224,6 +1280,7 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
 def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1262,9 +1319,13 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1272,9 +1333,13 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1347,6 +1412,7 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
 def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1385,9 +1451,13 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1395,9 +1465,13 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1454,6 +1528,7 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
 def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1492,9 +1567,13 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1502,9 +1581,13 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1561,6 +1644,7 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
 def load_DP_C_Series(data: object) -> "DP_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1599,9 +1683,13 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1609,9 +1697,13 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1668,6 +1760,7 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
 def load_DP_C_Trace(data: object) -> "DP_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1706,9 +1799,13 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1716,9 +1813,13 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1765,6 +1866,7 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
 def load_DP_C_Union(data: object) -> "DP_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1803,9 +1905,13 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1813,9 +1919,13 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1872,6 +1982,7 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
 def load_DP_Catalog(data: object) -> "DP_Catalog":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -1910,9 +2021,13 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -1920,9 +2035,13 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -1969,6 +2088,7 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
 def load_DP_Catalog_Options(data: object) -> "DP_Catalog_Options":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'b' in data:
         field_b = load_any(data['b'])
@@ -2000,6 +2120,7 @@ def load_DP_Catalog_Options(data: object) -> "DP_Catalog_Options":
 def load_DP_Compiled(data: object) -> "DP_Compiled":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2038,9 +2159,13 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2048,9 +2173,13 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2157,6 +2286,7 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
 def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2195,9 +2325,13 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2205,9 +2339,13 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2254,6 +2392,7 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
 def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Constants":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2292,9 +2431,13 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2302,9 +2445,13 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2351,6 +2498,7 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
 def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2389,9 +2537,13 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2399,9 +2551,13 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2442,6 +2598,7 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
 def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Constants":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2480,9 +2637,13 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2490,9 +2651,13 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2539,6 +2704,7 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
 def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2577,9 +2743,13 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2587,9 +2757,13 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2630,6 +2804,7 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
 def load_DP_False(data: object) -> "DP_False":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2668,9 +2843,13 @@ def load_DP_False(data: object) -> "DP_False":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2678,9 +2857,13 @@ def load_DP_False(data: object) -> "DP_False":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2721,6 +2904,7 @@ def load_DP_False(data: object) -> "DP_False":
 def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2759,9 +2943,13 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2769,9 +2957,13 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2818,6 +3010,7 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
 def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2856,9 +3049,13 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2866,9 +3063,13 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -2927,6 +3128,7 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
 def load_DP_Identity(data: object) -> "DP_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -2965,9 +3167,13 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -2975,9 +3181,13 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3018,6 +3228,7 @@ def load_DP_Identity(data: object) -> "DP_Identity":
 def load_DP_Iso(data: object) -> "DP_Iso":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3056,9 +3267,13 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -3066,9 +3281,13 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3121,6 +3340,7 @@ def load_DP_Iso(data: object) -> "DP_Iso":
 def load_DP_LiftL(data: object) -> "DP_LiftL":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3159,9 +3379,13 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -3169,9 +3393,13 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3218,6 +3446,7 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
 def load_DP_LiftU(data: object) -> "DP_LiftU":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3256,9 +3485,13 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -3266,9 +3499,13 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3315,6 +3552,7 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
 def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3353,9 +3591,13 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -3363,9 +3605,13 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3412,6 +3658,7 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
 def load_DP_True(data: object) -> "DP_True":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3450,9 +3697,13 @@ def load_DP_True(data: object) -> "DP_True":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -3460,9 +3711,13 @@ def load_DP_True(data: object) -> "DP_True":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3509,6 +3764,7 @@ def load_DP_True(data: object) -> "DP_True":
 def load_DP_Unknown(data: object) -> "DP_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3547,9 +3803,13 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         field_version = None
     
     if 'B' in data:
-        field_B = load_Poset(data['B'])
+        value = data['B']
+        if value is None:
+            field_B = None
+        else:
+            field_B = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'B'")
+        field_B = None
     
     if 'F' in data:
         field_F = load_Poset(data['F'])
@@ -3557,9 +3817,13 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         raise ValueError("Missing required field 'F'")
     
     if 'I' in data:
-        field_I = load_Poset(data['I'])
+        value = data['I']
+        if value is None:
+            field_I = None
+        else:
+            field_I = load_Poset(value)
     else:
-        raise ValueError("Missing required field 'I'")
+        field_I = None
     
     if 'R' in data:
         field_R = load_Poset(data['R'])
@@ -3600,6 +3864,7 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
 def load_L1Check(data: object) -> "L1Check":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3669,6 +3934,7 @@ def load_L1Check(data: object) -> "L1Check":
 def load_L1Check_Data(data: object) -> "L1Check_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'elapsed' in data:
         value = data['elapsed']
@@ -3739,6 +4005,7 @@ def load_L1Map(data: object) -> "L1Map":
 def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3824,6 +4091,7 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
 def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3909,6 +4177,7 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
 def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -3994,6 +4263,7 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
 def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4079,6 +4349,7 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
 def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4164,6 +4435,7 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
 def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4249,6 +4521,7 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
 def load_L1_C_Product(data: object) -> "L1_C_Product":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4334,6 +4607,7 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
 def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4409,6 +4683,7 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
 def load_L1_C_Series(data: object) -> "L1_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4494,6 +4769,7 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
 def load_L1_C_Trace(data: object) -> "L1_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4569,6 +4845,7 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
 def load_L1_C_Union(data: object) -> "L1_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4654,6 +4931,7 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
 def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4741,6 +5019,7 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
 def load_L1_Catalog(data: object) -> "L1_Catalog":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4816,6 +5095,7 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
 def load_L1_Catalog_Options(data: object) -> "L1_Catalog_Options":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'f' in data:
         field_f = load_any(data['f'])
@@ -4835,6 +5115,7 @@ def load_L1_Catalog_Options(data: object) -> "L1_Catalog_Options":
 def load_L1_Constant(data: object) -> "L1_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4910,6 +5191,7 @@ def load_L1_Constant(data: object) -> "L1_Constant":
 def load_L1_Entire(data: object) -> "L1_Entire":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -4979,6 +5261,7 @@ def load_L1_Entire(data: object) -> "L1_Entire":
 def load_L1_Explicit(data: object) -> "L1_Explicit":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5054,6 +5337,7 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
 def load_L1_Explicit_Option(data: object) -> "L1_Explicit_Option":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'x' in data:
         field_x = load_any(data['x'])
@@ -5073,6 +5357,7 @@ def load_L1_Explicit_Option(data: object) -> "L1_Explicit_Option":
 def load_L1_FromFilter(data: object) -> "L1_FromFilter":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5148,6 +5433,7 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
 def load_L1_Identity(data: object) -> "L1_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5217,6 +5503,7 @@ def load_L1_Identity(data: object) -> "L1_Identity":
 def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinLowerSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5286,6 +5573,7 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
 def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5367,6 +5655,7 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
 def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5448,6 +5737,7 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
 def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5529,6 +5819,7 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
 def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5610,6 +5901,7 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
 def load_L1_L_Linv(data: object) -> "L1_L_Linv":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5685,6 +5977,7 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
 def load_L1_Lift(data: object) -> "L1_Lift":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5760,6 +6053,7 @@ def load_L1_Lift(data: object) -> "L1_Lift":
 def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLowerSet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5829,6 +6123,7 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
 def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5904,6 +6199,7 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
 def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -5973,6 +6269,7 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
 def load_L1_Unknown(data: object) -> "L1_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6042,6 +6339,7 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
 def load_LCheck(data: object) -> "LCheck":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6111,6 +6409,7 @@ def load_LCheck(data: object) -> "LCheck":
 def load_LCheck_Data(data: object) -> "LCheck_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'elapsed' in data:
         value = data['elapsed']
@@ -6166,6 +6465,7 @@ def load_LMap(data: object) -> "LMap":
 def load_L_C_ITransform(data: object) -> "L_C_ITransform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6253,6 +6553,7 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
 def load_L_C_Intersection(data: object) -> "L_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6344,6 +6645,7 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
 def load_L_C_Parallel(data: object) -> "L_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6435,6 +6737,7 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
 def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6516,6 +6819,7 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
 def load_L_C_Series(data: object) -> "L_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6607,6 +6911,7 @@ def load_L_C_Series(data: object) -> "L_C_Series":
 def load_L_C_Trace(data: object) -> "L_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6694,6 +6999,7 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
 def load_L_C_Union(data: object) -> "L_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6785,6 +7091,7 @@ def load_L_C_Union(data: object) -> "L_C_Union":
 def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6884,6 +7191,7 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
 def load_L_Catalog(data: object) -> "L_Catalog":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -6965,6 +7273,7 @@ def load_L_Catalog(data: object) -> "L_Catalog":
 def load_L_Catalog_Options(data: object) -> "L_Catalog_Options":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'f' in data:
         field_f = load_any(data['f'])
@@ -6990,6 +7299,7 @@ def load_L_Catalog_Options(data: object) -> "L_Catalog_Options":
 def load_L_Constant(data: object) -> "L_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7071,6 +7381,7 @@ def load_L_Constant(data: object) -> "L_Constant":
 def load_L_Identity(data: object) -> "L_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7146,6 +7457,7 @@ def load_L_Identity(data: object) -> "L_Identity":
 def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7233,6 +7545,7 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
 def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7320,6 +7633,7 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
 def load_L_Unknown(data: object) -> "L_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7409,6 +7723,7 @@ def load_LowerSet(data: object) -> "LowerSet":
 def load_LowerSet_LowerClosure(data: object) -> "LowerSet_LowerClosure":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'kind' in data:
         field_kind = load_str(data['kind'])
@@ -7440,6 +7755,7 @@ def load_LowerSet_LowerClosure(data: object) -> "LowerSet_LowerClosure":
 def load_LowerSet_Unused(data: object) -> "LowerSet_Unused":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'kind' in data:
         field_kind = load_str(data['kind'])
@@ -7548,6 +7864,7 @@ def load_MonotoneMap(data: object) -> "MonotoneMap":
 def load_M_AddL(data: object) -> "M_AddL":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7623,6 +7940,7 @@ def load_M_AddL(data: object) -> "M_AddL":
 def load_M_AddLConstant(data: object) -> "M_AddLConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7704,6 +8022,7 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
 def load_M_AddU(data: object) -> "M_AddU":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7779,6 +8098,7 @@ def load_M_AddU(data: object) -> "M_AddU":
 def load_M_AddUConstant(data: object) -> "M_AddUConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7860,6 +8180,7 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
 def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -7929,6 +8250,7 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
 def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8014,6 +8336,7 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
 def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8099,6 +8422,7 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
 def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8184,6 +8508,7 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
 def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8269,6 +8594,7 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
 def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8354,6 +8680,7 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
 def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8435,6 +8762,7 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
 def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8510,6 +8838,7 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
 def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8591,6 +8920,7 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
 def load_M_C_Op(data: object) -> "M_C_Op":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8666,6 +8996,7 @@ def load_M_C_Op(data: object) -> "M_C_Op":
 def load_M_C_Parallel(data: object) -> "M_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8751,6 +9082,7 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
 def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8836,6 +9168,7 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
 def load_M_C_Product(data: object) -> "M_C_Product":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -8921,6 +9254,7 @@ def load_M_C_Product(data: object) -> "M_C_Product":
 def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9006,6 +9340,7 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
 def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9081,6 +9416,7 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
 def load_M_C_Series(data: object) -> "M_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9166,6 +9502,7 @@ def load_M_C_Series(data: object) -> "M_C_Series":
 def load_M_C_Sum(data: object) -> "M_C_Sum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9251,6 +9588,7 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
 def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9336,6 +9674,7 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
 def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9423,6 +9762,7 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
 def load_M_Ceil0(data: object) -> "M_Ceil0":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9498,6 +9838,7 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
 def load_M_Coerce(data: object) -> "M_Coerce":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9567,6 +9908,7 @@ def load_M_Coerce(data: object) -> "M_Coerce":
 def load_M_Constant(data: object) -> "M_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9642,6 +9984,7 @@ def load_M_Constant(data: object) -> "M_Constant":
 def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9723,6 +10066,7 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
 def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9804,6 +10148,7 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
 def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9885,6 +10230,7 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
 def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -9966,6 +10312,7 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
 def load_M_Empty(data: object) -> "M_Empty":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10035,6 +10382,7 @@ def load_M_Empty(data: object) -> "M_Empty":
 def load_M_Explicit(data: object) -> "M_Explicit":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10110,6 +10458,7 @@ def load_M_Explicit(data: object) -> "M_Explicit":
 def load_M_Explicit_Option(data: object) -> "M_Explicit_Option":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'x' in data:
         field_x = load_any(data['x'])
@@ -10129,6 +10478,7 @@ def load_M_Explicit_Option(data: object) -> "M_Explicit_Option":
 def load_M_Floor0(data: object) -> "M_Floor0":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10204,6 +10554,7 @@ def load_M_Floor0(data: object) -> "M_Floor0":
 def load_M_Id(data: object) -> "M_Id":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10273,6 +10624,7 @@ def load_M_Id(data: object) -> "M_Id":
 def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10354,6 +10706,7 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
 def load_M_Injection(data: object) -> "M_Injection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10429,6 +10782,7 @@ def load_M_Injection(data: object) -> "M_Injection":
 def load_M_Join(data: object) -> "M_Join":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10504,6 +10858,7 @@ def load_M_Join(data: object) -> "M_Join":
 def load_M_JoinConstant(data: object) -> "M_JoinConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10585,6 +10940,7 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
 def load_M_Leq(data: object) -> "M_Leq":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10660,6 +11016,7 @@ def load_M_Leq(data: object) -> "M_Leq":
 def load_M_Lift(data: object) -> "M_Lift":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10729,6 +11086,7 @@ def load_M_Lift(data: object) -> "M_Lift":
 def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10804,6 +11162,7 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
 def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10879,6 +11238,7 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
 def load_M_Meet(data: object) -> "M_Meet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -10954,6 +11314,7 @@ def load_M_Meet(data: object) -> "M_Meet":
 def load_M_MeetConstant(data: object) -> "M_MeetConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11035,6 +11396,7 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
 def load_M_MultiplyL(data: object) -> "M_MultiplyL":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11110,6 +11472,7 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
 def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11191,6 +11554,7 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
 def load_M_MultiplyU(data: object) -> "M_MultiplyU":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11266,6 +11630,7 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
 def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11347,6 +11712,7 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
 def load_M_PowerFracL(data: object) -> "M_PowerFracL":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11434,6 +11800,7 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
 def load_M_PowerFracU(data: object) -> "M_PowerFracU":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11521,6 +11888,7 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
 def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11590,6 +11958,7 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
 def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11659,6 +12028,7 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
 def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_RepresentPrincipalLowerSet_TotalOrderBounded":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11728,6 +12098,7 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
 def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_RepresentPrincipalUpperSet_TotalOrderBounded":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11797,6 +12168,7 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
 def load_M_RoundDown(data: object) -> "M_RoundDown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11884,6 +12256,7 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
 def load_M_RoundUp(data: object) -> "M_RoundUp":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -11971,6 +12344,7 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
 def load_M_ScaleL(data: object) -> "M_ScaleL":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12058,6 +12432,7 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
 def load_M_ScaleU(data: object) -> "M_ScaleU":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12145,6 +12520,7 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
 def load_M_SmashInjection(data: object) -> "M_SmashInjection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12220,6 +12596,7 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
 def load_M_SubLConstant(data: object) -> "M_SubLConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12301,6 +12678,7 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
 def load_M_SubUConstant(data: object) -> "M_SubUConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12382,6 +12760,7 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
 def load_M_TakeIndex(data: object) -> "M_TakeIndex":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12457,6 +12836,7 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
 def load_M_TakeRange(data: object) -> "M_TakeRange":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12532,6 +12912,7 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
 def load_M_Threshold1(data: object) -> "M_Threshold1":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12607,6 +12988,7 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
 def load_M_Threshold2(data: object) -> "M_Threshold2":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12682,6 +13064,7 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
 def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12751,6 +13134,7 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
 def load_M_Undefined(data: object) -> "M_Undefined":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12820,6 +13204,7 @@ def load_M_Undefined(data: object) -> "M_Undefined":
 def load_M_Unknown(data: object) -> "M_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12889,6 +13274,7 @@ def load_M_Unknown(data: object) -> "M_Unknown":
 def load_M_Unlift(data: object) -> "M_Unlift":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -12958,6 +13344,7 @@ def load_M_Unlift(data: object) -> "M_Unlift":
 def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13039,6 +13426,7 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
 def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13120,6 +13508,7 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
 def load_MapCheck(data: object) -> "MapCheck":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13189,6 +13578,7 @@ def load_MapCheck(data: object) -> "MapCheck":
 def load_MapCheck_Data(data: object) -> "MapCheck_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'elapsed' in data:
         value = data['elapsed']
@@ -13218,6 +13608,7 @@ def load_MapCheck_Data(data: object) -> "MapCheck_Data":
 def load_ModelFunctionality(data: object) -> "ModelFunctionality":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
@@ -13241,6 +13632,7 @@ def load_ModelFunctionality(data: object) -> "ModelFunctionality":
 def load_ModelRequirement(data: object) -> "ModelRequirement":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
@@ -13293,6 +13685,7 @@ def load_NDPInterface(data: object) -> "NDPInterface":
 def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13385,6 +13778,7 @@ def load_NDPTemplate(data: object) -> "NDPTemplate":
 def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13464,6 +13858,7 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
 def load_NDP_Composite(data: object) -> "NDP_Composite":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13567,6 +13962,7 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
 def load_NDP_Simple(data: object) -> "NDP_Simple":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13664,6 +14060,7 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
 def load_NDP_Sum(data: object) -> "NDP_Sum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13771,6 +14168,7 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
 def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -13868,6 +14266,7 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
 def load_NodeFunctionality(data: object) -> "NodeFunctionality":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
@@ -13897,6 +14296,7 @@ def load_NodeFunctionality(data: object) -> "NodeFunctionality":
 def load_NodeRequirement(data: object) -> "NodeRequirement":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
@@ -13967,6 +14367,7 @@ def load_Poset(data: object) -> "Poset":
 def load_P_Bool(data: object) -> "P_Bool":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14034,6 +14435,7 @@ def load_P_Bool(data: object) -> "P_Bool":
 def load_P_C_Arrow(data: object) -> "P_C_Arrow":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14107,6 +14509,7 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
 def load_P_C_Discretized(data: object) -> "P_C_Discretized":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14180,6 +14583,7 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
 def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14263,6 +14667,7 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
 def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14336,6 +14741,7 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
 def load_P_C_Multisets(data: object) -> "P_C_Multisets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14415,6 +14821,7 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
 def load_P_C_Opposite(data: object) -> "P_C_Opposite":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14488,6 +14895,7 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
 def load_P_C_Power(data: object) -> "P_C_Power":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14561,6 +14969,7 @@ def load_P_C_Power(data: object) -> "P_C_Power":
 def load_P_C_Product(data: object) -> "P_C_Product":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14644,6 +15053,7 @@ def load_P_C_Product(data: object) -> "P_C_Product":
 def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14727,6 +15137,7 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
 def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14822,6 +15233,7 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
 def load_P_C_Sum(data: object) -> "P_C_Sum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -14905,6 +15317,7 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
 def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15006,6 +15419,7 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
 def load_P_C_Twisted(data: object) -> "P_C_Twisted":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15079,6 +15493,7 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
 def load_P_C_Units(data: object) -> "P_C_Units":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15158,6 +15573,7 @@ def load_P_C_Units(data: object) -> "P_C_Units":
 def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15231,6 +15647,7 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
 def load_P_Decimal(data: object) -> "P_Decimal":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15304,6 +15721,7 @@ def load_P_Decimal(data: object) -> "P_Decimal":
 def load_P_F_Bounded(data: object) -> "P_F_Bounded":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15413,6 +15831,7 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
 def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15502,6 +15921,7 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
 def load_P_F_C_Union(data: object) -> "P_F_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15591,6 +16011,7 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
 def load_P_F_Interval(data: object) -> "P_F_Interval":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15676,6 +16097,7 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
 def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15755,6 +16177,7 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
 def load_P_F_Subposet(data: object) -> "P_F_Subposet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15834,6 +16257,7 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
 def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -15913,6 +16337,7 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
 def load_P_Finite(data: object) -> "P_Finite":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16002,6 +16427,7 @@ def load_P_Finite(data: object) -> "P_Finite":
 def load_P_Float(data: object) -> "P_Float":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16075,6 +16501,7 @@ def load_P_Float(data: object) -> "P_Float":
 def load_P_Fractions(data: object) -> "P_Fractions":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16160,6 +16587,7 @@ def load_P_Fractions(data: object) -> "P_Fractions":
 def load_P_Integer(data: object) -> "P_Integer":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16233,6 +16661,7 @@ def load_P_Integer(data: object) -> "P_Integer":
 def load_P_Unknown(data: object) -> "P_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16300,6 +16729,7 @@ def load_P_Unknown(data: object) -> "P_Unknown":
 def load_Projection(data: object) -> "Projection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'index' in data:
         field_index = load_int(data['index'])
@@ -16354,6 +16784,7 @@ def load_QueryData(data: object) -> "QueryData":
 def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
@@ -16401,6 +16832,7 @@ def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
 def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'type' in data:
         field_type_ = load_str(data['type'])
@@ -16448,6 +16880,7 @@ def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
 def load_Query_Single(data: object) -> "Query_Single":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16527,6 +16960,7 @@ def load_Query_Single(data: object) -> "Query_Single":
 def load_Range(data: object) -> "Range":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'ntot' in data:
         field_ntot = load_int(data['ntot'])
@@ -16560,6 +16994,7 @@ def load_Range(data: object) -> "Range":
 def load_SL1Check(data: object) -> "SL1Check":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16629,6 +17064,7 @@ def load_SL1Check(data: object) -> "SL1Check":
 def load_SL1Check_Data(data: object) -> "SL1Check_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'opt' in data:
         field_opt = load_any(data['opt'])
@@ -16715,6 +17151,7 @@ def load_SL1Map(data: object) -> "SL1Map":
 def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16812,6 +17249,7 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
 def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -16909,6 +17347,7 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
 def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17022,6 +17461,7 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
 def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17119,6 +17559,7 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
 def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17216,6 +17657,7 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
 def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17313,6 +17755,7 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
 def load_SL1_C_Product(data: object) -> "SL1_C_Product":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17410,6 +17853,7 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
 def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17497,6 +17941,7 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
 def load_SL1_C_Series(data: object) -> "SL1_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17594,6 +18039,7 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
 def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17681,6 +18127,7 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
 def load_SL1_C_Union(data: object) -> "SL1_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17778,6 +18225,7 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
 def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17877,6 +18325,7 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
 def load_SL1_Exact(data: object) -> "SL1_Exact":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -17964,6 +18413,7 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
 def load_SL1_Identity(data: object) -> "SL1_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18045,6 +18495,7 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
 def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18132,6 +18583,7 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
 def load_SL1_InvSum(data: object) -> "SL1_InvSum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18219,6 +18671,7 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
 def load_SL1_Unknown(data: object) -> "SL1_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18300,6 +18753,7 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
 def load_SLCheck(data: object) -> "SLCheck":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18369,6 +18823,7 @@ def load_SLCheck(data: object) -> "SLCheck":
 def load_SLCheck_Data(data: object) -> "SLCheck_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'opt' in data:
         field_opt = load_any(data['opt'])
@@ -18452,6 +18907,7 @@ def load_SLMap(data: object) -> "SLMap":
 def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18551,6 +19007,7 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
 def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18654,6 +19111,7 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
 def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18757,6 +19215,7 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
 def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18850,6 +19309,7 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
 def load_SL_C_Series(data: object) -> "SL_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -18953,6 +19413,7 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
 def load_SL_C_Trace(data: object) -> "SL_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19052,6 +19513,7 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
 def load_SL_C_Union(data: object) -> "SL_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19155,6 +19617,7 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
 def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19266,6 +19729,7 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
 def load_SL_Identity(data: object) -> "SL_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19353,6 +19817,7 @@ def load_SL_Identity(data: object) -> "SL_Identity":
 def load_SL_L_Exact(data: object) -> "SL_L_Exact":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19446,6 +19911,7 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
 def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19565,6 +20031,7 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
 def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19664,6 +20131,7 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
 def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19763,6 +20231,7 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
 def load_SL_Unknown(data: object) -> "SL_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19850,6 +20319,7 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
 def load_SU1Check(data: object) -> "SU1Check":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -19919,6 +20389,7 @@ def load_SU1Check(data: object) -> "SU1Check":
 def load_SU1Check_Data(data: object) -> "SU1Check_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'opt' in data:
         field_opt = load_any(data['opt'])
@@ -20005,6 +20476,7 @@ def load_SU1Map(data: object) -> "SU1Map":
 def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20102,6 +20574,7 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
 def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20199,6 +20672,7 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
 def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20312,6 +20786,7 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
 def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20409,6 +20884,7 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
 def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20506,6 +20982,7 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
 def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20603,6 +21080,7 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
 def load_SU1_C_Product(data: object) -> "SU1_C_Product":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20700,6 +21178,7 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
 def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20787,6 +21266,7 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
 def load_SU1_C_Series(data: object) -> "SU1_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20884,6 +21364,7 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
 def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -20971,6 +21452,7 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
 def load_SU1_C_Union(data: object) -> "SU1_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21068,6 +21550,7 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
 def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21167,6 +21650,7 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
 def load_SU1_Exact(data: object) -> "SU1_Exact":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21254,6 +21738,7 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
 def load_SU1_Identity(data: object) -> "SU1_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21335,6 +21820,7 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
 def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21422,6 +21908,7 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
 def load_SU1_InvSum(data: object) -> "SU1_InvSum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21509,6 +21996,7 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
 def load_SU1_Unknown(data: object) -> "SU1_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21590,6 +22078,7 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
 def load_SUCheck(data: object) -> "SUCheck":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21659,6 +22148,7 @@ def load_SUCheck(data: object) -> "SUCheck":
 def load_SUCheck_Data(data: object) -> "SUCheck_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'opt' in data:
         field_opt = load_any(data['opt'])
@@ -21742,6 +22232,7 @@ def load_SUMap(data: object) -> "SUMap":
 def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21841,6 +22332,7 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
 def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -21944,6 +22436,7 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
 def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22047,6 +22540,7 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
 def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22140,6 +22634,7 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
 def load_SU_C_Series(data: object) -> "SU_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22243,6 +22738,7 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
 def load_SU_C_Trace(data: object) -> "SU_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22342,6 +22838,7 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
 def load_SU_C_Union(data: object) -> "SU_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22445,6 +22942,7 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
 def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22556,6 +23054,7 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
 def load_SU_Identity(data: object) -> "SU_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22643,6 +23142,7 @@ def load_SU_Identity(data: object) -> "SU_Identity":
 def load_SU_L_Exact(data: object) -> "SU_L_Exact":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22736,6 +23236,7 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
 def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22855,6 +23356,7 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
 def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -22954,6 +23456,7 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
 def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23053,6 +23556,7 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
 def load_SU_Unknown(data: object) -> "SU_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23140,6 +23644,7 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
 def load_U1Check(data: object) -> "U1Check":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23209,6 +23714,7 @@ def load_U1Check(data: object) -> "U1Check":
 def load_U1Check_Data(data: object) -> "U1Check_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'elapsed' in data:
         value = data['elapsed']
@@ -23280,6 +23786,7 @@ def load_U1Map(data: object) -> "U1Map":
 def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23365,6 +23872,7 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
 def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23450,6 +23958,7 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
 def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23535,6 +24044,7 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
 def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23620,6 +24130,7 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
 def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23705,6 +24216,7 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
 def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23790,6 +24302,7 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
 def load_U1_C_Product(data: object) -> "U1_C_Product":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23875,6 +24388,7 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
 def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -23950,6 +24464,7 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
 def load_U1_C_Series(data: object) -> "U1_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24035,6 +24550,7 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
 def load_U1_C_Trace(data: object) -> "U1_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24110,6 +24626,7 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
 def load_U1_C_Union(data: object) -> "U1_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24195,6 +24712,7 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
 def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24282,6 +24800,7 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
 def load_U1_Catalog(data: object) -> "U1_Catalog":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24357,6 +24876,7 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
 def load_U1_Catalog_Options(data: object) -> "U1_Catalog_Options":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'f' in data:
         field_f = load_any(data['f'])
@@ -24376,6 +24896,7 @@ def load_U1_Catalog_Options(data: object) -> "U1_Catalog_Options":
 def load_U1_Constant(data: object) -> "U1_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24451,6 +24972,7 @@ def load_U1_Constant(data: object) -> "U1_Constant":
 def load_U1_Entire(data: object) -> "U1_Entire":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24520,6 +25042,7 @@ def load_U1_Entire(data: object) -> "U1_Entire":
 def load_U1_Explicit(data: object) -> "U1_Explicit":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24595,6 +25118,7 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
 def load_U1_Explicit_Option(data: object) -> "U1_Explicit_Option":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'x' in data:
         field_x = load_any(data['x'])
@@ -24614,6 +25138,7 @@ def load_U1_Explicit_Option(data: object) -> "U1_Explicit_Option":
 def load_U1_FromFilter(data: object) -> "U1_FromFilter":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24689,6 +25214,7 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
 def load_U1_Identity(data: object) -> "U1_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24758,6 +25284,7 @@ def load_U1_Identity(data: object) -> "U1_Identity":
 def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinUpperSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24827,6 +25354,7 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
 def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24908,6 +25436,7 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
 def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -24989,6 +25518,7 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
 def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25070,6 +25600,7 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
 def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25151,6 +25682,7 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
 def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25226,6 +25758,7 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
 def load_U1_Lift(data: object) -> "U1_Lift":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25301,6 +25834,7 @@ def load_U1_Lift(data: object) -> "U1_Lift":
 def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUpperSet":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25370,6 +25904,7 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
 def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25445,6 +25980,7 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
 def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25526,6 +26062,7 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
 def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25595,6 +26132,7 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
 def load_U1_Unknown(data: object) -> "U1_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25664,6 +26202,7 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
 def load_UCheck(data: object) -> "UCheck":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25733,6 +26272,7 @@ def load_UCheck(data: object) -> "UCheck":
 def load_UCheck_Data(data: object) -> "UCheck_Data":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'elapsed' in data:
         value = data['elapsed']
@@ -25788,6 +26328,7 @@ def load_UMap(data: object) -> "UMap":
 def load_U_C_ITransform(data: object) -> "U_C_ITransform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25875,6 +26416,7 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
 def load_U_C_Intersection(data: object) -> "U_C_Intersection":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -25966,6 +26508,7 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
 def load_U_C_Parallel(data: object) -> "U_C_Parallel":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26057,6 +26600,7 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
 def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26138,6 +26682,7 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
 def load_U_C_Series(data: object) -> "U_C_Series":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26229,6 +26774,7 @@ def load_U_C_Series(data: object) -> "U_C_Series":
 def load_U_C_Trace(data: object) -> "U_C_Trace":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26316,6 +26862,7 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
 def load_U_C_Union(data: object) -> "U_C_Union":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26407,6 +26954,7 @@ def load_U_C_Union(data: object) -> "U_C_Union":
 def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26506,6 +27054,7 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
 def load_U_Catalog(data: object) -> "U_Catalog":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26587,6 +27136,7 @@ def load_U_Catalog(data: object) -> "U_Catalog":
 def load_U_Catalog_Options(data: object) -> "U_Catalog_Options":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'f' in data:
         field_f = load_any(data['f'])
@@ -26612,6 +27162,7 @@ def load_U_Catalog_Options(data: object) -> "U_Catalog_Options":
 def load_U_Constant(data: object) -> "U_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26693,6 +27244,7 @@ def load_U_Constant(data: object) -> "U_Constant":
 def load_U_Identity(data: object) -> "U_Identity":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26768,6 +27320,7 @@ def load_U_Identity(data: object) -> "U_Identity":
 def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26855,6 +27408,7 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
 def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -26942,6 +27496,7 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
 def load_U_Unknown(data: object) -> "U_Unknown":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -27033,6 +27588,7 @@ def load_Unit(data: object) -> "Unit":
 def load_Unit_None(data: object) -> "Unit_None":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -27068,6 +27624,7 @@ def load_Unit_None(data: object) -> "Unit_None":
 def load_Unit_Single(data: object) -> "Unit_Single":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -27109,6 +27666,7 @@ def load_Unit_Single(data: object) -> "Unit_Single":
 def load_Unit_Vector(data: object) -> "Unit_Vector":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -27160,6 +27718,7 @@ def load_Unit_Vector(data: object) -> "Unit_Vector":
 def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -27227,6 +27786,7 @@ def load_UpperSet(data: object) -> "UpperSet":
 def load_UpperSet_Unused(data: object) -> "UpperSet_Unused":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'kind' in data:
         field_kind = load_str(data['kind'])
@@ -27252,6 +27812,7 @@ def load_UpperSet_Unused(data: object) -> "UpperSet_Unused":
 def load_UpperSet_UpperClosure(data: object) -> "UpperSet_UpperClosure":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'kind' in data:
         field_kind = load_str(data['kind'])
@@ -27296,6 +27857,7 @@ def load_Value(data: object) -> "Value":
 def load_VU(data: object) -> "VU":
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
     
     if 'description' in data:
         value = data['description']
@@ -27380,7 +27942,7 @@ class Address:
     spec: Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"] = field()
     thing: str = field()
     type_: Literal["Address"] = field()
-    repo: str | None = field(metadata={'description': "The Git repository URL"})
+    repo: str | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27398,9 +27960,9 @@ class Address:
 @dataclass(frozen=True)
 class Root:
     kind: Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"] = field()
-    description: str | None = field(metadata={'description': "A human-readable description of the object used for debug purposes."})
-    hash: str | None = field(metadata={'description': "Unique hash for the object."})
-    version: str | None = field(metadata={'description': "Version of the MCDP format used to serialize this object (major.minor)."})
+    description: str | None = field()
+    hash: str | None = field()
+    version: str | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27417,8 +27979,8 @@ class Root:
 
 @dataclass(frozen=True)
 class Check(Root):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Check"] = field()
+    type_: Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27466,20 +28028,22 @@ class ConnectionTarget:
 
 @dataclass(frozen=True)
 class DP(Root):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    B: Poset = field(metadata={'description': "Poset of blueprints"})
-    F: Poset = field(metadata={'description': "Poset of functionalities"})
-    I: Poset = field(metadata={'description': "Poset of implementations"})
-    R: Poset = field(metadata={'description': "Poset of requirements"})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    B: Poset | None = field()
+    F: Poset = field()
+    I: Poset | None = field()
+    R: Poset = field()
+    address: Address | None = field()
+    type_: Literal["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
         result = super().to_data()
-        result['B'] = self.B.to_data()
+        if self.B is not None:
+            result['B'] = self.B.to_data()
         result['F'] = self.F.to_data()
-        result['I'] = self.I.to_data()
+        if self.I is not None:
+            result['I'] = self.I.to_data()
         result['R'] = self.R.to_data()
         if self.address is not None:
             result['address'] = self.address.to_data()
@@ -27489,9 +28053,9 @@ class DP(Root):
 
 @dataclass(frozen=True)
 class DP_All_Constants_And_F_Leq_R(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_All_Constants_And_F_Leq_R"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    constants: list[Any] = field(metadata={'description': "A list of constants c₁, ..., c_n.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_All_Constants_And_F_Leq_R"] = field()
+    constants: list[Any] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27502,9 +28066,9 @@ class DP_All_Constants_And_F_Leq_R(DP):
 
 @dataclass(frozen=True)
 class DP_All_Constants_Leq_R(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_All_Constants_Leq_R"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    constants: list[Any] = field(metadata={'description': "A list of constants c₁, ..., c_n.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_All_Constants_Leq_R"] = field()
+    constants: list[Any] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27515,8 +28079,8 @@ class DP_All_Constants_Leq_R(DP):
 
 @dataclass(frozen=True)
 class DP_All_Fi_Leq_R(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_All_Fi_Leq_R"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_All_Fi_Leq_R"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27526,8 +28090,8 @@ class DP_All_Fi_Leq_R(DP):
 
 @dataclass(frozen=True)
 class DP_AmbientConversion(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_AmbientConversion"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_AmbientConversion"] = field()
     common: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -27539,9 +28103,9 @@ class DP_AmbientConversion(DP):
 
 @dataclass(frozen=True)
 class DP_Any_Constants_Or_F_Leq_R(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Any_Constants_Or_F_Leq_R"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    constants: list[Any] = field(metadata={'description': "A list of constants c₁, ..., c_n.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Any_Constants_Or_F_Leq_R"] = field()
+    constants: list[Any] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27552,8 +28116,8 @@ class DP_Any_Constants_Or_F_Leq_R(DP):
 
 @dataclass(frozen=True)
 class DP_Any_Fi_Leq_R(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Any_Fi_Leq_R"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Any_Fi_Leq_R"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27563,12 +28127,12 @@ class DP_Any_Fi_Leq_R(DP):
 
 @dataclass(frozen=True)
 class DP_C_ExplicitApprox(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_C_ExplicitApprox"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    optimistic: list[DP] = field(metadata={'description': "List of optimistic DPs.\n"})
-    optimistic_labels: list[str] | None = field(metadata={'description': "Labels for the optimistic DPs.\n"})
-    pessimistic: list[DP] = field(metadata={'description': "List of pessimistic DPs.\n"})
-    pessimistic_labels: list[str] | None = field(metadata={'description': "Labels for the pessimistic DPs.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_C_ExplicitApprox"] = field()
+    optimistic: list[DP] = field()
+    optimistic_labels: list[str] | None = field()
+    pessimistic: list[DP] = field()
+    pessimistic_labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27584,10 +28148,10 @@ class DP_C_ExplicitApprox(DP):
 
 @dataclass(frozen=True)
 class DP_C_Intersection(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dps: list[DP] = field(metadata={'description': "A list of design problems (DPs) to be composed."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_C_Intersection"] = field()
+    dps: list[DP] = field()
+    labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27600,10 +28164,10 @@ class DP_C_Intersection(DP):
 
 @dataclass(frozen=True)
 class DP_C_Parallel(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dps: list[DP] = field(metadata={'description': "A list of design problems (DPs) to be composed."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_C_Parallel"] = field()
+    dps: list[DP] = field()
+    labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27616,10 +28180,10 @@ class DP_C_Parallel(DP):
 
 @dataclass(frozen=True)
 class DP_C_Series(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dps: list[DP] = field(metadata={'description': "A list of design problems (DPs) to be composed."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_C_Series"] = field()
+    dps: list[DP] = field()
+    labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27632,9 +28196,9 @@ class DP_C_Series(DP):
 
 @dataclass(frozen=True)
 class DP_C_Trace(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dp: DP = field(metadata={'description': "The design problem that is being traced.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_C_Trace"] = field()
+    dp: DP = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27645,10 +28209,10 @@ class DP_C_Trace(DP):
 
 @dataclass(frozen=True)
 class DP_C_Union(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dps: list[DP] = field(metadata={'description': "A list of design problems (DPs) to be composed."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_C_Union"] = field()
+    dps: list[DP] = field()
+    labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27661,9 +28225,9 @@ class DP_C_Union(DP):
 
 @dataclass(frozen=True)
 class DP_Catalog(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Catalog"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    options: list[DP_Catalog_Options] = field(metadata={'description': "A list of options that define the design problem.\nEach option is a tuple of functionality, requirement, blueprint, and implementation.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Catalog"] = field()
+    options: list[DP_Catalog_Options] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27691,19 +28255,19 @@ class DP_Catalog_Options:
 
 @dataclass(frozen=True)
 class DP_Compiled(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Compiled"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    f_b_r: SUMap = field(metadata={'description': "The function that returns the maximum functionality given the budget of resources as well as the blueprint."})
-    f_i_r: SUMap = field(metadata={'description': "The function that returns the maximum functionality given the budget of resources as well as the implementation."})
-    f_r: SU1Map = field(metadata={'description': "The function that returns minimal resources needed to satisfy the requirements."})
-    i_availability: MonotoneMap = field(metadata={'description': "The function that maps implementations to their availability.\n"})
-    i_b: MonotoneMap = field(metadata={'description': "The function that maps implementations to blueprints."})
-    i_codfeas: MonotoneMap = field(metadata={'description': "The function that maps implementations to their internal feasibility."})
-    prov: MonotoneMap = field(metadata={'description': "The \"provides\" map from implementations to functionalities.\n"})
-    r_b_f: SLMap = field(metadata={'description': "The function that returns the maximum functionality given the budget of resources as well as the blueprint."})
-    r_f: SL1Map = field(metadata={'description': "The function that returns the maximum functionality given the budget of requirements."})
-    r_i_f: SLMap = field(metadata={'description': "The function that returns the maximum functionality given the budget of resources as well as the implementation."})
-    req: MonotoneMap = field(metadata={'description': "The \"requires\" map from implementations to requirements.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Compiled"] = field()
+    f_b_r: SUMap = field()
+    f_i_r: SUMap = field()
+    f_r: SU1Map = field()
+    i_availability: MonotoneMap = field()
+    i_b: MonotoneMap = field()
+    i_codfeas: MonotoneMap = field()
+    prov: MonotoneMap = field()
+    r_b_f: SLMap = field()
+    r_f: SL1Map = field()
+    r_i_f: SLMap = field()
+    req: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27724,9 +28288,9 @@ class DP_Compiled(DP):
 
 @dataclass(frozen=True)
 class DP_F_Leq_All_Constants(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_F_Leq_All_Constants"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    constants: list[Any] = field(metadata={'description': "A list of constants c₁, ..., c_n.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_F_Leq_All_Constants"] = field()
+    constants: list[Any] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27737,9 +28301,9 @@ class DP_F_Leq_All_Constants(DP):
 
 @dataclass(frozen=True)
 class DP_F_Leq_All_R_And_Constants(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_F_Leq_All_R_And_Constants"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    constants: list[Any] = field(metadata={'description': "A list of constants c₁, ..., c_n.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_F_Leq_All_R_And_Constants"] = field()
+    constants: list[Any] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27750,8 +28314,8 @@ class DP_F_Leq_All_R_And_Constants(DP):
 
 @dataclass(frozen=True)
 class DP_F_Leq_All_Ri(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_F_Leq_All_Ri"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_F_Leq_All_Ri"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27761,9 +28325,9 @@ class DP_F_Leq_All_Ri(DP):
 
 @dataclass(frozen=True)
 class DP_F_Leq_Any_R_And_Constants(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_F_Leq_Any_R_And_Constants"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    constants: list[Any] = field(metadata={'description': "A list of constants c₁, ..., c_n.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_F_Leq_Any_R_And_Constants"] = field()
+    constants: list[Any] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27774,8 +28338,8 @@ class DP_F_Leq_Any_R_And_Constants(DP):
 
 @dataclass(frozen=True)
 class DP_F_Leq_Any_Ri(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_F_Leq_Any_Ri"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_F_Leq_Any_Ri"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27785,8 +28349,8 @@ class DP_F_Leq_Any_Ri(DP):
 
 @dataclass(frozen=True)
 class DP_False(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_False"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_False"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27796,8 +28360,8 @@ class DP_False(DP):
 
 @dataclass(frozen=True)
 class DP_FuncNotMoreThan(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_FuncNotMoreThan"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_FuncNotMoreThan"] = field()
     limit: Any = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -27809,8 +28373,8 @@ class DP_FuncNotMoreThan(DP):
 
 @dataclass(frozen=True)
 class DP_GenericConstant(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_GenericConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_GenericConstant"] = field()
     b_value: Any = field()
     lower_set: LowerSet = field()
     upper_set: UpperSet = field()
@@ -27826,8 +28390,8 @@ class DP_GenericConstant(DP):
 
 @dataclass(frozen=True)
 class DP_Identity(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27837,8 +28401,8 @@ class DP_Identity(DP):
 
 @dataclass(frozen=True)
 class DP_Iso(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Iso"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Iso"] = field()
     bwd: MonotoneMap = field()
     fwd: MonotoneMap = field()
 
@@ -27852,8 +28416,8 @@ class DP_Iso(DP):
 
 @dataclass(frozen=True)
 class DP_LiftL(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_LiftL"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_LiftL"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -27865,9 +28429,9 @@ class DP_LiftL(DP):
 
 @dataclass(frozen=True)
 class DP_LiftU(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_LiftU"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: MonotoneMap = field(metadata={'description': "A monotone map from the poset of functionalities to the poset of requirements.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_LiftU"] = field()
+    m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27878,8 +28442,8 @@ class DP_LiftU(DP):
 
 @dataclass(frozen=True)
 class DP_ResNotLessThan(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_ResNotLessThan"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_ResNotLessThan"] = field()
     limit: Any = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -27891,9 +28455,9 @@ class DP_ResNotLessThan(DP):
 
 @dataclass(frozen=True)
 class DP_True(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_True"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    value: Value = field(metadata={'description': "The implementation value.\n"})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_True"] = field()
+    value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27904,8 +28468,8 @@ class DP_True(DP):
 
 @dataclass(frozen=True)
 class DP_Unknown(DP):
-    kind: Literal["DP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["DP_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["DP"] = field()
+    type_: Literal["DP_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27915,10 +28479,10 @@ class DP_Unknown(DP):
 
 @dataclass(frozen=True)
 class L1Check(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[L1Check_Data] = field(metadata={'description': "Data to check the L1Map."})
-    m: L1Map = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["L1Check"] = field()
+    data: list[L1Check_Data] = field()
+    m: L1Map = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27932,7 +28496,7 @@ class L1Check(Check):
 class L1Check_Data:
     x: Any = field()
     y: LowerSet = field()
-    elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds (optional)."})
+    elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27946,10 +28510,10 @@ class L1Check_Data:
 
 @dataclass(frozen=True)
 class L1Map(Root):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
     kcod: Poset = field()
     kdom: Poset = field()
-    type_: Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27962,9 +28526,9 @@ class L1Map(Root):
 
 @dataclass(frozen=True)
 class L1_C_CodSum(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_CodSum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_CodSum"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -27978,9 +28542,9 @@ class L1_C_CodSum(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_CodSumSmash(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_CodSumSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_CodSumSmash"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -27994,9 +28558,9 @@ class L1_C_CodSumSmash(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_DomUnion(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_DomUnion"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_DomUnion"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28010,9 +28574,9 @@ class L1_C_DomUnion(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_Intersection(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_Intersection"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28026,9 +28590,9 @@ class L1_C_Intersection(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_Parallel(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_Parallel"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28042,9 +28606,9 @@ class L1_C_Parallel(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_ProdIntersection(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_ProdIntersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_ProdIntersection"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28058,9 +28622,9 @@ class L1_C_ProdIntersection(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_Product(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_Product"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_Product"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28074,8 +28638,8 @@ class L1_C_Product(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_RefineDomain(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_RefineDomain"] = field()
     m: L1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28087,9 +28651,9 @@ class L1_C_RefineDomain(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_Series(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_Series"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28103,8 +28667,8 @@ class L1_C_Series(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_Trace(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_Trace"] = field()
     m: L1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28116,9 +28680,9 @@ class L1_C_Trace(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_Union(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_Union"] = field()
+    labels: list[str] | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28132,10 +28696,10 @@ class L1_C_Union(L1Map):
 
 @dataclass(frozen=True)
 class L1_C_WrapUnits(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod_units: Unit = field(metadata={'description': "The units for the codomain"})
-    kdom_units: Unit = field(metadata={'description': "The units for the domain"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_C_WrapUnits"] = field()
+    kcod_units: Unit = field()
+    kdom_units: Unit = field()
     m: L1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28149,8 +28713,8 @@ class L1_C_WrapUnits(L1Map):
 
 @dataclass(frozen=True)
 class L1_Catalog(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Catalog"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Catalog"] = field()
     options: list[L1_Catalog_Options] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28175,8 +28739,8 @@ class L1_Catalog_Options:
 
 @dataclass(frozen=True)
 class L1_Constant(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Constant"] = field()
     value: LowerSet = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28188,8 +28752,8 @@ class L1_Constant(L1Map):
 
 @dataclass(frozen=True)
 class L1_Entire(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Entire"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Entire"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28199,9 +28763,9 @@ class L1_Entire(L1Map):
 
 @dataclass(frozen=True)
 class L1_Explicit(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Explicit"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    options: list[L1_Explicit_Option] = field(metadata={'description': "Pairs of input-output"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Explicit"] = field()
+    options: list[L1_Explicit_Option] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28225,8 +28789,8 @@ class L1_Explicit_Option:
 
 @dataclass(frozen=True)
 class L1_FromFilter(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_FromFilter"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_FromFilter"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28238,8 +28802,8 @@ class L1_FromFilter(L1Map):
 
 @dataclass(frozen=True)
 class L1_Identity(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28249,8 +28813,8 @@ class L1_Identity(L1Map):
 
 @dataclass(frozen=True)
 class L1_IntersectionOfPrinLowerSets(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_IntersectionOfPrinLowerSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_IntersectionOfPrinLowerSets"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28260,10 +28824,10 @@ class L1_IntersectionOfPrinLowerSets(L1Map):
 
 @dataclass(frozen=True)
 class L1_InvMul_Opt(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_InvMul_Opt"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_InvMul_Opt"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28275,10 +28839,10 @@ class L1_InvMul_Opt(L1Map):
 
 @dataclass(frozen=True)
 class L1_InvMul_Pes(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_InvMul_Pes"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_InvMul_Pes"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28290,10 +28854,10 @@ class L1_InvMul_Pes(L1Map):
 
 @dataclass(frozen=True)
 class L1_InvSum_Opt(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_InvSum_Opt"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_InvSum_Opt"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28305,10 +28869,10 @@ class L1_InvSum_Opt(L1Map):
 
 @dataclass(frozen=True)
 class L1_InvSum_Pes(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_InvSum_Pes"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_InvSum_Pes"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28320,8 +28884,8 @@ class L1_InvSum_Pes(L1Map):
 
 @dataclass(frozen=True)
 class L1_L_Linv(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_L_Linv"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_L_Linv"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28333,8 +28897,8 @@ class L1_L_Linv(L1Map):
 
 @dataclass(frozen=True)
 class L1_Lift(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Lift"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Lift"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28346,8 +28910,8 @@ class L1_Lift(L1Map):
 
 @dataclass(frozen=True)
 class L1_RepresentPrincipalLowerSet(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_RepresentPrincipalLowerSet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_RepresentPrincipalLowerSet"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28357,8 +28921,8 @@ class L1_RepresentPrincipalLowerSet(L1Map):
 
 @dataclass(frozen=True)
 class L1_TopAlternating(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_TopAlternating"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_TopAlternating"] = field()
     upper_bounds: list[list[Any]] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28370,8 +28934,8 @@ class L1_TopAlternating(L1Map):
 
 @dataclass(frozen=True)
 class L1_UnionOfPrinLowerSets(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_UnionOfPrinLowerSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_UnionOfPrinLowerSets"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28381,8 +28945,8 @@ class L1_UnionOfPrinLowerSets(L1Map):
 
 @dataclass(frozen=True)
 class L1_Unknown(L1Map):
-    kind: Literal["L1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["L1Map"] = field()
+    type_: Literal["L1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28392,10 +28956,10 @@ class L1_Unknown(L1Map):
 
 @dataclass(frozen=True)
 class LCheck(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["LCheck"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[LCheck_Data] = field(metadata={'description': "Test pairs"})
-    m: LMap = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["LCheck"] = field()
+    data: list[LCheck_Data] = field()
+    m: LMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28409,7 +28973,7 @@ class LCheck(Check):
 class LCheck_Data:
     x: Any = field()
     y: LowerSet = field()
-    elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28423,11 +28987,11 @@ class LCheck_Data:
 
 @dataclass(frozen=True)
 class LMap(Root):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
     kcod: Poset = field()
     kdom: Poset = field()
     kimp: Poset = field()
-    type_: Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28441,8 +29005,8 @@ class LMap(Root):
 
 @dataclass(frozen=True)
 class L_C_ITransform(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_ITransform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_ITransform"] = field()
     m: LMap = field()
     transform: MonotoneMap = field()
 
@@ -28456,10 +29020,10 @@ class L_C_ITransform(LMap):
 
 @dataclass(frozen=True)
 class L_C_Intersection(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[LMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_Intersection"] = field()
+    labels: list[str] | None = field()
+    ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28472,10 +29036,10 @@ class L_C_Intersection(LMap):
 
 @dataclass(frozen=True)
 class L_C_Parallel(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[LMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_Parallel"] = field()
+    labels: list[str] | None = field()
+    ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28488,8 +29052,8 @@ class L_C_Parallel(LMap):
 
 @dataclass(frozen=True)
 class L_C_RefineDomain(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_RefineDomain"] = field()
     m: LMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28501,10 +29065,10 @@ class L_C_RefineDomain(LMap):
 
 @dataclass(frozen=True)
 class L_C_Series(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[LMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_Series"] = field()
+    labels: list[str] | None = field()
+    ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28517,8 +29081,8 @@ class L_C_Series(LMap):
 
 @dataclass(frozen=True)
 class L_C_Trace(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_Trace"] = field()
     m: LMap = field()
     m_proj: L1Map = field()
 
@@ -28532,10 +29096,10 @@ class L_C_Trace(LMap):
 
 @dataclass(frozen=True)
 class L_C_Union(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[LMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_Union"] = field()
+    labels: list[str] | None = field()
+    ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28548,8 +29112,8 @@ class L_C_Union(LMap):
 
 @dataclass(frozen=True)
 class L_C_WrapUnits(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_WrapUnits"] = field()
     kcod_units: Unit = field()
     kdom_units: Unit = field()
     kimp_units: Unit = field()
@@ -28567,8 +29131,8 @@ class L_C_WrapUnits(LMap):
 
 @dataclass(frozen=True)
 class L_Catalog(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_Catalog"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_Catalog"] = field()
     options: list[L_Catalog_Options] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28595,9 +29159,9 @@ class L_Catalog_Options:
 
 @dataclass(frozen=True)
 class L_Constant(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    value: LowerSet = field(metadata={'description': "The lower set that is the value of the constant map.\n"})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_Constant"] = field()
+    value: LowerSet = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28608,8 +29172,8 @@ class L_Constant(LMap):
 
 @dataclass(frozen=True)
 class L_Identity(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28619,8 +29183,8 @@ class L_Identity(LMap):
 
 @dataclass(frozen=True)
 class L_L_Lift1_Constant(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_L_Lift1_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_L_Lift1_Constant"] = field()
     m: L1Map = field()
     value: Any = field()
 
@@ -28634,8 +29198,8 @@ class L_L_Lift1_Constant(LMap):
 
 @dataclass(frozen=True)
 class L_L_Lift1_Transform(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_L_Lift1_Transform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_L_Lift1_Transform"] = field()
     m: L1Map = field()
     transform: MonotoneMap = field()
 
@@ -28649,8 +29213,8 @@ class L_L_Lift1_Transform(LMap):
 
 @dataclass(frozen=True)
 class L_Unknown(LMap):
-    kind: Literal["LMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["L_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28695,10 +29259,10 @@ class LowerSet_Unused(LowerSet):
 
 @dataclass(frozen=True)
 class MonotoneMap(Root):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    cod: Poset = field(metadata={'description': "Codomain of the monotone map"})
-    dom: Poset = field(metadata={'description': "Domain of the monotone map"})
-    type_: Literal["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    cod: Poset = field()
+    dom: Poset = field()
+    type_: Literal["M_AddL", "M_AddLConstant", "M_AddU", "M_AddUConstant", "M_BottomIfNotTop", "M_C_Coproduct", "M_C_CoproductSmash", "M_C_DomProdCodSmash", "M_C_DomSmashCodProd", "M_C_DomUnion", "M_C_Leq_X", "M_C_LiftToSubsets", "M_C_Lt_X", "M_C_Op", "M_C_Parallel", "M_C_ParallelSmash", "M_C_Product", "M_C_ProductSmash", "M_C_RefineDomain", "M_C_Series", "M_C_Sum", "M_C_SumSmash", "M_C_WrapUnits", "M_Ceil0", "M_Coerce", "M_Constant", "M_ContainedInLowerSet", "M_ContainedInUpperSet", "M_DivideLConstant", "M_DivideUConstant", "M_Empty", "M_Explicit", "M_Floor0", "M_Id", "M_IdentityBelowThreshold", "M_Injection", "M_Join", "M_JoinConstant", "M_Leq", "M_Lift", "M_LiftToLowerSets", "M_LiftToUpperSets", "M_Meet", "M_MeetConstant", "M_MultiplyL", "M_MultiplyLConstant", "M_MultiplyU", "M_MultiplyUConstant", "M_PowerFracL", "M_PowerFracU", "M_ReprLowerSet", "M_ReprUpperSet", "M_RepresentPrincipalLowerSet_TotalOrderBounded", "M_RepresentPrincipalUpperSet_TotalOrderBounded", "M_RoundDown", "M_RoundUp", "M_ScaleL", "M_ScaleU", "M_SmashInjection", "M_SubLConstant", "M_SubUConstant", "M_TakeIndex", "M_TakeRange", "M_Threshold1", "M_Threshold2", "M_TopIfNotBottom", "M_Undefined", "M_Unknown", "M_Unlift", "M_X_Leq_C", "M_X_Lt_C"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28711,8 +29275,8 @@ class MonotoneMap(Root):
 
 @dataclass(frozen=True)
 class M_AddL(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_AddL"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_AddL"] = field()
     opspaces: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28724,8 +29288,8 @@ class M_AddL(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_AddLConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_AddLConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_AddLConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -28739,8 +29303,8 @@ class M_AddLConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_AddU(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_AddU"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_AddU"] = field()
     opspaces: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28752,8 +29316,8 @@ class M_AddU(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_AddUConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_AddUConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_AddUConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -28767,8 +29331,8 @@ class M_AddUConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_BottomIfNotTop(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_BottomIfNotTop"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_BottomIfNotTop"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28778,9 +29342,9 @@ class M_BottomIfNotTop(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Coproduct(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Coproduct"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Coproduct"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28794,9 +29358,9 @@ class M_C_Coproduct(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_CoproductSmash(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_CoproductSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_CoproductSmash"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28810,9 +29374,9 @@ class M_C_CoproductSmash(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_DomProdCodSmash(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_DomProdCodSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_DomProdCodSmash"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28826,9 +29390,9 @@ class M_C_DomProdCodSmash(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_DomSmashCodProd(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_DomSmashCodProd"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_DomSmashCodProd"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28842,9 +29406,9 @@ class M_C_DomSmashCodProd(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_DomUnion(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_DomUnion"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_DomUnion"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28858,10 +29422,10 @@ class M_C_DomUnion(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Leq_X(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Leq_X"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "Poset in which the comparison is performed."})
-    value: Value = field(metadata={'description': "Comparison value."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Leq_X"] = field()
+    opspace: Poset = field()
+    value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28873,9 +29437,9 @@ class M_C_Leq_X(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_LiftToSubsets(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_LiftToSubsets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: MonotoneMap = field(metadata={'description': "The monotone map that is lifted.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_LiftToSubsets"] = field()
+    m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28886,10 +29450,10 @@ class M_C_LiftToSubsets(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Lt_X(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Lt_X"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "Poset in which the comparison is performed."})
-    value: Value = field(metadata={'description': "Comparison value."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Lt_X"] = field()
+    opspace: Poset = field()
+    value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -28901,8 +29465,8 @@ class M_C_Lt_X(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Op(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Op"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Op"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28914,9 +29478,9 @@ class M_C_Op(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Parallel(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Parallel"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28930,9 +29494,9 @@ class M_C_Parallel(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_ParallelSmash(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_ParallelSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_ParallelSmash"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28946,9 +29510,9 @@ class M_C_ParallelSmash(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Product(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Product"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Product"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28962,9 +29526,9 @@ class M_C_Product(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_ProductSmash(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_ProductSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_ProductSmash"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28978,8 +29542,8 @@ class M_C_ProductSmash(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_RefineDomain(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_RefineDomain"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -28991,9 +29555,9 @@ class M_C_RefineDomain(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Series(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Series"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29007,9 +29571,9 @@ class M_C_Series(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_Sum(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_Sum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_Sum"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29023,9 +29587,9 @@ class M_C_Sum(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_SumSmash(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_SumSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the monotone maps.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_SumSmash"] = field()
+    labels: list[str] | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29039,10 +29603,10 @@ class M_C_SumSmash(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_C_WrapUnits(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    cod_units: Unit = field(metadata={'description': "Units for the codomain of the monotone map.\n"})
-    dom_units: Unit = field(metadata={'description': "Units for the domain of the monotone map.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_C_WrapUnits"] = field()
+    cod_units: Unit = field()
+    dom_units: Unit = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29056,8 +29620,8 @@ class M_C_WrapUnits(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Ceil0(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Ceil0"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Ceil0"] = field()
     opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29069,8 +29633,8 @@ class M_Ceil0(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Coerce(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Coerce"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Coerce"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29080,8 +29644,8 @@ class M_Coerce(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Constant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Constant"] = field()
     value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29093,8 +29657,8 @@ class M_Constant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_ContainedInLowerSet(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_ContainedInLowerSet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_ContainedInLowerSet"] = field()
     lower_set: LowerSet = field()
     opspace: Poset = field()
 
@@ -29108,8 +29672,8 @@ class M_ContainedInLowerSet(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_ContainedInUpperSet(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_ContainedInUpperSet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_ContainedInUpperSet"] = field()
     opspace: Poset = field()
     upper_set: UpperSet = field()
 
@@ -29123,8 +29687,8 @@ class M_ContainedInUpperSet(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_DivideLConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_DivideLConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_DivideLConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29138,8 +29702,8 @@ class M_DivideLConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_DivideUConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_DivideUConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_DivideUConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29153,8 +29717,8 @@ class M_DivideUConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Empty(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Empty"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Empty"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29164,8 +29728,8 @@ class M_Empty(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Explicit(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Explicit"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Explicit"] = field()
     options: list[M_Explicit_Option] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29190,8 +29754,8 @@ class M_Explicit_Option:
 
 @dataclass(frozen=True)
 class M_Floor0(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Floor0"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Floor0"] = field()
     opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29203,8 +29767,8 @@ class M_Floor0(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Id(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Id"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Id"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29214,10 +29778,10 @@ class M_Id(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_IdentityBelowThreshold(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_IdentityBelowThreshold"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    threshold: Value = field(metadata={'description': "Threshold value."})
-    value: Value = field(metadata={'description': "Value returned by the map if the input is above the threshold.\nThis value must be greater than or equal to the threshold.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_IdentityBelowThreshold"] = field()
+    threshold: Value = field()
+    value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29229,9 +29793,9 @@ class M_IdentityBelowThreshold(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Injection(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Injection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    index: int = field(metadata={'description': "Which space to inject into"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Injection"] = field()
+    index: int = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29242,9 +29806,9 @@ class M_Injection(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Join(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Join"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspaces: list[Poset] = field(metadata={'description': "The posets in which each join is defined.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Join"] = field()
+    opspaces: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29255,8 +29819,8 @@ class M_Join(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_JoinConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_JoinConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_JoinConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29270,9 +29834,9 @@ class M_JoinConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Leq(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Leq"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "Poset in which the comparison is performed."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Leq"] = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29283,8 +29847,8 @@ class M_Leq(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Lift(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Lift"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Lift"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29294,9 +29858,9 @@ class M_Lift(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_LiftToLowerSets(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_LiftToLowerSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: MonotoneMap = field(metadata={'description': "The monotone map that is lifted.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_LiftToLowerSets"] = field()
+    m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29307,9 +29871,9 @@ class M_LiftToLowerSets(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_LiftToUpperSets(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_LiftToUpperSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: MonotoneMap = field(metadata={'description': "The monotone map that is lifted.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_LiftToUpperSets"] = field()
+    m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29320,9 +29884,9 @@ class M_LiftToUpperSets(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Meet(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Meet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspaces: list[Poset] = field(metadata={'description': "The posets in which each meet is defined.\n"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Meet"] = field()
+    opspaces: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29333,8 +29897,8 @@ class M_Meet(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_MeetConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_MeetConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_MeetConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29348,8 +29912,8 @@ class M_MeetConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_MultiplyL(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_MultiplyL"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_MultiplyL"] = field()
     opspaces: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29361,8 +29925,8 @@ class M_MultiplyL(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_MultiplyLConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_MultiplyLConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_MultiplyLConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29376,8 +29940,8 @@ class M_MultiplyLConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_MultiplyU(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_MultiplyU"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_MultiplyU"] = field()
     opspaces: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29389,8 +29953,8 @@ class M_MultiplyU(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_MultiplyUConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_MultiplyUConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_MultiplyUConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29404,8 +29968,8 @@ class M_MultiplyUConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_PowerFracL(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_PowerFracL"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_PowerFracL"] = field()
     den: str = field()
     num: str = field()
     opspace: Poset = field()
@@ -29421,8 +29985,8 @@ class M_PowerFracL(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_PowerFracU(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_PowerFracU"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_PowerFracU"] = field()
     den: str = field()
     num: str = field()
     opspace: Poset = field()
@@ -29438,8 +30002,8 @@ class M_PowerFracU(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_ReprLowerSet(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_ReprLowerSet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_ReprLowerSet"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29449,8 +30013,8 @@ class M_ReprLowerSet(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_ReprUpperSet(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_ReprUpperSet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_ReprUpperSet"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29460,8 +30024,8 @@ class M_ReprUpperSet(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_RepresentPrincipalLowerSet_TotalOrderBounded(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_RepresentPrincipalLowerSet_TotalOrderBounded"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_RepresentPrincipalLowerSet_TotalOrderBounded"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29471,8 +30035,8 @@ class M_RepresentPrincipalLowerSet_TotalOrderBounded(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_RepresentPrincipalUpperSet_TotalOrderBounded(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_RepresentPrincipalUpperSet_TotalOrderBounded"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_RepresentPrincipalUpperSet_TotalOrderBounded"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29482,8 +30046,8 @@ class M_RepresentPrincipalUpperSet_TotalOrderBounded(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_RoundDown(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_RoundDown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_RoundDown"] = field()
     offset: Any = field()
     opspace: Poset = field()
     step: str = field()
@@ -29499,8 +30063,8 @@ class M_RoundDown(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_RoundUp(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_RoundUp"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_RoundUp"] = field()
     offset: Any = field()
     opspace: Poset = field()
     step: str = field()
@@ -29516,8 +30080,8 @@ class M_RoundUp(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_ScaleL(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_ScaleL"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_ScaleL"] = field()
     den: str = field()
     num: str = field()
     opspace: Poset = field()
@@ -29533,8 +30097,8 @@ class M_ScaleL(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_ScaleU(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_ScaleU"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_ScaleU"] = field()
     den: str = field()
     num: str = field()
     opspace: Poset = field()
@@ -29550,9 +30114,9 @@ class M_ScaleU(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_SmashInjection(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_SmashInjection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    index: int = field(metadata={'description': "Which space to inject into"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_SmashInjection"] = field()
+    index: int = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29563,8 +30127,8 @@ class M_SmashInjection(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_SubLConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_SubLConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_SubLConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29578,8 +30142,8 @@ class M_SubLConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_SubUConstant(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_SubUConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_SubUConstant"] = field()
     opspace: Poset = field()
     value: Value = field()
 
@@ -29593,9 +30157,9 @@ class M_SubUConstant(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_TakeIndex(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_TakeIndex"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    projection: Projection = field(metadata={'description': "Describes the projection"})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_TakeIndex"] = field()
+    projection: Projection = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29606,9 +30170,9 @@ class M_TakeIndex(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_TakeRange(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_TakeRange"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    range: Range = field(metadata={'description': "Describes the range of indices to take."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_TakeRange"] = field()
+    range: Range = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29619,8 +30183,8 @@ class M_TakeRange(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Threshold1(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Threshold1"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Threshold1"] = field()
     value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29632,8 +30196,8 @@ class M_Threshold1(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Threshold2(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Threshold2"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Threshold2"] = field()
     value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -29645,8 +30209,8 @@ class M_Threshold2(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_TopIfNotBottom(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_TopIfNotBottom"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_TopIfNotBottom"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29656,8 +30220,8 @@ class M_TopIfNotBottom(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Undefined(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Undefined"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Undefined"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29667,8 +30231,8 @@ class M_Undefined(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Unknown(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29678,8 +30242,8 @@ class M_Unknown(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_Unlift(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_Unlift"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_Unlift"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29689,10 +30253,10 @@ class M_Unlift(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_X_Leq_C(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_X_Leq_C"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "Poset in which the comparison is performed."})
-    value: Value = field(metadata={'description': "Comparison value."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_X_Leq_C"] = field()
+    opspace: Poset = field()
+    value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29704,10 +30268,10 @@ class M_X_Leq_C(MonotoneMap):
 
 @dataclass(frozen=True)
 class M_X_Lt_C(MonotoneMap):
-    kind: Literal["MonotoneMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["M_X_Lt_C"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "Poset in which the comparison is performed."})
-    value: Value = field(metadata={'description': "Comparison value."})
+    kind: Literal["MonotoneMap"] = field()
+    type_: Literal["M_X_Lt_C"] = field()
+    opspace: Poset = field()
+    value: Value = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29719,10 +30283,10 @@ class M_X_Lt_C(MonotoneMap):
 
 @dataclass(frozen=True)
 class MapCheck(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["MapCheck"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[MapCheck_Data] = field(metadata={'description': "Test pairs"})
-    m: MonotoneMap = field(metadata={'description': "The map to check."})
+    kind: Literal["Check"] = field()
+    type_: Literal["MapCheck"] = field()
+    data: list[MapCheck_Data] = field()
+    m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29736,7 +30300,7 @@ class MapCheck(Check):
 class MapCheck_Data:
     x: Any = field()
     y: Any = field()
-    elapsed: float | None = field(metadata={'description': "Time taken to compute the result."})
+    elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29774,13 +30338,13 @@ class ModelRequirement(ConnectionTarget):
 
 @dataclass(frozen=True)
 class NDP(Root):
-    kind: Literal["NDP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["NDP"] = field()
     C: Poset = field()
-    F: dict[str, Poset] = field(metadata={'description': "Dictionary of functionalities.\n"})
+    F: dict[str, Poset] = field()
     J: Poset = field()
-    R: dict[str, Poset] = field(metadata={'description': "Dictionary of resources.\n"})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    R: dict[str, Poset] = field()
+    address: Address | None = field()
+    type_: Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29797,9 +30361,9 @@ class NDP(Root):
 
 @dataclass(frozen=True)
 class NDPInterface(Root):
-    kind: Literal["NDPInterface"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["NDPInterface_Explicit"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["NDPInterface"] = field()
+    address: Address | None = field()
+    type_: Literal["NDPInterface_Explicit"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29812,9 +30376,9 @@ class NDPInterface(Root):
 
 @dataclass(frozen=True)
 class NDPInterface_Explicit(NDPInterface):
-    kind: Literal["NDPInterface"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    fs: dict[str, Poset] = field(metadata={'description': "Dictionary from functionality name to poset."})
-    rs: dict[str, Poset] = field(metadata={'description': "Dictionary from requirement name to poset."})
+    kind: Literal["NDPInterface"] = field()
+    fs: dict[str, Poset] = field()
+    rs: dict[str, Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29826,9 +30390,9 @@ class NDPInterface_Explicit(NDPInterface):
 
 @dataclass(frozen=True)
 class NDPTemplate(Root):
-    kind: Literal["NDPTemplate"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["NDPTemplate_Simple"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["NDPTemplate"] = field()
+    address: Address | None = field()
+    type_: Literal["NDPTemplate_Simple"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29841,9 +30405,9 @@ class NDPTemplate(Root):
 
 @dataclass(frozen=True)
 class NDPTemplate_Simple(NDPTemplate):
-    kind: Literal["NDPTemplate"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["NDPTemplate"] = field()
     ndp: NDP = field()
-    parameters: dict[str, NDPInterface] = field(metadata={'description': "The interface of the holes.\n"})
+    parameters: dict[str, NDPInterface] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29855,10 +30419,10 @@ class NDPTemplate_Simple(NDPTemplate):
 
 @dataclass(frozen=True)
 class NDP_Composite(NDP):
-    kind: Literal["NDP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["NDP_Composite"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    connections: list[Connection] = field(metadata={'description': "Connections between the nodes in the NDP graph.\n"})
-    nodes: dict[str, NDP] = field(metadata={'description': "A map of node identifiers to their corresponding NDPs in the graph.\nEach key is a unique identifier for a node, and the value is the NDP\nassociated with that node.\n"})
+    kind: Literal["NDP"] = field()
+    type_: Literal["NDP_Composite"] = field()
+    connections: list[Connection] = field()
+    nodes: dict[str, NDP] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29870,9 +30434,9 @@ class NDP_Composite(NDP):
 
 @dataclass(frozen=True)
 class NDP_Simple(NDP):
-    kind: Literal["NDP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["NDP_Simple"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dp: DP = field(metadata={'description': "The DP that this NDP contains. Must have poset products as resources and functionalities."})
+    kind: Literal["NDP"] = field()
+    type_: Literal["NDP_Simple"] = field()
+    dp: DP = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29883,10 +30447,10 @@ class NDP_Simple(NDP):
 
 @dataclass(frozen=True)
 class NDP_Sum(NDP):
-    kind: Literal["NDP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["NDP_Sum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    dps: dict[str, NDP] = field(metadata={'description': "The NDPs to sum.\n"})
-    labels: list[str] | None = field(metadata={'description': "Labels for the NDPs.\n"})
+    kind: Literal["NDP"] = field()
+    type_: Literal["NDP_Sum"] = field()
+    dps: dict[str, NDP] = field()
+    labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29899,9 +30463,9 @@ class NDP_Sum(NDP):
 
 @dataclass(frozen=True)
 class NDP_TemplateHole(NDP):
-    kind: Literal["NDP"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["NDP_TemplateHole"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    parameter_name: str = field(metadata={'description': "The name of the parameter that is to be filled in.\n"})
+    kind: Literal["NDP"] = field()
+    type_: Literal["NDP_TemplateHole"] = field()
+    parameter_name: str = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29940,9 +30504,9 @@ class NodeRequirement(ConnectionSource):
 
 @dataclass(frozen=True)
 class Poset(Root):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Poset"] = field()
+    address: Address | None = field()
+    type_: Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29955,8 +30519,8 @@ class Poset(Root):
 
 @dataclass(frozen=True)
 class P_Bool(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Bool"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Bool"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29966,9 +30530,9 @@ class P_Bool(Poset):
 
 @dataclass(frozen=True)
 class P_C_Arrow(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Arrow"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Arrow"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29979,9 +30543,9 @@ class P_C_Arrow(Poset):
 
 @dataclass(frozen=True)
 class P_C_Discretized(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Discretized"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Discretized"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -29992,10 +30556,10 @@ class P_C_Discretized(Poset):
 
 @dataclass(frozen=True)
 class P_C_Lexicographic(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Lexicographic"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the posets.\n"})
-    subs: list[Poset] = field(metadata={'description': "A list of posets that are composed together.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Lexicographic"] = field()
+    labels: list[str] | None = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30008,9 +30572,9 @@ class P_C_Lexicographic(Poset):
 
 @dataclass(frozen=True)
 class P_C_LowerSets(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_LowerSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_LowerSets"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30021,10 +30585,10 @@ class P_C_LowerSets(Poset):
 
 @dataclass(frozen=True)
 class P_C_Multisets(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Multisets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    counts: Poset = field(metadata={'description': "Poset describing the counts of the elements in the multisets.\n"})
-    values: Poset = field(metadata={'description': "Poset describing the values of the multisets.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Multisets"] = field()
+    counts: Poset = field()
+    values: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30036,9 +30600,9 @@ class P_C_Multisets(Poset):
 
 @dataclass(frozen=True)
 class P_C_Opposite(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Opposite"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Opposite"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30049,9 +30613,9 @@ class P_C_Opposite(Poset):
 
 @dataclass(frozen=True)
 class P_C_Power(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Power"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Power"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30062,10 +30626,10 @@ class P_C_Power(Poset):
 
 @dataclass(frozen=True)
 class P_C_Product(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Product"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the posets.\n"})
-    subs: list[Poset] = field(metadata={'description': "A list of posets that are composed together.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Product"] = field()
+    labels: list[str] | None = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30078,10 +30642,10 @@ class P_C_Product(Poset):
 
 @dataclass(frozen=True)
 class P_C_ProductDS(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_ProductDS"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the posets.\n"})
-    subs: list[Poset] = field(metadata={'description': "A list of posets that are composed together.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_ProductDS"] = field()
+    labels: list[str] | None = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30094,12 +30658,12 @@ class P_C_ProductDS(Poset):
 
 @dataclass(frozen=True)
 class P_C_ProductSmash(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_ProductSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the posets.\n"})
-    naked: list[bool] = field(metadata={'description': "Whether each poset is \"naked\" or not."})
-    ranges: list[Range] = field(metadata={'description': "The ranges of the posets in the smash product. See also P_C_Sum\n"})
-    subs: list[Poset] = field(metadata={'description': "A list of posets that are composed together.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_ProductSmash"] = field()
+    labels: list[str] | None = field()
+    naked: list[bool] = field()
+    ranges: list[Range] = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30114,10 +30678,10 @@ class P_C_ProductSmash(Poset):
 
 @dataclass(frozen=True)
 class P_C_Sum(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Sum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the posets.\n"})
-    subs: list[Poset] = field(metadata={'description': "A list of posets that are composed together.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Sum"] = field()
+    labels: list[str] | None = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30130,12 +30694,12 @@ class P_C_Sum(Poset):
 
 @dataclass(frozen=True)
 class P_C_SumSmash(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_SumSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the posets.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_SumSmash"] = field()
+    labels: list[str] | None = field()
     naked: list[bool] = field()
     ranges: list[Range] = field()
-    subs: list[Poset] = field(metadata={'description': "A list of posets that are composed together.\n"})
+    subs: list[Poset] = field()
     trivial: bool = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30152,9 +30716,9 @@ class P_C_SumSmash(Poset):
 
 @dataclass(frozen=True)
 class P_C_Twisted(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Twisted"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Twisted"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30165,10 +30729,10 @@ class P_C_Twisted(Poset):
 
 @dataclass(frozen=True)
 class P_C_Units(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_Units"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
-    units: Unit = field(metadata={'description': "The units of the poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_Units"] = field()
+    poset: Poset = field()
+    units: Unit = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30180,9 +30744,9 @@ class P_C_Units(Poset):
 
 @dataclass(frozen=True)
 class P_C_UpperSets(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_C_UpperSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The base poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_C_UpperSets"] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30193,9 +30757,9 @@ class P_C_UpperSets(Poset):
 
 @dataclass(frozen=True)
 class P_Decimal(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Decimal"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    precision: int = field(metadata={'description': "Number of decimal places.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Decimal"] = field()
+    precision: int = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30206,13 +30770,13 @@ class P_Decimal(Poset):
 
 @dataclass(frozen=True)
 class P_F_Bounded(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_Bounded"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_Bounded"] = field()
     bottom: Any = field()
     bound_high: Any = field()
     bound_low: Any = field()
     offset: Any = field()
-    poset: Poset = field(metadata={'description': "The ambient poset.\n"})
+    poset: Poset = field()
     step: str = field()
     top: Any = field()
 
@@ -30231,11 +30795,11 @@ class P_F_Bounded(Poset):
 
 @dataclass(frozen=True)
 class P_F_C_Intersection(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    ambient: Poset = field(metadata={'description': "The ambient poset that includes the others.\n"})
-    labels: list[str] | None = field(metadata={'description': "Labels for the posets.\n"})
-    subs: list[Poset] = field(metadata={'description': "The posets that are included in the intersection. They are all subposets\nof the ambient poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_C_Intersection"] = field()
+    ambient: Poset = field()
+    labels: list[str] | None = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30249,11 +30813,11 @@ class P_F_C_Intersection(Poset):
 
 @dataclass(frozen=True)
 class P_F_C_Union(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    ambient: Poset = field(metadata={'description': "The ambient poset that includes the others.\n"})
-    labels: list[str] | None = field(metadata={'description': "Labels for the posets.\n"})
-    subs: list[Poset] = field(metadata={'description': "The posets that are included in the union. They are all subposets\nof the ambient poset.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_C_Union"] = field()
+    ambient: Poset = field()
+    labels: list[str] | None = field()
+    subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30267,11 +30831,11 @@ class P_F_C_Union(Poset):
 
 @dataclass(frozen=True)
 class P_F_Interval(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_Interval"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    high: Any = field(metadata={'description': "The upper bound of the interval."})
-    low: Any = field(metadata={'description': "The lower bound of the interval."})
-    poset: Poset = field(metadata={'description': "The ambient poset."})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_Interval"] = field()
+    high: Any = field()
+    low: Any = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30284,10 +30848,10 @@ class P_F_Interval(Poset):
 
 @dataclass(frozen=True)
 class P_F_LowerClosure(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_LowerClosure"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    ls: LowerSet = field(metadata={'description': "The lower set."})
-    poset: Poset = field(metadata={'description': "The ambient poset."})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_LowerClosure"] = field()
+    ls: LowerSet = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30299,10 +30863,10 @@ class P_F_LowerClosure(Poset):
 
 @dataclass(frozen=True)
 class P_F_Subposet(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_Subposet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    elements: list[Any] = field(metadata={'description': "The elements of the subposet.\n"})
-    poset: Poset = field(metadata={'description': "The ambient poset that contains the elements.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_Subposet"] = field()
+    elements: list[Any] = field()
+    poset: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30314,10 +30878,10 @@ class P_F_Subposet(Poset):
 
 @dataclass(frozen=True)
 class P_F_UpperClosure(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_F_UpperClosure"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    poset: Poset = field(metadata={'description': "The ambient poset."})
-    us: UpperSet = field(metadata={'description': "The upper set."})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_F_UpperClosure"] = field()
+    poset: Poset = field()
+    us: UpperSet = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30329,11 +30893,11 @@ class P_F_UpperClosure(Poset):
 
 @dataclass(frozen=True)
 class P_Finite(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Finite"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    aliases: dict[str, list[str]] | None = field(metadata={'description': "Aliases for the elements of the poset.\nThe keys are the aliases, and the values are arrays of elements that are equivalent to the alias.\n"})
-    elements: list[str] = field(metadata={'description': "The elements of the poset, strings.\n"})
-    relations: list[list[str]] = field(metadata={'description': "The relations of the poset, each relation is a pair of elements.\nThe first element is less than the second element.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Finite"] = field()
+    aliases: dict[str, list[str]] | None = field()
+    elements: list[str] = field()
+    relations: list[list[str]] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30347,9 +30911,9 @@ class P_Finite(Poset):
 
 @dataclass(frozen=True)
 class P_Float(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Float"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    size: Literal["f8", "f16", "f32", "f64", "f80", "f128"] = field(metadata={'description': "Precision of the floating point number.\nCurrent supported values are f32 and f64.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Float"] = field()
+    size: Literal["f8", "f16", "f32", "f64", "f80", "f128"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30360,11 +30924,11 @@ class P_Float(Poset):
 
 @dataclass(frozen=True)
 class P_Fractions(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Fractions"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    max_abs_denominator: int = field(metadata={'description': "Maximum absolute value for the denominator.\n"})
-    max_abs_numerator: int = field(metadata={'description': "Maximum absolute value for the numerator.\n"})
-    size: Literal["i8", "i16", "i32", "i64", "i128"] = field(metadata={'description': "Precision of the fraction.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Fractions"] = field()
+    max_abs_denominator: int = field()
+    max_abs_numerator: int = field()
+    size: Literal["i8", "i16", "i32", "i64", "i128"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30377,9 +30941,9 @@ class P_Fractions(Poset):
 
 @dataclass(frozen=True)
 class P_Integer(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Integer"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    size: Literal["i8", "i16", "i32", "i64", "i128"] = field(metadata={'description': "Bit size of the integer.\n"})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Integer"] = field()
+    size: Literal["i8", "i16", "i32", "i64", "i128"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30390,8 +30954,8 @@ class P_Integer(Poset):
 
 @dataclass(frozen=True)
 class P_Unknown(Poset):
-    kind: Literal["Poset"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["P_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Poset"] = field()
+    type_: Literal["P_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30416,9 +30980,9 @@ class Projection:
 
 @dataclass(frozen=True)
 class Query(Root):
-    kind: Literal["Query"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["Query_Single"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Query"] = field()
+    address: Address | None = field()
+    type_: Literal["Query_Single"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30480,7 +31044,7 @@ class QueryFixReqMaxFunData(QueryData):
 
 @dataclass(frozen=True)
 class Query_Single(Query):
-    kind: Literal["Query"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Query"] = field()
     model: NDP = field()
     query_data: QueryData = field()
 
@@ -30511,10 +31075,10 @@ class Range:
 
 @dataclass(frozen=True)
 class SL1Check(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[SL1Check_Data] = field(metadata={'description': "Test pairs"})
-    m: SL1Map = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["SL1Check"] = field()
+    data: list[SL1Check_Data] = field()
+    m: SL1Map = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30531,8 +31095,8 @@ class SL1Check_Data:
     pess: Any = field()
     pess_y: LowerSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
-    pess_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    opt_elapsed: float | None = field()
+    pess_elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30551,12 +31115,12 @@ class SL1Check_Data:
 
 @dataclass(frozen=True)
 class SL1Map(Root):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SL1Map"] = field()
     kcod: Poset = field()
     kdom: Poset = field()
     opt: Poset = field()
     pes: Poset = field()
-    type_: Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30571,9 +31135,9 @@ class SL1Map(Root):
 
 @dataclass(frozen=True)
 class SL1_C_CodSum(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_CodSum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_CodSum"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30587,9 +31151,9 @@ class SL1_C_CodSum(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_CodSumSmash(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_CodSumSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_CodSumSmash"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30603,12 +31167,12 @@ class SL1_C_CodSumSmash(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_ExplicitApprox(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_ExplicitApprox"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    optimistic: list[L1Map] = field(metadata={'description': "The optimistic approximations of the L1Map.\n"})
-    optimistic_labels: list[str] | None = field(metadata={'description': "Labels for the optimistic approximations.\n"})
-    pessimistic: list[L1Map] = field(metadata={'description': "The pessimistic approximations of the L1Map.\n"})
-    pessimistic_labels: list[str] | None = field(metadata={'description': "Labels for the pessimistic approximations.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_ExplicitApprox"] = field()
+    optimistic: list[L1Map] = field()
+    optimistic_labels: list[str] | None = field()
+    pessimistic: list[L1Map] = field()
+    pessimistic_labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30624,9 +31188,9 @@ class SL1_C_ExplicitApprox(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_Intersection(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_Intersection"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30640,9 +31204,9 @@ class SL1_C_Intersection(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_Parallel(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_Parallel"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30656,9 +31220,9 @@ class SL1_C_Parallel(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_ProdIntersection(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_ProdIntersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_ProdIntersection"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30672,9 +31236,9 @@ class SL1_C_ProdIntersection(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_Product(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_Product"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_Product"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30688,8 +31252,8 @@ class SL1_C_Product(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_RefineDomain(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_RefineDomain"] = field()
     m: SL1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30701,9 +31265,9 @@ class SL1_C_RefineDomain(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_Series(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_Series"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30717,8 +31281,8 @@ class SL1_C_Series(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_Trace(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_Trace"] = field()
     m: SL1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30730,9 +31294,9 @@ class SL1_C_Trace(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_Union(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_Union"] = field()
+    labels: list[str] | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30746,10 +31310,10 @@ class SL1_C_Union(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_C_WrapUnits(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod_units: Unit = field(metadata={'description': "The units for the codomain.\n"})
-    kdom_units: Unit = field(metadata={'description': "The units for the domain.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_C_WrapUnits"] = field()
+    kcod_units: Unit = field()
+    kdom_units: Unit = field()
     m: SL1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30763,9 +31327,9 @@ class SL1_C_WrapUnits(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_Exact(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_Exact"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: L1Map = field(metadata={'description': "The L1Map to lift.\n"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_Exact"] = field()
+    m: L1Map = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30776,8 +31340,8 @@ class SL1_Exact(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_Identity(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30787,9 +31351,9 @@ class SL1_Identity(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_InvMultiply(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_InvMultiply"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "The poset where the operation takes place"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_InvMultiply"] = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30800,9 +31364,9 @@ class SL1_InvMultiply(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_InvSum(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_InvSum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "The poset where the operation takes place"})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_InvSum"] = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30813,8 +31377,8 @@ class SL1_InvSum(SL1Map):
 
 @dataclass(frozen=True)
 class SL1_Unknown(SL1Map):
-    kind: Literal["SL1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SL1Map"] = field()
+    type_: Literal["SL1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30824,10 +31388,10 @@ class SL1_Unknown(SL1Map):
 
 @dataclass(frozen=True)
 class SLCheck(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SLCheck"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[SLCheck_Data] = field(metadata={'description': "Test pairs"})
-    m: SLMap = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["SLCheck"] = field()
+    data: list[SLCheck_Data] = field()
+    m: SLMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30844,8 +31408,8 @@ class SLCheck_Data:
     pess: Any = field()
     pess_y: LowerSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
-    pess_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    opt_elapsed: float | None = field()
+    pess_elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30864,13 +31428,13 @@ class SLCheck_Data:
 
 @dataclass(frozen=True)
 class SLMap(Root):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod: Poset = field(metadata={'description': "Kleisli co-domain of the map."})
-    kdom: Poset = field(metadata={'description': "Kleisli domain of the map."})
-    kimp: Poset = field(metadata={'description': "Poset of implementations."})
-    opt: Poset = field(metadata={'description': "Poset of resolutions (optimistic)"})
-    pes: Poset = field(metadata={'description': "Poset of resolutions (pessimistic)"})
-    type_: Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SLMap"] = field()
+    kcod: Poset = field()
+    kdom: Poset = field()
+    kimp: Poset = field()
+    opt: Poset = field()
+    pes: Poset = field()
+    type_: Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30886,8 +31450,8 @@ class SLMap(Root):
 
 @dataclass(frozen=True)
 class SL_C_ITransform(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_ITransform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_ITransform"] = field()
     m: SLMap = field()
     transform: MonotoneMap = field()
 
@@ -30901,10 +31465,10 @@ class SL_C_ITransform(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_Intersection(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
-    ms: list[SLMap] = field(metadata={'description': "Maps to be composed."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_Intersection"] = field()
+    labels: list[str] | None = field()
+    ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30917,10 +31481,10 @@ class SL_C_Intersection(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_Parallel(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
-    ms: list[SLMap] = field(metadata={'description': "Maps to be composed."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_Parallel"] = field()
+    labels: list[str] | None = field()
+    ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30933,8 +31497,8 @@ class SL_C_Parallel(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_RefineDomain(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_RefineDomain"] = field()
     m: SLMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30946,10 +31510,10 @@ class SL_C_RefineDomain(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_Series(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
-    ms: list[SLMap] = field(metadata={'description': "Maps to be composed."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_Series"] = field()
+    labels: list[str] | None = field()
+    ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30962,8 +31526,8 @@ class SL_C_Series(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_Trace(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_Trace"] = field()
     m: SLMap = field()
     m_proj: SL1Map = field()
 
@@ -30977,10 +31541,10 @@ class SL_C_Trace(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_Union(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
-    ms: list[SLMap] = field(metadata={'description': "Maps to be composed."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_Union"] = field()
+    labels: list[str] | None = field()
+    ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -30993,11 +31557,11 @@ class SL_C_Union(SLMap):
 
 @dataclass(frozen=True)
 class SL_C_WrapUnits(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod_units: Unit = field(metadata={'description': "Units for the codomain of the SLMap.\n"})
-    kdom_units: Unit = field(metadata={'description': "Units for the domain of the SLMap.\n"})
-    kimp_units: Unit = field(metadata={'description': "Units for the implementations of the SLMap.\n"})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_WrapUnits"] = field()
+    kcod_units: Unit = field()
+    kdom_units: Unit = field()
+    kimp_units: Unit = field()
     m: SLMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31012,8 +31576,8 @@ class SL_C_WrapUnits(SLMap):
 
 @dataclass(frozen=True)
 class SL_Identity(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31023,9 +31587,9 @@ class SL_Identity(SLMap):
 
 @dataclass(frozen=True)
 class SL_L_Exact(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_L_Exact"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: LMap = field(metadata={'description': "The LMap to be lifted to a SLMap.\n"})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_L_Exact"] = field()
+    m: LMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31036,12 +31600,12 @@ class SL_L_Exact(SLMap):
 
 @dataclass(frozen=True)
 class SL_L_Explicit_Approx(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_L_Explicit_Approx"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    optimistic: list[LMap] = field(metadata={'description': "The optimistic approximations of the SLMap.\n"})
-    optimistic_labels: list[str] | None = field(metadata={'description': "Labels for the optimistic approximations.\n"})
-    pessimistic: list[LMap] = field(metadata={'description': "The pessimistic approximations of the SLMap.\n"})
-    pessimistic_labels: list[str] | None = field(metadata={'description': "Labels for the pessimistic approximations.\n"})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_L_Explicit_Approx"] = field()
+    optimistic: list[LMap] = field()
+    optimistic_labels: list[str] | None = field()
+    pessimistic: list[LMap] = field()
+    pessimistic_labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31057,10 +31621,10 @@ class SL_L_Explicit_Approx(SLMap):
 
 @dataclass(frozen=True)
 class SL_L_Lift1_Constant(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_L_Lift1_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: SL1Map = field(metadata={'description': "The SL1Map to be lifted to a SLMap.\n"})
-    value: Any = field(metadata={'description': "The constant value to be used for the implementations\n"})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_L_Lift1_Constant"] = field()
+    m: SL1Map = field()
+    value: Any = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31072,10 +31636,10 @@ class SL_L_Lift1_Constant(SLMap):
 
 @dataclass(frozen=True)
 class SL_L_Lift1_Transform(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_L_Lift1_Transform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: SL1Map = field(metadata={'description': "The SL1Map to be lifted to a SLMap.\n"})
-    transform: MonotoneMap = field(metadata={'description': "The monotone map that transforms the implementations of the SLMap.\n"})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_L_Lift1_Transform"] = field()
+    m: SL1Map = field()
+    transform: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31087,8 +31651,8 @@ class SL_L_Lift1_Transform(SLMap):
 
 @dataclass(frozen=True)
 class SL_Unknown(SLMap):
-    kind: Literal["SLMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SL_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31098,10 +31662,10 @@ class SL_Unknown(SLMap):
 
 @dataclass(frozen=True)
 class SU1Check(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[SU1Check_Data] = field(metadata={'description': "Test pairs"})
-    m: SU1Map = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["SU1Check"] = field()
+    data: list[SU1Check_Data] = field()
+    m: SU1Map = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31118,8 +31682,8 @@ class SU1Check_Data:
     pess: Any = field()
     pess_y: UpperSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
-    pess_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    opt_elapsed: float | None = field()
+    pess_elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31138,12 +31702,12 @@ class SU1Check_Data:
 
 @dataclass(frozen=True)
 class SU1Map(Root):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SU1Map"] = field()
     kcod: Poset = field()
     kdom: Poset = field()
     opt: Poset = field()
     pes: Poset = field()
-    type_: Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31158,9 +31722,9 @@ class SU1Map(Root):
 
 @dataclass(frozen=True)
 class SU1_C_CodSum(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_CodSum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_CodSum"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31174,9 +31738,9 @@ class SU1_C_CodSum(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_CodSumSmash(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_CodSumSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_CodSumSmash"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31190,12 +31754,12 @@ class SU1_C_CodSumSmash(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_ExplicitApprox(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_ExplicitApprox"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    optimistic: list[U1Map] = field(metadata={'description': "The optimistic approximations of the map\n"})
-    optimistic_labels: list[str] | None = field(metadata={'description': "Labels for the optimistic approximations.\n"})
-    pessimistic: list[U1Map] = field(metadata={'description': "The pessimistic approximations of the map\n"})
-    pessimistic_labels: list[str] | None = field(metadata={'description': "Labels for the pessimistic approximations.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_ExplicitApprox"] = field()
+    optimistic: list[U1Map] = field()
+    optimistic_labels: list[str] | None = field()
+    pessimistic: list[U1Map] = field()
+    pessimistic_labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31211,9 +31775,9 @@ class SU1_C_ExplicitApprox(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_Intersection(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_Intersection"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31227,9 +31791,9 @@ class SU1_C_Intersection(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_Parallel(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_Parallel"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31243,9 +31807,9 @@ class SU1_C_Parallel(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_ProdIntersection(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_ProdIntersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_ProdIntersection"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31259,9 +31823,9 @@ class SU1_C_ProdIntersection(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_Product(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_Product"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_Product"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31275,8 +31839,8 @@ class SU1_C_Product(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_RefineDomain(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_RefineDomain"] = field()
     m: SU1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31288,9 +31852,9 @@ class SU1_C_RefineDomain(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_Series(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_Series"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31304,8 +31868,8 @@ class SU1_C_Series(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_Trace(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_Trace"] = field()
     m: SU1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31317,9 +31881,9 @@ class SU1_C_Trace(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_Union(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_Union"] = field()
+    labels: list[str] | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31333,10 +31897,10 @@ class SU1_C_Union(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_C_WrapUnits(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod_units: Unit = field(metadata={'description': "Units for the codomain\n"})
-    kdom_units: Unit = field(metadata={'description': "Units for the domain\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_C_WrapUnits"] = field()
+    kcod_units: Unit = field()
+    kdom_units: Unit = field()
     m: SU1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31350,9 +31914,9 @@ class SU1_C_WrapUnits(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_Exact(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_Exact"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: U1Map = field(metadata={'description': "The U1Map to be lifted to a SU1Map.\n"})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_Exact"] = field()
+    m: U1Map = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31363,8 +31927,8 @@ class SU1_Exact(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_Identity(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31374,9 +31938,9 @@ class SU1_Identity(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_InvMultiply(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_InvMultiply"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "The poset where the operation is defined."})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_InvMultiply"] = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31387,9 +31951,9 @@ class SU1_InvMultiply(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_InvSum(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_InvSum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    opspace: Poset = field(metadata={'description': "The poset where the operation is defined."})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_InvSum"] = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31400,8 +31964,8 @@ class SU1_InvSum(SU1Map):
 
 @dataclass(frozen=True)
 class SU1_Unknown(SU1Map):
-    kind: Literal["SU1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SU1Map"] = field()
+    type_: Literal["SU1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31411,10 +31975,10 @@ class SU1_Unknown(SU1Map):
 
 @dataclass(frozen=True)
 class SUCheck(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SUCheck"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[SUCheck_Data] = field(metadata={'description': "Test pairs"})
-    m: SUMap = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["SUCheck"] = field()
+    data: list[SUCheck_Data] = field()
+    m: SUMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31431,8 +31995,8 @@ class SUCheck_Data:
     pess: Any = field()
     pess_y: UpperSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
-    pess_elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    opt_elapsed: float | None = field()
+    pess_elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31451,13 +32015,13 @@ class SUCheck_Data:
 
 @dataclass(frozen=True)
 class SUMap(Root):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod: Poset = field(metadata={'description': "Kleisli co-domain of the map."})
-    kdom: Poset = field(metadata={'description': "Kleisli domain of the map."})
-    kimp: Poset = field(metadata={'description': "Poset of implementations."})
-    opt: Poset = field(metadata={'description': "Poset of resolutions (optimistic)"})
-    pes: Poset = field(metadata={'description': "Poset of resolutions (pessimistic)"})
-    type_: Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SUMap"] = field()
+    kcod: Poset = field()
+    kdom: Poset = field()
+    kimp: Poset = field()
+    opt: Poset = field()
+    pes: Poset = field()
+    type_: Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31473,8 +32037,8 @@ class SUMap(Root):
 
 @dataclass(frozen=True)
 class SU_C_ITransform(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_ITransform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_ITransform"] = field()
     m: SUMap = field()
     transform: MonotoneMap = field()
 
@@ -31488,9 +32052,9 @@ class SU_C_ITransform(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_Intersection(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_Intersection"] = field()
+    labels: list[str] | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31504,9 +32068,9 @@ class SU_C_Intersection(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_Parallel(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_Parallel"] = field()
+    labels: list[str] | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31520,8 +32084,8 @@ class SU_C_Parallel(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_RefineDomain(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_RefineDomain"] = field()
     m: SUMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31533,9 +32097,9 @@ class SU_C_RefineDomain(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_Series(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_Series"] = field()
+    labels: list[str] | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31549,8 +32113,8 @@ class SU_C_Series(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_Trace(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_Trace"] = field()
     m: SUMap = field()
     m_proj: SU1Map = field()
 
@@ -31564,9 +32128,9 @@ class SU_C_Trace(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_Union(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_Union"] = field()
+    labels: list[str] | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31580,11 +32144,11 @@ class SU_C_Union(SUMap):
 
 @dataclass(frozen=True)
 class SU_C_WrapUnits(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod_units: Unit = field(metadata={'description': "Units for the codomain of the SUMap.\n"})
-    kdom_units: Unit = field(metadata={'description': "Units for the domain of the SUMap.\n"})
-    kimp_units: Unit = field(metadata={'description': "Units for the implementations of the SUMap.\n"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_WrapUnits"] = field()
+    kcod_units: Unit = field()
+    kdom_units: Unit = field()
+    kimp_units: Unit = field()
     m: SUMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31599,8 +32163,8 @@ class SU_C_WrapUnits(SUMap):
 
 @dataclass(frozen=True)
 class SU_Identity(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31610,9 +32174,9 @@ class SU_Identity(SUMap):
 
 @dataclass(frozen=True)
 class SU_L_Exact(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_L_Exact"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: UMap = field(metadata={'description': "The UMap to be lifted to a SUMap.\n"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_L_Exact"] = field()
+    m: UMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31623,12 +32187,12 @@ class SU_L_Exact(SUMap):
 
 @dataclass(frozen=True)
 class SU_L_Explicit_Approx(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_L_Explicit_Approx"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    optimistic: list[UMap] = field(metadata={'description': "The optimistic approximations of the SUMap.\n"})
-    optimistic_labels: list[str] | None = field(metadata={'description': "Labels for the optimistic approximations.\n"})
-    pessimistic: list[UMap] = field(metadata={'description': "The pessimistic approximations of the SUMap.\n"})
-    pessimistic_labels: list[str] | None = field(metadata={'description': "Labels for the pessimistic approximations.\n"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_L_Explicit_Approx"] = field()
+    optimistic: list[UMap] = field()
+    optimistic_labels: list[str] | None = field()
+    pessimistic: list[UMap] = field()
+    pessimistic_labels: list[str] | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31644,10 +32208,10 @@ class SU_L_Explicit_Approx(SUMap):
 
 @dataclass(frozen=True)
 class SU_L_Lift1_Constant(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_L_Lift1_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: SU1Map = field(metadata={'description': "The SU1Map to be lifted to a SUMap.\n"})
-    value: Any = field(metadata={'description': "The constant value to be used for the implementations\n"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_L_Lift1_Constant"] = field()
+    m: SU1Map = field()
+    value: Any = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31659,10 +32223,10 @@ class SU_L_Lift1_Constant(SUMap):
 
 @dataclass(frozen=True)
 class SU_L_Lift1_Transform(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_L_Lift1_Transform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    m: SU1Map = field(metadata={'description': "The SU1Map to be lifted to a SUMap.\n"})
-    transform: MonotoneMap = field(metadata={'description': "The monotone map that transforms the implementations of the SUMap.\n"})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_L_Lift1_Transform"] = field()
+    m: SU1Map = field()
+    transform: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31674,8 +32238,8 @@ class SU_L_Lift1_Transform(SUMap):
 
 @dataclass(frozen=True)
 class SU_Unknown(SUMap):
-    kind: Literal["SUMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["SU_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31685,10 +32249,10 @@ class SU_Unknown(SUMap):
 
 @dataclass(frozen=True)
 class U1Check(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[U1Check_Data] = field(metadata={'description': "Test pairs"})
-    m: U1Map = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["U1Check"] = field()
+    data: list[U1Check_Data] = field()
+    m: U1Map = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31702,7 +32266,7 @@ class U1Check(Check):
 class U1Check_Data:
     x: Any = field()
     y: UpperSet = field()
-    elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31716,10 +32280,10 @@ class U1Check_Data:
 
 @dataclass(frozen=True)
 class U1Map(Root):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
     kcod: Poset = field()
     kdom: Poset = field()
-    type_: Literal["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31732,9 +32296,9 @@ class U1Map(Root):
 
 @dataclass(frozen=True)
 class U1_C_CodSum(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_CodSum"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_CodSum"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31748,9 +32312,9 @@ class U1_C_CodSum(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_CodSumSmash(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_CodSumSmash"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_CodSumSmash"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31764,9 +32328,9 @@ class U1_C_CodSumSmash(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_DomUnion(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_DomUnion"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_DomUnion"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31780,9 +32344,9 @@ class U1_C_DomUnion(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_Intersection(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_Intersection"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31796,9 +32360,9 @@ class U1_C_Intersection(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_Parallel(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_Parallel"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31812,9 +32376,9 @@ class U1_C_Parallel(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_ProdIntersection(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_ProdIntersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_ProdIntersection"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31828,9 +32392,9 @@ class U1_C_ProdIntersection(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_Product(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_Product"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_Product"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31844,8 +32408,8 @@ class U1_C_Product(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_RefineDomain(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_RefineDomain"] = field()
     m: U1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31857,9 +32421,9 @@ class U1_C_RefineDomain(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_Series(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_Series"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31873,8 +32437,8 @@ class U1_C_Series(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_Trace(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_Trace"] = field()
     m: U1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31886,9 +32450,9 @@ class U1_C_Trace(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_Union(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "A list of labels for the maps\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_Union"] = field()
+    labels: list[str] | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31902,10 +32466,10 @@ class U1_C_Union(U1Map):
 
 @dataclass(frozen=True)
 class U1_C_WrapUnits(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    kcod_units: Unit = field(metadata={'description': "Units for the codomain\n"})
-    kdom_units: Unit = field(metadata={'description': "Units for the domain\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_C_WrapUnits"] = field()
+    kcod_units: Unit = field()
+    kdom_units: Unit = field()
     m: U1Map = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31919,8 +32483,8 @@ class U1_C_WrapUnits(U1Map):
 
 @dataclass(frozen=True)
 class U1_Catalog(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Catalog"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Catalog"] = field()
     options: list[U1_Catalog_Options] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31945,8 +32509,8 @@ class U1_Catalog_Options:
 
 @dataclass(frozen=True)
 class U1_Constant(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Constant"] = field()
     value: UpperSet = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31958,8 +32522,8 @@ class U1_Constant(U1Map):
 
 @dataclass(frozen=True)
 class U1_Entire(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Entire"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Entire"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -31969,8 +32533,8 @@ class U1_Entire(U1Map):
 
 @dataclass(frozen=True)
 class U1_Explicit(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Explicit"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Explicit"] = field()
     options: list[U1_Explicit_Option] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31995,8 +32559,8 @@ class U1_Explicit_Option:
 
 @dataclass(frozen=True)
 class U1_FromFilter(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_FromFilter"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_FromFilter"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32008,8 +32572,8 @@ class U1_FromFilter(U1Map):
 
 @dataclass(frozen=True)
 class U1_Identity(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32019,8 +32583,8 @@ class U1_Identity(U1Map):
 
 @dataclass(frozen=True)
 class U1_IntersectionOfPrinUpperSets(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_IntersectionOfPrinUpperSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_IntersectionOfPrinUpperSets"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32030,10 +32594,10 @@ class U1_IntersectionOfPrinUpperSets(U1Map):
 
 @dataclass(frozen=True)
 class U1_InvMul_Opt(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_InvMul_Opt"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_InvMul_Opt"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32045,10 +32609,10 @@ class U1_InvMul_Opt(U1Map):
 
 @dataclass(frozen=True)
 class U1_InvMul_Pes(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_InvMul_Pes"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_InvMul_Pes"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32060,10 +32624,10 @@ class U1_InvMul_Pes(U1Map):
 
 @dataclass(frozen=True)
 class U1_InvSum_Opt(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_InvSum_Opt"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_InvSum_Opt"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32075,10 +32639,10 @@ class U1_InvSum_Opt(U1Map):
 
 @dataclass(frozen=True)
 class U1_InvSum_Pes(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_InvSum_Pes"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    n: int = field(metadata={'description': "Resolution (number of points in the produced antichain)\n"})
-    opspace: Poset = field(metadata={'description': "The poset in which the operation is performed.\n"})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_InvSum_Pes"] = field()
+    n: int = field()
+    opspace: Poset = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32090,8 +32654,8 @@ class U1_InvSum_Pes(U1Map):
 
 @dataclass(frozen=True)
 class U1_L_Uinv(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_L_Uinv"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_L_Uinv"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32103,8 +32667,8 @@ class U1_L_Uinv(U1Map):
 
 @dataclass(frozen=True)
 class U1_Lift(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Lift"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Lift"] = field()
     m: MonotoneMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32116,8 +32680,8 @@ class U1_Lift(U1Map):
 
 @dataclass(frozen=True)
 class U1_RepresentPrincipalUpperSet(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_RepresentPrincipalUpperSet"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_RepresentPrincipalUpperSet"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32127,8 +32691,8 @@ class U1_RepresentPrincipalUpperSet(U1Map):
 
 @dataclass(frozen=True)
 class U1_Uinv_Join(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Uinv_Join"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Uinv_Join"] = field()
     lower_bounds: list[list[Any]] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32140,8 +32704,8 @@ class U1_Uinv_Join(U1Map):
 
 @dataclass(frozen=True)
 class U1_Uinv_JoinConstant(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Uinv_JoinConstant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Uinv_JoinConstant"] = field()
     join1_dom: Poset = field()
     value: Value = field()
 
@@ -32155,8 +32719,8 @@ class U1_Uinv_JoinConstant(U1Map):
 
 @dataclass(frozen=True)
 class U1_UnionOfPrinUpperSets(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_UnionOfPrinUpperSets"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_UnionOfPrinUpperSets"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32166,8 +32730,8 @@ class U1_UnionOfPrinUpperSets(U1Map):
 
 @dataclass(frozen=True)
 class U1_Unknown(U1Map):
-    kind: Literal["U1Map"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U1_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["U1Map"] = field()
+    type_: Literal["U1_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32177,10 +32741,10 @@ class U1_Unknown(U1Map):
 
 @dataclass(frozen=True)
 class UCheck(Check):
-    kind: Literal["Check"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["UCheck"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    data: list[UCheck_Data] = field(metadata={'description': "Test pairs"})
-    m: UMap = field(metadata={'description': "The map to check"})
+    kind: Literal["Check"] = field()
+    type_: Literal["UCheck"] = field()
+    data: list[UCheck_Data] = field()
+    m: UMap = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32194,7 +32758,7 @@ class UCheck(Check):
 class UCheck_Data:
     x: Any = field()
     y: UpperSet = field()
-    elapsed: float | None = field(metadata={'description': "Time taken for the check in seconds."})
+    elapsed: float | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32208,11 +32772,11 @@ class UCheck_Data:
 
 @dataclass(frozen=True)
 class UMap(Root):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
     kcod: Poset = field()
     kdom: Poset = field()
     kimp: Poset = field()
-    type_: Literal["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32226,8 +32790,8 @@ class UMap(Root):
 
 @dataclass(frozen=True)
 class U_C_ITransform(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_ITransform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_ITransform"] = field()
     m: UMap = field()
     transform: MonotoneMap = field()
 
@@ -32241,10 +32805,10 @@ class U_C_ITransform(UMap):
 
 @dataclass(frozen=True)
 class U_C_Intersection(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_Intersection"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[UMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_Intersection"] = field()
+    labels: list[str] | None = field()
+    ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32257,10 +32821,10 @@ class U_C_Intersection(UMap):
 
 @dataclass(frozen=True)
 class U_C_Parallel(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_Parallel"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[UMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_Parallel"] = field()
+    labels: list[str] | None = field()
+    ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32273,8 +32837,8 @@ class U_C_Parallel(UMap):
 
 @dataclass(frozen=True)
 class U_C_RefineDomain(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_RefineDomain"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_RefineDomain"] = field()
     m: UMap = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32286,10 +32850,10 @@ class U_C_RefineDomain(UMap):
 
 @dataclass(frozen=True)
 class U_C_Series(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_Series"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[UMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_Series"] = field()
+    labels: list[str] | None = field()
+    ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32302,8 +32866,8 @@ class U_C_Series(UMap):
 
 @dataclass(frozen=True)
 class U_C_Trace(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_Trace"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_Trace"] = field()
     m: UMap = field()
     m_proj: U1Map = field()
 
@@ -32317,10 +32881,10 @@ class U_C_Trace(UMap):
 
 @dataclass(frozen=True)
 class U_C_Union(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_Union"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "Labels for the maps.\n"})
-    ms: list[UMap] = field(metadata={'description': "Maps to be composed.\n"})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_Union"] = field()
+    labels: list[str] | None = field()
+    ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32333,8 +32897,8 @@ class U_C_Union(UMap):
 
 @dataclass(frozen=True)
 class U_C_WrapUnits(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_C_WrapUnits"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_WrapUnits"] = field()
     kcod_units: Unit = field()
     kdom_units: Unit = field()
     kimp_units: Unit = field()
@@ -32352,9 +32916,9 @@ class U_C_WrapUnits(UMap):
 
 @dataclass(frozen=True)
 class U_Catalog(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_Catalog"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    options: list[U_Catalog_Options] = field(metadata={'description': "The options in the catalog.\n"})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_Catalog"] = field()
+    options: list[U_Catalog_Options] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32380,9 +32944,9 @@ class U_Catalog_Options:
 
 @dataclass(frozen=True)
 class U_Constant(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    value: UpperSet = field(metadata={'description': "The upper set that is the value of the constant map.\n"})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_Constant"] = field()
+    value: UpperSet = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32393,8 +32957,8 @@ class U_Constant(UMap):
 
 @dataclass(frozen=True)
 class U_Identity(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_Identity"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_Identity"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32404,8 +32968,8 @@ class U_Identity(UMap):
 
 @dataclass(frozen=True)
 class U_L_Lift1_Constant(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_L_Lift1_Constant"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_L_Lift1_Constant"] = field()
     m: U1Map = field()
     value: Any = field()
 
@@ -32419,8 +32983,8 @@ class U_L_Lift1_Constant(UMap):
 
 @dataclass(frozen=True)
 class U_L_Lift1_Transform(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_L_Lift1_Transform"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_L_Lift1_Transform"] = field()
     m: U1Map = field()
     transform: MonotoneMap = field()
 
@@ -32434,8 +32998,8 @@ class U_L_Lift1_Transform(UMap):
 
 @dataclass(frozen=True)
 class U_Unknown(UMap):
-    kind: Literal["UMap"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    type_: Literal["U_Unknown"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_Unknown"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32447,7 +33011,7 @@ class U_Unknown(UMap):
 class Unit:
     kind: Literal["Unit"] = field()
     type_: Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"] = field()
-    description: str | None = field(metadata={'description': "A human-readable description of the unit (debug purposes)."})
+    description: str | None = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32461,7 +33025,7 @@ class Unit:
 
 @dataclass(frozen=True)
 class Unit_None(Unit):
-    type_: Literal["Unit_None"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["Unit_None"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32471,8 +33035,8 @@ class Unit_None(Unit):
 
 @dataclass(frozen=True)
 class Unit_Single(Unit):
-    type_: Literal["Unit_Single"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    units: str = field(metadata={'description': "A string representing the unit.\n"})
+    type_: Literal["Unit_Single"] = field()
+    units: str = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32483,9 +33047,9 @@ class Unit_Single(Unit):
 
 @dataclass(frozen=True)
 class Unit_Vector(Unit):
-    type_: Literal["Unit_Vector"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    labels: list[str] | None = field(metadata={'description': "labels for the subunits\n"})
-    subs: list[Unit] = field(metadata={'description': "The subunits.\n"})
+    type_: Literal["Unit_Vector"] = field()
+    labels: list[str] | None = field()
+    subs: list[Unit] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32498,7 +33062,7 @@ class Unit_Vector(Unit):
 
 @dataclass(frozen=True)
 class Unit_Wrapped(Unit):
-    type_: Literal["Unit_Wrapped"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    type_: Literal["Unit_Wrapped"] = field()
     inside: list[Unit] = field()
     name: str = field()
     shape: Any = field()
@@ -32549,9 +33113,9 @@ class UpperSet_UpperClosure(UpperSet):
 
 @dataclass(frozen=True)
 class Value(Root):
-    kind: Literal["Value"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
-    address: Address | None = field(metadata={'description': "Pointer to the entity that generated this object."})
-    type_: Literal["VU"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Value"] = field()
+    address: Address | None = field()
+    type_: Literal["VU"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -32564,7 +33128,7 @@ class Value(Root):
 
 @dataclass(frozen=True)
 class VU(Value):
-    kind: Literal["Value"] = field(metadata={'description': "Discriminator variable to distinguish subtypes."})
+    kind: Literal["Value"] = field()
     poset: Poset = field()
     value: Any = field()
 
