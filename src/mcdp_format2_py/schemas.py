@@ -30,65 +30,25 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def validate_enum_4eeb(value: object) -> Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]:
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(value: object) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
-
-def load_list_of_SUMap(value: object) -> list[SUMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
-
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_Value(v) for k, v in value.items()}
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(value: object) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_NDPInterface(v) for k, v in value.items()}
-
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
-
-def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
-
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
 
 def validate_enum_b0de(value: object) -> Literal["DP_All_Constants_And_F_Leq_R", "DP_All_Constants_Leq_R", "DP_All_Fi_Leq_R", "DP_AmbientConversion", "DP_Any_Constants_Or_F_Leq_R", "DP_Any_Fi_Leq_R", "DP_C_ExplicitApprox", "DP_C_Intersection", "DP_C_Parallel", "DP_C_Series", "DP_C_Trace", "DP_C_Union", "DP_Catalog", "DP_Compiled", "DP_F_Leq_All_Constants", "DP_F_Leq_All_R_And_Constants", "DP_F_Leq_All_Ri", "DP_F_Leq_Any_R_And_Constants", "DP_F_Leq_Any_Ri", "DP_False", "DP_FuncNotMoreThan", "DP_GenericConstant", "DP_Identity", "DP_Iso", "DP_LiftL", "DP_LiftU", "DP_ResNotLessThan", "DP_True", "DP_Unknown"]:
     if not isinstance(value, str):
@@ -98,44 +58,86 @@ def validate_enum_b0de(value: object) -> Literal["DP_All_Constants_And_F_Leq_R",
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(value: object) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_DP(value: object) -> list[DP]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP(item) for item in value]
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+def load_list_of_bool(value: object) -> list[bool]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_bool(item) for item in value]
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Check_Data(item) for item in value]
+
 def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_L_Catalog_Options(item) for item in value]
 
-def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
+def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_M_Explicit_Option(item) for item in value]
+    return [load_LCheck_Data(item) for item in value]
 
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+def validate_enum_5dfe(value: object) -> Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    allowed_values = ["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def validate_enum_1978(value: object) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
 
-def validate_enum_5d65(value: object) -> Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]:
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+def validate_enum_a17d(value: object) -> Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]
+    allowed_values = ["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -146,24 +148,16 @@ def load_list_of_SL1Map(value: object) -> list[SL1Map]:
     value = cast(list[object], value)
     return [load_SL1Map(item) for item in value]
 
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+def load_list_of_UMap(value: object) -> list[UMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_L1Check_Data(item) for item in value]
+    return [load_UMap(item) for item in value]
 
-def validate_enum_4700(value: object) -> Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]:
+def validate_enum_4f69(value: object) -> Literal["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]
+    allowed_values = ["SU_C_ITransform", "SU_C_Intersection", "SU_C_Parallel", "SU_C_RefineDomain", "SU_C_Series", "SU_C_Trace", "SU_C_Union", "SU_C_WrapUnits", "SU_Identity", "SU_L_Exact", "SU_L_Explicit_Approx", "SU_L_Lift1_Constant", "SU_L_Lift1_Transform", "SU_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -176,71 +170,45 @@ def validate_enum_17f66(value: object) -> Literal["M_AddL", "M_AddLConstant", "M
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLCheck_Data(item) for item in value]
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
-
-def load_list_of_DP(value: object) -> list[DP]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP(item) for item in value]
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
+def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
+    allowed_values = ["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_M_Explicit_Option(item) for item in value]
+
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Check_Data(item) for item in value]
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
+
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
+
+def validate_enum_5d65(value: object) -> Literal["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    allowed_values = ["SL1_C_CodSum", "SL1_C_CodSumSmash", "SL1_C_ExplicitApprox", "SL1_C_Intersection", "SL1_C_Parallel", "SL1_C_ProdIntersection", "SL1_C_Product", "SL1_C_RefineDomain", "SL1_C_Series", "SL1_C_Trace", "SL1_C_Union", "SL1_C_WrapUnits", "SL1_Exact", "SL1_Identity", "SL1_InvMultiply", "SL1_InvSum", "SL1_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
-
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
-
-def load_list_of_SLMap(value: object) -> list[SLMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLMap(item) for item in value]
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(value: object) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
 
 def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
     if not isinstance(value, str):
@@ -250,37 +218,73 @@ def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", 
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Check_Data(item) for item in value]
-
 def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_SUCheck_Data(item) for item in value]
 
-def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_Poset(v) for k, v in value.items()}
-
-def validate_enum_8a74(value: object) -> Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]:
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
+
+def validate_enum_4700(value: object) -> Literal["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L_C_ITransform", "L_C_Intersection", "L_C_Parallel", "L_C_RefineDomain", "L_C_Series", "L_C_Trace", "L_C_Union", "L_C_WrapUnits", "L_Catalog", "L_Constant", "L_Identity", "L_L_Lift1_Constant", "L_L_Lift1_Transform", "L_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLCheck_Data(item) for item in value]
+
+def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U_Catalog_Options(item) for item in value]
+
+def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
+
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UCheck_Data(item) for item in value]
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
 
 def validate_enum_a898(value: object) -> Literal["U1_C_CodSum", "U1_C_CodSumSmash", "U1_C_DomUnion", "U1_C_Intersection", "U1_C_Parallel", "U1_C_ProdIntersection", "U1_C_Product", "U1_C_RefineDomain", "U1_C_Series", "U1_C_Trace", "U1_C_Union", "U1_C_WrapUnits", "U1_Catalog", "U1_Constant", "U1_Entire", "U1_Explicit", "U1_FromFilter", "U1_Identity", "U1_IntersectionOfPrinUpperSets", "U1_InvMul_Opt", "U1_InvMul_Pes", "U1_InvSum_Opt", "U1_InvSum_Pes", "U1_L_Uinv", "U1_Lift", "U1_RepresentPrincipalUpperSet", "U1_Uinv_Join", "U1_Uinv_JoinConstant", "U1_UnionOfPrinUpperSets", "U1_Unknown"]:
     if not isinstance(value, str):
@@ -290,17 +294,57 @@ def validate_enum_a898(value: object) -> Literal["U1_C_CodSum", "U1_C_CodSumSmas
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U_Catalog_Options(item) for item in value]
+def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
+    return {k: load_Poset(v) for k, v in value.items()}
 
-def load_list_of_Poset(value: object) -> list[Poset]:
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
+    return [load_list_of_any(item) for item in value]
+
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLMap(item) for item in value]
+
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Check_Data(item) for item in value]
+
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[object, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
+
+def validate_enum_4eeb(value: object) -> Literal["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["SL_C_ITransform", "SL_C_Intersection", "SL_C_Parallel", "SL_C_RefineDomain", "SL_C_Series", "SL_C_Trace", "SL_C_Union", "SL_C_WrapUnits", "SL_Identity", "SL_L_Exact", "SL_L_Explicit_Approx", "SL_L_Lift1_Constant", "SL_L_Lift1_Transform", "SL_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(value: object) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
 
 def load_list_of_Connection(value: object) -> list[Connection]:
     if not isinstance(value, list):
@@ -308,17 +352,17 @@ def load_list_of_Connection(value: object) -> list[Connection]:
     value = cast(list[object], value)
     return [load_Connection(item) for item in value]
 
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
+def load_list_of_L1Map(value: object) -> list[L1Map]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_list_of_str(item) for item in value]
+    return [load_L1Map(item) for item in value]
 
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
+    return [load_L1_Explicit_Option(item) for item in value]
 
 def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
     if not isinstance(value, str):
@@ -328,30 +372,54 @@ def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f3
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def validate_enum_5dfe(value: object) -> Literal["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]:
+def validate_enum_8a74(value: object) -> Literal["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["SU1_C_CodSum", "SU1_C_CodSumSmash", "SU1_C_ExplicitApprox", "SU1_C_Intersection", "SU1_C_Parallel", "SU1_C_ProdIntersection", "SU1_C_Product", "SU1_C_RefineDomain", "SU1_C_Series", "SU1_C_Trace", "SU1_C_Union", "SU1_C_WrapUnits", "SU1_Exact", "SU1_Identity", "SU1_InvMultiply", "SU1_InvSum", "SU1_Unknown"]
+    allowed_values = ["P_Bool", "P_C_Arrow", "P_C_Discretized", "P_C_Lexicographic", "P_C_LowerSets", "P_C_Multisets", "P_C_Opposite", "P_C_Power", "P_C_Product", "P_C_ProductDS", "P_C_ProductSmash", "P_C_Sum", "P_C_SumSmash", "P_C_Twisted", "P_C_Units", "P_C_UpperSets", "P_Decimal", "P_F_Bounded", "P_F_C_Intersection", "P_F_C_Union", "P_F_Interval", "P_F_LowerClosure", "P_F_Subposet", "P_F_UpperClosure", "P_Finite", "P_Float", "P_Fractions", "P_Integer", "P_Unknown"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
 
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_any(item) for item in value]
-
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
-
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(value: object) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+def validate_enum_477e(value: object) -> Literal["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    allowed_values = ["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_Unit(value: object) -> list[Unit]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Unit(item) for item in value]
+
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def validate_enum_1978(value: object) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value # type: ignore 
+
+def load_list_of_Range(value: object) -> list[Range]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Range(item) for item in value]
+
+def validate_enum_19fd(value: object) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value # type: ignore 
@@ -362,103 +430,35 @@ def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
     value = cast(dict[object, object], value)
     return {k: load_list_of_str(v) for k, v in value.items()}
 
-def validate_enum_477e(value: object) -> Literal["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["U_C_ITransform", "U_C_Intersection", "U_C_Parallel", "U_C_RefineDomain", "U_C_Series", "U_C_Trace", "U_C_Union", "U_C_WrapUnits", "U_Catalog", "U_Constant", "U_Identity", "U_L_Lift1_Constant", "U_L_Lift1_Transform", "U_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_UCheck_Data(item) for item in value]
+    return [load_MonotoneMap(item) for item in value]
 
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[object, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
-
-def load_list_of_Range(value: object) -> list[Range]:
+def load_list_of_SUMap(value: object) -> list[SUMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Range(item) for item in value]
-
-def load_list_of_Unit(value: object) -> list[Unit]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Unit(item) for item in value]
-
-def validate_enum_19fd(value: object) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_bool(item) for item in value]
-
-def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LCheck_Data(item) for item in value]
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
-
-def validate_enum_29e4(value: object) -> Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
-
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Check_Data(item) for item in value]
-
-def validate_enum_a17d(value: object) -> Literal["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1_C_CodSum", "L1_C_CodSumSmash", "L1_C_DomUnion", "L1_C_Intersection", "L1_C_Parallel", "L1_C_ProdIntersection", "L1_C_Product", "L1_C_RefineDomain", "L1_C_Series", "L1_C_Trace", "L1_C_Union", "L1_C_WrapUnits", "L1_Catalog", "L1_Constant", "L1_Entire", "L1_Explicit", "L1_FromFilter", "L1_Identity", "L1_IntersectionOfPrinLowerSets", "L1_InvMul_Opt", "L1_InvMul_Pes", "L1_InvSum_Opt", "L1_InvSum_Pes", "L1_L_Linv", "L1_Lift", "L1_RepresentPrincipalLowerSet", "L1_TopAlternating", "L1_UnionOfPrinLowerSets", "L1_Unknown"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value # type: ignore 
+    return [load_SUMap(item) for item in value]
 
 def load_list_of_str(value: object) -> list[str]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_str(item) for item in value]
+
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
+
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_str(item) for item in value]
 
 
 # Schema loaders
@@ -682,6 +682,15 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
     else:
         field_kind = json.loads("\"DP\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'B' in data:
         field_B = load_Poset(data['B'])
     else:
@@ -729,6 +738,7 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -768,6 +778,15 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -816,6 +835,7 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -855,6 +875,15 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -898,6 +927,7 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -936,6 +966,15 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -984,6 +1023,7 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1023,6 +1063,15 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1071,6 +1120,7 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1110,6 +1160,15 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1153,6 +1212,7 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1191,6 +1251,15 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1262,6 +1331,7 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1304,6 +1374,15 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1361,6 +1440,7 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1401,6 +1481,15 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1458,6 +1547,7 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1498,6 +1588,15 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1555,6 +1654,7 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1595,6 +1695,15 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1643,6 +1752,7 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1682,6 +1792,15 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1739,6 +1858,7 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1779,6 +1899,15 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1827,6 +1956,7 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -1897,6 +2027,15 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -1995,6 +2134,7 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2045,6 +2185,15 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
     else:
         field_kind = json.loads("\"DP\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'B' in data:
         field_B = load_Poset(data['B'])
     else:
@@ -2092,6 +2241,7 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2131,6 +2281,15 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2179,6 +2338,7 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2218,6 +2378,15 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2261,6 +2430,7 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2299,6 +2469,15 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2347,6 +2526,7 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2386,6 +2566,15 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2429,6 +2618,7 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2467,6 +2657,15 @@ def load_DP_False(data: object) -> "DP_False":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2510,6 +2709,7 @@ def load_DP_False(data: object) -> "DP_False":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2548,6 +2748,15 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2596,6 +2805,7 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2635,6 +2845,15 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2693,6 +2912,7 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2734,6 +2954,15 @@ def load_DP_Identity(data: object) -> "DP_Identity":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2777,6 +3006,7 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2815,6 +3045,15 @@ def load_DP_Iso(data: object) -> "DP_Iso":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2868,6 +3107,7 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2908,6 +3148,15 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -2956,6 +3205,7 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -2995,6 +3245,15 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3043,6 +3302,7 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -3082,6 +3342,15 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3130,6 +3399,7 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -3169,6 +3439,15 @@ def load_DP_True(data: object) -> "DP_True":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3217,6 +3496,7 @@ def load_DP_True(data: object) -> "DP_True":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -3256,6 +3536,15 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'DP', got {field_kind}")
     else:
         field_kind = json.loads("\"DP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'B' in data:
         field_B = load_Poset(data['B'])
@@ -3299,6 +3588,7 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
@@ -3338,6 +3628,15 @@ def load_L1Check(data: object) -> "L1Check":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "L1Check":
@@ -3361,6 +3660,7 @@ def load_L1Check(data: object) -> "L1Check":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -3467,6 +3767,15 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3504,6 +3813,7 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3542,6 +3852,15 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3579,6 +3898,7 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3617,6 +3937,15 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3654,6 +3983,7 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3692,6 +4022,15 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3729,6 +4068,7 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3767,6 +4107,15 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3804,6 +4153,7 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3842,6 +4192,15 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3879,6 +4238,7 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3917,6 +4277,15 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -3954,6 +4323,7 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -3992,6 +4362,15 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4020,6 +4399,7 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4056,6 +4436,15 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"L1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4094,6 +4483,7 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4132,6 +4522,15 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4160,6 +4559,7 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4196,6 +4596,15 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"L1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4234,6 +4643,7 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4271,6 +4681,15 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'L1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"L1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -4310,6 +4729,7 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4349,6 +4769,15 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4377,6 +4806,7 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4433,6 +4863,15 @@ def load_L1_Constant(data: object) -> "L1_Constant":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4461,6 +4900,7 @@ def load_L1_Constant(data: object) -> "L1_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4498,6 +4938,15 @@ def load_L1_Entire(data: object) -> "L1_Entire":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4521,6 +4970,7 @@ def load_L1_Entire(data: object) -> "L1_Entire":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4557,6 +5007,15 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4585,6 +5044,7 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4641,6 +5101,15 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4669,6 +5138,7 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4706,6 +5176,15 @@ def load_L1_Identity(data: object) -> "L1_Identity":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4729,6 +5208,7 @@ def load_L1_Identity(data: object) -> "L1_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4765,6 +5245,15 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4788,6 +5277,7 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4824,6 +5314,15 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4857,6 +5356,7 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4895,6 +5395,15 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4928,6 +5437,7 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -4966,6 +5476,15 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -4999,6 +5518,7 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5037,6 +5557,15 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5070,6 +5599,7 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5108,6 +5638,15 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5136,6 +5675,7 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5173,6 +5713,15 @@ def load_L1_Lift(data: object) -> "L1_Lift":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5201,6 +5750,7 @@ def load_L1_Lift(data: object) -> "L1_Lift":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5238,6 +5788,15 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5261,6 +5820,7 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5297,6 +5857,15 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5325,6 +5894,7 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5362,6 +5932,15 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5385,6 +5964,7 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5421,6 +6001,15 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
     else:
         field_kind = json.loads("\"L1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5444,6 +6033,7 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -5480,6 +6070,15 @@ def load_LCheck(data: object) -> "LCheck":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "LCheck":
@@ -5503,6 +6102,7 @@ def load_LCheck(data: object) -> "LCheck":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -5594,6 +6194,15 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5632,6 +6241,7 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -5670,6 +6280,15 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
         field_kind = json.loads("\"LMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5713,6 +6332,7 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -5751,6 +6371,15 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
         field_kind = json.loads("\"LMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5794,6 +6423,7 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -5833,6 +6463,15 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -5866,6 +6505,7 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -5903,6 +6543,15 @@ def load_L_C_Series(data: object) -> "L_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
         field_kind = json.loads("\"LMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -5946,6 +6595,7 @@ def load_L_C_Series(data: object) -> "L_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -5985,6 +6635,15 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -6023,6 +6682,7 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6061,6 +6721,15 @@ def load_L_C_Union(data: object) -> "L_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
         field_kind = json.loads("\"LMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6104,6 +6773,7 @@ def load_L_C_Union(data: object) -> "L_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6142,6 +6812,15 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
         field_kind = json.loads("\"LMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6191,6 +6870,7 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6232,6 +6912,15 @@ def load_L_Catalog(data: object) -> "L_Catalog":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -6265,6 +6954,7 @@ def load_L_Catalog(data: object) -> "L_Catalog":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6328,6 +7018,15 @@ def load_L_Constant(data: object) -> "L_Constant":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -6361,6 +7060,7 @@ def load_L_Constant(data: object) -> "L_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6399,6 +7099,15 @@ def load_L_Identity(data: object) -> "L_Identity":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -6427,6 +7136,7 @@ def load_L_Identity(data: object) -> "L_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6463,6 +7173,15 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'LMap', got {field_kind}")
     else:
         field_kind = json.loads("\"LMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -6502,6 +7221,7 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6541,6 +7261,15 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -6579,6 +7308,7 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6618,6 +7348,15 @@ def load_L_Unknown(data: object) -> "L_Unknown":
     else:
         field_kind = json.loads("\"LMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -6646,6 +7385,7 @@ def load_L_Unknown(data: object) -> "L_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -6836,6 +7576,15 @@ def load_M_AddL(data: object) -> "M_AddL":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -6864,6 +7613,7 @@ def load_M_AddL(data: object) -> "M_AddL":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -6901,6 +7651,15 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -6934,6 +7693,7 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -6972,6 +7732,15 @@ def load_M_AddU(data: object) -> "M_AddU":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7000,6 +7769,7 @@ def load_M_AddU(data: object) -> "M_AddU":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7037,6 +7807,15 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7070,6 +7849,7 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7108,6 +7888,15 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7131,6 +7920,7 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7166,6 +7956,15 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
         field_kind = json.loads("\"MonotoneMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7204,6 +8003,7 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7242,6 +8042,15 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7279,6 +8088,7 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7317,6 +8127,15 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7354,6 +8173,7 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7392,6 +8212,15 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7429,6 +8258,7 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7467,6 +8297,15 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7504,6 +8343,7 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7542,6 +8382,15 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7575,6 +8424,7 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7613,6 +8463,15 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7641,6 +8500,7 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7678,6 +8538,15 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7711,6 +8580,7 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7749,6 +8619,15 @@ def load_M_C_Op(data: object) -> "M_C_Op":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7777,6 +8656,7 @@ def load_M_C_Op(data: object) -> "M_C_Op":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7813,6 +8693,15 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
         field_kind = json.loads("\"MonotoneMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -7851,6 +8740,7 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7889,6 +8779,15 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -7926,6 +8825,7 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -7964,6 +8864,15 @@ def load_M_C_Product(data: object) -> "M_C_Product":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8001,6 +8910,7 @@ def load_M_C_Product(data: object) -> "M_C_Product":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8039,6 +8949,15 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8076,6 +8995,7 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8114,6 +9034,15 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8142,6 +9071,7 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8178,6 +9108,15 @@ def load_M_C_Series(data: object) -> "M_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
         field_kind = json.loads("\"MonotoneMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8216,6 +9155,7 @@ def load_M_C_Series(data: object) -> "M_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8254,6 +9194,15 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8291,6 +9240,7 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8329,6 +9279,15 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8366,6 +9325,7 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8403,6 +9363,15 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
         field_kind = json.loads("\"MonotoneMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -8442,6 +9411,7 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8481,6 +9451,15 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8509,6 +9488,7 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8546,6 +9526,15 @@ def load_M_Coerce(data: object) -> "M_Coerce":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8569,6 +9558,7 @@ def load_M_Coerce(data: object) -> "M_Coerce":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8605,6 +9595,15 @@ def load_M_Constant(data: object) -> "M_Constant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8633,6 +9632,7 @@ def load_M_Constant(data: object) -> "M_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8670,6 +9670,15 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8703,6 +9712,7 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8741,6 +9751,15 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8774,6 +9793,7 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8812,6 +9832,15 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8845,6 +9874,7 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8883,6 +9913,15 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8916,6 +9955,7 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -8954,6 +9994,15 @@ def load_M_Empty(data: object) -> "M_Empty":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -8977,6 +10026,7 @@ def load_M_Empty(data: object) -> "M_Empty":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9013,6 +10063,15 @@ def load_M_Explicit(data: object) -> "M_Explicit":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9041,6 +10100,7 @@ def load_M_Explicit(data: object) -> "M_Explicit":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9097,6 +10157,15 @@ def load_M_Floor0(data: object) -> "M_Floor0":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9125,6 +10194,7 @@ def load_M_Floor0(data: object) -> "M_Floor0":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9162,6 +10232,15 @@ def load_M_Id(data: object) -> "M_Id":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9185,6 +10264,7 @@ def load_M_Id(data: object) -> "M_Id":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9221,6 +10301,15 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9254,6 +10343,7 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9292,6 +10382,15 @@ def load_M_Injection(data: object) -> "M_Injection":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9320,6 +10419,7 @@ def load_M_Injection(data: object) -> "M_Injection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9357,6 +10457,15 @@ def load_M_Join(data: object) -> "M_Join":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9385,6 +10494,7 @@ def load_M_Join(data: object) -> "M_Join":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9422,6 +10532,15 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9455,6 +10574,7 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9493,6 +10613,15 @@ def load_M_Leq(data: object) -> "M_Leq":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9521,6 +10650,7 @@ def load_M_Leq(data: object) -> "M_Leq":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9558,6 +10688,15 @@ def load_M_Lift(data: object) -> "M_Lift":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9581,6 +10720,7 @@ def load_M_Lift(data: object) -> "M_Lift":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9617,6 +10757,15 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9645,6 +10794,7 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9682,6 +10832,15 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9710,6 +10869,7 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9747,6 +10907,15 @@ def load_M_Meet(data: object) -> "M_Meet":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9775,6 +10944,7 @@ def load_M_Meet(data: object) -> "M_Meet":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9812,6 +10982,15 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9845,6 +11024,7 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9883,6 +11063,15 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9911,6 +11100,7 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -9948,6 +11138,15 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -9981,6 +11180,7 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10019,6 +11219,15 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10047,6 +11256,7 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10084,6 +11294,15 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10117,6 +11336,7 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10154,6 +11374,15 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
         field_kind = json.loads("\"MonotoneMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10193,6 +11422,7 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10232,6 +11462,15 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10270,6 +11509,7 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10309,6 +11549,15 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10332,6 +11581,7 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10368,6 +11618,15 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10391,6 +11650,7 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10427,6 +11687,15 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10450,6 +11719,7 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10486,6 +11756,15 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10509,6 +11788,7 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10544,6 +11824,15 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'MonotoneMap', got {field_kind}")
     else:
         field_kind = json.loads("\"MonotoneMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
@@ -10583,6 +11872,7 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10622,6 +11912,15 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10660,6 +11959,7 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10699,6 +11999,15 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10737,6 +12046,7 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10776,6 +12086,15 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10814,6 +12133,7 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10853,6 +12173,15 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10881,6 +12210,7 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10918,6 +12248,15 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -10951,6 +12290,7 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -10989,6 +12329,15 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11022,6 +12371,7 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11060,6 +12410,15 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11088,6 +12447,7 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11125,6 +12485,15 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11153,6 +12522,7 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11190,6 +12560,15 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11218,6 +12597,7 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11255,6 +12635,15 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11283,6 +12672,7 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11320,6 +12710,15 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11343,6 +12742,7 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11379,6 +12779,15 @@ def load_M_Undefined(data: object) -> "M_Undefined":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11402,6 +12811,7 @@ def load_M_Undefined(data: object) -> "M_Undefined":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11438,6 +12848,15 @@ def load_M_Unknown(data: object) -> "M_Unknown":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11461,6 +12880,7 @@ def load_M_Unknown(data: object) -> "M_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11497,6 +12917,15 @@ def load_M_Unlift(data: object) -> "M_Unlift":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11520,6 +12949,7 @@ def load_M_Unlift(data: object) -> "M_Unlift":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11556,6 +12986,15 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11589,6 +13028,7 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11627,6 +13067,15 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
     else:
         field_kind = json.loads("\"MonotoneMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'cod' in data:
         field_cod = load_Poset(data['cod'])
     else:
@@ -11660,6 +13109,7 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         cod=field_cod,
         dom=field_dom,
         type_=field_type_,
@@ -11698,6 +13148,15 @@ def load_MapCheck(data: object) -> "MapCheck":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "MapCheck":
@@ -11721,6 +13180,7 @@ def load_MapCheck(data: object) -> "MapCheck":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -11861,6 +13321,15 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
     else:
         field_kind = json.loads("\"NDPInterface\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -11893,6 +13362,7 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         fs=field_fs,
@@ -11943,6 +13413,15 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
     else:
         field_kind = json.loads("\"NDPTemplate\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -11975,6 +13454,7 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         ndp=field_ndp,
@@ -12011,6 +13491,15 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
         field_kind = json.loads("\"NDP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12064,6 +13553,7 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
@@ -12104,6 +13594,15 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
         field_kind = json.loads("\"NDP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12152,6 +13651,7 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
@@ -12191,6 +13691,15 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
         field_kind = json.loads("\"NDP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12248,6 +13757,7 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
@@ -12288,6 +13798,15 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'NDP', got {field_kind}")
     else:
         field_kind = json.loads("\"NDP\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'C' in data:
         field_C = load_Poset(data['C'])
@@ -12336,6 +13855,7 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
@@ -12475,6 +13995,15 @@ def load_P_Bool(data: object) -> "P_Bool":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12497,6 +14026,7 @@ def load_P_Bool(data: object) -> "P_Bool":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
     )
@@ -12532,6 +14062,15 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12559,6 +14098,7 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -12595,6 +14135,15 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12622,6 +14171,7 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -12657,6 +14207,15 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -12694,6 +14253,7 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         labels=field_labels,
@@ -12731,6 +14291,15 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12758,6 +14327,7 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -12794,6 +14364,15 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12826,6 +14405,7 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         counts=field_counts,
@@ -12863,6 +14443,15 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12890,6 +14479,7 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -12926,6 +14516,15 @@ def load_P_C_Power(data: object) -> "P_C_Power":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -12953,6 +14552,7 @@ def load_P_C_Power(data: object) -> "P_C_Power":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -12988,6 +14588,15 @@ def load_P_C_Product(data: object) -> "P_C_Product":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -13025,6 +14634,7 @@ def load_P_C_Product(data: object) -> "P_C_Product":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         labels=field_labels,
@@ -13062,6 +14672,15 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13098,6 +14717,7 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         labels=field_labels,
@@ -13134,6 +14754,15 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -13181,6 +14810,7 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         labels=field_labels,
@@ -13220,6 +14850,15 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13256,6 +14895,7 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         labels=field_labels,
@@ -13292,6 +14932,15 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -13344,6 +14993,7 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         labels=field_labels,
@@ -13384,6 +15034,15 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13411,6 +15070,7 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -13447,6 +15107,15 @@ def load_P_C_Units(data: object) -> "P_C_Units":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13479,6 +15148,7 @@ def load_P_C_Units(data: object) -> "P_C_Units":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -13516,6 +15186,15 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13543,6 +15222,7 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -13579,6 +15259,15 @@ def load_P_Decimal(data: object) -> "P_Decimal":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13606,6 +15295,7 @@ def load_P_Decimal(data: object) -> "P_Decimal":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         precision=field_precision,
@@ -13641,6 +15331,15 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -13699,6 +15398,7 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         bottom=field_bottom,
@@ -13741,6 +15441,15 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13782,6 +15491,7 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         ambient=field_ambient,
@@ -13819,6 +15529,15 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -13861,6 +15580,7 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         ambient=field_ambient,
@@ -13899,6 +15619,15 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -13936,6 +15665,7 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         high=field_high,
@@ -13974,6 +15704,15 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14006,6 +15745,7 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         ls=field_ls,
@@ -14043,6 +15783,15 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14075,6 +15824,7 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         elements=field_elements,
@@ -14112,6 +15862,15 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14144,6 +15903,7 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -14180,6 +15940,15 @@ def load_P_Finite(data: object) -> "P_Finite":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -14222,6 +15991,7 @@ def load_P_Finite(data: object) -> "P_Finite":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         aliases=field_aliases,
@@ -14260,6 +16030,15 @@ def load_P_Float(data: object) -> "P_Float":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14287,6 +16066,7 @@ def load_P_Float(data: object) -> "P_Float":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         size=field_size,
@@ -14322,6 +16102,15 @@ def load_P_Fractions(data: object) -> "P_Fractions":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'Poset', got {field_kind}")
     else:
         field_kind = json.loads("\"Poset\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'address' in data:
         value = data['address']
@@ -14360,6 +16149,7 @@ def load_P_Fractions(data: object) -> "P_Fractions":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         max_abs_denominator=field_max_abs_denominator,
@@ -14398,6 +16188,15 @@ def load_P_Integer(data: object) -> "P_Integer":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14425,6 +16224,7 @@ def load_P_Integer(data: object) -> "P_Integer":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         size=field_size,
@@ -14461,6 +16261,15 @@ def load_P_Unknown(data: object) -> "P_Unknown":
     else:
         field_kind = json.loads("\"Poset\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14483,6 +16292,7 @@ def load_P_Unknown(data: object) -> "P_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
     )
@@ -14666,6 +16476,15 @@ def load_Query_Single(data: object) -> "Query_Single":
     else:
         field_kind = json.loads("\"Query\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -14698,6 +16517,7 @@ def load_Query_Single(data: object) -> "Query_Single":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         model=field_model,
@@ -14724,15 +16544,11 @@ def load_Range(data: object) -> "Range":
         raise ValueError("Missing required field 'stop'")
     
     if 'type' in data:
-        value = data['type']
-        if value is None:
-            field_type_ = None
-        else:
-            field_type_ = load_str(value)
-            if field_type_ != "Range":
-                raise ValueError(f"Expected 'Range', got {field_type_}'")
+        field_type_ = load_str(data['type'])
+        if field_type_ != "Range":
+            raise ValueError(f"Expected 'Range', got {field_type_}'")
     else:
-        field_type_ = None
+        raise ValueError("Missing required field 'type'")
     
     return Range(
         ntot=field_ntot,
@@ -14772,6 +16588,15 @@ def load_SL1Check(data: object) -> "SL1Check":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SL1Check":
@@ -14795,6 +16620,7 @@ def load_SL1Check(data: object) -> "SL1Check":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -14917,6 +16743,15 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -14964,6 +16799,7 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15003,6 +16839,15 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15051,6 +16896,7 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15090,6 +16936,15 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15152,6 +17007,7 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15193,6 +17049,15 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15241,6 +17106,7 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15280,6 +17146,15 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15328,6 +17203,7 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15367,6 +17243,15 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15415,6 +17300,7 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15454,6 +17340,15 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15502,6 +17397,7 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15542,6 +17438,15 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -15580,6 +17485,7 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15618,6 +17524,15 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15666,6 +17581,7 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15706,6 +17622,15 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -15744,6 +17669,7 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15782,6 +17708,15 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15830,6 +17765,7 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15869,6 +17805,15 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -15918,6 +17863,7 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -15959,6 +17905,15 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -15997,6 +17952,7 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -16036,6 +17992,15 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -16069,6 +18034,7 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -16106,6 +18072,15 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SL1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SL1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16145,6 +18120,7 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -16184,6 +18160,15 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -16222,6 +18207,7 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -16261,6 +18247,15 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
     else:
         field_kind = json.loads("\"SL1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -16294,6 +18289,7 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -16332,6 +18328,15 @@ def load_SLCheck(data: object) -> "SLCheck":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SLCheck":
@@ -16355,6 +18360,7 @@ def load_SLCheck(data: object) -> "SLCheck":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -16474,6 +18480,15 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
     else:
         field_kind = json.loads("\"SLMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -16522,6 +18537,7 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -16562,6 +18578,15 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16615,6 +18640,7 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -16655,6 +18681,15 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16708,6 +18743,7 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -16748,6 +18784,15 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16792,6 +18837,7 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -16831,6 +18877,15 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16884,6 +18939,7 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -16924,6 +18980,15 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -16973,6 +19038,7 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17013,6 +19079,15 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17066,6 +19141,7 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17106,6 +19182,15 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17165,6 +19250,7 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17208,6 +19294,15 @@ def load_SL_Identity(data: object) -> "SL_Identity":
     else:
         field_kind = json.loads("\"SLMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -17246,6 +19341,7 @@ def load_SL_Identity(data: object) -> "SL_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17284,6 +19380,15 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17328,6 +19433,7 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17367,6 +19473,15 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17434,6 +19549,7 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17476,6 +19592,15 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17525,6 +19650,7 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17565,6 +19691,15 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SLMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SLMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -17614,6 +19749,7 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17655,6 +19791,15 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
     else:
         field_kind = json.loads("\"SLMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -17693,6 +19838,7 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -17732,6 +19878,15 @@ def load_SU1Check(data: object) -> "SU1Check":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SU1Check":
@@ -17755,6 +19910,7 @@ def load_SU1Check(data: object) -> "SU1Check":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -17877,6 +20033,15 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -17924,6 +20089,7 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -17963,6 +20129,15 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18011,6 +20186,7 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18050,6 +20226,15 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18112,6 +20297,7 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18153,6 +20339,15 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18201,6 +20396,7 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18240,6 +20436,15 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18288,6 +20493,7 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18327,6 +20533,15 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18375,6 +20590,7 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18414,6 +20630,15 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18462,6 +20687,7 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18502,6 +20728,15 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -18540,6 +20775,7 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18578,6 +20814,15 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18626,6 +20871,7 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18666,6 +20912,15 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -18704,6 +20959,7 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18742,6 +20998,15 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18790,6 +21055,7 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18829,6 +21095,15 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -18878,6 +21153,7 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18919,6 +21195,15 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -18957,6 +21242,7 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -18996,6 +21282,15 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -19029,6 +21324,7 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -19066,6 +21362,15 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SU1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"SU1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19105,6 +21410,7 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -19144,6 +21450,15 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -19182,6 +21497,7 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -19221,6 +21537,15 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
     else:
         field_kind = json.loads("\"SU1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -19254,6 +21579,7 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
@@ -19292,6 +21618,15 @@ def load_SUCheck(data: object) -> "SUCheck":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "SUCheck":
@@ -19315,6 +21650,7 @@ def load_SUCheck(data: object) -> "SUCheck":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -19434,6 +21770,15 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
     else:
         field_kind = json.loads("\"SUMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -19482,6 +21827,7 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -19522,6 +21868,15 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19575,6 +21930,7 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -19615,6 +21971,15 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19668,6 +22033,7 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -19708,6 +22074,15 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19752,6 +22127,7 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -19791,6 +22167,15 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19844,6 +22229,7 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -19884,6 +22270,15 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -19933,6 +22328,7 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -19973,6 +22369,15 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20026,6 +22431,7 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20066,6 +22472,15 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20125,6 +22540,7 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20168,6 +22584,15 @@ def load_SU_Identity(data: object) -> "SU_Identity":
     else:
         field_kind = json.loads("\"SUMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -20206,6 +22631,7 @@ def load_SU_Identity(data: object) -> "SU_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20244,6 +22670,15 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20288,6 +22723,7 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20327,6 +22763,15 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20394,6 +22839,7 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20436,6 +22882,15 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20485,6 +22940,7 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20525,6 +22981,15 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'SUMap', got {field_kind}")
     else:
         field_kind = json.loads("\"SUMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -20574,6 +23039,7 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20615,6 +23081,15 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
     else:
         field_kind = json.loads("\"SUMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -20653,6 +23128,7 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -20692,6 +23168,15 @@ def load_U1Check(data: object) -> "U1Check":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "U1Check":
@@ -20715,6 +23200,7 @@ def load_U1Check(data: object) -> "U1Check":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -20822,6 +23308,15 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -20859,6 +23354,7 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -20897,6 +23393,15 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -20934,6 +23439,7 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -20972,6 +23478,15 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21009,6 +23524,7 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21047,6 +23563,15 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21084,6 +23609,7 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21122,6 +23648,15 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21159,6 +23694,7 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21197,6 +23733,15 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21234,6 +23779,7 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21272,6 +23818,15 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21309,6 +23864,7 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21347,6 +23903,15 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21375,6 +23940,7 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21411,6 +23977,15 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"U1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21449,6 +24024,7 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21487,6 +24063,15 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21515,6 +24100,7 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21551,6 +24137,15 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"U1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21589,6 +24184,7 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21626,6 +24222,15 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'U1Map', got {field_kind}")
     else:
         field_kind = json.loads("\"U1Map\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -21665,6 +24270,7 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21704,6 +24310,15 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21732,6 +24347,7 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21788,6 +24404,15 @@ def load_U1_Constant(data: object) -> "U1_Constant":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21816,6 +24441,7 @@ def load_U1_Constant(data: object) -> "U1_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21853,6 +24479,15 @@ def load_U1_Entire(data: object) -> "U1_Entire":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21876,6 +24511,7 @@ def load_U1_Entire(data: object) -> "U1_Entire":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21912,6 +24548,15 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -21940,6 +24585,7 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -21996,6 +24642,15 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22024,6 +24679,7 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22061,6 +24717,15 @@ def load_U1_Identity(data: object) -> "U1_Identity":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22084,6 +24749,7 @@ def load_U1_Identity(data: object) -> "U1_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22120,6 +24786,15 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22143,6 +24818,7 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22179,6 +24855,15 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22212,6 +24897,7 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22250,6 +24936,15 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22283,6 +24978,7 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22321,6 +25017,15 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22354,6 +25059,7 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22392,6 +25098,15 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22425,6 +25140,7 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22463,6 +25179,15 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22491,6 +25216,7 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22528,6 +25254,15 @@ def load_U1_Lift(data: object) -> "U1_Lift":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22556,6 +25291,7 @@ def load_U1_Lift(data: object) -> "U1_Lift":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22593,6 +25329,15 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22616,6 +25361,7 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22652,6 +25398,15 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22680,6 +25435,7 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22717,6 +25473,15 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22750,6 +25515,7 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22788,6 +25554,15 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22811,6 +25586,7 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22847,6 +25623,15 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
     else:
         field_kind = json.loads("\"U1Map\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -22870,6 +25655,7 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         type_=field_type_,
@@ -22906,6 +25692,15 @@ def load_UCheck(data: object) -> "UCheck":
     else:
         field_kind = json.loads("\"Check\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'type' in data:
         field_type_ = load_str(data['type'])
         if field_type_ != "UCheck":
@@ -22929,6 +25724,7 @@ def load_UCheck(data: object) -> "UCheck":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         type_=field_type_,
         data=field_data,
         m=field_m,
@@ -23020,6 +25816,15 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -23058,6 +25863,7 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23096,6 +25902,15 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
         field_kind = json.loads("\"UMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23139,6 +25954,7 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23177,6 +25993,15 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
         field_kind = json.loads("\"UMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23220,6 +26045,7 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23259,6 +26085,15 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -23292,6 +26127,7 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23329,6 +26165,15 @@ def load_U_C_Series(data: object) -> "U_C_Series":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
         field_kind = json.loads("\"UMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23372,6 +26217,7 @@ def load_U_C_Series(data: object) -> "U_C_Series":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23411,6 +26257,15 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -23449,6 +26304,7 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23487,6 +26343,15 @@ def load_U_C_Union(data: object) -> "U_C_Union":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
         field_kind = json.loads("\"UMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23530,6 +26395,7 @@ def load_U_C_Union(data: object) -> "U_C_Union":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23568,6 +26434,15 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
         field_kind = json.loads("\"UMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23617,6 +26492,7 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23658,6 +26534,15 @@ def load_U_Catalog(data: object) -> "U_Catalog":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -23691,6 +26576,7 @@ def load_U_Catalog(data: object) -> "U_Catalog":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23754,6 +26640,15 @@ def load_U_Constant(data: object) -> "U_Constant":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -23787,6 +26682,7 @@ def load_U_Constant(data: object) -> "U_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23825,6 +26721,15 @@ def load_U_Identity(data: object) -> "U_Identity":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -23853,6 +26758,7 @@ def load_U_Identity(data: object) -> "U_Identity":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23889,6 +26795,15 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for 'kind': expected 'UMap', got {field_kind}")
     else:
         field_kind = json.loads("\"UMap\"")
+    
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
     
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
@@ -23928,6 +26843,7 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -23967,6 +26883,15 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -24005,6 +26930,7 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -24044,6 +26970,15 @@ def load_U_Unknown(data: object) -> "U_Unknown":
     else:
         field_kind = json.loads("\"UMap\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'kcod' in data:
         field_kcod = load_Poset(data['kcod'])
     else:
@@ -24072,6 +27007,7 @@ def load_U_Unknown(data: object) -> "U_Unknown":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
@@ -24388,6 +27324,15 @@ def load_VU(data: object) -> "VU":
     else:
         field_kind = json.loads("\"Value\"")
     
+    if 'version' in data:
+        value = data['version']
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+    
     if 'address' in data:
         value = data['address']
         if value is None:
@@ -24420,6 +27365,7 @@ def load_VU(data: object) -> "VU":
         description=field_description,
         hash=field_hash,
         kind=field_kind,
+        version=field_version,
         address=field_address,
         type_=field_type_,
         poset=field_poset,
@@ -24454,6 +27400,7 @@ class Root:
     kind: Literal["Check", "DP", "L1Map", "LMap", "MonotoneMap", "NDP", "NDPInterface", "NDPTemplate", "Poset", "Query", "SL1Map", "SLMap", "SU1Map", "SUMap", "U1Map", "UMap", "Value"] = field()
     description: str | None = field(metadata={'description': "A human-readable description of the object used for debug purposes."})
     hash: str | None = field(metadata={'description': "Unique hash for the object."})
+    version: str | None = field(metadata={'description': "Version of the MCDP format used to serialize this object (major.minor)."})
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -24463,6 +27410,8 @@ class Root:
         if self.hash is not None:
             result['hash'] = self.hash
         result['kind'] = self.kind
+        if self.version is not None:
+            result['version'] = self.version
         return result
 
 
@@ -27548,7 +30497,7 @@ class Range:
     ntot: int = field()
     start: int = field()
     stop: int = field()
-    type_: Literal["Range"] | None = field(metadata={'description': "Type marker"})
+    type_: Literal["Range"] = field()
 
     def to_data(self) -> dict[str, Any]:
         """Convert to dictionary data."""
@@ -27556,8 +30505,7 @@ class Range:
         result['ntot'] = self.ntot
         result['start'] = self.start
         result['stop'] = self.stop
-        if self.type_ is not None:
-            result['type'] = self.type_
+        result['type'] = self.type_
         return result
 
 
@@ -29824,7 +32772,7 @@ def test_serialization_P_C_ProductSmash_01():
 def test_serialization_P_C_ProductSmash_02():
     """Test serialization/deserialization of P_C_ProductSmash example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","naked":[true,false,true],"ranges":[{"kind":"Range","ntot":4,"start":0,"stop":1},{"kind":"Range","ntot":4,"start":1,"stop":3},{"kind":"Range","ntot":4,"start":3,"stop":4}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","naked":[true,true],"ranges":[{"kind":"Range","ntot":2,"start":0,"stop":1},{"kind":"Range","ntot":2,"start":1,"stop":2}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}')
+    data = json.loads('{"kind":"Poset","naked":[true,false,true],"ranges":[{"ntot":4,"start":0,"stop":1,"type":"Range"},{"ntot":4,"start":1,"stop":3,"type":"Range"},{"ntot":4,"start":3,"stop":4,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":1,"stop":2,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}')
     
     # Create instance from data
     instance = load_P_C_ProductSmash(data)
@@ -29862,7 +32810,7 @@ def test_serialization_P_C_Sum_01():
 def test_serialization_P_C_SumSmash_01():
     """Test serialization/deserialization of P_C_SumSmash example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","naked":[true,true],"ranges":[{"kind":"Range","ntot":2,"start":0,"stop":1},{"kind":"Range","ntot":2,"start":0,"stop":1}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"trivial":false,"type":"P_C_SumSmash"}')
+    data = json.loads('{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":0,"stop":1,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"trivial":false,"type":"P_C_SumSmash"}')
     
     # Create instance from data
     instance = load_P_C_SumSmash(data)

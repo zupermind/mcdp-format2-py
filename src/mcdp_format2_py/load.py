@@ -255,7 +255,11 @@ class HumanFormatter:
             # Multi-line format
             lines = [f"{key_col}:"]
             for line in formatted.splitlines():
-                lines.append("  " + line)
+                # For lists/tuples that start with "- ", don't add extra indentation
+                if isinstance(value, (list, tuple)) and line.startswith("- "):
+                    lines.append(line)
+                else:
+                    lines.append("  " + line)
             return "\n".join(lines)
 
         # Multiline string
