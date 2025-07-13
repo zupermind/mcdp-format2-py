@@ -6,7 +6,7 @@
   ],
   "tests_require": [],
   "srcdir": "src",
-  "package_name": "mcdp-format2-python",
+  "package_name": "mcdp-format2-py",
   "entry_points": {
     "console_scripts": []
   },
@@ -21,7 +21,7 @@
     "mcdp_format2_py.load",
     "mcdp_format2_py.schemas"
   ],
-  "version": "2.17.0",
+  "version": "2.17.2507131319",
   "author": "Andrea Censi",
   "author_email": "AndreaCensi@users.noreply.github.com",
   "url": "https://github.com/zupermind/mcdp-format2-py"
