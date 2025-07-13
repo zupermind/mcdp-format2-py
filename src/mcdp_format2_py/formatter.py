@@ -10,54 +10,63 @@ import dataclasses
 import inspect
 import os
 import re
-from typing import Any, get_origin, get_args, Literal
+from functools import lru_cache
+from typing import Any
+from typing import Literal
+from typing import get_args
+from typing import get_origin
 
-from colorama import Fore, Style, init
+from colorama import Fore
+from colorama import Style
+from colorama import init
+
 init(autoreset=True)  # Auto-reset after each print
 
 
 def _get_terminal_width() -> int:
     """Get terminal width from COLUMNS env var or default to 120."""
     try:
-        return int(os.environ.get('COLUMNS', '120'))
+        return int(os.environ.get("COLUMNS", "120"))
     except ValueError:
         return 120
 
 
 def _screen_length(text: str) -> int:
     """Calculate the visible screen length of text by removing ANSI/color codes."""
-    ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
-    return len(ansi_escape.sub('', text))
+    ansi_escape = re.compile(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
+    return len(ansi_escape.sub("", text))
+
+
+@lru_cache(maxsize=None)
+def _is_single_literal_field(K: type, field_name: str) -> bool:
+    """Check if field type is a Literal with exactly one value."""
+    # Get the actual type annotation from the class using inspect
+    anns = inspect.get_annotations(K, eval_str=True)
+    field_type = anns.get(field_name)
+
+    # Check if it's a Literal type
+    if get_origin(field_type) is Literal:
+        args = get_args(field_type)
+        return len(args) == 1
+
+    return False
 
 
 class HumanFormatter:
     """Human-friendly colorful formatter with caching."""
-    
+
     def __init__(self, skip_none_fields: bool = False, skip_single_literal_fields: bool = False) -> None:
         # Cache formatted objects by (id, column_budget) to avoid recomputation and cycles.
         self._cache: dict[tuple[int, int], str] = {}
         self.skip_none_fields = skip_none_fields
         self.skip_single_literal_fields = skip_single_literal_fields
-    
-    def _is_single_literal_field(self, obj: Any, field_name: str) -> bool:
-        """Check if field type is a Literal with exactly one value."""
-        # Get the actual type annotation from the class using inspect
-        cls = obj.__class__
-        annotations = inspect.get_annotations(cls, eval_str=True)
-        field_type = annotations.get(field_name)
-        
-        # Check if it's a Literal type
-        if get_origin(field_type) is Literal:
-            args = get_args(field_type)
-            return len(args) == 1
-        
-        return False
-    
+        self.cache_single = {}
+
     def _colorize_leaf(self, value: Any) -> str:
         """Return *value* converted to string with color codes."""
         if isinstance(value, str):
             if value == "":
-                return f"{Fore.GREEN}\"\"{Style.RESET_ALL}"
+                return f'{Fore.GREEN}""{Style.RESET_ALL}'
             return f"{Fore.GREEN}{value}{Style.RESET_ALL}"
         if isinstance(value, bool):
             if value:
@@ -75,7 +84,7 @@ class HumanFormatter:
 
     def _format_obj_inner(self, obj: Any, column_budget: int = _get_terminal_width()) -> str:
         """Return colored representation of *obj* without any indentation.
-        
+
         Args:
             obj: Object to format
             column_budget: Maximum width for inline formatting of lists
@@ -88,28 +97,28 @@ class HumanFormatter:
         # Dataclass
         if dataclasses.is_dataclass(obj) and not isinstance(obj, type):  # type: ignore[arg-type]
             cls_name = obj.__class__.__name__
-            
+
             # Render all fields first
             field_parts: list[str] = []
             for field in dataclasses.fields(obj):  # type: ignore[arg-type]
                 field_name = field.name
                 field_value = getattr(obj, field_name)
-                
+
                 # Skip None fields if requested
                 if self.skip_none_fields and field_value is None:
                     continue
-                
+
                 # Skip single-literal fields if requested
-                if self.skip_single_literal_fields and self._is_single_literal_field(obj, field_name):
+                if self.skip_single_literal_fields and _is_single_literal_field(obj.__class__, field_name):
                     continue
-                    
+
                 # Format the value without the key
                 if dataclasses.is_dataclass(field_value) or isinstance(field_value, (dict, list, tuple)):  # type: ignore[arg-type]
                     value_formatted = self._format_obj_inner(field_value, column_budget)
                 else:
                     value_formatted = self._colorize_leaf(field_value)
                 field_parts.append(f"{field_name}: {value_formatted}")
-            
+
             # Check if all fields are single-line and fit in budget
             all_single_line = all("\n" not in part for part in field_parts)
             if all_single_line:
@@ -118,20 +127,20 @@ class HumanFormatter:
                     result = f"{Style.BRIGHT}{Fore.MAGENTA}{cls_name}{Style.RESET_ALL}({', '.join(field_parts)})"
                     self._cache[cache_key] = result
                     return result
-            
+
             # Multi-line format
             lines = [f"{Style.BRIGHT}{Fore.MAGENTA}{cls_name}{Style.RESET_ALL}:"]
             for field in dataclasses.fields(obj):  # type: ignore[arg-type]
                 field_value = getattr(obj, field.name)
-                
+
                 # Skip None fields if requested
                 if self.skip_none_fields and field_value is None:
                     continue
-                
+
                 # Skip single-literal fields if requested
-                if self.skip_single_literal_fields and self._is_single_literal_field(obj, field.name):
+                if self.skip_single_literal_fields and _is_single_literal_field(obj.__class__, field.name):
                     continue
-                    
+
                 field_formatted = self._format_key_value(field.name, field_value, column_budget)
                 # Indent each line of the field
                 for line in field_formatted.splitlines():
@@ -147,7 +156,7 @@ class HumanFormatter:
                 result = "{}"
                 self._cache[cache_key] = result
                 return result
-            
+
             parts: list[str] = []
             for k, v in obj.items():  # type: ignore[arg-type]
                 parts.append(self._format_key_value(str(k), v, column_budget))  # type: ignore[arg-type]
@@ -164,7 +173,7 @@ class HumanFormatter:
                     rendered_items.append(self._format_obj_inner(item, column_budget))
                 else:
                     rendered_items.append(self._colorize_leaf(item))
-            
+
             # Check if all items are single-line and fit in budget
             all_single_line = all("\n" not in item for item in rendered_items)  # type: ignore[arg-type]
             if all_single_line:
@@ -173,7 +182,7 @@ class HumanFormatter:
                     result = inline_str
                     self._cache[cache_key] = result
                     return result
-            
+
             # Multi-line format
             parts: list[str] = []
             for rendered_item in rendered_items:  # type: ignore[assignment]
@@ -202,11 +211,11 @@ class HumanFormatter:
         # Complex value
         if dataclasses.is_dataclass(value) or isinstance(value, (dict, list, tuple)):  # type: ignore[arg-type]
             formatted = self._format_obj_inner(value, column_budget)
-            
+
             # Use inline format if the representation has no newlines
             if "\n" not in formatted:
                 return f"{key_col}: {formatted}"
-            
+
             # Multi-line format
             lines = [f"{key_col}:"]
             for line in formatted.splitlines():
@@ -239,4 +248,4 @@ class HumanFormatter:
 def human_format(obj: Any) -> str:
     """Return a cached, human-friendly colored string representation of *obj*."""
     formatter = HumanFormatter(skip_none_fields=True, skip_single_literal_fields=True)
-    return formatter.format(obj) 
+    return formatter.format(obj)
