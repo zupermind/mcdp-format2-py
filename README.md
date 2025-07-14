@@ -14,7 +14,7 @@ The primary use of this library is to load and validate MCDP Format 2 files prog
 
 ```python
 from mcdp_format2_py import load, human_format
-from mcdp_format2_py.schemas import *
+from mcdp_format2_py.schemas import DP, MonotoneMap
 
 
 # Load and validate a file
@@ -54,7 +54,7 @@ mcdp-format2-py-load path/to/directory/
 Display the parsed data in a human-friendly, colorized format after successful validation.
 
 ```bash
-mcdp-format2-py-load --verbose schema.json
+mcdp-format2-py-load --verbose uncertain2.dpc.mcdp2.yaml
 ```
 
 The verbose output features:

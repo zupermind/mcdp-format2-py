@@ -7,12 +7,15 @@ all:
 preprocess:
 	make -C ../../mcdp-formats/ preprocess	
 
+the_schema=../../mcdp-formats/out/schema-no-concrete.yaml
+
 generate:
 	# $(MAKE) -C ../mcdp-formats preprocess
 	cargo run -p zuper-rs-schemas --bin zuper-rs-schemas -- python  \
-		--schema ../../mcdp-formats/out/schema-no-concrete.yaml \
+		--schema $(the_schema) \
 		--target src/mcdp_format2_py/schemas.py
-
+	cp ${the_schema} mcdp2-openapi-schema.yaml
+	
 test:
 	nose2 mcdp_format2_py.schemas
 

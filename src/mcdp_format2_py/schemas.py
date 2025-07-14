@@ -39,387 +39,6 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def validate_enum_4f69(
-    value: object,
-) -> Literal[
-    "SU_C_ITransform",
-    "SU_C_Intersection",
-    "SU_C_Parallel",
-    "SU_C_RefineDomain",
-    "SU_C_Series",
-    "SU_C_Trace",
-    "SU_C_Union",
-    "SU_C_WrapUnits",
-    "SU_Identity",
-    "SU_L_Exact",
-    "SU_L_Explicit_Approx",
-    "SU_L_Lift1_Constant",
-    "SU_L_Lift1_Transform",
-    "SU_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SU_C_ITransform",
-        "SU_C_Intersection",
-        "SU_C_Parallel",
-        "SU_C_RefineDomain",
-        "SU_C_Series",
-        "SU_C_Trace",
-        "SU_C_Union",
-        "SU_C_WrapUnits",
-        "SU_Identity",
-        "SU_L_Exact",
-        "SU_L_Explicit_Approx",
-        "SU_L_Lift1_Constant",
-        "SU_L_Lift1_Transform",
-        "SU_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_bool(item) for item in value]
-
-
-def validate_enum_5d65(
-    value: object,
-) -> Literal[
-    "SL1_C_CodSum",
-    "SL1_C_CodSumSmash",
-    "SL1_C_ExplicitApprox",
-    "SL1_C_Intersection",
-    "SL1_C_Parallel",
-    "SL1_C_ProdIntersection",
-    "SL1_C_Product",
-    "SL1_C_RefineDomain",
-    "SL1_C_Series",
-    "SL1_C_Trace",
-    "SL1_C_Union",
-    "SL1_C_WrapUnits",
-    "SL1_Exact",
-    "SL1_Identity",
-    "SL1_InvMultiply",
-    "SL1_InvSum",
-    "SL1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SL1_C_CodSum",
-        "SL1_C_CodSumSmash",
-        "SL1_C_ExplicitApprox",
-        "SL1_C_Intersection",
-        "SL1_C_Parallel",
-        "SL1_C_ProdIntersection",
-        "SL1_C_Product",
-        "SL1_C_RefineDomain",
-        "SL1_C_Series",
-        "SL1_C_Trace",
-        "SL1_C_Union",
-        "SL1_C_WrapUnits",
-        "SL1_Exact",
-        "SL1_Identity",
-        "SL1_InvMultiply",
-        "SL1_InvSum",
-        "SL1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SLMap(value: object) -> list[SLMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLMap(item) for item in value]
-
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Check_Data(item) for item in value]
-
-
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
-
-
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
-
-
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
-    value: object,
-) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L_Catalog_Options(item) for item in value]
-
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
-
-def validate_enum_477e(
-    value: object,
-) -> Literal[
-    "U_C_ITransform",
-    "U_C_Intersection",
-    "U_C_Parallel",
-    "U_C_RefineDomain",
-    "U_C_Series",
-    "U_C_Trace",
-    "U_C_Union",
-    "U_C_WrapUnits",
-    "U_Catalog",
-    "U_Constant",
-    "U_Identity",
-    "U_L_Lift1_Constant",
-    "U_L_Lift1_Transform",
-    "U_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "U_C_ITransform",
-        "U_C_Intersection",
-        "U_C_Parallel",
-        "U_C_RefineDomain",
-        "U_C_Series",
-        "U_C_Trace",
-        "U_C_Union",
-        "U_C_WrapUnits",
-        "U_Catalog",
-        "U_Constant",
-        "U_Identity",
-        "U_L_Lift1_Constant",
-        "U_L_Lift1_Transform",
-        "U_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def validate_enum_4700(
-    value: object,
-) -> Literal[
-    "L_C_ITransform",
-    "L_C_Intersection",
-    "L_C_Parallel",
-    "L_C_RefineDomain",
-    "L_C_Series",
-    "L_C_Trace",
-    "L_C_Union",
-    "L_C_WrapUnits",
-    "L_Catalog",
-    "L_Constant",
-    "L_Identity",
-    "L_L_Lift1_Constant",
-    "L_L_Lift1_Transform",
-    "L_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L_C_ITransform",
-        "L_C_Intersection",
-        "L_C_Parallel",
-        "L_C_RefineDomain",
-        "L_C_Series",
-        "L_C_Trace",
-        "L_C_Union",
-        "L_C_WrapUnits",
-        "L_Catalog",
-        "L_Constant",
-        "L_Identity",
-        "L_L_Lift1_Constant",
-        "L_L_Lift1_Transform",
-        "L_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-
-def validate_enum_a17d(
-    value: object,
-) -> Literal[
-    "L1_C_CodSum",
-    "L1_C_CodSumSmash",
-    "L1_C_DomUnion",
-    "L1_C_Intersection",
-    "L1_C_Parallel",
-    "L1_C_ProdIntersection",
-    "L1_C_Product",
-    "L1_C_RefineDomain",
-    "L1_C_Series",
-    "L1_C_Trace",
-    "L1_C_Union",
-    "L1_C_WrapUnits",
-    "L1_Catalog",
-    "L1_Constant",
-    "L1_Entire",
-    "L1_Explicit",
-    "L1_FromFilter",
-    "L1_Identity",
-    "L1_IntersectionOfPrinLowerSets",
-    "L1_InvMul_Opt",
-    "L1_InvMul_Pes",
-    "L1_InvSum_Opt",
-    "L1_InvSum_Pes",
-    "L1_L_Linv",
-    "L1_Lift",
-    "L1_RepresentPrincipalLowerSet",
-    "L1_TopAlternating",
-    "L1_UnionOfPrinLowerSets",
-    "L1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L1_C_CodSum",
-        "L1_C_CodSumSmash",
-        "L1_C_DomUnion",
-        "L1_C_Intersection",
-        "L1_C_Parallel",
-        "L1_C_ProdIntersection",
-        "L1_C_Product",
-        "L1_C_RefineDomain",
-        "L1_C_Series",
-        "L1_C_Trace",
-        "L1_C_Union",
-        "L1_C_WrapUnits",
-        "L1_Catalog",
-        "L1_Constant",
-        "L1_Entire",
-        "L1_Explicit",
-        "L1_FromFilter",
-        "L1_Identity",
-        "L1_IntersectionOfPrinLowerSets",
-        "L1_InvMul_Opt",
-        "L1_InvMul_Pes",
-        "L1_InvSum_Opt",
-        "L1_InvSum_Pes",
-        "L1_L_Linv",
-        "L1_Lift",
-        "L1_RepresentPrincipalLowerSet",
-        "L1_TopAlternating",
-        "L1_UnionOfPrinLowerSets",
-        "L1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_list_of_str(v) for k, v in value.items()}
-
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
-    value: object,
-) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Poset(v) for k, v in value.items()}
-
-
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
-
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UCheck_Data(item) for item in value]
-
-
 def validate_enum_1978(
     value: object,
 ) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
@@ -431,149 +50,65 @@ def validate_enum_1978(
     return value  # type: ignore
 
 
-def load_list_of_Connection(value: object) -> list[Connection]:
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
+
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Connection(item) for item in value]
+    return [load_SLMap(item) for item in value]
 
 
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLCheck_Data(item) for item in value]
-
-
-def validate_enum_b0de(
+def validate_enum_5dfe(
     value: object,
 ) -> Literal[
-    "DP_All_Constants_And_F_Leq_R",
-    "DP_All_Constants_Leq_R",
-    "DP_All_Fi_Leq_R",
-    "DP_AmbientConversion",
-    "DP_Any_Constants_Or_F_Leq_R",
-    "DP_Any_Fi_Leq_R",
-    "DP_C_ExplicitApprox",
-    "DP_C_Intersection",
-    "DP_C_Parallel",
-    "DP_C_Series",
-    "DP_C_Trace",
-    "DP_C_Union",
-    "DP_Catalog",
-    "DP_Compiled",
-    "DP_F_Leq_All_Constants",
-    "DP_F_Leq_All_R_And_Constants",
-    "DP_F_Leq_All_Ri",
-    "DP_F_Leq_Any_R_And_Constants",
-    "DP_F_Leq_Any_Ri",
-    "DP_False",
-    "DP_FuncNotMoreThan",
-    "DP_GenericConstant",
-    "DP_Identity",
-    "DP_Iso",
-    "DP_LiftL",
-    "DP_LiftU",
-    "DP_ResNotLessThan",
-    "DP_True",
-    "DP_Unknown",
+    "SU1_C_CodSum",
+    "SU1_C_CodSumSmash",
+    "SU1_C_ExplicitApprox",
+    "SU1_C_Intersection",
+    "SU1_C_Parallel",
+    "SU1_C_ProdIntersection",
+    "SU1_C_Product",
+    "SU1_C_RefineDomain",
+    "SU1_C_Series",
+    "SU1_C_Trace",
+    "SU1_C_Union",
+    "SU1_C_WrapUnits",
+    "SU1_Exact",
+    "SU1_Identity",
+    "SU1_InvMultiply",
+    "SU1_InvSum",
+    "SU1_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "DP_All_Constants_And_F_Leq_R",
-        "DP_All_Constants_Leq_R",
-        "DP_All_Fi_Leq_R",
-        "DP_AmbientConversion",
-        "DP_Any_Constants_Or_F_Leq_R",
-        "DP_Any_Fi_Leq_R",
-        "DP_C_ExplicitApprox",
-        "DP_C_Intersection",
-        "DP_C_Parallel",
-        "DP_C_Series",
-        "DP_C_Trace",
-        "DP_C_Union",
-        "DP_Catalog",
-        "DP_Compiled",
-        "DP_F_Leq_All_Constants",
-        "DP_F_Leq_All_R_And_Constants",
-        "DP_F_Leq_All_Ri",
-        "DP_F_Leq_Any_R_And_Constants",
-        "DP_F_Leq_Any_Ri",
-        "DP_False",
-        "DP_FuncNotMoreThan",
-        "DP_GenericConstant",
-        "DP_Identity",
-        "DP_Iso",
-        "DP_LiftL",
-        "DP_LiftU",
-        "DP_ResNotLessThan",
-        "DP_True",
-        "DP_Unknown",
+        "SU1_C_CodSum",
+        "SU1_C_CodSumSmash",
+        "SU1_C_ExplicitApprox",
+        "SU1_C_Intersection",
+        "SU1_C_Parallel",
+        "SU1_C_ProdIntersection",
+        "SU1_C_Product",
+        "SU1_C_RefineDomain",
+        "SU1_C_Series",
+        "SU1_C_Trace",
+        "SU1_C_Union",
+        "SU1_C_WrapUnits",
+        "SU1_Exact",
+        "SU1_Identity",
+        "SU1_InvMultiply",
+        "SU1_InvSum",
+        "SU1_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_str(item) for item in value]
-
-
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_any(item) for item in value]
-
-
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Check_Data(item) for item in value]
-
-
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUCheck_Data(item) for item in value]
-
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
-
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
 
 
 def validate_enum_17f66(
@@ -731,224 +266,48 @@ def validate_enum_17f66(
     return value  # type: ignore
 
 
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+
+def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
     if not isinstance(value, dict):
         raise ValueError(f"Expected a dict, got {type(value).__name__}")
     value = cast(dict[str, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
+    return {k: load_list_of_str(v) for k, v in value.items()}
 
 
-def load_list_of_DP(value: object) -> list[DP]:
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_DP(item) for item in value]
+    return [load_UCheck_Data(item) for item in value]
 
 
-def load_list_of_str(value: object) -> list[str]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_str(item) for item in value]
-
-
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
-
-
-def validate_enum_29e4(
-    value: object,
-) -> Literal[
-    "Check",
-    "DP",
-    "L1Map",
-    "LMap",
-    "MonotoneMap",
-    "NDP",
-    "NDPInterface",
-    "NDPTemplate",
-    "Poset",
-    "Query",
-    "SL1Map",
-    "SLMap",
-    "SU1Map",
-    "SUMap",
-    "U1Map",
-    "UMap",
-    "Value",
-]:
+def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "Check",
-        "DP",
-        "L1Map",
-        "LMap",
-        "MonotoneMap",
-        "NDP",
-        "NDPInterface",
-        "NDPTemplate",
-        "Poset",
-        "Query",
-        "SL1Map",
-        "SLMap",
-        "SU1Map",
-        "SUMap",
-        "U1Map",
-        "UMap",
-        "Value",
-    ]
+    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
 
 
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SL1Map(item) for item in value]
+    return [load_MonotoneMap(item) for item in value]
 
 
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDPInterface(v) for k, v in value.items()}
-
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
-    value: object,
-) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SUMap(value: object) -> list[SUMap]:
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
-
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Check_Data(item) for item in value]
-
-
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-
-def validate_enum_8a74(
-    value: object,
-) -> Literal[
-    "P_Bool",
-    "P_C_Arrow",
-    "P_C_Discretized",
-    "P_C_Lexicographic",
-    "P_C_LowerSets",
-    "P_C_Multisets",
-    "P_C_Opposite",
-    "P_C_Power",
-    "P_C_Product",
-    "P_C_ProductDS",
-    "P_C_ProductSmash",
-    "P_C_Sum",
-    "P_C_SumSmash",
-    "P_C_Twisted",
-    "P_C_Units",
-    "P_C_UpperSets",
-    "P_Decimal",
-    "P_F_Bounded",
-    "P_F_C_Intersection",
-    "P_F_C_Union",
-    "P_F_Interval",
-    "P_F_LowerClosure",
-    "P_F_Subposet",
-    "P_F_UpperClosure",
-    "P_Finite",
-    "P_Float",
-    "P_Fractions",
-    "P_Integer",
-    "P_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "P_Bool",
-        "P_C_Arrow",
-        "P_C_Discretized",
-        "P_C_Lexicographic",
-        "P_C_LowerSets",
-        "P_C_Multisets",
-        "P_C_Opposite",
-        "P_C_Power",
-        "P_C_Product",
-        "P_C_ProductDS",
-        "P_C_ProductSmash",
-        "P_C_Sum",
-        "P_C_SumSmash",
-        "P_C_Twisted",
-        "P_C_Units",
-        "P_C_UpperSets",
-        "P_Decimal",
-        "P_F_Bounded",
-        "P_F_C_Intersection",
-        "P_F_C_Union",
-        "P_F_Interval",
-        "P_F_LowerClosure",
-        "P_F_Subposet",
-        "P_F_UpperClosure",
-        "P_Finite",
-        "P_Float",
-        "P_Fractions",
-        "P_Integer",
-        "P_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
-
-
-def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LCheck_Data(item) for item in value]
-
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
-
-
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
+    return [load_L_Catalog_Options(item) for item in value]
 
 
 def validate_enum_a898(
@@ -1024,15 +383,374 @@ def validate_enum_a898(
     return value  # type: ignore
 
 
-def validate_enum_19fd(
+def validate_enum_29e4(
     value: object,
-) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
+) -> Literal[
+    "Check",
+    "DP",
+    "L1Map",
+    "LMap",
+    "MonotoneMap",
+    "NDP",
+    "NDPInterface",
+    "NDPTemplate",
+    "Poset",
+    "Query",
+    "SL1Map",
+    "SLMap",
+    "SU1Map",
+    "SUMap",
+    "U1Map",
+    "UMap",
+    "Value",
+]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
+    allowed_values = [
+        "Check",
+        "DP",
+        "L1Map",
+        "LMap",
+        "MonotoneMap",
+        "NDP",
+        "NDPInterface",
+        "NDPTemplate",
+        "Poset",
+        "Query",
+        "SL1Map",
+        "SLMap",
+        "SU1Map",
+        "SUMap",
+        "U1Map",
+        "UMap",
+        "Value",
+    ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
+
+
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLCheck_Data(item) for item in value]
+
+
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_str(item) for item in value]
+
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
+    value: object,
+) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Map(item) for item in value]
+
+
+def validate_enum_4f69(
+    value: object,
+) -> Literal[
+    "SU_C_ITransform",
+    "SU_C_Intersection",
+    "SU_C_Parallel",
+    "SU_C_RefineDomain",
+    "SU_C_Series",
+    "SU_C_Trace",
+    "SU_C_Union",
+    "SU_C_WrapUnits",
+    "SU_Identity",
+    "SU_L_Exact",
+    "SU_L_Explicit_Approx",
+    "SU_L_Lift1_Constant",
+    "SU_L_Lift1_Transform",
+    "SU_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SU_C_ITransform",
+        "SU_C_Intersection",
+        "SU_C_Parallel",
+        "SU_C_RefineDomain",
+        "SU_C_Series",
+        "SU_C_Trace",
+        "SU_C_Union",
+        "SU_C_WrapUnits",
+        "SU_Identity",
+        "SU_L_Exact",
+        "SU_L_Explicit_Approx",
+        "SU_L_Lift1_Constant",
+        "SU_L_Lift1_Transform",
+        "SU_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_str(value: object) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_str(item) for item in value]
+
+
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
+    value: object,
+) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_bool(value: object) -> list[bool]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_bool(item) for item in value]
+
+
+def validate_enum_4700(
+    value: object,
+) -> Literal[
+    "L_C_ITransform",
+    "L_C_Intersection",
+    "L_C_Parallel",
+    "L_C_RefineDomain",
+    "L_C_Series",
+    "L_C_Trace",
+    "L_C_Union",
+    "L_C_WrapUnits",
+    "L_Catalog",
+    "L_Constant",
+    "L_Identity",
+    "L_L_Lift1_Constant",
+    "L_L_Lift1_Transform",
+    "L_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L_C_ITransform",
+        "L_C_Intersection",
+        "L_C_Parallel",
+        "L_C_RefineDomain",
+        "L_C_Series",
+        "L_C_Trace",
+        "L_C_Union",
+        "L_C_WrapUnits",
+        "L_Catalog",
+        "L_Constant",
+        "L_Identity",
+        "L_L_Lift1_Constant",
+        "L_L_Lift1_Transform",
+        "L_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_UMap(value: object) -> list[UMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UMap(item) for item in value]
+
+
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUCheck_Data(item) for item in value]
+
+
+def load_list_of_Unit(value: object) -> list[Unit]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Unit(item) for item in value]
+
+
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
+
+
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_b0de(
+    value: object,
+) -> Literal[
+    "DP_All_Constants_And_F_Leq_R",
+    "DP_All_Constants_Leq_R",
+    "DP_All_Fi_Leq_R",
+    "DP_AmbientConversion",
+    "DP_Any_Constants_Or_F_Leq_R",
+    "DP_Any_Fi_Leq_R",
+    "DP_C_ExplicitApprox",
+    "DP_C_Intersection",
+    "DP_C_Parallel",
+    "DP_C_Series",
+    "DP_C_Trace",
+    "DP_C_Union",
+    "DP_Catalog",
+    "DP_Compiled",
+    "DP_F_Leq_All_Constants",
+    "DP_F_Leq_All_R_And_Constants",
+    "DP_F_Leq_All_Ri",
+    "DP_F_Leq_Any_R_And_Constants",
+    "DP_F_Leq_Any_Ri",
+    "DP_False",
+    "DP_FuncNotMoreThan",
+    "DP_GenericConstant",
+    "DP_Identity",
+    "DP_Iso",
+    "DP_LiftL",
+    "DP_LiftU",
+    "DP_ResNotLessThan",
+    "DP_True",
+    "DP_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "DP_All_Constants_And_F_Leq_R",
+        "DP_All_Constants_Leq_R",
+        "DP_All_Fi_Leq_R",
+        "DP_AmbientConversion",
+        "DP_Any_Constants_Or_F_Leq_R",
+        "DP_Any_Fi_Leq_R",
+        "DP_C_ExplicitApprox",
+        "DP_C_Intersection",
+        "DP_C_Parallel",
+        "DP_C_Series",
+        "DP_C_Trace",
+        "DP_C_Union",
+        "DP_Catalog",
+        "DP_Compiled",
+        "DP_F_Leq_All_Constants",
+        "DP_F_Leq_All_R_And_Constants",
+        "DP_F_Leq_All_Ri",
+        "DP_F_Leq_Any_R_And_Constants",
+        "DP_F_Leq_Any_Ri",
+        "DP_False",
+        "DP_FuncNotMoreThan",
+        "DP_GenericConstant",
+        "DP_Identity",
+        "DP_Iso",
+        "DP_LiftL",
+        "DP_LiftU",
+        "DP_ResNotLessThan",
+        "DP_True",
+        "DP_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_477e(
+    value: object,
+) -> Literal[
+    "U_C_ITransform",
+    "U_C_Intersection",
+    "U_C_Parallel",
+    "U_C_RefineDomain",
+    "U_C_Series",
+    "U_C_Trace",
+    "U_C_Union",
+    "U_C_WrapUnits",
+    "U_Catalog",
+    "U_Constant",
+    "U_Identity",
+    "U_L_Lift1_Constant",
+    "U_L_Lift1_Transform",
+    "U_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "U_C_ITransform",
+        "U_C_Intersection",
+        "U_C_Parallel",
+        "U_C_RefineDomain",
+        "U_C_Series",
+        "U_C_Trace",
+        "U_C_Union",
+        "U_C_WrapUnits",
+        "U_Catalog",
+        "U_Constant",
+        "U_Identity",
+        "U_L_Lift1_Constant",
+        "U_L_Lift1_Transform",
+        "U_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
+
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Check_Data(item) for item in value]
+
+
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
+
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
 
 
 def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
@@ -1044,11 +762,11 @@ def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", 
     return value  # type: ignore
 
 
-def load_list_of_L1Map(value: object) -> list[L1Map]:
+def load_list_of_SUMap(value: object) -> list[SUMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
+    return [load_SUMap(item) for item in value]
 
 
 def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
@@ -1058,11 +776,105 @@ def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
     return [load_M_Explicit_Option(item) for item in value]
 
 
-def load_list_of_Range(value: object) -> list[Range]:
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Range(item) for item in value]
+    return [load_DP_Catalog_Options(item) for item in value]
+
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
+
+
+def validate_enum_a17d(
+    value: object,
+) -> Literal[
+    "L1_C_CodSum",
+    "L1_C_CodSumSmash",
+    "L1_C_DomUnion",
+    "L1_C_Intersection",
+    "L1_C_Parallel",
+    "L1_C_ProdIntersection",
+    "L1_C_Product",
+    "L1_C_RefineDomain",
+    "L1_C_Series",
+    "L1_C_Trace",
+    "L1_C_Union",
+    "L1_C_WrapUnits",
+    "L1_Catalog",
+    "L1_Constant",
+    "L1_Entire",
+    "L1_Explicit",
+    "L1_FromFilter",
+    "L1_Identity",
+    "L1_IntersectionOfPrinLowerSets",
+    "L1_InvMul_Opt",
+    "L1_InvMul_Pes",
+    "L1_InvSum_Opt",
+    "L1_InvSum_Pes",
+    "L1_L_Linv",
+    "L1_Lift",
+    "L1_RepresentPrincipalLowerSet",
+    "L1_TopAlternating",
+    "L1_UnionOfPrinLowerSets",
+    "L1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L1_C_CodSum",
+        "L1_C_CodSumSmash",
+        "L1_C_DomUnion",
+        "L1_C_Intersection",
+        "L1_C_Parallel",
+        "L1_C_ProdIntersection",
+        "L1_C_Product",
+        "L1_C_RefineDomain",
+        "L1_C_Series",
+        "L1_C_Trace",
+        "L1_C_Union",
+        "L1_C_WrapUnits",
+        "L1_Catalog",
+        "L1_Constant",
+        "L1_Entire",
+        "L1_Explicit",
+        "L1_FromFilter",
+        "L1_Identity",
+        "L1_IntersectionOfPrinLowerSets",
+        "L1_InvMul_Opt",
+        "L1_InvMul_Pes",
+        "L1_InvSum_Opt",
+        "L1_InvSum_Pes",
+        "L1_L_Linv",
+        "L1_Lift",
+        "L1_RepresentPrincipalLowerSet",
+        "L1_TopAlternating",
+        "L1_UnionOfPrinLowerSets",
+        "L1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
 
 
 def validate_enum_4eeb(
@@ -1106,18 +918,29 @@ def validate_enum_4eeb(
     return value  # type: ignore
 
 
-def load_list_of_Poset(value: object) -> list[Poset]:
+def validate_enum_19fd(
+    value: object,
+) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_L1Map(value: object) -> list[L1Map]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
+    return [load_L1Map(item) for item in value]
 
 
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
     if not isinstance(value, dict):
         raise ValueError(f"Expected a dict, got {type(value).__name__}")
     value = cast(dict[str, object], value)
-    return {k: load_Value(v) for k, v in value.items()}
+    return {k: load_Poset(v) for k, v in value.items()}
 
 
 def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
@@ -1127,58 +950,235 @@ def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
     return [load_U_Catalog_Options(item) for item in value]
 
 
-def load_list_of_Unit(value: object) -> list[Unit]:
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Unit(item) for item in value]
+    return [load_L1_Explicit_Option(item) for item in value]
 
 
-def validate_enum_5dfe(
+def validate_enum_8a74(
     value: object,
 ) -> Literal[
-    "SU1_C_CodSum",
-    "SU1_C_CodSumSmash",
-    "SU1_C_ExplicitApprox",
-    "SU1_C_Intersection",
-    "SU1_C_Parallel",
-    "SU1_C_ProdIntersection",
-    "SU1_C_Product",
-    "SU1_C_RefineDomain",
-    "SU1_C_Series",
-    "SU1_C_Trace",
-    "SU1_C_Union",
-    "SU1_C_WrapUnits",
-    "SU1_Exact",
-    "SU1_Identity",
-    "SU1_InvMultiply",
-    "SU1_InvSum",
-    "SU1_Unknown",
+    "P_Bool",
+    "P_C_Arrow",
+    "P_C_Discretized",
+    "P_C_Lexicographic",
+    "P_C_LowerSets",
+    "P_C_Multisets",
+    "P_C_Opposite",
+    "P_C_Power",
+    "P_C_Product",
+    "P_C_ProductDS",
+    "P_C_ProductSmash",
+    "P_C_Sum",
+    "P_C_SumSmash",
+    "P_C_Twisted",
+    "P_C_Units",
+    "P_C_UpperSets",
+    "P_Decimal",
+    "P_F_Bounded",
+    "P_F_C_Intersection",
+    "P_F_C_Union",
+    "P_F_Interval",
+    "P_F_LowerClosure",
+    "P_F_Subposet",
+    "P_F_UpperClosure",
+    "P_Finite",
+    "P_Float",
+    "P_Fractions",
+    "P_Integer",
+    "P_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "SU1_C_CodSum",
-        "SU1_C_CodSumSmash",
-        "SU1_C_ExplicitApprox",
-        "SU1_C_Intersection",
-        "SU1_C_Parallel",
-        "SU1_C_ProdIntersection",
-        "SU1_C_Product",
-        "SU1_C_RefineDomain",
-        "SU1_C_Series",
-        "SU1_C_Trace",
-        "SU1_C_Union",
-        "SU1_C_WrapUnits",
-        "SU1_Exact",
-        "SU1_Identity",
-        "SU1_InvMultiply",
-        "SU1_InvSum",
-        "SU1_Unknown",
+        "P_Bool",
+        "P_C_Arrow",
+        "P_C_Discretized",
+        "P_C_Lexicographic",
+        "P_C_LowerSets",
+        "P_C_Multisets",
+        "P_C_Opposite",
+        "P_C_Power",
+        "P_C_Product",
+        "P_C_ProductDS",
+        "P_C_ProductSmash",
+        "P_C_Sum",
+        "P_C_SumSmash",
+        "P_C_Twisted",
+        "P_C_Units",
+        "P_C_UpperSets",
+        "P_Decimal",
+        "P_F_Bounded",
+        "P_F_C_Intersection",
+        "P_F_C_Union",
+        "P_F_Interval",
+        "P_F_LowerClosure",
+        "P_F_Subposet",
+        "P_F_UpperClosure",
+        "P_Finite",
+        "P_Float",
+        "P_Fractions",
+        "P_Integer",
+        "P_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
+
+
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
+
+
+def validate_enum_5d65(
+    value: object,
+) -> Literal[
+    "SL1_C_CodSum",
+    "SL1_C_CodSumSmash",
+    "SL1_C_ExplicitApprox",
+    "SL1_C_Intersection",
+    "SL1_C_Parallel",
+    "SL1_C_ProdIntersection",
+    "SL1_C_Product",
+    "SL1_C_RefineDomain",
+    "SL1_C_Series",
+    "SL1_C_Trace",
+    "SL1_C_Union",
+    "SL1_C_WrapUnits",
+    "SL1_Exact",
+    "SL1_Identity",
+    "SL1_InvMultiply",
+    "SL1_InvSum",
+    "SL1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SL1_C_CodSum",
+        "SL1_C_CodSumSmash",
+        "SL1_C_ExplicitApprox",
+        "SL1_C_Intersection",
+        "SL1_C_Parallel",
+        "SL1_C_ProdIntersection",
+        "SL1_C_Product",
+        "SL1_C_RefineDomain",
+        "SL1_C_Series",
+        "SL1_C_Trace",
+        "SL1_C_Union",
+        "SL1_C_WrapUnits",
+        "SL1_Exact",
+        "SL1_Identity",
+        "SL1_InvMultiply",
+        "SL1_InvSum",
+        "SL1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_DP(value: object) -> list[DP]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP(item) for item in value]
+
+
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Check_Data(item) for item in value]
+
+
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Check_Data(item) for item in value]
+
+
+def load_list_of_Range(value: object) -> list[Range]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Range(item) for item in value]
+
+
+def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LCheck_Data(item) for item in value]
+
+
+def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
+
+
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
+    value: object,
+) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
 
 
 # Schema loaders
