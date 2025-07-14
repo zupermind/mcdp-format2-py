@@ -15,3 +15,9 @@ generate:
 
 test:
 	nose2 mcdp_format2_py.schemas
+
+
+upload:
+	rm -rf dist
+	python setup.py sdist bdist_wheel
+	twine upload dist/*
