@@ -110,7 +110,7 @@ mcdp-format2-py-load schema.json config.yaml data.cbor
 
 ### Output
 
-The tool provides clear status messages:
+The tool provides status messages:
 
 ```
 [ OK ] schema.json: decoded as MySchema (kind=schema)
@@ -133,12 +133,7 @@ MySchema:
     type: integer
     default: 42
 ```
-
-The demo tool is useful for:
-- Exploring MCDP file contents with colorized output
-- Validating file formats during development
-- Batch processing directories of MCDP files
-- Learning the structure of MCDP Format 2 files
+ 
 
 ## Development
 

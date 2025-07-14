@@ -30,8 +30,9 @@ python_syntax_version: '3.12'
 url: https://github.com/zupermind/mcdp-format2-py
 author: Andrea Censi
 author_email: AndreaCensi@users.noreply.github.com
-short_description: ''
-full_description: ''
+short_description: 'Library for reading MCDP format 2 files'
+full_description: |
+  Library for reading MCDP format 2 files.
 
 version_style:
   storage: only_init

@@ -39,213 +39,6 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
-
-
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
-
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-
-def load_list_of_Unit(value: object) -> list[Unit]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Unit(item) for item in value]
-
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
-    value: object,
-) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
-
-
-def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SUMap(value: object) -> list[SUMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
-
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
-
-
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDPInterface(v) for k, v in value.items()}
-
-
-def validate_enum_19fd(
-    value: object,
-) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_str(item) for item in value]
-
-
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUCheck_Data(item) for item in value]
-
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Check_Data(item) for item in value]
-
-
-def validate_enum_5dfe(
-    value: object,
-) -> Literal[
-    "SU1_C_CodSum",
-    "SU1_C_CodSumSmash",
-    "SU1_C_ExplicitApprox",
-    "SU1_C_Intersection",
-    "SU1_C_Parallel",
-    "SU1_C_ProdIntersection",
-    "SU1_C_Product",
-    "SU1_C_RefineDomain",
-    "SU1_C_Series",
-    "SU1_C_Trace",
-    "SU1_C_Union",
-    "SU1_C_WrapUnits",
-    "SU1_Exact",
-    "SU1_Identity",
-    "SU1_InvMultiply",
-    "SU1_InvSum",
-    "SU1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SU1_C_CodSum",
-        "SU1_C_CodSumSmash",
-        "SU1_C_ExplicitApprox",
-        "SU1_C_Intersection",
-        "SU1_C_Parallel",
-        "SU1_C_ProdIntersection",
-        "SU1_C_Product",
-        "SU1_C_RefineDomain",
-        "SU1_C_Series",
-        "SU1_C_Trace",
-        "SU1_C_Union",
-        "SU1_C_WrapUnits",
-        "SU1_Exact",
-        "SU1_Identity",
-        "SU1_InvMultiply",
-        "SU1_InvSum",
-        "SU1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_Poset(value: object) -> list[Poset]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
-
-
-def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
 def validate_enum_4f69(
     value: object,
 ) -> Literal[
@@ -287,422 +80,20 @@ def validate_enum_4f69(
     return value  # type: ignore
 
 
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
-
-
-def validate_enum_477e(
-    value: object,
-) -> Literal[
-    "U_C_ITransform",
-    "U_C_Intersection",
-    "U_C_Parallel",
-    "U_C_RefineDomain",
-    "U_C_Series",
-    "U_C_Trace",
-    "U_C_Union",
-    "U_C_WrapUnits",
-    "U_Catalog",
-    "U_Constant",
-    "U_Identity",
-    "U_L_Lift1_Constant",
-    "U_L_Lift1_Transform",
-    "U_Unknown",
-]:
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "U_C_ITransform",
-        "U_C_Intersection",
-        "U_C_Parallel",
-        "U_C_RefineDomain",
-        "U_C_Series",
-        "U_C_Trace",
-        "U_C_Union",
-        "U_C_WrapUnits",
-        "U_Catalog",
-        "U_Constant",
-        "U_Identity",
-        "U_L_Lift1_Constant",
-        "U_L_Lift1_Transform",
-        "U_Unknown",
-    ]
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
 
 
-def validate_enum_4eeb(
-    value: object,
-) -> Literal[
-    "SL_C_ITransform",
-    "SL_C_Intersection",
-    "SL_C_Parallel",
-    "SL_C_RefineDomain",
-    "SL_C_Series",
-    "SL_C_Trace",
-    "SL_C_Union",
-    "SL_C_WrapUnits",
-    "SL_Identity",
-    "SL_L_Exact",
-    "SL_L_Explicit_Approx",
-    "SL_L_Lift1_Constant",
-    "SL_L_Lift1_Transform",
-    "SL_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SL_C_ITransform",
-        "SL_C_Intersection",
-        "SL_C_Parallel",
-        "SL_C_RefineDomain",
-        "SL_C_Series",
-        "SL_C_Trace",
-        "SL_C_Union",
-        "SL_C_WrapUnits",
-        "SL_Identity",
-        "SL_L_Exact",
-        "SL_L_Explicit_Approx",
-        "SL_L_Lift1_Constant",
-        "SL_L_Lift1_Transform",
-        "SL_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
-    value: object,
-) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def validate_enum_a898(
-    value: object,
-) -> Literal[
-    "U1_C_CodSum",
-    "U1_C_CodSumSmash",
-    "U1_C_DomUnion",
-    "U1_C_Intersection",
-    "U1_C_Parallel",
-    "U1_C_ProdIntersection",
-    "U1_C_Product",
-    "U1_C_RefineDomain",
-    "U1_C_Series",
-    "U1_C_Trace",
-    "U1_C_Union",
-    "U1_C_WrapUnits",
-    "U1_Catalog",
-    "U1_Constant",
-    "U1_Entire",
-    "U1_Explicit",
-    "U1_FromFilter",
-    "U1_Identity",
-    "U1_IntersectionOfPrinUpperSets",
-    "U1_InvMul_Opt",
-    "U1_InvMul_Pes",
-    "U1_InvSum_Opt",
-    "U1_InvSum_Pes",
-    "U1_L_Uinv",
-    "U1_Lift",
-    "U1_RepresentPrincipalUpperSet",
-    "U1_Uinv_Join",
-    "U1_Uinv_JoinConstant",
-    "U1_UnionOfPrinUpperSets",
-    "U1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "U1_C_CodSum",
-        "U1_C_CodSumSmash",
-        "U1_C_DomUnion",
-        "U1_C_Intersection",
-        "U1_C_Parallel",
-        "U1_C_ProdIntersection",
-        "U1_C_Product",
-        "U1_C_RefineDomain",
-        "U1_C_Series",
-        "U1_C_Trace",
-        "U1_C_Union",
-        "U1_C_WrapUnits",
-        "U1_Catalog",
-        "U1_Constant",
-        "U1_Entire",
-        "U1_Explicit",
-        "U1_FromFilter",
-        "U1_Identity",
-        "U1_IntersectionOfPrinUpperSets",
-        "U1_InvMul_Opt",
-        "U1_InvMul_Pes",
-        "U1_InvSum_Opt",
-        "U1_InvSum_Pes",
-        "U1_L_Uinv",
-        "U1_Lift",
-        "U1_RepresentPrincipalUpperSet",
-        "U1_Uinv_Join",
-        "U1_Uinv_JoinConstant",
-        "U1_UnionOfPrinUpperSets",
-        "U1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def validate_enum_b0de(
-    value: object,
-) -> Literal[
-    "DP_All_Constants_And_F_Leq_R",
-    "DP_All_Constants_Leq_R",
-    "DP_All_Fi_Leq_R",
-    "DP_AmbientConversion",
-    "DP_Any_Constants_Or_F_Leq_R",
-    "DP_Any_Fi_Leq_R",
-    "DP_C_ExplicitApprox",
-    "DP_C_Intersection",
-    "DP_C_Parallel",
-    "DP_C_Series",
-    "DP_C_Trace",
-    "DP_C_Union",
-    "DP_Catalog",
-    "DP_Compiled",
-    "DP_F_Leq_All_Constants",
-    "DP_F_Leq_All_R_And_Constants",
-    "DP_F_Leq_All_Ri",
-    "DP_F_Leq_Any_R_And_Constants",
-    "DP_F_Leq_Any_Ri",
-    "DP_False",
-    "DP_FuncNotMoreThan",
-    "DP_GenericConstant",
-    "DP_Identity",
-    "DP_Iso",
-    "DP_LiftL",
-    "DP_LiftU",
-    "DP_ResNotLessThan",
-    "DP_True",
-    "DP_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "DP_All_Constants_And_F_Leq_R",
-        "DP_All_Constants_Leq_R",
-        "DP_All_Fi_Leq_R",
-        "DP_AmbientConversion",
-        "DP_Any_Constants_Or_F_Leq_R",
-        "DP_Any_Fi_Leq_R",
-        "DP_C_ExplicitApprox",
-        "DP_C_Intersection",
-        "DP_C_Parallel",
-        "DP_C_Series",
-        "DP_C_Trace",
-        "DP_C_Union",
-        "DP_Catalog",
-        "DP_Compiled",
-        "DP_F_Leq_All_Constants",
-        "DP_F_Leq_All_R_And_Constants",
-        "DP_F_Leq_All_Ri",
-        "DP_F_Leq_Any_R_And_Constants",
-        "DP_F_Leq_Any_Ri",
-        "DP_False",
-        "DP_FuncNotMoreThan",
-        "DP_GenericConstant",
-        "DP_Identity",
-        "DP_Iso",
-        "DP_LiftL",
-        "DP_LiftU",
-        "DP_ResNotLessThan",
-        "DP_True",
-        "DP_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+def load_list_of_bool(value: object) -> list[bool]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_L1Check_Data(item) for item in value]
-
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UCheck_Data(item) for item in value]
-
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-
-def load_list_of_Connection(value: object) -> list[Connection]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Connection(item) for item in value]
-
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
-    value: object,
-) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_list_of_str(v) for k, v in value.items()}
-
-
-def load_list_of_Range(value: object) -> list[Range]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Range(item) for item in value]
-
-
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
-
-
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Map(item) for item in value]
-
-
-def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_M_Explicit_Option(item) for item in value]
-
-
-def validate_enum_1978(
-    value: object,
-) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_any(item) for item in value]
-
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L_Catalog_Options(item) for item in value]
-
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
-
-
-def load_list_of_DP(value: object) -> list[DP]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP(item) for item in value]
-
-
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
-
-
-def validate_enum_29e4(
-    value: object,
-) -> Literal[
-    "Check",
-    "DP",
-    "L1Map",
-    "LMap",
-    "MonotoneMap",
-    "NDP",
-    "NDPInterface",
-    "NDPTemplate",
-    "Poset",
-    "Query",
-    "SL1Map",
-    "SLMap",
-    "SU1Map",
-    "SUMap",
-    "U1Map",
-    "UMap",
-    "Value",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "Check",
-        "DP",
-        "L1Map",
-        "LMap",
-        "MonotoneMap",
-        "NDP",
-        "NDPInterface",
-        "NDPTemplate",
-        "Poset",
-        "Query",
-        "SL1Map",
-        "SLMap",
-        "SU1Map",
-        "SUMap",
-        "U1Map",
-        "UMap",
-        "Value",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
+    return [load_bool(item) for item in value]
 
 
 def validate_enum_5d65(
@@ -752,18 +143,162 @@ def validate_enum_5d65(
     return value  # type: ignore
 
 
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_bool(item) for item in value]
-
-
 def load_list_of_SLMap(value: object) -> list[SLMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_SLMap(item) for item in value]
+
+
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Check_Data(item) for item in value]
+
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
+
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
+    value: object,
+) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L_Catalog_Options(item) for item in value]
+
+
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Explicit_Option(item) for item in value]
+
+
+def validate_enum_477e(
+    value: object,
+) -> Literal[
+    "U_C_ITransform",
+    "U_C_Intersection",
+    "U_C_Parallel",
+    "U_C_RefineDomain",
+    "U_C_Series",
+    "U_C_Trace",
+    "U_C_Union",
+    "U_C_WrapUnits",
+    "U_Catalog",
+    "U_Constant",
+    "U_Identity",
+    "U_L_Lift1_Constant",
+    "U_L_Lift1_Transform",
+    "U_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "U_C_ITransform",
+        "U_C_Intersection",
+        "U_C_Parallel",
+        "U_C_RefineDomain",
+        "U_C_Series",
+        "U_C_Trace",
+        "U_C_Union",
+        "U_C_WrapUnits",
+        "U_Catalog",
+        "U_Constant",
+        "U_Identity",
+        "U_L_Lift1_Constant",
+        "U_L_Lift1_Transform",
+        "U_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_4700(
+    value: object,
+) -> Literal[
+    "L_C_ITransform",
+    "L_C_Intersection",
+    "L_C_Parallel",
+    "L_C_RefineDomain",
+    "L_C_Series",
+    "L_C_Trace",
+    "L_C_Union",
+    "L_C_WrapUnits",
+    "L_Catalog",
+    "L_Constant",
+    "L_Identity",
+    "L_L_Lift1_Constant",
+    "L_L_Lift1_Transform",
+    "L_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L_C_ITransform",
+        "L_C_Intersection",
+        "L_C_Parallel",
+        "L_C_RefineDomain",
+        "L_C_Series",
+        "L_C_Trace",
+        "L_C_Union",
+        "L_C_WrapUnits",
+        "L_Catalog",
+        "L_Constant",
+        "L_Identity",
+        "L_L_Lift1_Constant",
+        "L_L_Lift1_Transform",
+        "L_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_UMap(value: object) -> list[UMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UMap(item) for item in value]
+
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
 
 
 def validate_enum_a17d(
@@ -837,75 +372,171 @@ def validate_enum_a17d(
     return value  # type: ignore
 
 
-def validate_enum_8a74(
+def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_list_of_str(v) for k, v in value.items()}
+
+
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
+    value: object,
+) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Poset(v) for k, v in value.items()}
+
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
+
+
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UCheck_Data(item) for item in value]
+
+
+def validate_enum_1978(
+    value: object,
+) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLCheck_Data(item) for item in value]
+
+
+def validate_enum_b0de(
     value: object,
 ) -> Literal[
-    "P_Bool",
-    "P_C_Arrow",
-    "P_C_Discretized",
-    "P_C_Lexicographic",
-    "P_C_LowerSets",
-    "P_C_Multisets",
-    "P_C_Opposite",
-    "P_C_Power",
-    "P_C_Product",
-    "P_C_ProductDS",
-    "P_C_ProductSmash",
-    "P_C_Sum",
-    "P_C_SumSmash",
-    "P_C_Twisted",
-    "P_C_Units",
-    "P_C_UpperSets",
-    "P_Decimal",
-    "P_F_Bounded",
-    "P_F_C_Intersection",
-    "P_F_C_Union",
-    "P_F_Interval",
-    "P_F_LowerClosure",
-    "P_F_Subposet",
-    "P_F_UpperClosure",
-    "P_Finite",
-    "P_Float",
-    "P_Fractions",
-    "P_Integer",
-    "P_Unknown",
+    "DP_All_Constants_And_F_Leq_R",
+    "DP_All_Constants_Leq_R",
+    "DP_All_Fi_Leq_R",
+    "DP_AmbientConversion",
+    "DP_Any_Constants_Or_F_Leq_R",
+    "DP_Any_Fi_Leq_R",
+    "DP_C_ExplicitApprox",
+    "DP_C_Intersection",
+    "DP_C_Parallel",
+    "DP_C_Series",
+    "DP_C_Trace",
+    "DP_C_Union",
+    "DP_Catalog",
+    "DP_Compiled",
+    "DP_F_Leq_All_Constants",
+    "DP_F_Leq_All_R_And_Constants",
+    "DP_F_Leq_All_Ri",
+    "DP_F_Leq_Any_R_And_Constants",
+    "DP_F_Leq_Any_Ri",
+    "DP_False",
+    "DP_FuncNotMoreThan",
+    "DP_GenericConstant",
+    "DP_Identity",
+    "DP_Iso",
+    "DP_LiftL",
+    "DP_LiftU",
+    "DP_ResNotLessThan",
+    "DP_True",
+    "DP_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "P_Bool",
-        "P_C_Arrow",
-        "P_C_Discretized",
-        "P_C_Lexicographic",
-        "P_C_LowerSets",
-        "P_C_Multisets",
-        "P_C_Opposite",
-        "P_C_Power",
-        "P_C_Product",
-        "P_C_ProductDS",
-        "P_C_ProductSmash",
-        "P_C_Sum",
-        "P_C_SumSmash",
-        "P_C_Twisted",
-        "P_C_Units",
-        "P_C_UpperSets",
-        "P_Decimal",
-        "P_F_Bounded",
-        "P_F_C_Intersection",
-        "P_F_C_Union",
-        "P_F_Interval",
-        "P_F_LowerClosure",
-        "P_F_Subposet",
-        "P_F_UpperClosure",
-        "P_Finite",
-        "P_Float",
-        "P_Fractions",
-        "P_Integer",
-        "P_Unknown",
+        "DP_All_Constants_And_F_Leq_R",
+        "DP_All_Constants_Leq_R",
+        "DP_All_Fi_Leq_R",
+        "DP_AmbientConversion",
+        "DP_Any_Constants_Or_F_Leq_R",
+        "DP_Any_Fi_Leq_R",
+        "DP_C_ExplicitApprox",
+        "DP_C_Intersection",
+        "DP_C_Parallel",
+        "DP_C_Series",
+        "DP_C_Trace",
+        "DP_C_Union",
+        "DP_Catalog",
+        "DP_Compiled",
+        "DP_F_Leq_All_Constants",
+        "DP_F_Leq_All_R_And_Constants",
+        "DP_F_Leq_All_Ri",
+        "DP_F_Leq_Any_R_And_Constants",
+        "DP_F_Leq_Any_Ri",
+        "DP_False",
+        "DP_FuncNotMoreThan",
+        "DP_GenericConstant",
+        "DP_Identity",
+        "DP_Iso",
+        "DP_LiftL",
+        "DP_LiftU",
+        "DP_ResNotLessThan",
+        "DP_True",
+        "DP_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
+
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_str(item) for item in value]
+
+
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
 
 
 def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
@@ -915,39 +546,34 @@ def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
     return [load_SU1Check_Data(item) for item in value]
 
 
-def load_list_of_str(value: object) -> list[str]:
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_str(item) for item in value]
+    return [load_SUCheck_Data(item) for item in value]
 
 
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
+    return [load_MonotoneMap(item) for item in value]
 
 
-def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_U_Catalog_Options(item) for item in value]
-
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
-
-def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Poset(v) for k, v in value.items()}
+    return [load_U1_Explicit_Option(item) for item in value]
 
 
 def validate_enum_17f66(
@@ -1105,11 +731,203 @@ def validate_enum_17f66(
     return value  # type: ignore
 
 
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
+
+
+def load_list_of_DP(value: object) -> list[DP]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SLCheck_Data(item) for item in value]
+    return [load_DP(item) for item in value]
+
+
+def load_list_of_str(value: object) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_str(item) for item in value]
+
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
+
+
+def validate_enum_29e4(
+    value: object,
+) -> Literal[
+    "Check",
+    "DP",
+    "L1Map",
+    "LMap",
+    "MonotoneMap",
+    "NDP",
+    "NDPInterface",
+    "NDPTemplate",
+    "Poset",
+    "Query",
+    "SL1Map",
+    "SLMap",
+    "SU1Map",
+    "SUMap",
+    "U1Map",
+    "UMap",
+    "Value",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "Check",
+        "DP",
+        "L1Map",
+        "LMap",
+        "MonotoneMap",
+        "NDP",
+        "NDPInterface",
+        "NDPTemplate",
+        "Poset",
+        "Query",
+        "SL1Map",
+        "SLMap",
+        "SU1Map",
+        "SUMap",
+        "U1Map",
+        "UMap",
+        "Value",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Map(item) for item in value]
+
+
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
+
+
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
+    value: object,
+) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SUMap(value: object) -> list[SUMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUMap(item) for item in value]
+
+
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+
+def validate_enum_8a74(
+    value: object,
+) -> Literal[
+    "P_Bool",
+    "P_C_Arrow",
+    "P_C_Discretized",
+    "P_C_Lexicographic",
+    "P_C_LowerSets",
+    "P_C_Multisets",
+    "P_C_Opposite",
+    "P_C_Power",
+    "P_C_Product",
+    "P_C_ProductDS",
+    "P_C_ProductSmash",
+    "P_C_Sum",
+    "P_C_SumSmash",
+    "P_C_Twisted",
+    "P_C_Units",
+    "P_C_UpperSets",
+    "P_Decimal",
+    "P_F_Bounded",
+    "P_F_C_Intersection",
+    "P_F_C_Union",
+    "P_F_Interval",
+    "P_F_LowerClosure",
+    "P_F_Subposet",
+    "P_F_UpperClosure",
+    "P_Finite",
+    "P_Float",
+    "P_Fractions",
+    "P_Integer",
+    "P_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "P_Bool",
+        "P_C_Arrow",
+        "P_C_Discretized",
+        "P_C_Lexicographic",
+        "P_C_LowerSets",
+        "P_C_Multisets",
+        "P_C_Opposite",
+        "P_C_Power",
+        "P_C_Product",
+        "P_C_ProductDS",
+        "P_C_ProductSmash",
+        "P_C_Sum",
+        "P_C_SumSmash",
+        "P_C_Twisted",
+        "P_C_Units",
+        "P_C_UpperSets",
+        "P_Decimal",
+        "P_F_Bounded",
+        "P_F_C_Intersection",
+        "P_F_C_Union",
+        "P_F_Interval",
+        "P_F_LowerClosure",
+        "P_F_Subposet",
+        "P_F_UpperClosure",
+        "P_Finite",
+        "P_Float",
+        "P_Fractions",
+        "P_Integer",
+        "P_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
 
 
 def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
@@ -1119,45 +937,180 @@ def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
     return [load_LCheck_Data(item) for item in value]
 
 
-def validate_enum_4700(
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Check_Data(item) for item in value]
+
+
+def validate_enum_a898(
     value: object,
 ) -> Literal[
-    "L_C_ITransform",
-    "L_C_Intersection",
-    "L_C_Parallel",
-    "L_C_RefineDomain",
-    "L_C_Series",
-    "L_C_Trace",
-    "L_C_Union",
-    "L_C_WrapUnits",
-    "L_Catalog",
-    "L_Constant",
-    "L_Identity",
-    "L_L_Lift1_Constant",
-    "L_L_Lift1_Transform",
-    "L_Unknown",
+    "U1_C_CodSum",
+    "U1_C_CodSumSmash",
+    "U1_C_DomUnion",
+    "U1_C_Intersection",
+    "U1_C_Parallel",
+    "U1_C_ProdIntersection",
+    "U1_C_Product",
+    "U1_C_RefineDomain",
+    "U1_C_Series",
+    "U1_C_Trace",
+    "U1_C_Union",
+    "U1_C_WrapUnits",
+    "U1_Catalog",
+    "U1_Constant",
+    "U1_Entire",
+    "U1_Explicit",
+    "U1_FromFilter",
+    "U1_Identity",
+    "U1_IntersectionOfPrinUpperSets",
+    "U1_InvMul_Opt",
+    "U1_InvMul_Pes",
+    "U1_InvSum_Opt",
+    "U1_InvSum_Pes",
+    "U1_L_Uinv",
+    "U1_Lift",
+    "U1_RepresentPrincipalUpperSet",
+    "U1_Uinv_Join",
+    "U1_Uinv_JoinConstant",
+    "U1_UnionOfPrinUpperSets",
+    "U1_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "L_C_ITransform",
-        "L_C_Intersection",
-        "L_C_Parallel",
-        "L_C_RefineDomain",
-        "L_C_Series",
-        "L_C_Trace",
-        "L_C_Union",
-        "L_C_WrapUnits",
-        "L_Catalog",
-        "L_Constant",
-        "L_Identity",
-        "L_L_Lift1_Constant",
-        "L_L_Lift1_Transform",
-        "L_Unknown",
+        "U1_C_CodSum",
+        "U1_C_CodSumSmash",
+        "U1_C_DomUnion",
+        "U1_C_Intersection",
+        "U1_C_Parallel",
+        "U1_C_ProdIntersection",
+        "U1_C_Product",
+        "U1_C_RefineDomain",
+        "U1_C_Series",
+        "U1_C_Trace",
+        "U1_C_Union",
+        "U1_C_WrapUnits",
+        "U1_Catalog",
+        "U1_Constant",
+        "U1_Entire",
+        "U1_Explicit",
+        "U1_FromFilter",
+        "U1_Identity",
+        "U1_IntersectionOfPrinUpperSets",
+        "U1_InvMul_Opt",
+        "U1_InvMul_Pes",
+        "U1_InvSum_Opt",
+        "U1_InvSum_Pes",
+        "U1_L_Uinv",
+        "U1_Lift",
+        "U1_RepresentPrincipalUpperSet",
+        "U1_Uinv_Join",
+        "U1_Uinv_JoinConstant",
+        "U1_UnionOfPrinUpperSets",
+        "U1_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
+
+
+def validate_enum_19fd(
+    value: object,
+) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_L1Map(value: object) -> list[L1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Map(item) for item in value]
+
+
+def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_M_Explicit_Option(item) for item in value]
+
+
+def load_list_of_Range(value: object) -> list[Range]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Range(item) for item in value]
+
+
+def validate_enum_4eeb(
+    value: object,
+) -> Literal[
+    "SL_C_ITransform",
+    "SL_C_Intersection",
+    "SL_C_Parallel",
+    "SL_C_RefineDomain",
+    "SL_C_Series",
+    "SL_C_Trace",
+    "SL_C_Union",
+    "SL_C_WrapUnits",
+    "SL_Identity",
+    "SL_L_Exact",
+    "SL_L_Explicit_Approx",
+    "SL_L_Lift1_Constant",
+    "SL_L_Lift1_Transform",
+    "SL_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SL_C_ITransform",
+        "SL_C_Intersection",
+        "SL_C_Parallel",
+        "SL_C_RefineDomain",
+        "SL_C_Series",
+        "SL_C_Trace",
+        "SL_C_Union",
+        "SL_C_WrapUnits",
+        "SL_Identity",
+        "SL_L_Exact",
+        "SL_L_Explicit_Approx",
+        "SL_L_Lift1_Constant",
+        "SL_L_Lift1_Transform",
+        "SL_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
 
 
 def load_dict_of_str_Value(value: object) -> dict[str, Value]:
@@ -1167,18 +1120,65 @@ def load_dict_of_str_Value(value: object) -> dict[str, Value]:
     return {k: load_Value(v) for k, v in value.items()}
 
 
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
-
-
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
+    return [load_U_Catalog_Options(item) for item in value]
+
+
+def load_list_of_Unit(value: object) -> list[Unit]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Unit(item) for item in value]
+
+
+def validate_enum_5dfe(
+    value: object,
+) -> Literal[
+    "SU1_C_CodSum",
+    "SU1_C_CodSumSmash",
+    "SU1_C_ExplicitApprox",
+    "SU1_C_Intersection",
+    "SU1_C_Parallel",
+    "SU1_C_ProdIntersection",
+    "SU1_C_Product",
+    "SU1_C_RefineDomain",
+    "SU1_C_Series",
+    "SU1_C_Trace",
+    "SU1_C_Union",
+    "SU1_C_WrapUnits",
+    "SU1_Exact",
+    "SU1_Identity",
+    "SU1_InvMultiply",
+    "SU1_InvSum",
+    "SU1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SU1_C_CodSum",
+        "SU1_C_CodSumSmash",
+        "SU1_C_ExplicitApprox",
+        "SU1_C_Intersection",
+        "SU1_C_Parallel",
+        "SU1_C_ProdIntersection",
+        "SU1_C_Product",
+        "SU1_C_RefineDomain",
+        "SU1_C_Series",
+        "SU1_C_Trace",
+        "SU1_C_Union",
+        "SU1_C_WrapUnits",
+        "SU1_Exact",
+        "SU1_Identity",
+        "SU1_InvMultiply",
+        "SU1_InvSum",
+        "SU1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
 
 
 # Schema loaders
@@ -12958,8 +12958,7 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
             raise ValueError(f"Expected 'M_RepresentPrincipalLowerSet_TotalOrderBounded', got {field_type_}'")
         if field_type_ is not None and field_type_ != "M_RepresentPrincipalLowerSet_TotalOrderBounded":
             raise ValueError(
-                f"Invalid discriminator value for 'type': expected 'M_RepresentPrincipalLowerSet_TotalOrderBounded', "
-                f"got {field_type_}"
+                f"Invalid discriminator value for 'type': expected 'M_RepresentPrincipalLowerSet_TotalOrderBounded', got {field_type_}"
             )
     else:
         field_type_ = json.loads('"M_RepresentPrincipalLowerSet_TotalOrderBounded"')
@@ -13032,8 +13031,7 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
             raise ValueError(f"Expected 'M_RepresentPrincipalUpperSet_TotalOrderBounded', got {field_type_}'")
         if field_type_ is not None and field_type_ != "M_RepresentPrincipalUpperSet_TotalOrderBounded":
             raise ValueError(
-                f"Invalid discriminator value for 'type': expected 'M_RepresentPrincipalUpperSet_TotalOrderBounded', "
-                f"got {field_type_}"
+                f"Invalid discriminator value for 'type': expected 'M_RepresentPrincipalUpperSet_TotalOrderBounded', got {field_type_}"
             )
     else:
         field_type_ = json.loads('"M_RepresentPrincipalUpperSet_TotalOrderBounded"')
@@ -29522,38 +29520,6 @@ class DP_C_ExplicitApprox(DP):
             pessimistic_labels=pessimistic_labels,
         )
 
-    # Valid examples
-    __examples__ = [
-        {
-            "F": {"kind": "Poset", "type": "P_Decimal"},
-            "R": {"kind": "Poset", "type": "P_Decimal"},
-            "kind": "DP",
-            "optimistic": [
-                {
-                    "F": {"kind": "Poset", "type": "P_Decimal"},
-                    "R": {"kind": "Poset", "type": "P_Decimal"},
-                    "kind": "DP",
-                    "type": "DP_True",
-                    "value": {
-                        "kind": "Value",
-                        "poset": {"kind": "Poset", "naked": [], "ranges": [], "subs": [], "type": "P_C_ProductSmash"},
-                        "type": "VU",
-                        "value": [],
-                    },
-                }
-            ],
-            "pessimistic": [
-                {
-                    "F": {"kind": "Poset", "type": "P_Decimal"},
-                    "R": {"kind": "Poset", "type": "P_Decimal"},
-                    "kind": "DP",
-                    "type": "DP_False",
-                }
-            ],
-            "type": "DP_C_ExplicitApprox",
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class DP_C_Intersection(DP):
@@ -30538,36 +30504,6 @@ class DP_True(DP):
             type_=type_,
             value=value,
         )
-
-    # Valid examples
-    __examples__ = [
-        {
-            "B": {
-                "kind": "Poset",
-                "naked": true,
-                "ranges": "...",
-                "subs": [{"kind": "Poset", "type": "P_Decimal"}],
-                "type": "P_C_ProductSmash",
-            },
-            "F": {"kind": "Poset", "subs": [], "type": "P_C_Product"},
-            "I": {"kind": "Poset", "subs": [], "type": "P_C_ProductSmash"},
-            "R": {"kind": "Poset", "subs": [], "type": "P_C_Product"},
-            "kind": "DP",
-            "type": "DP_True",
-            "value": {
-                "kind": "Value",
-                "poset": {
-                    "kind": "Poset",
-                    "naked": true,
-                    "ranges": "...",
-                    "subs": [{"kind": "Poset", "type": "P_Decimal"}],
-                    "type": "P_C_ProductSmash",
-                },
-                "type": "VU",
-                "value": [15],
-            },
-        },
-    ]
 
 
 @dataclass(frozen=True)
@@ -35908,11 +35844,6 @@ class P_Bool(Poset):
             type_=type_,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "type": "P_Bool"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_Arrow(Poset):
@@ -35948,11 +35879,6 @@ class P_C_Arrow(Poset):
             poset=poset,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Arrow"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_Discretized(Poset):
@@ -35987,11 +35913,6 @@ class P_C_Discretized(Poset):
             type_=type_,
             poset=poset,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Bool"}, "type": "P_C_Discretized"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -36033,15 +35954,6 @@ class P_C_Lexicographic(Poset):
             subs=subs,
         )
 
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-            "type": "P_C_Lexicographic",
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_LowerSets(Poset):
@@ -36076,11 +35988,6 @@ class P_C_LowerSets(Poset):
             type_=type_,
             poset=poset,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_LowerSets"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -36156,11 +36063,6 @@ class P_C_Opposite(Poset):
             poset=poset,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Opposite"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_Power(Poset):
@@ -36195,11 +36097,6 @@ class P_C_Power(Poset):
             type_=type_,
             poset=poset,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Power"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -36240,16 +36137,6 @@ class P_C_Product(Poset):
             labels=labels,
             subs=subs,
         )
-
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-            "type": "P_C_Product",
-        },
-        {"kind": "Poset", "subs": [], "type": "P_C_Product"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -36339,35 +36226,6 @@ class P_C_ProductSmash(Poset):
             subs=subs,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "naked": [], "ranges": [], "subs": [], "type": "P_C_ProductSmash"},
-        {
-            "kind": "Poset",
-            "naked": [true, false, true],
-            "ranges": [
-                {"ntot": 4, "start": 0, "stop": 1, "type": "Range"},
-                {"ntot": 4, "start": 1, "stop": 3, "type": "Range"},
-                {"ntot": 4, "start": 3, "stop": 4, "type": "Range"},
-            ],
-            "subs": [
-                {"kind": "Poset", "type": "P_Decimal"},
-                {
-                    "kind": "Poset",
-                    "naked": [true, true],
-                    "ranges": [
-                        {"ntot": 2, "start": 0, "stop": 1, "type": "Range"},
-                        {"ntot": 2, "start": 1, "stop": 2, "type": "Range"},
-                    ],
-                    "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-                    "type": "P_C_ProductSmash",
-                },
-                {"kind": "Poset", "type": "P_Decimal"},
-            ],
-            "type": "P_C_ProductSmash",
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_Sum(Poset):
@@ -36407,15 +36265,6 @@ class P_C_Sum(Poset):
             labels=labels,
             subs=subs,
         )
-
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-            "type": "P_C_Sum",
-        },
-    ]
 
 
 @dataclass(frozen=True)
@@ -36469,18 +36318,6 @@ class P_C_SumSmash(Poset):
             trivial=trivial,
         )
 
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "naked": [true, true],
-            "ranges": [{"ntot": 2, "start": 0, "stop": 1, "type": "Range"}, {"ntot": 2, "start": 0, "stop": 1, "type": "Range"}],
-            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-            "trivial": false,
-            "type": "P_C_SumSmash",
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_Twisted(Poset):
@@ -36515,11 +36352,6 @@ class P_C_Twisted(Poset):
             type_=type_,
             poset=poset,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Twisted"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -36560,33 +36392,6 @@ class P_C_Units(Poset):
             units=units,
         )
 
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "poset": {"kind": "Poset", "type": "P_Decimal"},
-            "type": "P_C_Units",
-            "units": {"kind": "Unit", "type": "Unit_Single", "units": "m^2/s"},
-        },
-        {
-            "kind": "Poset",
-            "poset": {
-                "kind": "Poset",
-                "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Decimal"}],
-                "type": "P_C_Product",
-            },
-            "type": "P_C_Units",
-            "units": {
-                "kind": "Unit",
-                "subs": [
-                    {"kind": "Unit", "type": "Unit_Single", "units": "m"},
-                    {"kind": "Unit", "type": "Unit_Single", "units": "g"},
-                ],
-                "type": "Unit_Vector",
-            },
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class P_C_UpperSets(Poset):
@@ -36622,11 +36427,6 @@ class P_C_UpperSets(Poset):
             poset=poset,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_UpperSets"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_Decimal(Poset):
@@ -36661,11 +36461,6 @@ class P_Decimal(Poset):
             type_=type_,
             precision=precision,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "precision": 9, "type": "P_Decimal"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -36725,43 +36520,6 @@ class P_F_Bounded(Poset):
             step=step,
             top=top,
         )
-
-    # Valid examples
-    __examples__ = [
-        {
-            "bottom": "0",
-            "bound_high": "+inf",
-            "bound_low": "0",
-            "kind": "Poset",
-            "offset": "0",
-            "poset": {"kind": "Poset", "type": "P_Decimal"},
-            "step": "1",
-            "top": "+inf",
-            "type": "P_F_Bounded",
-        },
-        {
-            "bottom": "-inf",
-            "bound_high": "+inf",
-            "bound_low": "-inf",
-            "kind": "Poset",
-            "offset": "1",
-            "poset": {"kind": "Poset", "type": "P_Decimal"},
-            "step": "2",
-            "top": "+inf",
-            "type": "P_F_Bounded",
-        },
-        {
-            "bottom": "-inf",
-            "bound_high": "6",
-            "bound_low": "0",
-            "kind": "Poset",
-            "offset": "0",
-            "poset": {"kind": "Poset", "type": "P_Decimal"},
-            "step": "1.5",
-            "top": "+inf",
-            "type": "P_F_Bounded",
-        },
-    ]
 
 
 @dataclass(frozen=True)
@@ -36851,31 +36609,6 @@ class P_F_C_Union(Poset):
             subs=subs,
         )
 
-    # Valid examples
-    __examples__ = [
-        {
-            "ambient": {"kind": "Poset", "type": "P_Decimal"},
-            "kind": "Poset",
-            "subs": [
-                {
-                    "high": "20",
-                    "kind": "Poset",
-                    "low": "10",
-                    "poset": {"kind": "Poset", "type": "P_Decimal"},
-                    "type": "P_F_Interval",
-                },
-                {
-                    "high": "35",
-                    "kind": "Poset",
-                    "low": "30",
-                    "poset": {"kind": "Poset", "type": "P_Decimal"},
-                    "type": "P_F_Interval",
-                },
-            ],
-            "type": "P_F_C_Union",
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class P_F_Interval(Poset):
@@ -36919,11 +36652,6 @@ class P_F_Interval(Poset):
             poset=poset,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"high": "20", "kind": "Poset", "low": "10", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Interval"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_F_LowerClosure(Poset):
@@ -36962,20 +36690,6 @@ class P_F_LowerClosure(Poset):
             ls=ls,
             poset=poset,
         )
-
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "ls": {"kind": "LowerSet", "points": [["10", true], ["20", false]], "type": "LowerSet_LowerClosure"},
-            "poset": {
-                "kind": "Poset",
-                "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-                "type": "P_C_Product",
-            },
-            "type": "P_F_LowerClosure",
-        },
-    ]
 
 
 @dataclass(frozen=True)
@@ -37016,12 +36730,6 @@ class P_F_Subposet(Poset):
             poset=poset,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"elements": ["0.1", "0.2"], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"},
-        {"elements": [], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_F_UpperClosure(Poset):
@@ -37060,20 +36768,6 @@ class P_F_UpperClosure(Poset):
             poset=poset,
             us=us,
         )
-
-    # Valid examples
-    __examples__ = [
-        {
-            "kind": "Poset",
-            "poset": {
-                "kind": "Poset",
-                "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
-                "type": "P_C_Product",
-            },
-            "type": "P_F_UpperClosure",
-            "us": {"kind": "UpperSet", "points": [["10", true], ["20", false]], "type": "UpperSet_UpperClosure"},
-        },
-    ]
 
 
 @dataclass(frozen=True)
@@ -37119,20 +36813,6 @@ class P_Finite(Poset):
             relations=relations,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"aliases": {}, "elements": [], "kind": "Poset", "relations": [], "type": "P_Finite"},
-        {"elements": ["a", "b"], "kind": "Poset", "relations": [], "type": "P_Finite"},
-        {"elements": ["a", "b"], "kind": "Poset", "relations": [["a", "b"]], "type": "P_Finite"},
-        {
-            "aliases": {"a": ["a1", "a2"]},
-            "elements": ["a", "b", "c"],
-            "kind": "Poset",
-            "relations": [["a", "b"], ["b", "c"]],
-            "type": "P_Finite",
-        },
-    ]
-
 
 @dataclass(frozen=True)
 class P_Float(Poset):
@@ -37167,11 +36847,6 @@ class P_Float(Poset):
             type_=type_,
             size=size,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "size": "f32", "type": "P_Float"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -37216,11 +36891,6 @@ class P_Fractions(Poset):
             size=size,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "max_abs_denominator": 1000, "max_abs_numerator": 1000, "size": "i32", "type": "P_Fractions"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_Integer(Poset):
@@ -37256,11 +36926,6 @@ class P_Integer(Poset):
             size=size,
         )
 
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "size": "i32", "type": "P_Integer"},
-    ]
-
 
 @dataclass(frozen=True)
 class P_Unknown(Poset):
@@ -37291,11 +36956,6 @@ class P_Unknown(Poset):
             address=address,
             type_=type_,
         )
-
-    # Valid examples
-    __examples__ = [
-        {"kind": "Poset", "type": "P_Unknown"},
-    ]
 
 
 @dataclass(frozen=True)
@@ -42967,11 +42627,7 @@ def test_serialization_DP_C_ExplicitApprox_01():
     """Test serialization/deserialization of DP_C_ExplicitApprox example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","optimistic":[{"F":{'
-        '"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_True",'
-        '"value":{"kind":"Value","poset":{"kind":"Poset","naked":[],"ranges":[],"subs":[],"type":"P_C_ProductSmash"},'
-        '"type":"VU","value":[]}}],"pessimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset",'
-        '"type":"P_Decimal"},"kind":"DP","type":"DP_False"}],"type":"DP_C_ExplicitApprox"}'
+        '{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","optimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_True","value":{"kind":"Value","poset":{"kind":"Poset","naked":[],"ranges":[],"subs":[],"type":"P_C_ProductSmash"},"type":"VU","value":[]}}],"pessimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_False"}],"type":"DP_C_ExplicitApprox"}'
     )
 
     # Create instance from data
@@ -42985,7 +42641,6 @@ def test_serialization_DP_C_ExplicitApprox_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_DP_C_ExplicitApprox_01 passed")
 
 
 def test_serialization_P_Bool_01():
@@ -43004,7 +42659,6 @@ def test_serialization_P_Bool_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Bool_01 passed")
 
 
 def test_serialization_P_C_Arrow_01():
@@ -43023,7 +42677,6 @@ def test_serialization_P_C_Arrow_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Arrow_01 passed")
 
 
 def test_serialization_P_C_Discretized_01():
@@ -43042,15 +42695,13 @@ def test_serialization_P_C_Discretized_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Discretized_01 passed")
 
 
 def test_serialization_P_C_Lexicographic_01():
     """Test serialization/deserialization of P_C_Lexicographic example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],'
-        '"type":"P_C_Lexicographic"}'
+        '{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Lexicographic"}'
     )
 
     # Create instance from data
@@ -43064,7 +42715,6 @@ def test_serialization_P_C_Lexicographic_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Lexicographic_01 passed")
 
 
 def test_serialization_P_C_LowerSets_01():
@@ -43083,7 +42733,6 @@ def test_serialization_P_C_LowerSets_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_LowerSets_01 passed")
 
 
 def test_serialization_P_C_Opposite_01():
@@ -43102,7 +42751,6 @@ def test_serialization_P_C_Opposite_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Opposite_01 passed")
 
 
 def test_serialization_P_C_Power_01():
@@ -43121,7 +42769,6 @@ def test_serialization_P_C_Power_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Power_01 passed")
 
 
 def test_serialization_P_C_Product_01():
@@ -43142,7 +42789,6 @@ def test_serialization_P_C_Product_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Product_01 passed")
 
 
 def test_serialization_P_C_Product_02():
@@ -43161,7 +42807,6 @@ def test_serialization_P_C_Product_02():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Product_02 passed")
 
 
 def test_serialization_P_C_ProductSmash_01():
@@ -43180,18 +42825,13 @@ def test_serialization_P_C_ProductSmash_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_ProductSmash_01 passed")
 
 
 def test_serialization_P_C_ProductSmash_02():
     """Test serialization/deserialization of P_C_ProductSmash example 2."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","naked":[true,false,true],"ranges":[{"ntot":4,"start":0,"stop":1,"type":"Range"},{"ntot":4,"start":1,'
-        '"stop":3,"type":"Range"},{"ntot":4,"start":3,"stop":4,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},'
-        '{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":1,'
-        '"stop":2,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],'
-        '"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}'
+        '{"kind":"Poset","naked":[true,false,true],"ranges":[{"ntot":4,"start":0,"stop":1,"type":"Range"},{"ntot":4,"start":1,"stop":3,"type":"Range"},{"ntot":4,"start":3,"stop":4,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":1,"stop":2,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}'
     )
 
     # Create instance from data
@@ -43205,7 +42845,6 @@ def test_serialization_P_C_ProductSmash_02():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_ProductSmash_02 passed")
 
 
 def test_serialization_P_C_Sum_01():
@@ -43226,16 +42865,13 @@ def test_serialization_P_C_Sum_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Sum_01 passed")
 
 
 def test_serialization_P_C_SumSmash_01():
     """Test serialization/deserialization of P_C_SumSmash example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":0,'
-        '"stop":1,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],'
-        '"trivial":false,"type":"P_C_SumSmash"}'
+        '{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":0,"stop":1,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"trivial":false,"type":"P_C_SumSmash"}'
     )
 
     # Create instance from data
@@ -43249,7 +42885,6 @@ def test_serialization_P_C_SumSmash_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_SumSmash_01 passed")
 
 
 def test_serialization_P_C_Twisted_01():
@@ -43268,15 +42903,13 @@ def test_serialization_P_C_Twisted_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Twisted_01 passed")
 
 
 def test_serialization_P_C_Units_01():
     """Test serialization/deserialization of P_C_Units example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Units","units":{"kind":"Unit",'
-        '"type":"Unit_Single","units":"m^2/s"}}'
+        '{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Units","units":{"kind":"Unit","type":"Unit_Single","units":"m^2/s"}}'
     )
 
     # Create instance from data
@@ -43290,16 +42923,13 @@ def test_serialization_P_C_Units_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Units_01 passed")
 
 
 def test_serialization_P_C_Units_02():
     """Test serialization/deserialization of P_C_Units example 2."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset",'
-        '"type":"P_Decimal"}],"type":"P_C_Product"},"type":"P_C_Units","units":{"kind":"Unit","subs":[{"kind":"Unit",'
-        '"type":"Unit_Single","units":"m"},{"kind":"Unit","type":"Unit_Single","units":"g"}],"type":"Unit_Vector"}}'
+        '{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_Product"},"type":"P_C_Units","units":{"kind":"Unit","subs":[{"kind":"Unit","type":"Unit_Single","units":"m"},{"kind":"Unit","type":"Unit_Single","units":"g"}],"type":"Unit_Vector"}}'
     )
 
     # Create instance from data
@@ -43313,7 +42943,6 @@ def test_serialization_P_C_Units_02():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_Units_02 passed")
 
 
 def test_serialization_P_C_UpperSets_01():
@@ -43332,7 +42961,6 @@ def test_serialization_P_C_UpperSets_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_C_UpperSets_01 passed")
 
 
 def test_serialization_P_Decimal_01():
@@ -43351,15 +42979,13 @@ def test_serialization_P_Decimal_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Decimal_01 passed")
 
 
 def test_serialization_P_F_Bounded_01():
     """Test serialization/deserialization of P_F_Bounded example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"bottom":"0","bound_high":"+inf","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset",'
-        '"type":"P_Decimal"},"step":"1","top":"+inf","type":"P_F_Bounded"}'
+        '{"bottom":"0","bound_high":"+inf","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimal"},"step":"1","top":"+inf","type":"P_F_Bounded"}'
     )
 
     # Create instance from data
@@ -43373,15 +42999,13 @@ def test_serialization_P_F_Bounded_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_Bounded_01 passed")
 
 
 def test_serialization_P_F_Bounded_02():
     """Test serialization/deserialization of P_F_Bounded example 2."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"bottom":"-inf","bound_high":"+inf","bound_low":"-inf","kind":"Poset","offset":"1","poset":{"kind":"Poset",'
-        '"type":"P_Decimal"},"step":"2","top":"+inf","type":"P_F_Bounded"}'
+        '{"bottom":"-inf","bound_high":"+inf","bound_low":"-inf","kind":"Poset","offset":"1","poset":{"kind":"Poset","type":"P_Decimal"},"step":"2","top":"+inf","type":"P_F_Bounded"}'
     )
 
     # Create instance from data
@@ -43395,15 +43019,13 @@ def test_serialization_P_F_Bounded_02():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_Bounded_02 passed")
 
 
 def test_serialization_P_F_Bounded_03():
     """Test serialization/deserialization of P_F_Bounded example 3."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"bottom":"-inf","bound_high":"6","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset",'
-        '"type":"P_Decimal"},"step":"1.5","top":"+inf","type":"P_F_Bounded"}'
+        '{"bottom":"-inf","bound_high":"6","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimal"},"step":"1.5","top":"+inf","type":"P_F_Bounded"}'
     )
 
     # Create instance from data
@@ -43417,16 +43039,13 @@ def test_serialization_P_F_Bounded_03():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_Bounded_03 passed")
 
 
 def test_serialization_P_F_C_Union_01():
     """Test serialization/deserialization of P_F_C_Union example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"ambient":{"kind":"Poset","type":"P_Decimal"},"kind":"Poset","subs":[{"high":"20","kind":"Poset","low":"10",'
-        '"poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"},{"high":"35","kind":"Poset","low":"30",'
-        '"poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"}],"type":"P_F_C_Union"}'
+        '{"ambient":{"kind":"Poset","type":"P_Decimal"},"kind":"Poset","subs":[{"high":"20","kind":"Poset","low":"10","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"},{"high":"35","kind":"Poset","low":"30","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"}],"type":"P_F_C_Union"}'
     )
 
     # Create instance from data
@@ -43440,7 +43059,6 @@ def test_serialization_P_F_C_Union_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_C_Union_01 passed")
 
 
 def test_serialization_P_F_Interval_01():
@@ -43459,16 +43077,13 @@ def test_serialization_P_F_Interval_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_Interval_01 passed")
 
 
 def test_serialization_P_F_LowerClosure_01():
     """Test serialization/deserialization of P_F_LowerClosure example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","ls":{"kind":"LowerSet","points":[["10",true],["20",false]],"type":"LowerSet_LowerClosure"},'
-        '"poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],'
-        '"type":"P_C_Product"},"type":"P_F_LowerClosure"}'
+        '{"kind":"Poset","ls":{"kind":"LowerSet","points":[["10",true],["20",false]],"type":"LowerSet_LowerClosure"},"poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_LowerClosure"}'
     )
 
     # Create instance from data
@@ -43482,7 +43097,6 @@ def test_serialization_P_F_LowerClosure_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_LowerClosure_01 passed")
 
 
 def test_serialization_P_F_Subposet_01():
@@ -43503,7 +43117,6 @@ def test_serialization_P_F_Subposet_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_Subposet_01 passed")
 
 
 def test_serialization_P_F_Subposet_02():
@@ -43522,16 +43135,13 @@ def test_serialization_P_F_Subposet_02():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_Subposet_02 passed")
 
 
 def test_serialization_P_F_UpperClosure_01():
     """Test serialization/deserialization of P_F_UpperClosure example 1."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],'
-        '"type":"P_C_Product"},"type":"P_F_UpperClosure","us":{"kind":"UpperSet","points":[["10",true],["20",false]],'
-        '"type":"UpperSet_UpperClosure"}}'
+        '{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_UpperClosure","us":{"kind":"UpperSet","points":[["10",true],["20",false]],"type":"UpperSet_UpperClosure"}}'
     )
 
     # Create instance from data
@@ -43545,7 +43155,6 @@ def test_serialization_P_F_UpperClosure_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_F_UpperClosure_01 passed")
 
 
 def test_serialization_P_Finite_01():
@@ -43564,7 +43173,6 @@ def test_serialization_P_Finite_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Finite_01 passed")
 
 
 def test_serialization_P_Finite_02():
@@ -43583,7 +43191,6 @@ def test_serialization_P_Finite_02():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Finite_02 passed")
 
 
 def test_serialization_P_Finite_03():
@@ -43602,15 +43209,13 @@ def test_serialization_P_Finite_03():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Finite_03 passed")
 
 
 def test_serialization_P_Finite_04():
     """Test serialization/deserialization of P_Finite example 4."""
     # Test data from OpenAPI schema example
     data = json.loads(
-        '{"aliases":{"a":["a1","a2"]},"elements":["a","b","c"],"kind":"Poset","relations":[["a","b"],["b","c"]],'
-        '"type":"P_Finite"}'
+        '{"aliases":{"a":["a1","a2"]},"elements":["a","b","c"],"kind":"Poset","relations":[["a","b"],["b","c"]],"type":"P_Finite"}'
     )
 
     # Create instance from data
@@ -43624,7 +43229,6 @@ def test_serialization_P_Finite_04():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Finite_04 passed")
 
 
 def test_serialization_P_Float_01():
@@ -43643,7 +43247,6 @@ def test_serialization_P_Float_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Float_01 passed")
 
 
 def test_serialization_P_Fractions_01():
@@ -43662,7 +43265,6 @@ def test_serialization_P_Fractions_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Fractions_01 passed")
 
 
 def test_serialization_P_Integer_01():
@@ -43681,7 +43283,6 @@ def test_serialization_P_Integer_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Integer_01 passed")
 
 
 def test_serialization_P_Unknown_01():
@@ -43700,7 +43301,6 @@ def test_serialization_P_Unknown_01():
 
     # Test that serialized data matches
     assert instance2.to_data() == serialized
-    print(f"✓ test_serialization_P_Unknown_01 passed")
 
 
 if __name__ == "__main__":
@@ -43751,13 +43351,17 @@ if __name__ == "__main__":
     ]
 
     failed = 0
+    ok = 0
     for test_func in test_functions:
         try:
             test_func()
         except Exception as e:
             print(f"✗ {test_func.__name__} failed: {e}")
             failed += 1
+        else:
+            ok += 1
 
+    print(f"\n{ok} tests passed, {failed} failed.")
     if failed > 0:
         sys.exit(1)
     else:
