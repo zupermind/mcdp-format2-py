@@ -18,6 +18,6 @@ test:
 
 
 upload:
-	rm -rf dist
-	python setup.py sdist bdist_wheel
+	rm -rf dist build
+	python -m build
 	twine upload dist/*
