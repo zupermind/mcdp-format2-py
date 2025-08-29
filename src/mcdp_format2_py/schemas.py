@@ -1,6 +1,6 @@
+# noinspection PyShadowingBuiltins
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from dataclasses import field
 from typing import Any
@@ -39,11 +39,170 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def load_list_of_Unit(value: object) -> list[Unit]:
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
+
+
+def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDPInterface(v) for k, v in value.items()}
+
+
+def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Poset(v) for k, v in value.items()}
+
+
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
+
+
+def load_dict_of_str_int(value: object) -> dict[str, int]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_int(v) for k, v in value.items()}
+
+
+def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_list_of_str(v) for k, v in value.items()}
+
+
+def load_enum_ComputeJob_F_to_R_ComputeJob_R_to_F(value: object) -> Literal["ComputeJob_F_to_R", "ComputeJob_R_to_F"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ComputeJob_F_to_R", "ComputeJob_R_to_F"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
+    value: object,
+) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
+    value: object,
+) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
+    value: object,
+) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_ComputePoint(value: object) -> list[ComputePoint]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Unit(item) for item in value]
+    return [load_ComputePoint(item) for item in value]
+
+
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+
+def load_list_of_DP(value: object) -> list[DP]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP(item) for item in value]
+
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
 
 
 def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
@@ -53,75 +212,228 @@ def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
     return [load_L1Check_Data(item) for item in value]
 
 
-def validate_enum_a17d(
-    value: object,
-) -> Literal[
-    "L1_C_CodSum",
-    "L1_C_CodSumSmash",
-    "L1_C_DomUnion",
-    "L1_C_Intersection",
-    "L1_C_Parallel",
-    "L1_C_ProdIntersection",
-    "L1_C_Product",
-    "L1_C_RefineDomain",
-    "L1_C_Series",
-    "L1_C_Trace",
-    "L1_C_Union",
-    "L1_C_WrapUnits",
-    "L1_Catalog",
-    "L1_Constant",
-    "L1_Entire",
-    "L1_Explicit",
-    "L1_FromFilter",
-    "L1_Identity",
-    "L1_IntersectionOfPrinLowerSets",
-    "L1_InvMul_Opt",
-    "L1_InvMul_Pes",
-    "L1_InvSum_Opt",
-    "L1_InvSum_Pes",
-    "L1_L_Linv",
-    "L1_Lift",
-    "L1_RepresentPrincipalLowerSet",
-    "L1_TopAlternating",
-    "L1_UnionOfPrinLowerSets",
-    "L1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L1_C_CodSum",
-        "L1_C_CodSumSmash",
-        "L1_C_DomUnion",
-        "L1_C_Intersection",
-        "L1_C_Parallel",
-        "L1_C_ProdIntersection",
-        "L1_C_Product",
-        "L1_C_RefineDomain",
-        "L1_C_Series",
-        "L1_C_Trace",
-        "L1_C_Union",
-        "L1_C_WrapUnits",
-        "L1_Catalog",
-        "L1_Constant",
-        "L1_Entire",
-        "L1_Explicit",
-        "L1_FromFilter",
-        "L1_Identity",
-        "L1_IntersectionOfPrinLowerSets",
-        "L1_InvMul_Opt",
-        "L1_InvMul_Pes",
-        "L1_InvSum_Opt",
-        "L1_InvSum_Pes",
-        "L1_L_Linv",
-        "L1_Lift",
-        "L1_RepresentPrincipalLowerSet",
-        "L1_TopAlternating",
-        "L1_UnionOfPrinLowerSets",
-        "L1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
+def load_list_of_L1Map(value: object) -> list[L1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Map(item) for item in value]
+
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Explicit_Option(item) for item in value]
+
+
+def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LCheck_Data(item) for item in value]
+
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
+
+
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L_Catalog_Options(item) for item in value]
+
+
+def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_M_Explicit_Option(item) for item in value]
+
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MonotoneMap(item) for item in value]
+
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
+
+
+def load_list_of_Range(value: object) -> list[Range]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Range(item) for item in value]
+
+
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Check_Data(item) for item in value]
+
+
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Map(item) for item in value]
+
+
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLCheck_Data(item) for item in value]
+
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLMap(item) for item in value]
+
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Check_Data(item) for item in value]
+
+
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUCheck_Data(item) for item in value]
+
+
+def load_list_of_SUMap(value: object) -> list[SUMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUMap(item) for item in value]
+
+
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
+
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
+
+
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UCheck_Data(item) for item in value]
+
+
+def load_list_of_UMap(value: object) -> list[UMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UMap(item) for item in value]
+
+
+def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U_Catalog_Options(item) for item in value]
+
+
+def load_list_of_Unit(value: object) -> list[Unit]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Unit(item) for item in value]
+
+
+def load_list_of_any(value: object) -> list[Any]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_any(item) for item in value]
+
+
+def load_list_of_bool(value: object) -> list[bool]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_bool(item) for item in value]
+
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
+
+
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_str(item) for item in value]
+
+
+def load_list_of_str(value: object) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_str(item) for item in value]
 
 
 def validate_enum_17f66(
@@ -279,193 +591,15 @@ def validate_enum_17f66(
     return value  # type: ignore
 
 
-def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Poset(v) for k, v in value.items()}
-
-
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
-
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDPInterface(v) for k, v in value.items()}
-
-
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_bool(item) for item in value]
-
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
-
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
+def validate_enum_1978(
     value: object,
-) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
-
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UCheck_Data(item) for item in value]
-
-
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Value(v) for k, v in value.items()}
-
-
-def load_list_of_str(value: object) -> list[str]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_str(item) for item in value]
-
-
-def load_list_of_SLMap(value: object) -> list[SLMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLMap(item) for item in value]
-
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Check_Data(item) for item in value]
-
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
-
-
-def validate_enum_477e(
-    value: object,
-) -> Literal[
-    "U_C_ITransform",
-    "U_C_Intersection",
-    "U_C_Parallel",
-    "U_C_RefineDomain",
-    "U_C_Series",
-    "U_C_Trace",
-    "U_C_Union",
-    "U_C_WrapUnits",
-    "U_Catalog",
-    "U_Constant",
-    "U_Identity",
-    "U_L_Lift1_Constant",
-    "U_L_Lift1_Transform",
-    "U_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "U_C_ITransform",
-        "U_C_Intersection",
-        "U_C_Parallel",
-        "U_C_RefineDomain",
-        "U_C_Series",
-        "U_C_Trace",
-        "U_C_Union",
-        "U_C_WrapUnits",
-        "U_Catalog",
-        "U_Constant",
-        "U_Identity",
-        "U_L_Lift1_Constant",
-        "U_L_Lift1_Transform",
-        "U_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Map(item) for item in value]
-
-
-def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U_Catalog_Options(item) for item in value]
-
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
-
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
 
 
 def validate_enum_19fd(
@@ -479,73 +613,53 @@ def validate_enum_19fd(
     return value  # type: ignore
 
 
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
-
-
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
-
-
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUCheck_Data(item) for item in value]
-
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
+def validate_enum_2e3b(
     value: object,
-) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+) -> Literal[
+    "Check",
+    "ComputeJob",
+    "DP",
+    "L1Map",
+    "LMap",
+    "MonotoneMap",
+    "NDP",
+    "NDPInterface",
+    "NDPTemplate",
+    "Poset",
+    "Query",
+    "SL1Map",
+    "SLMap",
+    "SU1Map",
+    "SUMap",
+    "U1Map",
+    "UMap",
+    "Value",
+]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    allowed_values = [
+        "Check",
+        "ComputeJob",
+        "DP",
+        "L1Map",
+        "LMap",
+        "MonotoneMap",
+        "NDP",
+        "NDPInterface",
+        "NDPTemplate",
+        "Poset",
+        "Query",
+        "SL1Map",
+        "SLMap",
+        "SU1Map",
+        "SUMap",
+        "U1Map",
+        "UMap",
+        "Value",
+    ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_list_of_str(v) for k, v in value.items()}
-
-
-def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_Range(value: object) -> list[Range]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Range(item) for item in value]
-
-
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_str(item) for item in value]
-
-
-def load_list_of_Poset(value: object) -> list[Poset]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
 
 
 def validate_enum_4700(
@@ -589,10 +703,42 @@ def validate_enum_4700(
     return value  # type: ignore
 
 
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+def validate_enum_477e(
+    value: object,
+) -> Literal[
+    "U_C_ITransform",
+    "U_C_Intersection",
+    "U_C_Parallel",
+    "U_C_RefineDomain",
+    "U_C_Series",
+    "U_C_Trace",
+    "U_C_Union",
+    "U_C_WrapUnits",
+    "U_Catalog",
+    "U_Constant",
+    "U_Identity",
+    "U_L_Lift1_Constant",
+    "U_L_Lift1_Transform",
+    "U_Unknown",
+]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    allowed_values = [
+        "U_C_ITransform",
+        "U_C_Intersection",
+        "U_C_Parallel",
+        "U_C_RefineDomain",
+        "U_C_Series",
+        "U_C_Trace",
+        "U_C_Union",
+        "U_C_WrapUnits",
+        "U_Catalog",
+        "U_Constant",
+        "U_Identity",
+        "U_L_Lift1_Constant",
+        "U_L_Lift1_Transform",
+        "U_Unknown",
+    ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
@@ -633,6 +779,47 @@ def validate_enum_4eeb(
         "SL_L_Lift1_Constant",
         "SL_L_Lift1_Transform",
         "SL_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_4f69(
+    value: object,
+) -> Literal[
+    "SU_C_ITransform",
+    "SU_C_Intersection",
+    "SU_C_Parallel",
+    "SU_C_RefineDomain",
+    "SU_C_Series",
+    "SU_C_Trace",
+    "SU_C_Union",
+    "SU_C_WrapUnits",
+    "SU_Identity",
+    "SU_L_Exact",
+    "SU_L_Explicit_Approx",
+    "SU_L_Lift1_Constant",
+    "SU_L_Lift1_Transform",
+    "SU_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SU_C_ITransform",
+        "SU_C_Intersection",
+        "SU_C_Parallel",
+        "SU_C_RefineDomain",
+        "SU_C_Series",
+        "SU_C_Trace",
+        "SU_C_Union",
+        "SU_C_WrapUnits",
+        "SU_Identity",
+        "SU_L_Exact",
+        "SU_L_Explicit_Approx",
+        "SU_L_Lift1_Constant",
+        "SU_L_Lift1_Transform",
+        "SU_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
@@ -686,285 +873,6 @@ def validate_enum_5d65(
     return value  # type: ignore
 
 
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLCheck_Data(item) for item in value]
-
-
-def load_list_of_ComputePoint(value: object) -> list[ComputePoint]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_ComputePoint(item) for item in value]
-
-
-def validate_enum_b0de(
-    value: object,
-) -> Literal[
-    "DP_All_Constants_And_F_Leq_R",
-    "DP_All_Constants_Leq_R",
-    "DP_All_Fi_Leq_R",
-    "DP_AmbientConversion",
-    "DP_Any_Constants_Or_F_Leq_R",
-    "DP_Any_Fi_Leq_R",
-    "DP_C_ExplicitApprox",
-    "DP_C_Intersection",
-    "DP_C_Parallel",
-    "DP_C_Series",
-    "DP_C_Trace",
-    "DP_C_Union",
-    "DP_Catalog",
-    "DP_Compiled",
-    "DP_F_Leq_All_Constants",
-    "DP_F_Leq_All_R_And_Constants",
-    "DP_F_Leq_All_Ri",
-    "DP_F_Leq_Any_R_And_Constants",
-    "DP_F_Leq_Any_Ri",
-    "DP_False",
-    "DP_FuncNotMoreThan",
-    "DP_GenericConstant",
-    "DP_Identity",
-    "DP_Iso",
-    "DP_LiftL",
-    "DP_LiftU",
-    "DP_ResNotLessThan",
-    "DP_True",
-    "DP_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "DP_All_Constants_And_F_Leq_R",
-        "DP_All_Constants_Leq_R",
-        "DP_All_Fi_Leq_R",
-        "DP_AmbientConversion",
-        "DP_Any_Constants_Or_F_Leq_R",
-        "DP_Any_Fi_Leq_R",
-        "DP_C_ExplicitApprox",
-        "DP_C_Intersection",
-        "DP_C_Parallel",
-        "DP_C_Series",
-        "DP_C_Trace",
-        "DP_C_Union",
-        "DP_Catalog",
-        "DP_Compiled",
-        "DP_F_Leq_All_Constants",
-        "DP_F_Leq_All_R_And_Constants",
-        "DP_F_Leq_All_Ri",
-        "DP_F_Leq_Any_R_And_Constants",
-        "DP_F_Leq_Any_Ri",
-        "DP_False",
-        "DP_FuncNotMoreThan",
-        "DP_GenericConstant",
-        "DP_Identity",
-        "DP_Iso",
-        "DP_LiftL",
-        "DP_LiftU",
-        "DP_ResNotLessThan",
-        "DP_True",
-        "DP_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_ComputeJob_F_to_R_ComputeJob_R_to_F(value: object) -> Literal["ComputeJob_F_to_R", "ComputeJob_R_to_F"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ComputeJob_F_to_R", "ComputeJob_R_to_F"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
-
-
-def load_dict_of_str_int(value: object) -> dict[str, int]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_int(v) for k, v in value.items()}
-
-
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
-
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-
-def validate_enum_2e3b(
-    value: object,
-) -> Literal[
-    "Check",
-    "ComputeJob",
-    "DP",
-    "L1Map",
-    "LMap",
-    "MonotoneMap",
-    "NDP",
-    "NDPInterface",
-    "NDPTemplate",
-    "Poset",
-    "Query",
-    "SL1Map",
-    "SLMap",
-    "SU1Map",
-    "SUMap",
-    "U1Map",
-    "UMap",
-    "Value",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "Check",
-        "ComputeJob",
-        "DP",
-        "L1Map",
-        "LMap",
-        "MonotoneMap",
-        "NDP",
-        "NDPInterface",
-        "NDPTemplate",
-        "Poset",
-        "Query",
-        "SL1Map",
-        "SLMap",
-        "SU1Map",
-        "SUMap",
-        "U1Map",
-        "UMap",
-        "Value",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def validate_enum_4f69(
-    value: object,
-) -> Literal[
-    "SU_C_ITransform",
-    "SU_C_Intersection",
-    "SU_C_Parallel",
-    "SU_C_RefineDomain",
-    "SU_C_Series",
-    "SU_C_Trace",
-    "SU_C_Union",
-    "SU_C_WrapUnits",
-    "SU_Identity",
-    "SU_L_Exact",
-    "SU_L_Explicit_Approx",
-    "SU_L_Lift1_Constant",
-    "SU_L_Lift1_Transform",
-    "SU_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SU_C_ITransform",
-        "SU_C_Intersection",
-        "SU_C_Parallel",
-        "SU_C_RefineDomain",
-        "SU_C_Series",
-        "SU_C_Trace",
-        "SU_C_Union",
-        "SU_C_WrapUnits",
-        "SU_Identity",
-        "SU_L_Exact",
-        "SU_L_Explicit_Approx",
-        "SU_L_Lift1_Constant",
-        "SU_L_Lift1_Transform",
-        "SU_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
-
-
-def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["UpperSet_Unused", "UpperSet_UpperClosure"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LCheck_Data(item) for item in value]
-
-
-def load_list_of_any(value: object) -> list[Any]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_any(item) for item in value]
-
-
-def load_list_of_DP(value: object) -> list[DP]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP(item) for item in value]
-
-
-def load_list_of_U1Map(value: object) -> list[U1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
-
-
-def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SUMap(value: object) -> list[SUMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
-
-
 def validate_enum_5dfe(
     value: object,
 ) -> Literal[
@@ -1006,6 +914,148 @@ def validate_enum_5dfe(
         "SU1_InvMultiply",
         "SU1_InvSum",
         "SU1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_8a74(
+    value: object,
+) -> Literal[
+    "P_Bool",
+    "P_C_Arrow",
+    "P_C_Discretized",
+    "P_C_Lexicographic",
+    "P_C_LowerSets",
+    "P_C_Multisets",
+    "P_C_Opposite",
+    "P_C_Power",
+    "P_C_Product",
+    "P_C_ProductDS",
+    "P_C_ProductSmash",
+    "P_C_Sum",
+    "P_C_SumSmash",
+    "P_C_Twisted",
+    "P_C_Units",
+    "P_C_UpperSets",
+    "P_Decimal",
+    "P_F_Bounded",
+    "P_F_C_Intersection",
+    "P_F_C_Union",
+    "P_F_Interval",
+    "P_F_LowerClosure",
+    "P_F_Subposet",
+    "P_F_UpperClosure",
+    "P_Finite",
+    "P_Float",
+    "P_Fractions",
+    "P_Integer",
+    "P_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "P_Bool",
+        "P_C_Arrow",
+        "P_C_Discretized",
+        "P_C_Lexicographic",
+        "P_C_LowerSets",
+        "P_C_Multisets",
+        "P_C_Opposite",
+        "P_C_Power",
+        "P_C_Product",
+        "P_C_ProductDS",
+        "P_C_ProductSmash",
+        "P_C_Sum",
+        "P_C_SumSmash",
+        "P_C_Twisted",
+        "P_C_Units",
+        "P_C_UpperSets",
+        "P_Decimal",
+        "P_F_Bounded",
+        "P_F_C_Intersection",
+        "P_F_C_Union",
+        "P_F_Interval",
+        "P_F_LowerClosure",
+        "P_F_Subposet",
+        "P_F_UpperClosure",
+        "P_Finite",
+        "P_Float",
+        "P_Fractions",
+        "P_Integer",
+        "P_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_a17d(
+    value: object,
+) -> Literal[
+    "L1_C_CodSum",
+    "L1_C_CodSumSmash",
+    "L1_C_DomUnion",
+    "L1_C_Intersection",
+    "L1_C_Parallel",
+    "L1_C_ProdIntersection",
+    "L1_C_Product",
+    "L1_C_RefineDomain",
+    "L1_C_Series",
+    "L1_C_Trace",
+    "L1_C_Union",
+    "L1_C_WrapUnits",
+    "L1_Catalog",
+    "L1_Constant",
+    "L1_Entire",
+    "L1_Explicit",
+    "L1_FromFilter",
+    "L1_Identity",
+    "L1_IntersectionOfPrinLowerSets",
+    "L1_InvMul_Opt",
+    "L1_InvMul_Pes",
+    "L1_InvSum_Opt",
+    "L1_InvSum_Pes",
+    "L1_L_Linv",
+    "L1_Lift",
+    "L1_RepresentPrincipalLowerSet",
+    "L1_TopAlternating",
+    "L1_UnionOfPrinLowerSets",
+    "L1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L1_C_CodSum",
+        "L1_C_CodSumSmash",
+        "L1_C_DomUnion",
+        "L1_C_Intersection",
+        "L1_C_Parallel",
+        "L1_C_ProdIntersection",
+        "L1_C_Product",
+        "L1_C_RefineDomain",
+        "L1_C_Series",
+        "L1_C_Trace",
+        "L1_C_Union",
+        "L1_C_WrapUnits",
+        "L1_Catalog",
+        "L1_Constant",
+        "L1_Entire",
+        "L1_Explicit",
+        "L1_FromFilter",
+        "L1_Identity",
+        "L1_IntersectionOfPrinLowerSets",
+        "L1_InvMul_Opt",
+        "L1_InvMul_Pes",
+        "L1_InvSum_Opt",
+        "L1_InvSum_Pes",
+        "L1_L_Linv",
+        "L1_Lift",
+        "L1_RepresentPrincipalLowerSet",
+        "L1_TopAlternating",
+        "L1_UnionOfPrinLowerSets",
+        "L1_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
@@ -1085,122 +1135,72 @@ def validate_enum_a898(
     return value  # type: ignore
 
 
-def validate_enum_8a74(
+def validate_enum_b0de(
     value: object,
 ) -> Literal[
-    "P_Bool",
-    "P_C_Arrow",
-    "P_C_Discretized",
-    "P_C_Lexicographic",
-    "P_C_LowerSets",
-    "P_C_Multisets",
-    "P_C_Opposite",
-    "P_C_Power",
-    "P_C_Product",
-    "P_C_ProductDS",
-    "P_C_ProductSmash",
-    "P_C_Sum",
-    "P_C_SumSmash",
-    "P_C_Twisted",
-    "P_C_Units",
-    "P_C_UpperSets",
-    "P_Decimal",
-    "P_F_Bounded",
-    "P_F_C_Intersection",
-    "P_F_C_Union",
-    "P_F_Interval",
-    "P_F_LowerClosure",
-    "P_F_Subposet",
-    "P_F_UpperClosure",
-    "P_Finite",
-    "P_Float",
-    "P_Fractions",
-    "P_Integer",
-    "P_Unknown",
+    "DP_All_Constants_And_F_Leq_R",
+    "DP_All_Constants_Leq_R",
+    "DP_All_Fi_Leq_R",
+    "DP_AmbientConversion",
+    "DP_Any_Constants_Or_F_Leq_R",
+    "DP_Any_Fi_Leq_R",
+    "DP_C_ExplicitApprox",
+    "DP_C_Intersection",
+    "DP_C_Parallel",
+    "DP_C_Series",
+    "DP_C_Trace",
+    "DP_C_Union",
+    "DP_Catalog",
+    "DP_Compiled",
+    "DP_F_Leq_All_Constants",
+    "DP_F_Leq_All_R_And_Constants",
+    "DP_F_Leq_All_Ri",
+    "DP_F_Leq_Any_R_And_Constants",
+    "DP_F_Leq_Any_Ri",
+    "DP_False",
+    "DP_FuncNotMoreThan",
+    "DP_GenericConstant",
+    "DP_Identity",
+    "DP_Iso",
+    "DP_LiftL",
+    "DP_LiftU",
+    "DP_ResNotLessThan",
+    "DP_True",
+    "DP_Unknown",
 ]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
     allowed_values = [
-        "P_Bool",
-        "P_C_Arrow",
-        "P_C_Discretized",
-        "P_C_Lexicographic",
-        "P_C_LowerSets",
-        "P_C_Multisets",
-        "P_C_Opposite",
-        "P_C_Power",
-        "P_C_Product",
-        "P_C_ProductDS",
-        "P_C_ProductSmash",
-        "P_C_Sum",
-        "P_C_SumSmash",
-        "P_C_Twisted",
-        "P_C_Units",
-        "P_C_UpperSets",
-        "P_Decimal",
-        "P_F_Bounded",
-        "P_F_C_Intersection",
-        "P_F_C_Union",
-        "P_F_Interval",
-        "P_F_LowerClosure",
-        "P_F_Subposet",
-        "P_F_UpperClosure",
-        "P_Finite",
-        "P_Float",
-        "P_Fractions",
-        "P_Integer",
-        "P_Unknown",
+        "DP_All_Constants_And_F_Leq_R",
+        "DP_All_Constants_Leq_R",
+        "DP_All_Fi_Leq_R",
+        "DP_AmbientConversion",
+        "DP_Any_Constants_Or_F_Leq_R",
+        "DP_Any_Fi_Leq_R",
+        "DP_C_ExplicitApprox",
+        "DP_C_Intersection",
+        "DP_C_Parallel",
+        "DP_C_Series",
+        "DP_C_Trace",
+        "DP_C_Union",
+        "DP_Catalog",
+        "DP_Compiled",
+        "DP_F_Leq_All_Constants",
+        "DP_F_Leq_All_R_And_Constants",
+        "DP_F_Leq_All_Ri",
+        "DP_F_Leq_Any_R_And_Constants",
+        "DP_F_Leq_Any_Ri",
+        "DP_False",
+        "DP_FuncNotMoreThan",
+        "DP_GenericConstant",
+        "DP_Identity",
+        "DP_Iso",
+        "DP_LiftL",
+        "DP_LiftU",
+        "DP_ResNotLessThan",
+        "DP_True",
+        "DP_Unknown",
     ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Check_Data(item) for item in value]
-
-
-def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_M_Explicit_Option(item) for item in value]
-
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L_Catalog_Options(item) for item in value]
-
-
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
-    value: object,
-) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_Connection(value: object) -> list[Connection]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Connection(item) for item in value]
-
-
-def validate_enum_1978(
-    value: object,
-) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
@@ -1243,17 +1243,16 @@ def load_Address(data: object) -> "Address":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Address(
+    return Address.make(
         library=field_library,
         repo=field_repo,
         spec=field_spec,
         thing=field_thing,
-        type_=field_type_,
     )
 
 
 def load_Root(data: object) -> "Root":
-    """Load Root from a dictionary based on the "kind" discriminator."""
+    """Load Root from a dictionary based on the `kind` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -1284,7 +1283,7 @@ def load_Root(data: object) -> "Root":
 
 
 def load_Check(data: object) -> "Check":
-    """Load Check from a dictionary based on the "type" discriminator."""
+    """Load Check from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -1306,7 +1305,7 @@ def load_Check(data: object) -> "Check":
 
 
 def load_ComputeJob(data: object) -> "ComputeJob":
-    """Load ComputeJob from a dictionary based on the "type" discriminator."""
+    """Load ComputeJob from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -1350,7 +1349,7 @@ def load_ComputeJob_F_to_R(data: object) -> "ComputeJob_F_to_R":
         if field_kind is not None and field_kind != "ComputeJob":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `ComputeJob`, got {field_kind}")
     else:
-        field_kind = json.loads('"ComputeJob"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -1395,7 +1394,7 @@ def load_ComputeJob_F_to_R(data: object) -> "ComputeJob_F_to_R":
         if field_type_ is not None and field_type_ != "ComputeJob_F_to_R":
             raise ValueError(f"Invalid discriminator value for `type`: expected `ComputeJob_F_to_R`, got {field_type_}")
     else:
-        field_type_ = json.loads('"ComputeJob_F_to_R"')
+        pass  # fixed value for this field
 
     if "f_b_r" in data:
         field_f_b_r = load_SUMap(data["f_b_r"])
@@ -1412,15 +1411,13 @@ def load_ComputeJob_F_to_R(data: object) -> "ComputeJob_F_to_R":
     else:
         raise ValueError("Missing required field `f_r`")
 
-    return ComputeJob_F_to_R(
+    return ComputeJob_F_to_R.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
         axes=field_axes,
         points=field_points,
-        type_=field_type_,
         f_b_r=field_f_b_r,
         f_i_r=field_f_i_r,
         f_r=field_f_r,
@@ -1457,7 +1454,7 @@ def load_ComputeJob_R_to_F(data: object) -> "ComputeJob_R_to_F":
         if field_kind is not None and field_kind != "ComputeJob":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `ComputeJob`, got {field_kind}")
     else:
-        field_kind = json.loads('"ComputeJob"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -1502,7 +1499,7 @@ def load_ComputeJob_R_to_F(data: object) -> "ComputeJob_R_to_F":
         if field_type_ is not None and field_type_ != "ComputeJob_R_to_F":
             raise ValueError(f"Invalid discriminator value for `type`: expected `ComputeJob_R_to_F`, got {field_type_}")
     else:
-        field_type_ = json.loads('"ComputeJob_R_to_F"')
+        pass  # fixed value for this field
 
     if "r_b_f" in data:
         field_r_b_f = load_SLMap(data["r_b_f"])
@@ -1519,15 +1516,13 @@ def load_ComputeJob_R_to_F(data: object) -> "ComputeJob_R_to_F":
     else:
         raise ValueError("Missing required field `r_i_f`")
 
-    return ComputeJob_R_to_F(
+    return ComputeJob_R_to_F.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
         axes=field_axes,
         points=field_points,
-        type_=field_type_,
         r_b_f=field_r_b_f,
         r_f=field_r_f,
         r_i_f=field_r_i_f,
@@ -1557,7 +1552,7 @@ def load_ComputePoint(data: object) -> "ComputePoint":
     else:
         field_value = None
 
-    return ComputePoint(
+    return ComputePoint.make(
         key=field_key,
         value=field_value,
     )
@@ -1585,15 +1580,14 @@ def load_Connection(data: object) -> "Connection":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Connection(
+    return Connection.make(
         source=field_source,
         target=field_target,
-        type_=field_type_,
     )
 
 
 def load_ConnectionSource(data: object) -> "ConnectionSource":
-    """Load ConnectionSource from a dictionary based on the "type" discriminator."""
+    """Load ConnectionSource from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -1608,7 +1602,7 @@ def load_ConnectionSource(data: object) -> "ConnectionSource":
 
 
 def load_ConnectionTarget(data: object) -> "ConnectionTarget":
-    """Load ConnectionTarget from a dictionary based on the "type" discriminator."""
+    """Load ConnectionTarget from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -1623,7 +1617,7 @@ def load_ConnectionTarget(data: object) -> "ConnectionTarget":
 
 
 def load_DP(data: object) -> "DP":
-    """Load DP from a dictionary based on the "type" discriminator."""
+    """Load DP from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -1694,7 +1688,7 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -1751,24 +1745,22 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
                 f"Invalid discriminator value for `type`: expected `DP_All_Constants_And_F_Leq_R`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"DP_All_Constants_And_F_Leq_R"')
+        pass  # fixed value for this field
 
     if "constants" in data:
         field_constants = load_list_of_any(data["constants"])
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_All_Constants_And_F_Leq_R(
+    return DP_All_Constants_And_F_Leq_R.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         constants=field_constants,
     )
 
@@ -1803,7 +1795,7 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -1858,24 +1850,22 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
         if field_type_ is not None and field_type_ != "DP_All_Constants_Leq_R":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_All_Constants_Leq_R`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_All_Constants_Leq_R"')
+        pass  # fixed value for this field
 
     if "constants" in data:
         field_constants = load_list_of_any(data["constants"])
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_All_Constants_Leq_R(
+    return DP_All_Constants_Leq_R.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         constants=field_constants,
     )
 
@@ -1910,7 +1900,7 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -1965,19 +1955,17 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
         if field_type_ is not None and field_type_ != "DP_All_Fi_Leq_R":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_All_Fi_Leq_R`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_All_Fi_Leq_R"')
+        pass  # fixed value for this field
 
-    return DP_All_Fi_Leq_R(
+    return DP_All_Fi_Leq_R.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -2011,7 +1999,7 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2066,24 +2054,22 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
         if field_type_ is not None and field_type_ != "DP_AmbientConversion":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_AmbientConversion`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_AmbientConversion"')
+        pass  # fixed value for this field
 
     if "common" in data:
         field_common = load_Poset(data["common"])
     else:
         raise ValueError("Missing required field `common`")
 
-    return DP_AmbientConversion(
+    return DP_AmbientConversion.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         common=field_common,
     )
 
@@ -2118,7 +2104,7 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2173,24 +2159,22 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
         if field_type_ is not None and field_type_ != "DP_Any_Constants_Or_F_Leq_R":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Any_Constants_Or_F_Leq_R`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Any_Constants_Or_F_Leq_R"')
+        pass  # fixed value for this field
 
     if "constants" in data:
         field_constants = load_list_of_any(data["constants"])
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_Any_Constants_Or_F_Leq_R(
+    return DP_Any_Constants_Or_F_Leq_R.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         constants=field_constants,
     )
 
@@ -2225,7 +2209,7 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2280,19 +2264,17 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
         if field_type_ is not None and field_type_ != "DP_Any_Fi_Leq_R":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Any_Fi_Leq_R`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Any_Fi_Leq_R"')
+        pass  # fixed value for this field
 
-    return DP_Any_Fi_Leq_R(
+    return DP_Any_Fi_Leq_R.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -2326,7 +2308,7 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2381,7 +2363,7 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
         if field_type_ is not None and field_type_ != "DP_C_ExplicitApprox":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_C_ExplicitApprox`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_C_ExplicitApprox"')
+        pass  # fixed value for this field
 
     if "optimistic" in data:
         field_optimistic = load_list_of_DP(data["optimistic"])
@@ -2411,17 +2393,15 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
     else:
         field_pessimistic_labels = None
 
-    return DP_C_ExplicitApprox(
+    return DP_C_ExplicitApprox.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -2459,7 +2439,7 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2514,7 +2494,7 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
         if field_type_ is not None and field_type_ != "DP_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_C_Intersection"')
+        pass  # fixed value for this field
 
     if "dps" in data:
         field_dps = load_list_of_DP(data["dps"])
@@ -2530,17 +2510,15 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
     else:
         field_labels = None
 
-    return DP_C_Intersection(
+    return DP_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dps=field_dps,
         labels=field_labels,
     )
@@ -2576,7 +2554,7 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2631,7 +2609,7 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
         if field_type_ is not None and field_type_ != "DP_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_C_Parallel"')
+        pass  # fixed value for this field
 
     if "dps" in data:
         field_dps = load_list_of_DP(data["dps"])
@@ -2647,17 +2625,15 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
     else:
         field_labels = None
 
-    return DP_C_Parallel(
+    return DP_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dps=field_dps,
         labels=field_labels,
     )
@@ -2693,7 +2669,7 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2748,7 +2724,7 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
         if field_type_ is not None and field_type_ != "DP_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_C_Series"')
+        pass  # fixed value for this field
 
     if "dps" in data:
         field_dps = load_list_of_DP(data["dps"])
@@ -2764,17 +2740,15 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
     else:
         field_labels = None
 
-    return DP_C_Series(
+    return DP_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dps=field_dps,
         labels=field_labels,
     )
@@ -2810,7 +2784,7 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2865,24 +2839,22 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
         if field_type_ is not None and field_type_ != "DP_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_C_Trace"')
+        pass  # fixed value for this field
 
     if "dp" in data:
         field_dp = load_DP(data["dp"])
     else:
         raise ValueError("Missing required field `dp`")
 
-    return DP_C_Trace(
+    return DP_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dp=field_dp,
     )
 
@@ -2917,7 +2889,7 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -2972,7 +2944,7 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
         if field_type_ is not None and field_type_ != "DP_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_C_Union"')
+        pass  # fixed value for this field
 
     if "dps" in data:
         field_dps = load_list_of_DP(data["dps"])
@@ -2988,17 +2960,15 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
     else:
         field_labels = None
 
-    return DP_C_Union(
+    return DP_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dps=field_dps,
         labels=field_labels,
     )
@@ -3034,7 +3004,7 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3089,24 +3059,22 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
         if field_type_ is not None and field_type_ != "DP_Catalog":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Catalog`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Catalog"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_DP_Catalog_Options(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return DP_Catalog(
+    return DP_Catalog.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -3136,7 +3104,7 @@ def load_DP_Catalog_Options(data: object) -> "DP_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return DP_Catalog_Options(
+    return DP_Catalog_Options.make(
         b=field_b,
         f=field_f,
         i=field_i,
@@ -3174,7 +3142,7 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3229,7 +3197,7 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
         if field_type_ is not None and field_type_ != "DP_Compiled":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Compiled`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Compiled"')
+        pass  # fixed value for this field
 
     if "f_b_r" in data:
         field_f_b_r = load_SUMap(data["f_b_r"])
@@ -3286,17 +3254,15 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
     else:
         raise ValueError("Missing required field `req`")
 
-    return DP_Compiled(
+    return DP_Compiled.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         f_b_r=field_f_b_r,
         f_i_r=field_f_i_r,
         f_r=field_f_r,
@@ -3341,7 +3307,7 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3396,24 +3362,22 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
         if field_type_ is not None and field_type_ != "DP_F_Leq_All_Constants":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_F_Leq_All_Constants`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_F_Leq_All_Constants"')
+        pass  # fixed value for this field
 
     if "constants" in data:
         field_constants = load_list_of_any(data["constants"])
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_F_Leq_All_Constants(
+    return DP_F_Leq_All_Constants.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         constants=field_constants,
     )
 
@@ -3448,7 +3412,7 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3505,24 +3469,22 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
                 f"Invalid discriminator value for `type`: expected `DP_F_Leq_All_R_And_Constants`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"DP_F_Leq_All_R_And_Constants"')
+        pass  # fixed value for this field
 
     if "constants" in data:
         field_constants = load_list_of_any(data["constants"])
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_F_Leq_All_R_And_Constants(
+    return DP_F_Leq_All_R_And_Constants.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         constants=field_constants,
     )
 
@@ -3557,7 +3519,7 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3612,19 +3574,17 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
         if field_type_ is not None and field_type_ != "DP_F_Leq_All_Ri":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_F_Leq_All_Ri`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_F_Leq_All_Ri"')
+        pass  # fixed value for this field
 
-    return DP_F_Leq_All_Ri(
+    return DP_F_Leq_All_Ri.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -3658,7 +3618,7 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3715,24 +3675,22 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
                 f"Invalid discriminator value for `type`: expected `DP_F_Leq_Any_R_And_Constants`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"DP_F_Leq_Any_R_And_Constants"')
+        pass  # fixed value for this field
 
     if "constants" in data:
         field_constants = load_list_of_any(data["constants"])
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_F_Leq_Any_R_And_Constants(
+    return DP_F_Leq_Any_R_And_Constants.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         constants=field_constants,
     )
 
@@ -3767,7 +3725,7 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3822,19 +3780,17 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
         if field_type_ is not None and field_type_ != "DP_F_Leq_Any_Ri":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_F_Leq_Any_Ri`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_F_Leq_Any_Ri"')
+        pass  # fixed value for this field
 
-    return DP_F_Leq_Any_Ri(
+    return DP_F_Leq_Any_Ri.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -3868,7 +3824,7 @@ def load_DP_False(data: object) -> "DP_False":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -3923,19 +3879,17 @@ def load_DP_False(data: object) -> "DP_False":
         if field_type_ is not None and field_type_ != "DP_False":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_False`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_False"')
+        pass  # fixed value for this field
 
-    return DP_False(
+    return DP_False.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -3969,7 +3923,7 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4024,24 +3978,22 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
         if field_type_ is not None and field_type_ != "DP_FuncNotMoreThan":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_FuncNotMoreThan`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_FuncNotMoreThan"')
+        pass  # fixed value for this field
 
     if "limit" in data:
         field_limit = load_any(data["limit"])
     else:
         raise ValueError("Missing required field `limit`")
 
-    return DP_FuncNotMoreThan(
+    return DP_FuncNotMoreThan.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         limit=field_limit,
     )
 
@@ -4076,7 +4028,7 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4131,7 +4083,7 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
         if field_type_ is not None and field_type_ != "DP_GenericConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_GenericConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_GenericConstant"')
+        pass  # fixed value for this field
 
     if "b_value" in data:
         field_b_value = load_any(data["b_value"])
@@ -4148,17 +4100,15 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
     else:
         raise ValueError("Missing required field `upper_set`")
 
-    return DP_GenericConstant(
+    return DP_GenericConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         b_value=field_b_value,
         lower_set=field_lower_set,
         upper_set=field_upper_set,
@@ -4195,7 +4145,7 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4250,19 +4200,17 @@ def load_DP_Identity(data: object) -> "DP_Identity":
         if field_type_ is not None and field_type_ != "DP_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Identity"')
+        pass  # fixed value for this field
 
-    return DP_Identity(
+    return DP_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -4296,7 +4244,7 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4351,7 +4299,7 @@ def load_DP_Iso(data: object) -> "DP_Iso":
         if field_type_ is not None and field_type_ != "DP_Iso":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Iso`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Iso"')
+        pass  # fixed value for this field
 
     if "bwd" in data:
         field_bwd = load_MonotoneMap(data["bwd"])
@@ -4363,17 +4311,15 @@ def load_DP_Iso(data: object) -> "DP_Iso":
     else:
         raise ValueError("Missing required field `fwd`")
 
-    return DP_Iso(
+    return DP_Iso.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         bwd=field_bwd,
         fwd=field_fwd,
     )
@@ -4409,7 +4355,7 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4464,24 +4410,22 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
         if field_type_ is not None and field_type_ != "DP_LiftL":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_LiftL`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_LiftL"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return DP_LiftL(
+    return DP_LiftL.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -4516,7 +4460,7 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4571,24 +4515,22 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
         if field_type_ is not None and field_type_ != "DP_LiftU":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_LiftU`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_LiftU"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return DP_LiftU(
+    return DP_LiftU.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -4623,7 +4565,7 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4678,24 +4620,22 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
         if field_type_ is not None and field_type_ != "DP_ResNotLessThan":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_ResNotLessThan`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_ResNotLessThan"')
+        pass  # fixed value for this field
 
     if "limit" in data:
         field_limit = load_any(data["limit"])
     else:
         raise ValueError("Missing required field `limit`")
 
-    return DP_ResNotLessThan(
+    return DP_ResNotLessThan.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         limit=field_limit,
     )
 
@@ -4730,7 +4670,7 @@ def load_DP_True(data: object) -> "DP_True":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4785,24 +4725,22 @@ def load_DP_True(data: object) -> "DP_True":
         if field_type_ is not None and field_type_ != "DP_True":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_True`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_True"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_Value(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return DP_True(
+    return DP_True.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -4837,7 +4775,7 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         if field_kind is not None and field_kind != "DP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `DP`, got {field_kind}")
     else:
-        field_kind = json.loads('"DP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4892,19 +4830,17 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
         if field_type_ is not None and field_type_ != "DP_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `DP_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"DP_Unknown"')
+        pass  # fixed value for this field
 
-    return DP_Unknown(
+    return DP_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -4938,7 +4874,7 @@ def load_L1Check(data: object) -> "L1Check":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -4956,7 +4892,7 @@ def load_L1Check(data: object) -> "L1Check":
         if field_type_ is not None and field_type_ != "L1Check":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1Check`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1Check"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_L1Check_Data(data["data"])
@@ -4968,12 +4904,10 @@ def load_L1Check(data: object) -> "L1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1Check(
+    return L1Check.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -5003,7 +4937,7 @@ def load_L1Check_Data(data: object) -> "L1Check_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return L1Check_Data(
+    return L1Check_Data.make(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -5011,7 +4945,7 @@ def load_L1Check_Data(data: object) -> "L1Check_Data":
 
 
 def load_L1Map(data: object) -> "L1Map":
-    """Load L1Map from a dictionary based on the "type" discriminator."""
+    """Load L1Map from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -5082,7 +5016,7 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5110,7 +5044,7 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
         if field_type_ is not None and field_type_ != "L1_C_CodSum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_CodSum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_CodSum"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5126,14 +5060,12 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_CodSum(
+    return L1_C_CodSum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5169,7 +5101,7 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5197,7 +5129,7 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
         if field_type_ is not None and field_type_ != "L1_C_CodSumSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_CodSumSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_CodSumSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5213,14 +5145,12 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_CodSumSmash(
+    return L1_C_CodSumSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5256,7 +5186,7 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5284,7 +5214,7 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
         if field_type_ is not None and field_type_ != "L1_C_DomUnion":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_DomUnion`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_DomUnion"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5300,14 +5230,12 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_DomUnion(
+    return L1_C_DomUnion.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5343,7 +5271,7 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5371,7 +5299,7 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
         if field_type_ is not None and field_type_ != "L1_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5387,14 +5315,12 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Intersection(
+    return L1_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5430,7 +5356,7 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5458,7 +5384,7 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
         if field_type_ is not None and field_type_ != "L1_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5474,14 +5400,12 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Parallel(
+    return L1_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5517,7 +5441,7 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5545,7 +5469,7 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
         if field_type_ is not None and field_type_ != "L1_C_ProdIntersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_ProdIntersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_ProdIntersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5561,14 +5485,12 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_ProdIntersection(
+    return L1_C_ProdIntersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5604,7 +5526,7 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5632,7 +5554,7 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
         if field_type_ is not None and field_type_ != "L1_C_Product":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_Product`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_Product"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5648,14 +5570,12 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Product(
+    return L1_C_Product.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5691,7 +5611,7 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5719,21 +5639,19 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
         if field_type_ is not None and field_type_ != "L1_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_L1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_C_RefineDomain(
+    return L1_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -5768,7 +5686,7 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5796,7 +5714,7 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
         if field_type_ is not None and field_type_ != "L1_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5812,14 +5730,12 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Series(
+    return L1_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -5855,7 +5771,7 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5883,21 +5799,19 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
         if field_type_ is not None and field_type_ != "L1_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_L1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_C_Trace(
+    return L1_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -5932,7 +5846,7 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -5960,7 +5874,7 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
         if field_type_ is not None and field_type_ != "L1_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -5976,14 +5890,12 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Union(
+    return L1_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -6019,7 +5931,7 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6047,7 +5959,7 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
         if field_type_ is not None and field_type_ != "L1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -6064,14 +5976,12 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_C_WrapUnits(
+    return L1_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -6108,7 +6018,7 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6136,21 +6046,19 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
         if field_type_ is not None and field_type_ != "L1_Catalog":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Catalog`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Catalog"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_L1_Catalog_Options(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return L1_Catalog(
+    return L1_Catalog.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -6170,7 +6078,7 @@ def load_L1_Catalog_Options(data: object) -> "L1_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return L1_Catalog_Options(
+    return L1_Catalog_Options.make(
         f=field_f,
         r=field_r,
     )
@@ -6206,7 +6114,7 @@ def load_L1_Constant(data: object) -> "L1_Constant":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6234,21 +6142,19 @@ def load_L1_Constant(data: object) -> "L1_Constant":
         if field_type_ is not None and field_type_ != "L1_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Constant"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_LowerSet(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return L1_Constant(
+    return L1_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -6283,7 +6189,7 @@ def load_L1_Entire(data: object) -> "L1_Entire":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6311,16 +6217,14 @@ def load_L1_Entire(data: object) -> "L1_Entire":
         if field_type_ is not None and field_type_ != "L1_Entire":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Entire`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Entire"')
+        pass  # fixed value for this field
 
-    return L1_Entire(
+    return L1_Entire.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -6354,7 +6258,7 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6382,21 +6286,19 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
         if field_type_ is not None and field_type_ != "L1_Explicit":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Explicit`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Explicit"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_L1_Explicit_Option(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return L1_Explicit(
+    return L1_Explicit.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -6416,7 +6318,7 @@ def load_L1_Explicit_Option(data: object) -> "L1_Explicit_Option":
     else:
         raise ValueError("Missing required field `y`")
 
-    return L1_Explicit_Option(
+    return L1_Explicit_Option.make(
         x=field_x,
         y=field_y,
     )
@@ -6452,7 +6354,7 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6480,21 +6382,19 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
         if field_type_ is not None and field_type_ != "L1_FromFilter":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_FromFilter`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_FromFilter"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_FromFilter(
+    return L1_FromFilter.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -6529,7 +6429,7 @@ def load_L1_Identity(data: object) -> "L1_Identity":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6557,16 +6457,14 @@ def load_L1_Identity(data: object) -> "L1_Identity":
         if field_type_ is not None and field_type_ != "L1_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Identity"')
+        pass  # fixed value for this field
 
-    return L1_Identity(
+    return L1_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -6600,7 +6498,7 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6630,16 +6528,14 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
                 f"Invalid discriminator value for `type`: expected `L1_IntersectionOfPrinLowerSets`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"L1_IntersectionOfPrinLowerSets"')
+        pass  # fixed value for this field
 
-    return L1_IntersectionOfPrinLowerSets(
+    return L1_IntersectionOfPrinLowerSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -6673,7 +6569,7 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6701,7 +6597,7 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
         if field_type_ is not None and field_type_ != "L1_InvMul_Opt":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_InvMul_Opt`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_InvMul_Opt"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -6713,14 +6609,12 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvMul_Opt(
+    return L1_InvMul_Opt.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -6756,7 +6650,7 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6784,7 +6678,7 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
         if field_type_ is not None and field_type_ != "L1_InvMul_Pes":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_InvMul_Pes`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_InvMul_Pes"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -6796,14 +6690,12 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvMul_Pes(
+    return L1_InvMul_Pes.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -6839,7 +6731,7 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6867,7 +6759,7 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
         if field_type_ is not None and field_type_ != "L1_InvSum_Opt":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_InvSum_Opt`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_InvSum_Opt"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -6879,14 +6771,12 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvSum_Opt(
+    return L1_InvSum_Opt.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -6922,7 +6812,7 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -6950,7 +6840,7 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
         if field_type_ is not None and field_type_ != "L1_InvSum_Pes":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_InvSum_Pes`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_InvSum_Pes"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -6962,14 +6852,12 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvSum_Pes(
+    return L1_InvSum_Pes.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -7005,7 +6893,7 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7033,21 +6921,19 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
         if field_type_ is not None and field_type_ != "L1_L_Linv":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_L_Linv`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_L_Linv"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_L_Linv(
+    return L1_L_Linv.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -7082,7 +6968,7 @@ def load_L1_Lift(data: object) -> "L1_Lift":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7110,21 +6996,19 @@ def load_L1_Lift(data: object) -> "L1_Lift":
         if field_type_ is not None and field_type_ != "L1_Lift":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Lift`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Lift"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_Lift(
+    return L1_Lift.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -7159,7 +7043,7 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7189,16 +7073,14 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
                 f"Invalid discriminator value for `type`: expected `L1_RepresentPrincipalLowerSet`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"L1_RepresentPrincipalLowerSet"')
+        pass  # fixed value for this field
 
-    return L1_RepresentPrincipalLowerSet(
+    return L1_RepresentPrincipalLowerSet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -7232,7 +7114,7 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7260,21 +7142,19 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
         if field_type_ is not None and field_type_ != "L1_TopAlternating":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_TopAlternating`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_TopAlternating"')
+        pass  # fixed value for this field
 
     if "upper_bounds" in data:
         field_upper_bounds = load_list_of_list_of_any(data["upper_bounds"])
     else:
         raise ValueError("Missing required field `upper_bounds`")
 
-    return L1_TopAlternating(
+    return L1_TopAlternating.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         upper_bounds=field_upper_bounds,
     )
 
@@ -7309,7 +7189,7 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7337,16 +7217,14 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
         if field_type_ is not None and field_type_ != "L1_UnionOfPrinLowerSets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_UnionOfPrinLowerSets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_UnionOfPrinLowerSets"')
+        pass  # fixed value for this field
 
-    return L1_UnionOfPrinLowerSets(
+    return L1_UnionOfPrinLowerSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -7380,7 +7258,7 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
         if field_kind is not None and field_kind != "L1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `L1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"L1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7408,16 +7286,14 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
         if field_type_ is not None and field_type_ != "L1_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L1_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L1_Unknown"')
+        pass  # fixed value for this field
 
-    return L1_Unknown(
+    return L1_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -7451,7 +7327,7 @@ def load_LCheck(data: object) -> "LCheck":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7469,7 +7345,7 @@ def load_LCheck(data: object) -> "LCheck":
         if field_type_ is not None and field_type_ != "LCheck":
             raise ValueError(f"Invalid discriminator value for `type`: expected `LCheck`, got {field_type_}")
     else:
-        field_type_ = json.loads('"LCheck"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_LCheck_Data(data["data"])
@@ -7481,12 +7357,10 @@ def load_LCheck(data: object) -> "LCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return LCheck(
+    return LCheck.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -7516,7 +7390,7 @@ def load_LCheck_Data(data: object) -> "LCheck_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return LCheck_Data(
+    return LCheck_Data.make(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -7524,7 +7398,7 @@ def load_LCheck_Data(data: object) -> "LCheck_Data":
 
 
 def load_LMap(data: object) -> "LMap":
-    """Load LMap from a dictionary based on the "type" discriminator."""
+    """Load LMap from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -7580,7 +7454,7 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7613,7 +7487,7 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
         if field_type_ is not None and field_type_ != "L_C_ITransform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_ITransform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_ITransform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_LMap(data["m"])
@@ -7625,15 +7499,13 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return L_C_ITransform(
+    return L_C_ITransform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -7669,7 +7541,7 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7702,7 +7574,7 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
         if field_type_ is not None and field_type_ != "L_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -7718,15 +7590,13 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Intersection(
+    return L_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -7762,7 +7632,7 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7795,7 +7665,7 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
         if field_type_ is not None and field_type_ != "L_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -7811,15 +7681,13 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Parallel(
+    return L_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -7855,7 +7723,7 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7888,22 +7756,20 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
         if field_type_ is not None and field_type_ != "L_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_LMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return L_C_RefineDomain(
+    return L_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -7938,7 +7804,7 @@ def load_L_C_Series(data: object) -> "L_C_Series":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -7971,7 +7837,7 @@ def load_L_C_Series(data: object) -> "L_C_Series":
         if field_type_ is not None and field_type_ != "L_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -7987,15 +7853,13 @@ def load_L_C_Series(data: object) -> "L_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Series(
+    return L_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -8031,7 +7895,7 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8064,7 +7928,7 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
         if field_type_ is not None and field_type_ != "L_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_LMap(data["m"])
@@ -8076,15 +7940,13 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return L_C_Trace(
+    return L_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -8120,7 +7982,7 @@ def load_L_C_Union(data: object) -> "L_C_Union":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8153,7 +8015,7 @@ def load_L_C_Union(data: object) -> "L_C_Union":
         if field_type_ is not None and field_type_ != "L_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -8169,15 +8031,13 @@ def load_L_C_Union(data: object) -> "L_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Union(
+    return L_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -8213,7 +8073,7 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8246,7 +8106,7 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
         if field_type_ is not None and field_type_ != "L_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -8268,15 +8128,13 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L_C_WrapUnits(
+    return L_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -8314,7 +8172,7 @@ def load_L_Catalog(data: object) -> "L_Catalog":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8347,22 +8205,20 @@ def load_L_Catalog(data: object) -> "L_Catalog":
         if field_type_ is not None and field_type_ != "L_Catalog":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_Catalog`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_Catalog"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_L_Catalog_Options(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return L_Catalog(
+    return L_Catalog.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -8387,7 +8243,7 @@ def load_L_Catalog_Options(data: object) -> "L_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return L_Catalog_Options(
+    return L_Catalog_Options.make(
         f=field_f,
         i=field_i,
         r=field_r,
@@ -8424,7 +8280,7 @@ def load_L_Constant(data: object) -> "L_Constant":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8457,22 +8313,20 @@ def load_L_Constant(data: object) -> "L_Constant":
         if field_type_ is not None and field_type_ != "L_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_Constant"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_LowerSet(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return L_Constant(
+    return L_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -8507,7 +8361,7 @@ def load_L_Identity(data: object) -> "L_Identity":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8540,17 +8394,15 @@ def load_L_Identity(data: object) -> "L_Identity":
         if field_type_ is not None and field_type_ != "L_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_Identity"')
+        pass  # fixed value for this field
 
-    return L_Identity(
+    return L_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
     )
 
 
@@ -8584,7 +8436,7 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8617,7 +8469,7 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
         if field_type_ is not None and field_type_ != "L_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_L_Lift1_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_L_Lift1_Constant"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_L1Map(data["m"])
@@ -8629,15 +8481,13 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return L_L_Lift1_Constant(
+    return L_L_Lift1_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         value=field_value,
     )
@@ -8673,7 +8523,7 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8706,7 +8556,7 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
         if field_type_ is not None and field_type_ != "L_L_Lift1_Transform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_L_Lift1_Transform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_L_Lift1_Transform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_L1Map(data["m"])
@@ -8718,15 +8568,13 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return L_L_Lift1_Transform(
+    return L_L_Lift1_Transform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -8762,7 +8610,7 @@ def load_L_Unknown(data: object) -> "L_Unknown":
         if field_kind is not None and field_kind != "LMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"LMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -8795,22 +8643,20 @@ def load_L_Unknown(data: object) -> "L_Unknown":
         if field_type_ is not None and field_type_ != "L_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `L_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"L_Unknown"')
+        pass  # fixed value for this field
 
-    return L_Unknown(
+    return L_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
     )
 
 
 def load_LowerSet(data: object) -> "LowerSet":
-    """Load LowerSet from a dictionary based on the "type" discriminator."""
+    """Load LowerSet from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -8843,16 +8689,14 @@ def load_LowerSet_LowerClosure(data: object) -> "LowerSet_LowerClosure":
         if field_type_ is not None and field_type_ != "LowerSet_LowerClosure":
             raise ValueError(f"Invalid discriminator value for `type`: expected `LowerSet_LowerClosure`, got {field_type_}")
     else:
-        field_type_ = json.loads('"LowerSet_LowerClosure"')
+        pass  # fixed value for this field
 
     if "points" in data:
         field_points = load_list_of_any(data["points"])
     else:
         raise ValueError("Missing required field `points`")
 
-    return LowerSet_LowerClosure(
-        kind=field_kind,
-        type_=field_type_,
+    return LowerSet_LowerClosure.make(
         points=field_points,
     )
 
@@ -8876,16 +8720,13 @@ def load_LowerSet_Unused(data: object) -> "LowerSet_Unused":
         if field_type_ is not None and field_type_ != "LowerSet_Unused":
             raise ValueError(f"Invalid discriminator value for `type`: expected `LowerSet_Unused`, got {field_type_}")
     else:
-        field_type_ = json.loads('"LowerSet_Unused"')
+        pass  # fixed value for this field
 
-    return LowerSet_Unused(
-        kind=field_kind,
-        type_=field_type_,
-    )
+    return LowerSet_Unused.make()
 
 
 def load_MonotoneMap(data: object) -> "MonotoneMap":
-    """Load MonotoneMap from a dictionary based on the "type" discriminator."""
+    """Load MonotoneMap from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -8998,7 +8839,7 @@ def load_M_AddL(data: object) -> "M_AddL":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9026,21 +8867,19 @@ def load_M_AddL(data: object) -> "M_AddL":
         if field_type_ is not None and field_type_ != "M_AddL":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_AddL`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_AddL"')
+        pass  # fixed value for this field
 
     if "opspaces" in data:
         field_opspaces = load_list_of_Poset(data["opspaces"])
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_AddL(
+    return M_AddL.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspaces=field_opspaces,
     )
 
@@ -9075,7 +8914,7 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9103,7 +8942,7 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
         if field_type_ is not None and field_type_ != "M_AddLConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_AddLConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_AddLConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -9115,14 +8954,12 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_AddLConstant(
+    return M_AddLConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -9158,7 +8995,7 @@ def load_M_AddU(data: object) -> "M_AddU":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9186,21 +9023,19 @@ def load_M_AddU(data: object) -> "M_AddU":
         if field_type_ is not None and field_type_ != "M_AddU":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_AddU`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_AddU"')
+        pass  # fixed value for this field
 
     if "opspaces" in data:
         field_opspaces = load_list_of_Poset(data["opspaces"])
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_AddU(
+    return M_AddU.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspaces=field_opspaces,
     )
 
@@ -9235,7 +9070,7 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9263,7 +9098,7 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
         if field_type_ is not None and field_type_ != "M_AddUConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_AddUConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_AddUConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -9275,14 +9110,12 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_AddUConstant(
+    return M_AddUConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -9318,7 +9151,7 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9346,16 +9179,14 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
         if field_type_ is not None and field_type_ != "M_BottomIfNotTop":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_BottomIfNotTop`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_BottomIfNotTop"')
+        pass  # fixed value for this field
 
-    return M_BottomIfNotTop(
+    return M_BottomIfNotTop.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -9389,7 +9220,7 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9417,7 +9248,7 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
         if field_type_ is not None and field_type_ != "M_C_Coproduct":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Coproduct`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Coproduct"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -9433,14 +9264,12 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Coproduct(
+    return M_C_Coproduct.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -9476,7 +9305,7 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9504,7 +9333,7 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
         if field_type_ is not None and field_type_ != "M_C_CoproductSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_CoproductSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_CoproductSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -9520,14 +9349,12 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_CoproductSmash(
+    return M_C_CoproductSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -9563,7 +9390,7 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9591,7 +9418,7 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
         if field_type_ is not None and field_type_ != "M_C_DomProdCodSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_DomProdCodSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_DomProdCodSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -9607,14 +9434,12 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_DomProdCodSmash(
+    return M_C_DomProdCodSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -9650,7 +9475,7 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9678,7 +9503,7 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
         if field_type_ is not None and field_type_ != "M_C_DomSmashCodProd":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_DomSmashCodProd`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_DomSmashCodProd"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -9694,14 +9519,12 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_DomSmashCodProd(
+    return M_C_DomSmashCodProd.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -9737,7 +9560,7 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9765,7 +9588,7 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
         if field_type_ is not None and field_type_ != "M_C_DomUnion":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_DomUnion`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_DomUnion"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -9781,14 +9604,12 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_DomUnion(
+    return M_C_DomUnion.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -9824,7 +9645,7 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9852,7 +9673,7 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
         if field_type_ is not None and field_type_ != "M_C_Leq_X":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Leq_X`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Leq_X"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -9864,14 +9685,12 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_C_Leq_X(
+    return M_C_Leq_X.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -9907,7 +9726,7 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -9935,21 +9754,19 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
         if field_type_ is not None and field_type_ != "M_C_LiftToSubsets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_LiftToSubsets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_LiftToSubsets"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_LiftToSubsets(
+    return M_C_LiftToSubsets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -9984,7 +9801,7 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10012,7 +9829,7 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
         if field_type_ is not None and field_type_ != "M_C_Lt_X":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Lt_X`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Lt_X"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -10024,14 +9841,12 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_C_Lt_X(
+    return M_C_Lt_X.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -10067,7 +9882,7 @@ def load_M_C_Op(data: object) -> "M_C_Op":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10095,21 +9910,19 @@ def load_M_C_Op(data: object) -> "M_C_Op":
         if field_type_ is not None and field_type_ != "M_C_Op":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Op`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Op"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_Op(
+    return M_C_Op.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -10144,7 +9957,7 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10172,7 +9985,7 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
         if field_type_ is not None and field_type_ != "M_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10188,14 +10001,12 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Parallel(
+    return M_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10231,7 +10042,7 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10259,7 +10070,7 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
         if field_type_ is not None and field_type_ != "M_C_ParallelSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_ParallelSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_ParallelSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10275,14 +10086,12 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_ParallelSmash(
+    return M_C_ParallelSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10318,7 +10127,7 @@ def load_M_C_Product(data: object) -> "M_C_Product":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10346,7 +10155,7 @@ def load_M_C_Product(data: object) -> "M_C_Product":
         if field_type_ is not None and field_type_ != "M_C_Product":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Product`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Product"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10362,14 +10171,12 @@ def load_M_C_Product(data: object) -> "M_C_Product":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Product(
+    return M_C_Product.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10405,7 +10212,7 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10433,7 +10240,7 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
         if field_type_ is not None and field_type_ != "M_C_ProductSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_ProductSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_ProductSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10449,14 +10256,12 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_ProductSmash(
+    return M_C_ProductSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10492,7 +10297,7 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10520,21 +10325,19 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
         if field_type_ is not None and field_type_ != "M_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_RefineDomain(
+    return M_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -10569,7 +10372,7 @@ def load_M_C_Series(data: object) -> "M_C_Series":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10597,7 +10400,7 @@ def load_M_C_Series(data: object) -> "M_C_Series":
         if field_type_ is not None and field_type_ != "M_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10613,14 +10416,12 @@ def load_M_C_Series(data: object) -> "M_C_Series":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Series(
+    return M_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10656,7 +10457,7 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10684,7 +10485,7 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
         if field_type_ is not None and field_type_ != "M_C_Sum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_Sum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_Sum"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10700,14 +10501,12 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Sum(
+    return M_C_Sum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10743,7 +10542,7 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10771,7 +10570,7 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
         if field_type_ is not None and field_type_ != "M_C_SumSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_SumSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_SumSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -10787,14 +10586,12 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_SumSmash(
+    return M_C_SumSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         labels=field_labels,
         maps=field_maps,
     )
@@ -10830,7 +10627,7 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10858,7 +10655,7 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
         if field_type_ is not None and field_type_ != "M_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "cod_units" in data:
         field_cod_units = load_Unit(data["cod_units"])
@@ -10875,14 +10672,12 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_WrapUnits(
+    return M_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         cod_units=field_cod_units,
         dom_units=field_dom_units,
         m=field_m,
@@ -10919,7 +10714,7 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -10947,21 +10742,19 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
         if field_type_ is not None and field_type_ != "M_Ceil0":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Ceil0`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Ceil0"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_Ceil0(
+    return M_Ceil0.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -10996,7 +10789,7 @@ def load_M_Coerce(data: object) -> "M_Coerce":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11024,16 +10817,14 @@ def load_M_Coerce(data: object) -> "M_Coerce":
         if field_type_ is not None and field_type_ != "M_Coerce":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Coerce`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Coerce"')
+        pass  # fixed value for this field
 
-    return M_Coerce(
+    return M_Coerce.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -11067,7 +10858,7 @@ def load_M_Constant(data: object) -> "M_Constant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11095,21 +10886,19 @@ def load_M_Constant(data: object) -> "M_Constant":
         if field_type_ is not None and field_type_ != "M_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Constant"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_Value(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_Constant(
+    return M_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -11144,7 +10933,7 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11172,7 +10961,7 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
         if field_type_ is not None and field_type_ != "M_ContainedInLowerSet":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_ContainedInLowerSet`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_ContainedInLowerSet"')
+        pass  # fixed value for this field
 
     if "lower_set" in data:
         field_lower_set = load_LowerSet(data["lower_set"])
@@ -11184,14 +10973,12 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_ContainedInLowerSet(
+    return M_ContainedInLowerSet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         lower_set=field_lower_set,
         opspace=field_opspace,
     )
@@ -11227,7 +11014,7 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11255,7 +11042,7 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
         if field_type_ is not None and field_type_ != "M_ContainedInUpperSet":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_ContainedInUpperSet`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_ContainedInUpperSet"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -11267,14 +11054,12 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
     else:
         raise ValueError("Missing required field `upper_set`")
 
-    return M_ContainedInUpperSet(
+    return M_ContainedInUpperSet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         upper_set=field_upper_set,
     )
@@ -11310,7 +11095,7 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11338,7 +11123,7 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
         if field_type_ is not None and field_type_ != "M_DivideLConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_DivideLConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_DivideLConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -11350,14 +11135,12 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_DivideLConstant(
+    return M_DivideLConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -11393,7 +11176,7 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11421,7 +11204,7 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
         if field_type_ is not None and field_type_ != "M_DivideUConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_DivideUConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_DivideUConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -11433,14 +11216,12 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_DivideUConstant(
+    return M_DivideUConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -11476,7 +11257,7 @@ def load_M_Empty(data: object) -> "M_Empty":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11504,16 +11285,14 @@ def load_M_Empty(data: object) -> "M_Empty":
         if field_type_ is not None and field_type_ != "M_Empty":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Empty`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Empty"')
+        pass  # fixed value for this field
 
-    return M_Empty(
+    return M_Empty.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -11547,7 +11326,7 @@ def load_M_Explicit(data: object) -> "M_Explicit":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11575,21 +11354,19 @@ def load_M_Explicit(data: object) -> "M_Explicit":
         if field_type_ is not None and field_type_ != "M_Explicit":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Explicit`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Explicit"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_M_Explicit_Option(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return M_Explicit(
+    return M_Explicit.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -11609,7 +11386,7 @@ def load_M_Explicit_Option(data: object) -> "M_Explicit_Option":
     else:
         raise ValueError("Missing required field `y`")
 
-    return M_Explicit_Option(
+    return M_Explicit_Option.make(
         x=field_x,
         y=field_y,
     )
@@ -11645,7 +11422,7 @@ def load_M_Floor0(data: object) -> "M_Floor0":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11673,21 +11450,19 @@ def load_M_Floor0(data: object) -> "M_Floor0":
         if field_type_ is not None and field_type_ != "M_Floor0":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Floor0`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Floor0"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_Floor0(
+    return M_Floor0.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -11722,7 +11497,7 @@ def load_M_Id(data: object) -> "M_Id":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11750,16 +11525,14 @@ def load_M_Id(data: object) -> "M_Id":
         if field_type_ is not None and field_type_ != "M_Id":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Id`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Id"')
+        pass  # fixed value for this field
 
-    return M_Id(
+    return M_Id.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -11793,7 +11566,7 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11821,7 +11594,7 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
         if field_type_ is not None and field_type_ != "M_IdentityBelowThreshold":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_IdentityBelowThreshold`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_IdentityBelowThreshold"')
+        pass  # fixed value for this field
 
     if "threshold" in data:
         field_threshold = load_Value(data["threshold"])
@@ -11833,14 +11606,12 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_IdentityBelowThreshold(
+    return M_IdentityBelowThreshold.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         threshold=field_threshold,
         value=field_value,
     )
@@ -11876,7 +11647,7 @@ def load_M_Injection(data: object) -> "M_Injection":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11904,21 +11675,19 @@ def load_M_Injection(data: object) -> "M_Injection":
         if field_type_ is not None and field_type_ != "M_Injection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Injection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Injection"')
+        pass  # fixed value for this field
 
     if "index" in data:
         field_index = load_int(data["index"])
     else:
         raise ValueError("Missing required field `index`")
 
-    return M_Injection(
+    return M_Injection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         index=field_index,
     )
 
@@ -11953,7 +11722,7 @@ def load_M_Join(data: object) -> "M_Join":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -11981,21 +11750,19 @@ def load_M_Join(data: object) -> "M_Join":
         if field_type_ is not None and field_type_ != "M_Join":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Join`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Join"')
+        pass  # fixed value for this field
 
     if "opspaces" in data:
         field_opspaces = load_list_of_Poset(data["opspaces"])
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_Join(
+    return M_Join.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspaces=field_opspaces,
     )
 
@@ -12030,7 +11797,7 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12058,7 +11825,7 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
         if field_type_ is not None and field_type_ != "M_JoinConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_JoinConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_JoinConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -12070,14 +11837,12 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_JoinConstant(
+    return M_JoinConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -12113,7 +11878,7 @@ def load_M_Leq(data: object) -> "M_Leq":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12141,21 +11906,19 @@ def load_M_Leq(data: object) -> "M_Leq":
         if field_type_ is not None and field_type_ != "M_Leq":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Leq`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Leq"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_Leq(
+    return M_Leq.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -12190,7 +11953,7 @@ def load_M_Lift(data: object) -> "M_Lift":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12218,16 +11981,14 @@ def load_M_Lift(data: object) -> "M_Lift":
         if field_type_ is not None and field_type_ != "M_Lift":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Lift`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Lift"')
+        pass  # fixed value for this field
 
-    return M_Lift(
+    return M_Lift.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -12261,7 +12022,7 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12289,21 +12050,19 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
         if field_type_ is not None and field_type_ != "M_LiftToLowerSets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_LiftToLowerSets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_LiftToLowerSets"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_LiftToLowerSets(
+    return M_LiftToLowerSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -12338,7 +12097,7 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12366,21 +12125,19 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
         if field_type_ is not None and field_type_ != "M_LiftToUpperSets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_LiftToUpperSets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_LiftToUpperSets"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_LiftToUpperSets(
+    return M_LiftToUpperSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -12415,7 +12172,7 @@ def load_M_Meet(data: object) -> "M_Meet":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12443,21 +12200,19 @@ def load_M_Meet(data: object) -> "M_Meet":
         if field_type_ is not None and field_type_ != "M_Meet":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Meet`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Meet"')
+        pass  # fixed value for this field
 
     if "opspaces" in data:
         field_opspaces = load_list_of_Poset(data["opspaces"])
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_Meet(
+    return M_Meet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspaces=field_opspaces,
     )
 
@@ -12492,7 +12247,7 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12520,7 +12275,7 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
         if field_type_ is not None and field_type_ != "M_MeetConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_MeetConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_MeetConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -12532,14 +12287,12 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_MeetConstant(
+    return M_MeetConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -12575,7 +12328,7 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12603,21 +12356,19 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
         if field_type_ is not None and field_type_ != "M_MultiplyL":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_MultiplyL`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_MultiplyL"')
+        pass  # fixed value for this field
 
     if "opspaces" in data:
         field_opspaces = load_list_of_Poset(data["opspaces"])
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_MultiplyL(
+    return M_MultiplyL.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspaces=field_opspaces,
     )
 
@@ -12652,7 +12403,7 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12680,7 +12431,7 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
         if field_type_ is not None and field_type_ != "M_MultiplyLConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_MultiplyLConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_MultiplyLConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -12692,14 +12443,12 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_MultiplyLConstant(
+    return M_MultiplyLConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -12735,7 +12484,7 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12763,21 +12512,19 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
         if field_type_ is not None and field_type_ != "M_MultiplyU":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_MultiplyU`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_MultiplyU"')
+        pass  # fixed value for this field
 
     if "opspaces" in data:
         field_opspaces = load_list_of_Poset(data["opspaces"])
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_MultiplyU(
+    return M_MultiplyU.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspaces=field_opspaces,
     )
 
@@ -12812,7 +12559,7 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12840,7 +12587,7 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
         if field_type_ is not None and field_type_ != "M_MultiplyUConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_MultiplyUConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_MultiplyUConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -12852,14 +12599,12 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_MultiplyUConstant(
+    return M_MultiplyUConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -12895,7 +12640,7 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -12923,7 +12668,7 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
         if field_type_ is not None and field_type_ != "M_PowerFracL":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_PowerFracL`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_PowerFracL"')
+        pass  # fixed value for this field
 
     if "den" in data:
         field_den = load_str(data["den"])
@@ -12940,14 +12685,12 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_PowerFracL(
+    return M_PowerFracL.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -12984,7 +12727,7 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13012,7 +12755,7 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
         if field_type_ is not None and field_type_ != "M_PowerFracU":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_PowerFracU`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_PowerFracU"')
+        pass  # fixed value for this field
 
     if "den" in data:
         field_den = load_str(data["den"])
@@ -13029,14 +12772,12 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_PowerFracU(
+    return M_PowerFracU.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -13073,7 +12814,7 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13101,16 +12842,14 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
         if field_type_ is not None and field_type_ != "M_ReprLowerSet":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_ReprLowerSet`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_ReprLowerSet"')
+        pass  # fixed value for this field
 
-    return M_ReprLowerSet(
+    return M_ReprLowerSet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -13144,7 +12883,7 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13172,16 +12911,14 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
         if field_type_ is not None and field_type_ != "M_ReprUpperSet":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_ReprUpperSet`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_ReprUpperSet"')
+        pass  # fixed value for this field
 
-    return M_ReprUpperSet(
+    return M_ReprUpperSet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -13215,7 +12952,7 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13245,16 +12982,14 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
                 f"Invalid discriminator value for `type`: expected `M_RepresentPrincipalLowerSet_TotalOrderBounded`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"M_RepresentPrincipalLowerSet_TotalOrderBounded"')
+        pass  # fixed value for this field
 
-    return M_RepresentPrincipalLowerSet_TotalOrderBounded(
+    return M_RepresentPrincipalLowerSet_TotalOrderBounded.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -13288,7 +13023,7 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13318,16 +13053,14 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
                 f"Invalid discriminator value for `type`: expected `M_RepresentPrincipalUpperSet_TotalOrderBounded`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"M_RepresentPrincipalUpperSet_TotalOrderBounded"')
+        pass  # fixed value for this field
 
-    return M_RepresentPrincipalUpperSet_TotalOrderBounded(
+    return M_RepresentPrincipalUpperSet_TotalOrderBounded.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -13361,7 +13094,7 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13389,7 +13122,7 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
         if field_type_ is not None and field_type_ != "M_RoundDown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_RoundDown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_RoundDown"')
+        pass  # fixed value for this field
 
     if "offset" in data:
         field_offset = load_any(data["offset"])
@@ -13406,14 +13139,12 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
     else:
         raise ValueError("Missing required field `step`")
 
-    return M_RoundDown(
+    return M_RoundDown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         offset=field_offset,
         opspace=field_opspace,
         step=field_step,
@@ -13450,7 +13181,7 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13478,7 +13209,7 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
         if field_type_ is not None and field_type_ != "M_RoundUp":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_RoundUp`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_RoundUp"')
+        pass  # fixed value for this field
 
     if "offset" in data:
         field_offset = load_any(data["offset"])
@@ -13495,14 +13226,12 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
     else:
         raise ValueError("Missing required field `step`")
 
-    return M_RoundUp(
+    return M_RoundUp.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         offset=field_offset,
         opspace=field_opspace,
         step=field_step,
@@ -13539,7 +13268,7 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13567,7 +13296,7 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
         if field_type_ is not None and field_type_ != "M_ScaleL":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_ScaleL`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_ScaleL"')
+        pass  # fixed value for this field
 
     if "den" in data:
         field_den = load_str(data["den"])
@@ -13584,14 +13313,12 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_ScaleL(
+    return M_ScaleL.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -13628,7 +13355,7 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13656,7 +13383,7 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
         if field_type_ is not None and field_type_ != "M_ScaleU":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_ScaleU`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_ScaleU"')
+        pass  # fixed value for this field
 
     if "den" in data:
         field_den = load_str(data["den"])
@@ -13673,14 +13400,12 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_ScaleU(
+    return M_ScaleU.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -13717,7 +13442,7 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13745,21 +13470,19 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
         if field_type_ is not None and field_type_ != "M_SmashInjection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_SmashInjection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_SmashInjection"')
+        pass  # fixed value for this field
 
     if "index" in data:
         field_index = load_int(data["index"])
     else:
         raise ValueError("Missing required field `index`")
 
-    return M_SmashInjection(
+    return M_SmashInjection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         index=field_index,
     )
 
@@ -13794,7 +13517,7 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13822,7 +13545,7 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
         if field_type_ is not None and field_type_ != "M_SubLConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_SubLConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_SubLConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -13834,14 +13557,12 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_SubLConstant(
+    return M_SubLConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -13877,7 +13598,7 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13905,7 +13626,7 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
         if field_type_ is not None and field_type_ != "M_SubUConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_SubUConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_SubUConstant"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -13917,14 +13638,12 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_SubUConstant(
+    return M_SubUConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -13960,7 +13679,7 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -13988,21 +13707,19 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
         if field_type_ is not None and field_type_ != "M_TakeIndex":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_TakeIndex`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_TakeIndex"')
+        pass  # fixed value for this field
 
     if "projection" in data:
         field_projection = load_Projection(data["projection"])
     else:
         raise ValueError("Missing required field `projection`")
 
-    return M_TakeIndex(
+    return M_TakeIndex.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         projection=field_projection,
     )
 
@@ -14037,7 +13754,7 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14065,21 +13782,19 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
         if field_type_ is not None and field_type_ != "M_TakeRange":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_TakeRange`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_TakeRange"')
+        pass  # fixed value for this field
 
     if "range" in data:
         field_range = load_Range(data["range"])
     else:
         raise ValueError("Missing required field `range`")
 
-    return M_TakeRange(
+    return M_TakeRange.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         range=field_range,
     )
 
@@ -14114,7 +13829,7 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14142,21 +13857,19 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
         if field_type_ is not None and field_type_ != "M_Threshold1":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Threshold1`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Threshold1"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_Value(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_Threshold1(
+    return M_Threshold1.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -14191,7 +13904,7 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14219,21 +13932,19 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
         if field_type_ is not None and field_type_ != "M_Threshold2":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Threshold2`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Threshold2"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_Value(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_Threshold2(
+    return M_Threshold2.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -14268,7 +13979,7 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14296,16 +14007,14 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
         if field_type_ is not None and field_type_ != "M_TopIfNotBottom":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_TopIfNotBottom`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_TopIfNotBottom"')
+        pass  # fixed value for this field
 
-    return M_TopIfNotBottom(
+    return M_TopIfNotBottom.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -14339,7 +14048,7 @@ def load_M_Undefined(data: object) -> "M_Undefined":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14367,16 +14076,14 @@ def load_M_Undefined(data: object) -> "M_Undefined":
         if field_type_ is not None and field_type_ != "M_Undefined":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Undefined`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Undefined"')
+        pass  # fixed value for this field
 
-    return M_Undefined(
+    return M_Undefined.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -14410,7 +14117,7 @@ def load_M_Unknown(data: object) -> "M_Unknown":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14438,16 +14145,14 @@ def load_M_Unknown(data: object) -> "M_Unknown":
         if field_type_ is not None and field_type_ != "M_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Unknown"')
+        pass  # fixed value for this field
 
-    return M_Unknown(
+    return M_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -14481,7 +14186,7 @@ def load_M_Unlift(data: object) -> "M_Unlift":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14509,16 +14214,14 @@ def load_M_Unlift(data: object) -> "M_Unlift":
         if field_type_ is not None and field_type_ != "M_Unlift":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_Unlift`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_Unlift"')
+        pass  # fixed value for this field
 
-    return M_Unlift(
+    return M_Unlift.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
     )
 
 
@@ -14552,7 +14255,7 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14580,7 +14283,7 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
         if field_type_ is not None and field_type_ != "M_X_Leq_C":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_X_Leq_C`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_X_Leq_C"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -14592,14 +14295,12 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_X_Leq_C(
+    return M_X_Leq_C.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -14635,7 +14336,7 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
         if field_kind is not None and field_kind != "MonotoneMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `MonotoneMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"MonotoneMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14663,7 +14364,7 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
         if field_type_ is not None and field_type_ != "M_X_Lt_C":
             raise ValueError(f"Invalid discriminator value for `type`: expected `M_X_Lt_C`, got {field_type_}")
     else:
-        field_type_ = json.loads('"M_X_Lt_C"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
@@ -14675,14 +14376,12 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_X_Lt_C(
+    return M_X_Lt_C.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         cod=field_cod,
         dom=field_dom,
-        type_=field_type_,
         opspace=field_opspace,
         value=field_value,
     )
@@ -14718,7 +14417,7 @@ def load_MapCheck(data: object) -> "MapCheck":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14736,7 +14435,7 @@ def load_MapCheck(data: object) -> "MapCheck":
         if field_type_ is not None and field_type_ != "MapCheck":
             raise ValueError(f"Invalid discriminator value for `type`: expected `MapCheck`, got {field_type_}")
     else:
-        field_type_ = json.loads('"MapCheck"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_MapCheck_Data(data["data"])
@@ -14748,12 +14447,10 @@ def load_MapCheck(data: object) -> "MapCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return MapCheck(
+    return MapCheck.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -14783,7 +14480,7 @@ def load_MapCheck_Data(data: object) -> "MapCheck_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return MapCheck_Data(
+    return MapCheck_Data.make(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -14802,15 +14499,14 @@ def load_ModelFunctionality(data: object) -> "ModelFunctionality":
         if field_type_ is not None and field_type_ != "ModelFunctionality":
             raise ValueError(f"Invalid discriminator value for `type`: expected `ModelFunctionality`, got {field_type_}")
     else:
-        field_type_ = json.loads('"ModelFunctionality"')
+        pass  # fixed value for this field
 
     if "functionality" in data:
         field_functionality = load_str(data["functionality"])
     else:
         raise ValueError("Missing required field `functionality`")
 
-    return ModelFunctionality(
-        type_=field_type_,
+    return ModelFunctionality.make(
         functionality=field_functionality,
     )
 
@@ -14827,21 +14523,20 @@ def load_ModelRequirement(data: object) -> "ModelRequirement":
         if field_type_ is not None and field_type_ != "ModelRequirement":
             raise ValueError(f"Invalid discriminator value for `type`: expected `ModelRequirement`, got {field_type_}")
     else:
-        field_type_ = json.loads('"ModelRequirement"')
+        pass  # fixed value for this field
 
     if "requirement" in data:
         field_requirement = load_str(data["requirement"])
     else:
         raise ValueError("Missing required field `requirement`")
 
-    return ModelRequirement(
-        type_=field_type_,
+    return ModelRequirement.make(
         requirement=field_requirement,
     )
 
 
 def load_NDP(data: object) -> "NDP":
-    """Load NDP from a dictionary based on the "type" discriminator."""
+    """Load NDP from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -14858,7 +14553,7 @@ def load_NDP(data: object) -> "NDP":
 
 
 def load_NDPInterface(data: object) -> "NDPInterface":
-    """Load NDPInterface from a dictionary based on the "type" discriminator."""
+    """Load NDPInterface from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -14901,7 +14596,7 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
         if field_kind is not None and field_kind != "NDPInterface":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `NDPInterface`, got {field_kind}")
     else:
-        field_kind = json.loads('"NDPInterface"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -14928,7 +14623,7 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
         if field_type_ is not None and field_type_ != "NDPInterface_Explicit":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NDPInterface_Explicit`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NDPInterface_Explicit"')
+        pass  # fixed value for this field
 
     if "fs" in data:
         field_fs = load_dict_of_str_Poset(data["fs"])
@@ -14940,20 +14635,18 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
     else:
         raise ValueError("Missing required field `rs`")
 
-    return NDPInterface_Explicit(
+    return NDPInterface_Explicit.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         fs=field_fs,
         rs=field_rs,
     )
 
 
 def load_NDPTemplate(data: object) -> "NDPTemplate":
-    """Load NDPTemplate from a dictionary based on the "type" discriminator."""
+    """Load NDPTemplate from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -14996,7 +14689,7 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
         if field_kind is not None and field_kind != "NDPTemplate":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `NDPTemplate`, got {field_kind}")
     else:
-        field_kind = json.loads('"NDPTemplate"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15023,7 +14716,7 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
         if field_type_ is not None and field_type_ != "NDPTemplate_Simple":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NDPTemplate_Simple`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NDPTemplate_Simple"')
+        pass  # fixed value for this field
 
     if "ndp" in data:
         field_ndp = load_NDP(data["ndp"])
@@ -15035,13 +14728,11 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
     else:
         raise ValueError("Missing required field `parameters`")
 
-    return NDPTemplate_Simple(
+    return NDPTemplate_Simple.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         ndp=field_ndp,
         parameters=field_parameters,
     )
@@ -15077,7 +14768,7 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
         if field_kind is not None and field_kind != "NDP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `NDP`, got {field_kind}")
     else:
-        field_kind = json.loads('"NDP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15124,7 +14815,7 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
         if field_type_ is not None and field_type_ != "NDP_Composite":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NDP_Composite`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NDP_Composite"')
+        pass  # fixed value for this field
 
     if "connections" in data:
         field_connections = load_list_of_Connection(data["connections"])
@@ -15136,17 +14827,15 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
     else:
         raise ValueError("Missing required field `nodes`")
 
-    return NDP_Composite(
+    return NDP_Composite.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         connections=field_connections,
         nodes=field_nodes,
     )
@@ -15182,7 +14871,7 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
         if field_kind is not None and field_kind != "NDP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `NDP`, got {field_kind}")
     else:
-        field_kind = json.loads('"NDP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15229,24 +14918,22 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
         if field_type_ is not None and field_type_ != "NDP_Simple":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NDP_Simple`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NDP_Simple"')
+        pass  # fixed value for this field
 
     if "dp" in data:
         field_dp = load_DP(data["dp"])
     else:
         raise ValueError("Missing required field `dp`")
 
-    return NDP_Simple(
+    return NDP_Simple.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dp=field_dp,
     )
 
@@ -15281,7 +14968,7 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
         if field_kind is not None and field_kind != "NDP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `NDP`, got {field_kind}")
     else:
-        field_kind = json.loads('"NDP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15328,7 +15015,7 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
         if field_type_ is not None and field_type_ != "NDP_Sum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NDP_Sum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NDP_Sum"')
+        pass  # fixed value for this field
 
     if "dps" in data:
         field_dps = load_dict_of_str_NDP(data["dps"])
@@ -15344,17 +15031,15 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
     else:
         field_labels = None
 
-    return NDP_Sum(
+    return NDP_Sum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         dps=field_dps,
         labels=field_labels,
     )
@@ -15390,7 +15075,7 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
         if field_kind is not None and field_kind != "NDP":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `NDP`, got {field_kind}")
     else:
-        field_kind = json.loads('"NDP"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15437,24 +15122,22 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
         if field_type_ is not None and field_type_ != "NDP_TemplateHole":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NDP_TemplateHole`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NDP_TemplateHole"')
+        pass  # fixed value for this field
 
     if "parameter_name" in data:
         field_parameter_name = load_str(data["parameter_name"])
     else:
         raise ValueError("Missing required field `parameter_name`")
 
-    return NDP_TemplateHole(
+    return NDP_TemplateHole.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
-        type_=field_type_,
         parameter_name=field_parameter_name,
     )
 
@@ -15471,7 +15154,7 @@ def load_NodeFunctionality(data: object) -> "NodeFunctionality":
         if field_type_ is not None and field_type_ != "NodeFunctionality":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NodeFunctionality`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NodeFunctionality"')
+        pass  # fixed value for this field
 
     if "node" in data:
         field_node = load_str(data["node"])
@@ -15483,8 +15166,7 @@ def load_NodeFunctionality(data: object) -> "NodeFunctionality":
     else:
         raise ValueError("Missing required field `node_functionality`")
 
-    return NodeFunctionality(
-        type_=field_type_,
+    return NodeFunctionality.make(
         node=field_node,
         node_functionality=field_node_functionality,
     )
@@ -15502,7 +15184,7 @@ def load_NodeRequirement(data: object) -> "NodeRequirement":
         if field_type_ is not None and field_type_ != "NodeRequirement":
             raise ValueError(f"Invalid discriminator value for `type`: expected `NodeRequirement`, got {field_type_}")
     else:
-        field_type_ = json.loads('"NodeRequirement"')
+        pass  # fixed value for this field
 
     if "node" in data:
         field_node = load_str(data["node"])
@@ -15514,15 +15196,14 @@ def load_NodeRequirement(data: object) -> "NodeRequirement":
     else:
         raise ValueError("Missing required field `node_requirement`")
 
-    return NodeRequirement(
-        type_=field_type_,
+    return NodeRequirement.make(
         node=field_node,
         node_requirement=field_node_requirement,
     )
 
 
 def load_Poset(data: object) -> "Poset":
-    """Load Poset from a dictionary based on the "type" discriminator."""
+    """Load Poset from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -15593,7 +15274,7 @@ def load_P_Bool(data: object) -> "P_Bool":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15620,15 +15301,13 @@ def load_P_Bool(data: object) -> "P_Bool":
         if field_type_ is not None and field_type_ != "P_Bool":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Bool`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Bool"')
+        pass  # fixed value for this field
 
-    return P_Bool(
+    return P_Bool.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -15662,7 +15341,7 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15689,20 +15368,18 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
         if field_type_ is not None and field_type_ != "P_C_Arrow":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Arrow`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Arrow"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Arrow(
+    return P_C_Arrow.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -15737,7 +15414,7 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15764,20 +15441,18 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
         if field_type_ is not None and field_type_ != "P_C_Discretized":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Discretized`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Discretized"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Discretized(
+    return P_C_Discretized.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -15812,7 +15487,7 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15839,7 +15514,7 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
         if field_type_ is not None and field_type_ != "P_C_Lexicographic":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Lexicographic`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Lexicographic"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -15855,13 +15530,11 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_Lexicographic(
+    return P_C_Lexicographic.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         labels=field_labels,
         subs=field_subs,
     )
@@ -15897,7 +15570,7 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15924,20 +15597,18 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
         if field_type_ is not None and field_type_ != "P_C_LowerSets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_LowerSets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_LowerSets"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_LowerSets(
+    return P_C_LowerSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -15972,7 +15643,7 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -15999,7 +15670,7 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
         if field_type_ is not None and field_type_ != "P_C_Multisets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Multisets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Multisets"')
+        pass  # fixed value for this field
 
     if "counts" in data:
         field_counts = load_Poset(data["counts"])
@@ -16011,13 +15682,11 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
     else:
         raise ValueError("Missing required field `values`")
 
-    return P_C_Multisets(
+    return P_C_Multisets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         counts=field_counts,
         values=field_values,
     )
@@ -16053,7 +15722,7 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16080,20 +15749,18 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
         if field_type_ is not None and field_type_ != "P_C_Opposite":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Opposite`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Opposite"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Opposite(
+    return P_C_Opposite.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -16128,7 +15795,7 @@ def load_P_C_Power(data: object) -> "P_C_Power":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16155,20 +15822,18 @@ def load_P_C_Power(data: object) -> "P_C_Power":
         if field_type_ is not None and field_type_ != "P_C_Power":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Power`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Power"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Power(
+    return P_C_Power.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -16203,7 +15868,7 @@ def load_P_C_Product(data: object) -> "P_C_Product":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16230,7 +15895,7 @@ def load_P_C_Product(data: object) -> "P_C_Product":
         if field_type_ is not None and field_type_ != "P_C_Product":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Product`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Product"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -16246,13 +15911,11 @@ def load_P_C_Product(data: object) -> "P_C_Product":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_Product(
+    return P_C_Product.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         labels=field_labels,
         subs=field_subs,
     )
@@ -16288,7 +15951,7 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16315,7 +15978,7 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
         if field_type_ is not None and field_type_ != "P_C_ProductDS":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_ProductDS`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_ProductDS"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -16331,13 +15994,11 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_ProductDS(
+    return P_C_ProductDS.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         labels=field_labels,
         subs=field_subs,
     )
@@ -16373,7 +16034,7 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16400,7 +16061,7 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
         if field_type_ is not None and field_type_ != "P_C_ProductSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_ProductSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_ProductSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -16426,13 +16087,11 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_ProductSmash(
+    return P_C_ProductSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         labels=field_labels,
         naked=field_naked,
         ranges=field_ranges,
@@ -16470,7 +16129,7 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16497,7 +16156,7 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
         if field_type_ is not None and field_type_ != "P_C_Sum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Sum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Sum"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -16513,13 +16172,11 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_Sum(
+    return P_C_Sum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         labels=field_labels,
         subs=field_subs,
     )
@@ -16555,7 +16212,7 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16582,7 +16239,7 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
         if field_type_ is not None and field_type_ != "P_C_SumSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_SumSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_SumSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -16613,13 +16270,11 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
     else:
         raise ValueError("Missing required field `trivial`")
 
-    return P_C_SumSmash(
+    return P_C_SumSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         labels=field_labels,
         naked=field_naked,
         ranges=field_ranges,
@@ -16658,7 +16313,7 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16685,20 +16340,18 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
         if field_type_ is not None and field_type_ != "P_C_Twisted":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Twisted`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Twisted"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Twisted(
+    return P_C_Twisted.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -16733,7 +16386,7 @@ def load_P_C_Units(data: object) -> "P_C_Units":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16760,7 +16413,7 @@ def load_P_C_Units(data: object) -> "P_C_Units":
         if field_type_ is not None and field_type_ != "P_C_Units":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_Units`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_Units"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
@@ -16772,13 +16425,11 @@ def load_P_C_Units(data: object) -> "P_C_Units":
     else:
         raise ValueError("Missing required field `units`")
 
-    return P_C_Units(
+    return P_C_Units.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
         units=field_units,
     )
@@ -16814,7 +16465,7 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16841,20 +16492,18 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
         if field_type_ is not None and field_type_ != "P_C_UpperSets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_C_UpperSets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_C_UpperSets"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_UpperSets(
+    return P_C_UpperSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
     )
 
@@ -16889,7 +16538,7 @@ def load_P_Decimal(data: object) -> "P_Decimal":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16916,20 +16565,18 @@ def load_P_Decimal(data: object) -> "P_Decimal":
         if field_type_ is not None and field_type_ != "P_Decimal":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Decimal`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Decimal"')
+        pass  # fixed value for this field
 
     if "precision" in data:
         field_precision = load_int(data["precision"])
     else:
-        field_precision = json.loads("9")
+        field_precision = 9
 
-    return P_Decimal(
+    return P_Decimal.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         precision=field_precision,
     )
 
@@ -16964,7 +16611,7 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -16991,7 +16638,7 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
         if field_type_ is not None and field_type_ != "P_F_Bounded":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_Bounded`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_Bounded"')
+        pass  # fixed value for this field
 
     if "bottom" in data:
         field_bottom = load_any(data["bottom"])
@@ -17028,13 +16675,11 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
     else:
         raise ValueError("Missing required field `top`")
 
-    return P_F_Bounded(
+    return P_F_Bounded.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         bottom=field_bottom,
         bound_high=field_bound_high,
         bound_low=field_bound_low,
@@ -17075,7 +16720,7 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17102,7 +16747,7 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
         if field_type_ is not None and field_type_ != "P_F_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_C_Intersection"')
+        pass  # fixed value for this field
 
     if "ambient" in data:
         field_ambient = load_Poset(data["ambient"])
@@ -17123,13 +16768,11 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_F_C_Intersection(
+    return P_F_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         ambient=field_ambient,
         labels=field_labels,
         subs=field_subs,
@@ -17166,7 +16809,7 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17193,7 +16836,7 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
         if field_type_ is not None and field_type_ != "P_F_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_C_Union"')
+        pass  # fixed value for this field
 
     if "ambient" in data:
         field_ambient = load_Poset(data["ambient"])
@@ -17214,13 +16857,11 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_F_C_Union(
+    return P_F_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         ambient=field_ambient,
         labels=field_labels,
         subs=field_subs,
@@ -17257,7 +16898,7 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17284,7 +16925,7 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
         if field_type_ is not None and field_type_ != "P_F_Interval":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_Interval`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_Interval"')
+        pass  # fixed value for this field
 
     if "high" in data:
         field_high = load_any(data["high"])
@@ -17301,13 +16942,11 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_F_Interval(
+    return P_F_Interval.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         high=field_high,
         low=field_low,
         poset=field_poset,
@@ -17344,7 +16983,7 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17371,7 +17010,7 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
         if field_type_ is not None and field_type_ != "P_F_LowerClosure":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_LowerClosure`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_LowerClosure"')
+        pass  # fixed value for this field
 
     if "ls" in data:
         field_ls = load_LowerSet(data["ls"])
@@ -17383,13 +17022,11 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_F_LowerClosure(
+    return P_F_LowerClosure.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         ls=field_ls,
         poset=field_poset,
     )
@@ -17425,7 +17062,7 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17452,7 +17089,7 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
         if field_type_ is not None and field_type_ != "P_F_Subposet":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_Subposet`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_Subposet"')
+        pass  # fixed value for this field
 
     if "elements" in data:
         field_elements = load_list_of_any(data["elements"])
@@ -17464,13 +17101,11 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_F_Subposet(
+    return P_F_Subposet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         elements=field_elements,
         poset=field_poset,
     )
@@ -17506,7 +17141,7 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17533,7 +17168,7 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
         if field_type_ is not None and field_type_ != "P_F_UpperClosure":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_F_UpperClosure`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_F_UpperClosure"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
@@ -17545,13 +17180,11 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
     else:
         raise ValueError("Missing required field `us`")
 
-    return P_F_UpperClosure(
+    return P_F_UpperClosure.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
         us=field_us,
     )
@@ -17587,7 +17220,7 @@ def load_P_Finite(data: object) -> "P_Finite":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17614,7 +17247,7 @@ def load_P_Finite(data: object) -> "P_Finite":
         if field_type_ is not None and field_type_ != "P_Finite":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Finite`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Finite"')
+        pass  # fixed value for this field
 
     if "aliases" in data:
         value = data["aliases"]
@@ -17635,13 +17268,11 @@ def load_P_Finite(data: object) -> "P_Finite":
     else:
         raise ValueError("Missing required field `relations`")
 
-    return P_Finite(
+    return P_Finite.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         aliases=field_aliases,
         elements=field_elements,
         relations=field_relations,
@@ -17678,7 +17309,7 @@ def load_P_Float(data: object) -> "P_Float":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17705,20 +17336,18 @@ def load_P_Float(data: object) -> "P_Float":
         if field_type_ is not None and field_type_ != "P_Float":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Float`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Float"')
+        pass  # fixed value for this field
 
     if "size" in data:
         field_size = load_enum_f8_f16_f32_f64_f80_f128(data["size"])
     else:
         raise ValueError("Missing required field `size`")
 
-    return P_Float(
+    return P_Float.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         size=field_size,
     )
 
@@ -17753,7 +17382,7 @@ def load_P_Fractions(data: object) -> "P_Fractions":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17780,7 +17409,7 @@ def load_P_Fractions(data: object) -> "P_Fractions":
         if field_type_ is not None and field_type_ != "P_Fractions":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Fractions`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Fractions"')
+        pass  # fixed value for this field
 
     if "max_abs_denominator" in data:
         field_max_abs_denominator = load_int(data["max_abs_denominator"])
@@ -17797,13 +17426,11 @@ def load_P_Fractions(data: object) -> "P_Fractions":
     else:
         raise ValueError("Missing required field `size`")
 
-    return P_Fractions(
+    return P_Fractions.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         max_abs_denominator=field_max_abs_denominator,
         max_abs_numerator=field_max_abs_numerator,
         size=field_size,
@@ -17840,7 +17467,7 @@ def load_P_Integer(data: object) -> "P_Integer":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17867,20 +17494,18 @@ def load_P_Integer(data: object) -> "P_Integer":
         if field_type_ is not None and field_type_ != "P_Integer":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Integer`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Integer"')
+        pass  # fixed value for this field
 
     if "size" in data:
         field_size = load_enum_i8_i16_i32_i64_i128(data["size"])
     else:
         raise ValueError("Missing required field `size`")
 
-    return P_Integer(
+    return P_Integer.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         size=field_size,
     )
 
@@ -17915,7 +17540,7 @@ def load_P_Unknown(data: object) -> "P_Unknown":
         if field_kind is not None and field_kind != "Poset":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Poset`, got {field_kind}")
     else:
-        field_kind = json.loads('"Poset"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -17942,15 +17567,13 @@ def load_P_Unknown(data: object) -> "P_Unknown":
         if field_type_ is not None and field_type_ != "P_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `P_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"P_Unknown"')
+        pass  # fixed value for this field
 
-    return P_Unknown(
+    return P_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
     )
 
 
@@ -17976,15 +17599,14 @@ def load_Projection(data: object) -> "Projection":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Projection(
+    return Projection.make(
         index=field_index,
         ntot=field_ntot,
-        type_=field_type_,
     )
 
 
 def load_Query(data: object) -> "Query":
-    """Load Query from a dictionary based on the "type" discriminator."""
+    """Load Query from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -17998,7 +17620,7 @@ def load_Query(data: object) -> "Query":
 
 
 def load_QueryData(data: object) -> "QueryData":
-    """Load QueryData from a dictionary based on the "type" discriminator."""
+    """Load QueryData from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -18024,7 +17646,7 @@ def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
         if field_type_ is not None and field_type_ != "QueryFixFunMinReqData":
             raise ValueError(f"Invalid discriminator value for `type`: expected `QueryFixFunMinReqData`, got {field_type_}")
     else:
-        field_type_ = json.loads('"QueryFixFunMinReqData"')
+        pass  # fixed value for this field
 
     if "f" in data:
         field_f = load_dict_of_str_Value(data["f"])
@@ -18041,8 +17663,7 @@ def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
     else:
         raise ValueError("Missing required field `r`")
 
-    return QueryFixFunMinReqData(
-        type_=field_type_,
+    return QueryFixFunMinReqData.make(
         f=field_f,
         optimize_for=field_optimize_for,
         r=field_r,
@@ -18061,7 +17682,7 @@ def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
         if field_type_ is not None and field_type_ != "QueryFixReqMaxFunData":
             raise ValueError(f"Invalid discriminator value for `type`: expected `QueryFixReqMaxFunData`, got {field_type_}")
     else:
-        field_type_ = json.loads('"QueryFixReqMaxFunData"')
+        pass  # fixed value for this field
 
     if "f" in data:
         field_f = load_dict_of_str_Value(data["f"])
@@ -18078,8 +17699,7 @@ def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
     else:
         raise ValueError("Missing required field `r`")
 
-    return QueryFixReqMaxFunData(
-        type_=field_type_,
+    return QueryFixReqMaxFunData.make(
         f=field_f,
         optimize_for=field_optimize_for,
         r=field_r,
@@ -18116,7 +17736,7 @@ def load_Query_Single(data: object) -> "Query_Single":
         if field_kind is not None and field_kind != "Query":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Query`, got {field_kind}")
     else:
-        field_kind = json.loads('"Query"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18143,7 +17763,7 @@ def load_Query_Single(data: object) -> "Query_Single":
         if field_type_ is not None and field_type_ != "Query_Single":
             raise ValueError(f"Invalid discriminator value for `type`: expected `Query_Single`, got {field_type_}")
     else:
-        field_type_ = json.loads('"Query_Single"')
+        pass  # fixed value for this field
 
     if "model" in data:
         field_model = load_NDP(data["model"])
@@ -18155,13 +17775,11 @@ def load_Query_Single(data: object) -> "Query_Single":
     else:
         raise ValueError("Missing required field `query_data`")
 
-    return Query_Single(
+    return Query_Single.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         model=field_model,
         query_data=field_query_data,
     )
@@ -18194,11 +17812,10 @@ def load_Range(data: object) -> "Range":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Range(
+    return Range.make(
         ntot=field_ntot,
         start=field_start,
         stop=field_stop,
-        type_=field_type_,
     )
 
 
@@ -18232,7 +17849,7 @@ def load_SL1Check(data: object) -> "SL1Check":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18250,7 +17867,7 @@ def load_SL1Check(data: object) -> "SL1Check":
         if field_type_ is not None and field_type_ != "SL1Check":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1Check`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1Check"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_SL1Check_Data(data["data"])
@@ -18262,12 +17879,10 @@ def load_SL1Check(data: object) -> "SL1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1Check(
+    return SL1Check.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -18321,7 +17936,7 @@ def load_SL1Check_Data(data: object) -> "SL1Check_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SL1Check_Data(
+    return SL1Check_Data.make(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -18333,7 +17948,7 @@ def load_SL1Check_Data(data: object) -> "SL1Check_Data":
 
 
 def load_SL1Map(data: object) -> "SL1Map":
-    """Load SL1Map from a dictionary based on the "type" discriminator."""
+    """Load SL1Map from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -18392,7 +18007,7 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18430,7 +18045,7 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
         if field_type_ is not None and field_type_ != "SL1_C_CodSum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_CodSum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_CodSum"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -18446,16 +18061,14 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_CodSum(
+    return SL1_C_CodSum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -18491,7 +18104,7 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18529,7 +18142,7 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
         if field_type_ is not None and field_type_ != "SL1_C_CodSumSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_CodSumSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_CodSumSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -18545,16 +18158,14 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_CodSumSmash(
+    return SL1_C_CodSumSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -18590,7 +18201,7 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18628,7 +18239,7 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
         if field_type_ is not None and field_type_ != "SL1_C_ExplicitApprox":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_ExplicitApprox`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_ExplicitApprox"')
+        pass  # fixed value for this field
 
     if "optimistic" in data:
         field_optimistic = load_list_of_L1Map(data["optimistic"])
@@ -18658,16 +18269,14 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
     else:
         field_pessimistic_labels = None
 
-    return SL1_C_ExplicitApprox(
+    return SL1_C_ExplicitApprox.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -18705,7 +18314,7 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18743,7 +18352,7 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
         if field_type_ is not None and field_type_ != "SL1_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -18759,16 +18368,14 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Intersection(
+    return SL1_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -18804,7 +18411,7 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18842,7 +18449,7 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
         if field_type_ is not None and field_type_ != "SL1_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -18858,16 +18465,14 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Parallel(
+    return SL1_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -18903,7 +18508,7 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -18941,7 +18546,7 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
         if field_type_ is not None and field_type_ != "SL1_C_ProdIntersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_ProdIntersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_ProdIntersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -18957,16 +18562,14 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_ProdIntersection(
+    return SL1_C_ProdIntersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -19002,7 +18605,7 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19040,7 +18643,7 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
         if field_type_ is not None and field_type_ != "SL1_C_Product":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_Product`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_Product"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -19056,16 +18659,14 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Product(
+    return SL1_C_Product.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -19101,7 +18702,7 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19139,23 +18740,21 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
         if field_type_ is not None and field_type_ != "SL1_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SL1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_C_RefineDomain(
+    return SL1_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -19190,7 +18789,7 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19228,7 +18827,7 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
         if field_type_ is not None and field_type_ != "SL1_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -19244,16 +18843,14 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Series(
+    return SL1_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -19289,7 +18886,7 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19327,23 +18924,21 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
         if field_type_ is not None and field_type_ != "SL1_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SL1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_C_Trace(
+    return SL1_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -19378,7 +18973,7 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19416,7 +19011,7 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
         if field_type_ is not None and field_type_ != "SL1_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -19432,16 +19027,14 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Union(
+    return SL1_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -19477,7 +19070,7 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19515,7 +19108,7 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
         if field_type_ is not None and field_type_ != "SL1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -19532,16 +19125,14 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_C_WrapUnits(
+    return SL1_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -19578,7 +19169,7 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19616,23 +19207,21 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
         if field_type_ is not None and field_type_ != "SL1_Exact":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_Exact`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_Exact"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_L1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_Exact(
+    return SL1_Exact.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -19667,7 +19256,7 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19705,18 +19294,16 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
         if field_type_ is not None and field_type_ != "SL1_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_Identity"')
+        pass  # fixed value for this field
 
-    return SL1_Identity(
+    return SL1_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -19750,7 +19337,7 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19788,23 +19375,21 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
         if field_type_ is not None and field_type_ != "SL1_InvMultiply":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_InvMultiply`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_InvMultiply"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SL1_InvMultiply(
+    return SL1_InvMultiply.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -19839,7 +19424,7 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19877,23 +19462,21 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
         if field_type_ is not None and field_type_ != "SL1_InvSum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_InvSum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_InvSum"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SL1_InvSum(
+    return SL1_InvSum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -19928,7 +19511,7 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
         if field_kind is not None and field_kind != "SL1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SL1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SL1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -19966,18 +19549,16 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
         if field_type_ is not None and field_type_ != "SL1_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL1_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL1_Unknown"')
+        pass  # fixed value for this field
 
-    return SL1_Unknown(
+    return SL1_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -20011,7 +19592,7 @@ def load_SLCheck(data: object) -> "SLCheck":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20029,7 +19610,7 @@ def load_SLCheck(data: object) -> "SLCheck":
         if field_type_ is not None and field_type_ != "SLCheck":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SLCheck`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SLCheck"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_SLCheck_Data(data["data"])
@@ -20041,12 +19622,10 @@ def load_SLCheck(data: object) -> "SLCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SLCheck(
+    return SLCheck.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -20100,7 +19679,7 @@ def load_SLCheck_Data(data: object) -> "SLCheck_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SLCheck_Data(
+    return SLCheck_Data.make(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -20112,7 +19691,7 @@ def load_SLCheck_Data(data: object) -> "SLCheck_Data":
 
 
 def load_SLMap(data: object) -> "SLMap":
-    """Load SLMap from a dictionary based on the "type" discriminator."""
+    """Load SLMap from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -20168,7 +19747,7 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20211,7 +19790,7 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
         if field_type_ is not None and field_type_ != "SL_C_ITransform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_ITransform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_ITransform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SLMap(data["m"])
@@ -20223,17 +19802,15 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SL_C_ITransform(
+    return SL_C_ITransform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -20269,7 +19846,7 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20312,7 +19889,7 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
         if field_type_ is not None and field_type_ != "SL_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -20328,17 +19905,15 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Intersection(
+    return SL_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -20374,7 +19949,7 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20417,7 +19992,7 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
         if field_type_ is not None and field_type_ != "SL_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -20433,17 +20008,15 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Parallel(
+    return SL_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -20479,7 +20052,7 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20522,24 +20095,22 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
         if field_type_ is not None and field_type_ != "SL_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SLMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL_C_RefineDomain(
+    return SL_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -20574,7 +20145,7 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20617,7 +20188,7 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
         if field_type_ is not None and field_type_ != "SL_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -20633,17 +20204,15 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Series(
+    return SL_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -20679,7 +20248,7 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20722,7 +20291,7 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
         if field_type_ is not None and field_type_ != "SL_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SLMap(data["m"])
@@ -20734,17 +20303,15 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return SL_C_Trace(
+    return SL_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -20780,7 +20347,7 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20823,7 +20390,7 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
         if field_type_ is not None and field_type_ != "SL_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -20839,17 +20406,15 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Union(
+    return SL_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -20885,7 +20450,7 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -20928,7 +20493,7 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
         if field_type_ is not None and field_type_ != "SL_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -20950,17 +20515,15 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL_C_WrapUnits(
+    return SL_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -20998,7 +20561,7 @@ def load_SL_Identity(data: object) -> "SL_Identity":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21041,19 +20604,17 @@ def load_SL_Identity(data: object) -> "SL_Identity":
         if field_type_ is not None and field_type_ != "SL_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_Identity"')
+        pass  # fixed value for this field
 
-    return SL_Identity(
+    return SL_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -21087,7 +20648,7 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21130,24 +20691,22 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
         if field_type_ is not None and field_type_ != "SL_L_Exact":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_L_Exact`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_L_Exact"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_LMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL_L_Exact(
+    return SL_L_Exact.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -21182,7 +20741,7 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21225,7 +20784,7 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
         if field_type_ is not None and field_type_ != "SL_L_Explicit_Approx":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_L_Explicit_Approx`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_L_Explicit_Approx"')
+        pass  # fixed value for this field
 
     if "optimistic" in data:
         field_optimistic = load_list_of_LMap(data["optimistic"])
@@ -21255,17 +20814,15 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
     else:
         field_pessimistic_labels = None
 
-    return SL_L_Explicit_Approx(
+    return SL_L_Explicit_Approx.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -21303,7 +20860,7 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21346,7 +20903,7 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
         if field_type_ is not None and field_type_ != "SL_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_L_Lift1_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_L_Lift1_Constant"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SL1Map(data["m"])
@@ -21358,17 +20915,15 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return SL_L_Lift1_Constant(
+    return SL_L_Lift1_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         value=field_value,
     )
@@ -21404,7 +20959,7 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21447,7 +21002,7 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
         if field_type_ is not None and field_type_ != "SL_L_Lift1_Transform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_L_Lift1_Transform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_L_Lift1_Transform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SL1Map(data["m"])
@@ -21459,17 +21014,15 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SL_L_Lift1_Transform(
+    return SL_L_Lift1_Transform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -21505,7 +21058,7 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
         if field_kind is not None and field_kind != "SLMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SLMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21548,19 +21101,17 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
         if field_type_ is not None and field_type_ != "SL_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SL_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SL_Unknown"')
+        pass  # fixed value for this field
 
-    return SL_Unknown(
+    return SL_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -21594,7 +21145,7 @@ def load_SU1Check(data: object) -> "SU1Check":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21612,7 +21163,7 @@ def load_SU1Check(data: object) -> "SU1Check":
         if field_type_ is not None and field_type_ != "SU1Check":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1Check`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1Check"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_SU1Check_Data(data["data"])
@@ -21624,12 +21175,10 @@ def load_SU1Check(data: object) -> "SU1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1Check(
+    return SU1Check.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -21683,7 +21232,7 @@ def load_SU1Check_Data(data: object) -> "SU1Check_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SU1Check_Data(
+    return SU1Check_Data.make(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -21695,7 +21244,7 @@ def load_SU1Check_Data(data: object) -> "SU1Check_Data":
 
 
 def load_SU1Map(data: object) -> "SU1Map":
-    """Load SU1Map from a dictionary based on the "type" discriminator."""
+    """Load SU1Map from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -21754,7 +21303,7 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21792,7 +21341,7 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
         if field_type_ is not None and field_type_ != "SU1_C_CodSum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_CodSum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_CodSum"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -21808,16 +21357,14 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_CodSum(
+    return SU1_C_CodSum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -21853,7 +21400,7 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21891,7 +21438,7 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
         if field_type_ is not None and field_type_ != "SU1_C_CodSumSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_CodSumSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_CodSumSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -21907,16 +21454,14 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_CodSumSmash(
+    return SU1_C_CodSumSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -21952,7 +21497,7 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -21990,7 +21535,7 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
         if field_type_ is not None and field_type_ != "SU1_C_ExplicitApprox":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_ExplicitApprox`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_ExplicitApprox"')
+        pass  # fixed value for this field
 
     if "optimistic" in data:
         field_optimistic = load_list_of_U1Map(data["optimistic"])
@@ -22020,16 +21565,14 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
     else:
         field_pessimistic_labels = None
 
-    return SU1_C_ExplicitApprox(
+    return SU1_C_ExplicitApprox.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -22067,7 +21610,7 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22105,7 +21648,7 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
         if field_type_ is not None and field_type_ != "SU1_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -22121,16 +21664,14 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Intersection(
+    return SU1_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -22166,7 +21707,7 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22204,7 +21745,7 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
         if field_type_ is not None and field_type_ != "SU1_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -22220,16 +21761,14 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Parallel(
+    return SU1_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -22265,7 +21804,7 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22303,7 +21842,7 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
         if field_type_ is not None and field_type_ != "SU1_C_ProdIntersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_ProdIntersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_ProdIntersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -22319,16 +21858,14 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_ProdIntersection(
+    return SU1_C_ProdIntersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -22364,7 +21901,7 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22402,7 +21939,7 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
         if field_type_ is not None and field_type_ != "SU1_C_Product":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_Product`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_Product"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -22418,16 +21955,14 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Product(
+    return SU1_C_Product.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -22463,7 +21998,7 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22501,23 +22036,21 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
         if field_type_ is not None and field_type_ != "SU1_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SU1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_C_RefineDomain(
+    return SU1_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -22552,7 +22085,7 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22590,7 +22123,7 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
         if field_type_ is not None and field_type_ != "SU1_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -22606,16 +22139,14 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Series(
+    return SU1_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -22651,7 +22182,7 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22689,23 +22220,21 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
         if field_type_ is not None and field_type_ != "SU1_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SU1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_C_Trace(
+    return SU1_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -22740,7 +22269,7 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22778,7 +22307,7 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
         if field_type_ is not None and field_type_ != "SU1_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -22794,16 +22323,14 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Union(
+    return SU1_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -22839,7 +22366,7 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22877,7 +22404,7 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
         if field_type_ is not None and field_type_ != "SU1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -22894,16 +22421,14 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_C_WrapUnits(
+    return SU1_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -22940,7 +22465,7 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -22978,23 +22503,21 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
         if field_type_ is not None and field_type_ != "SU1_Exact":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_Exact`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_Exact"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_U1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_Exact(
+    return SU1_Exact.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -23029,7 +22552,7 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23067,18 +22590,16 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
         if field_type_ is not None and field_type_ != "SU1_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_Identity"')
+        pass  # fixed value for this field
 
-    return SU1_Identity(
+    return SU1_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -23112,7 +22633,7 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23150,23 +22671,21 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
         if field_type_ is not None and field_type_ != "SU1_InvMultiply":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_InvMultiply`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_InvMultiply"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SU1_InvMultiply(
+    return SU1_InvMultiply.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -23201,7 +22720,7 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23239,23 +22758,21 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
         if field_type_ is not None and field_type_ != "SU1_InvSum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_InvSum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_InvSum"')
+        pass  # fixed value for this field
 
     if "opspace" in data:
         field_opspace = load_Poset(data["opspace"])
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SU1_InvSum(
+    return SU1_InvSum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         opspace=field_opspace,
     )
 
@@ -23290,7 +22807,7 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
         if field_kind is not None and field_kind != "SU1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SU1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"SU1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23328,18 +22845,16 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
         if field_type_ is not None and field_type_ != "SU1_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU1_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU1_Unknown"')
+        pass  # fixed value for this field
 
-    return SU1_Unknown(
+    return SU1_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -23373,7 +22888,7 @@ def load_SUCheck(data: object) -> "SUCheck":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23391,7 +22906,7 @@ def load_SUCheck(data: object) -> "SUCheck":
         if field_type_ is not None and field_type_ != "SUCheck":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SUCheck`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SUCheck"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_SUCheck_Data(data["data"])
@@ -23403,12 +22918,10 @@ def load_SUCheck(data: object) -> "SUCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SUCheck(
+    return SUCheck.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -23462,7 +22975,7 @@ def load_SUCheck_Data(data: object) -> "SUCheck_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SUCheck_Data(
+    return SUCheck_Data.make(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -23474,7 +22987,7 @@ def load_SUCheck_Data(data: object) -> "SUCheck_Data":
 
 
 def load_SUMap(data: object) -> "SUMap":
-    """Load SUMap from a dictionary based on the "type" discriminator."""
+    """Load SUMap from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -23530,7 +23043,7 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23573,7 +23086,7 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
         if field_type_ is not None and field_type_ != "SU_C_ITransform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_ITransform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_ITransform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SUMap(data["m"])
@@ -23585,17 +23098,15 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SU_C_ITransform(
+    return SU_C_ITransform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -23631,7 +23142,7 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23674,7 +23185,7 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
         if field_type_ is not None and field_type_ != "SU_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -23690,17 +23201,15 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Intersection(
+    return SU_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -23736,7 +23245,7 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23779,7 +23288,7 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
         if field_type_ is not None and field_type_ != "SU_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -23795,17 +23304,15 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Parallel(
+    return SU_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -23841,7 +23348,7 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23884,24 +23391,22 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
         if field_type_ is not None and field_type_ != "SU_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SUMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU_C_RefineDomain(
+    return SU_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -23936,7 +23441,7 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -23979,7 +23484,7 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
         if field_type_ is not None and field_type_ != "SU_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -23995,17 +23500,15 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Series(
+    return SU_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -24041,7 +23544,7 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24084,7 +23587,7 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
         if field_type_ is not None and field_type_ != "SU_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SUMap(data["m"])
@@ -24096,17 +23599,15 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return SU_C_Trace(
+    return SU_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -24142,7 +23643,7 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24185,7 +23686,7 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
         if field_type_ is not None and field_type_ != "SU_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -24201,17 +23702,15 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Union(
+    return SU_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -24247,7 +23746,7 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24290,7 +23789,7 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
         if field_type_ is not None and field_type_ != "SU_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -24312,17 +23811,15 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU_C_WrapUnits(
+    return SU_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -24360,7 +23857,7 @@ def load_SU_Identity(data: object) -> "SU_Identity":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24403,19 +23900,17 @@ def load_SU_Identity(data: object) -> "SU_Identity":
         if field_type_ is not None and field_type_ != "SU_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_Identity"')
+        pass  # fixed value for this field
 
-    return SU_Identity(
+    return SU_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -24449,7 +23944,7 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24492,24 +23987,22 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
         if field_type_ is not None and field_type_ != "SU_L_Exact":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_L_Exact`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_L_Exact"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_UMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU_L_Exact(
+    return SU_L_Exact.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -24544,7 +24037,7 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24587,7 +24080,7 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
         if field_type_ is not None and field_type_ != "SU_L_Explicit_Approx":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_L_Explicit_Approx`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_L_Explicit_Approx"')
+        pass  # fixed value for this field
 
     if "optimistic" in data:
         field_optimistic = load_list_of_UMap(data["optimistic"])
@@ -24617,17 +24110,15 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
     else:
         field_pessimistic_labels = None
 
-    return SU_L_Explicit_Approx(
+    return SU_L_Explicit_Approx.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -24665,7 +24156,7 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24708,7 +24199,7 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
         if field_type_ is not None and field_type_ != "SU_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_L_Lift1_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_L_Lift1_Constant"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SU1Map(data["m"])
@@ -24720,17 +24211,15 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return SU_L_Lift1_Constant(
+    return SU_L_Lift1_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         value=field_value,
     )
@@ -24766,7 +24255,7 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24809,7 +24298,7 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
         if field_type_ is not None and field_type_ != "SU_L_Lift1_Transform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_L_Lift1_Transform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_L_Lift1_Transform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_SU1Map(data["m"])
@@ -24821,17 +24310,15 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SU_L_Lift1_Transform(
+    return SU_L_Lift1_Transform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -24867,7 +24354,7 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
         if field_kind is not None and field_kind != "SUMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"SUMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24910,19 +24397,17 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
         if field_type_ is not None and field_type_ != "SU_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `SU_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"SU_Unknown"')
+        pass  # fixed value for this field
 
-    return SU_Unknown(
+    return SU_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
-        type_=field_type_,
     )
 
 
@@ -24956,7 +24441,7 @@ def load_U1Check(data: object) -> "U1Check":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -24974,7 +24459,7 @@ def load_U1Check(data: object) -> "U1Check":
         if field_type_ is not None and field_type_ != "U1Check":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1Check`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1Check"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_U1Check_Data(data["data"])
@@ -24986,12 +24471,10 @@ def load_U1Check(data: object) -> "U1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1Check(
+    return U1Check.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -25021,7 +24504,7 @@ def load_U1Check_Data(data: object) -> "U1Check_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return U1Check_Data(
+    return U1Check_Data.make(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -25029,7 +24512,7 @@ def load_U1Check_Data(data: object) -> "U1Check_Data":
 
 
 def load_U1Map(data: object) -> "U1Map":
-    """Load U1Map from a dictionary based on the "type" discriminator."""
+    """Load U1Map from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -25101,7 +24584,7 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25129,7 +24612,7 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
         if field_type_ is not None and field_type_ != "U1_C_CodSum":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_CodSum`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_CodSum"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25145,14 +24628,12 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_CodSum(
+    return U1_C_CodSum.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25188,7 +24669,7 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25216,7 +24697,7 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
         if field_type_ is not None and field_type_ != "U1_C_CodSumSmash":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_CodSumSmash`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_CodSumSmash"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25232,14 +24713,12 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_CodSumSmash(
+    return U1_C_CodSumSmash.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25275,7 +24754,7 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25303,7 +24782,7 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
         if field_type_ is not None and field_type_ != "U1_C_DomUnion":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_DomUnion`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_DomUnion"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25319,14 +24798,12 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_DomUnion(
+    return U1_C_DomUnion.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25362,7 +24839,7 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25390,7 +24867,7 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
         if field_type_ is not None and field_type_ != "U1_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25406,14 +24883,12 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Intersection(
+    return U1_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25449,7 +24924,7 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25477,7 +24952,7 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
         if field_type_ is not None and field_type_ != "U1_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25493,14 +24968,12 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Parallel(
+    return U1_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25536,7 +25009,7 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25564,7 +25037,7 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
         if field_type_ is not None and field_type_ != "U1_C_ProdIntersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_ProdIntersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_ProdIntersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25580,14 +25053,12 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_ProdIntersection(
+    return U1_C_ProdIntersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25623,7 +25094,7 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25651,7 +25122,7 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
         if field_type_ is not None and field_type_ != "U1_C_Product":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_Product`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_Product"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25667,14 +25138,12 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Product(
+    return U1_C_Product.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25710,7 +25179,7 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25738,21 +25207,19 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
         if field_type_ is not None and field_type_ != "U1_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_U1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_C_RefineDomain(
+    return U1_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -25787,7 +25254,7 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25815,7 +25282,7 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
         if field_type_ is not None and field_type_ != "U1_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25831,14 +25298,12 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Series(
+    return U1_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -25874,7 +25339,7 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25902,21 +25367,19 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
         if field_type_ is not None and field_type_ != "U1_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_U1Map(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_C_Trace(
+    return U1_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -25951,7 +25414,7 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -25979,7 +25442,7 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
         if field_type_ is not None and field_type_ != "U1_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -25995,14 +25458,12 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Union(
+    return U1_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -26038,7 +25499,7 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26066,7 +25527,7 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
         if field_type_ is not None and field_type_ != "U1_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -26083,14 +25544,12 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_C_WrapUnits(
+    return U1_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -26127,7 +25586,7 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26155,21 +25614,19 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
         if field_type_ is not None and field_type_ != "U1_Catalog":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Catalog`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Catalog"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_U1_Catalog_Options(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return U1_Catalog(
+    return U1_Catalog.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -26189,7 +25646,7 @@ def load_U1_Catalog_Options(data: object) -> "U1_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return U1_Catalog_Options(
+    return U1_Catalog_Options.make(
         f=field_f,
         r=field_r,
     )
@@ -26225,7 +25682,7 @@ def load_U1_Constant(data: object) -> "U1_Constant":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26253,21 +25710,19 @@ def load_U1_Constant(data: object) -> "U1_Constant":
         if field_type_ is not None and field_type_ != "U1_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Constant"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_UpperSet(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return U1_Constant(
+    return U1_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -26302,7 +25757,7 @@ def load_U1_Entire(data: object) -> "U1_Entire":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26330,16 +25785,14 @@ def load_U1_Entire(data: object) -> "U1_Entire":
         if field_type_ is not None and field_type_ != "U1_Entire":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Entire`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Entire"')
+        pass  # fixed value for this field
 
-    return U1_Entire(
+    return U1_Entire.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -26373,7 +25826,7 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26401,21 +25854,19 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
         if field_type_ is not None and field_type_ != "U1_Explicit":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Explicit`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Explicit"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_U1_Explicit_Option(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return U1_Explicit(
+    return U1_Explicit.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -26435,7 +25886,7 @@ def load_U1_Explicit_Option(data: object) -> "U1_Explicit_Option":
     else:
         raise ValueError("Missing required field `y`")
 
-    return U1_Explicit_Option(
+    return U1_Explicit_Option.make(
         x=field_x,
         y=field_y,
     )
@@ -26471,7 +25922,7 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26499,21 +25950,19 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
         if field_type_ is not None and field_type_ != "U1_FromFilter":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_FromFilter`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_FromFilter"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_FromFilter(
+    return U1_FromFilter.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -26548,7 +25997,7 @@ def load_U1_Identity(data: object) -> "U1_Identity":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26576,16 +26025,14 @@ def load_U1_Identity(data: object) -> "U1_Identity":
         if field_type_ is not None and field_type_ != "U1_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Identity"')
+        pass  # fixed value for this field
 
-    return U1_Identity(
+    return U1_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -26619,7 +26066,7 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26649,16 +26096,14 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
                 f"Invalid discriminator value for `type`: expected `U1_IntersectionOfPrinUpperSets`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"U1_IntersectionOfPrinUpperSets"')
+        pass  # fixed value for this field
 
-    return U1_IntersectionOfPrinUpperSets(
+    return U1_IntersectionOfPrinUpperSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -26692,7 +26137,7 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26720,7 +26165,7 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
         if field_type_ is not None and field_type_ != "U1_InvMul_Opt":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_InvMul_Opt`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_InvMul_Opt"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -26732,14 +26177,12 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvMul_Opt(
+    return U1_InvMul_Opt.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -26775,7 +26218,7 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26803,7 +26246,7 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
         if field_type_ is not None and field_type_ != "U1_InvMul_Pes":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_InvMul_Pes`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_InvMul_Pes"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -26815,14 +26258,12 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvMul_Pes(
+    return U1_InvMul_Pes.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -26858,7 +26299,7 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26886,7 +26327,7 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
         if field_type_ is not None and field_type_ != "U1_InvSum_Opt":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_InvSum_Opt`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_InvSum_Opt"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -26898,14 +26339,12 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvSum_Opt(
+    return U1_InvSum_Opt.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -26941,7 +26380,7 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -26969,7 +26408,7 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
         if field_type_ is not None and field_type_ != "U1_InvSum_Pes":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_InvSum_Pes`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_InvSum_Pes"')
+        pass  # fixed value for this field
 
     if "n" in data:
         field_n = load_int(data["n"])
@@ -26981,14 +26420,12 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvSum_Pes(
+    return U1_InvSum_Pes.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         n=field_n,
         opspace=field_opspace,
     )
@@ -27024,7 +26461,7 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27052,21 +26489,19 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
         if field_type_ is not None and field_type_ != "U1_L_Uinv":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_L_Uinv`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_L_Uinv"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_L_Uinv(
+    return U1_L_Uinv.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -27101,7 +26536,7 @@ def load_U1_Lift(data: object) -> "U1_Lift":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27129,21 +26564,19 @@ def load_U1_Lift(data: object) -> "U1_Lift":
         if field_type_ is not None and field_type_ != "U1_Lift":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Lift`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Lift"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_MonotoneMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_Lift(
+    return U1_Lift.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -27178,7 +26611,7 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27208,16 +26641,14 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
                 f"Invalid discriminator value for `type`: expected `U1_RepresentPrincipalUpperSet`, got {field_type_}"
             )
     else:
-        field_type_ = json.loads('"U1_RepresentPrincipalUpperSet"')
+        pass  # fixed value for this field
 
-    return U1_RepresentPrincipalUpperSet(
+    return U1_RepresentPrincipalUpperSet.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -27251,7 +26682,7 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27279,21 +26710,19 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
         if field_type_ is not None and field_type_ != "U1_Uinv_Join":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Uinv_Join`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Uinv_Join"')
+        pass  # fixed value for this field
 
     if "lower_bounds" in data:
         field_lower_bounds = load_list_of_list_of_any(data["lower_bounds"])
     else:
         raise ValueError("Missing required field `lower_bounds`")
 
-    return U1_Uinv_Join(
+    return U1_Uinv_Join.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         lower_bounds=field_lower_bounds,
     )
 
@@ -27328,7 +26757,7 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27356,7 +26785,7 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
         if field_type_ is not None and field_type_ != "U1_Uinv_JoinConstant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Uinv_JoinConstant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Uinv_JoinConstant"')
+        pass  # fixed value for this field
 
     if "join1_dom" in data:
         field_join1_dom = load_Poset(data["join1_dom"])
@@ -27368,14 +26797,12 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return U1_Uinv_JoinConstant(
+    return U1_Uinv_JoinConstant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
         join1_dom=field_join1_dom,
         value=field_value,
     )
@@ -27411,7 +26838,7 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27439,16 +26866,14 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
         if field_type_ is not None and field_type_ != "U1_UnionOfPrinUpperSets":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_UnionOfPrinUpperSets`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_UnionOfPrinUpperSets"')
+        pass  # fixed value for this field
 
-    return U1_UnionOfPrinUpperSets(
+    return U1_UnionOfPrinUpperSets.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -27482,7 +26907,7 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
         if field_kind is not None and field_kind != "U1Map":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `U1Map`, got {field_kind}")
     else:
-        field_kind = json.loads('"U1Map"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27510,16 +26935,14 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
         if field_type_ is not None and field_type_ != "U1_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U1_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U1_Unknown"')
+        pass  # fixed value for this field
 
-    return U1_Unknown(
+    return U1_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
-        type_=field_type_,
     )
 
 
@@ -27553,7 +26976,7 @@ def load_UCheck(data: object) -> "UCheck":
         if field_kind is not None and field_kind != "Check":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Check`, got {field_kind}")
     else:
-        field_kind = json.loads('"Check"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27571,7 +26994,7 @@ def load_UCheck(data: object) -> "UCheck":
         if field_type_ is not None and field_type_ != "UCheck":
             raise ValueError(f"Invalid discriminator value for `type`: expected `UCheck`, got {field_type_}")
     else:
-        field_type_ = json.loads('"UCheck"')
+        pass  # fixed value for this field
 
     if "data" in data:
         field_data = load_list_of_UCheck_Data(data["data"])
@@ -27583,12 +27006,10 @@ def load_UCheck(data: object) -> "UCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return UCheck(
+    return UCheck.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
-        type_=field_type_,
         data=field_data,
         m=field_m,
     )
@@ -27618,7 +27039,7 @@ def load_UCheck_Data(data: object) -> "UCheck_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return UCheck_Data(
+    return UCheck_Data.make(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -27626,7 +27047,7 @@ def load_UCheck_Data(data: object) -> "UCheck_Data":
 
 
 def load_UMap(data: object) -> "UMap":
-    """Load UMap from a dictionary based on the "type" discriminator."""
+    """Load UMap from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -27682,7 +27103,7 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27715,7 +27136,7 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
         if field_type_ is not None and field_type_ != "U_C_ITransform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_ITransform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_ITransform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_UMap(data["m"])
@@ -27727,15 +27148,13 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return U_C_ITransform(
+    return U_C_ITransform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -27771,7 +27190,7 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27804,7 +27223,7 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
         if field_type_ is not None and field_type_ != "U_C_Intersection":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_Intersection`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_Intersection"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -27820,15 +27239,13 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Intersection(
+    return U_C_Intersection.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -27864,7 +27281,7 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27897,7 +27314,7 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
         if field_type_ is not None and field_type_ != "U_C_Parallel":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_Parallel`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_Parallel"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -27913,15 +27330,13 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Parallel(
+    return U_C_Parallel.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -27957,7 +27372,7 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -27990,22 +27405,20 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
         if field_type_ is not None and field_type_ != "U_C_RefineDomain":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_RefineDomain`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_RefineDomain"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_UMap(data["m"])
     else:
         raise ValueError("Missing required field `m`")
 
-    return U_C_RefineDomain(
+    return U_C_RefineDomain.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
     )
 
@@ -28040,7 +27453,7 @@ def load_U_C_Series(data: object) -> "U_C_Series":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28073,7 +27486,7 @@ def load_U_C_Series(data: object) -> "U_C_Series":
         if field_type_ is not None and field_type_ != "U_C_Series":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_Series`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_Series"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -28089,15 +27502,13 @@ def load_U_C_Series(data: object) -> "U_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Series(
+    return U_C_Series.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -28133,7 +27544,7 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28166,7 +27577,7 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
         if field_type_ is not None and field_type_ != "U_C_Trace":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_Trace`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_Trace"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_UMap(data["m"])
@@ -28178,15 +27589,13 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return U_C_Trace(
+    return U_C_Trace.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -28222,7 +27631,7 @@ def load_U_C_Union(data: object) -> "U_C_Union":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28255,7 +27664,7 @@ def load_U_C_Union(data: object) -> "U_C_Union":
         if field_type_ is not None and field_type_ != "U_C_Union":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_Union`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_Union"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -28271,15 +27680,13 @@ def load_U_C_Union(data: object) -> "U_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Union(
+    return U_C_Union.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         labels=field_labels,
         ms=field_ms,
     )
@@ -28315,7 +27722,7 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28348,7 +27755,7 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
         if field_type_ is not None and field_type_ != "U_C_WrapUnits":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_WrapUnits`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_C_WrapUnits"')
+        pass  # fixed value for this field
 
     if "kcod_units" in data:
         field_kcod_units = load_Unit(data["kcod_units"])
@@ -28370,15 +27777,13 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U_C_WrapUnits(
+    return U_C_WrapUnits.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -28416,7 +27821,7 @@ def load_U_Catalog(data: object) -> "U_Catalog":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28449,22 +27854,20 @@ def load_U_Catalog(data: object) -> "U_Catalog":
         if field_type_ is not None and field_type_ != "U_Catalog":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_Catalog`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_Catalog"')
+        pass  # fixed value for this field
 
     if "options" in data:
         field_options = load_list_of_U_Catalog_Options(data["options"])
     else:
         raise ValueError("Missing required field `options`")
 
-    return U_Catalog(
+    return U_Catalog.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         options=field_options,
     )
 
@@ -28489,7 +27892,7 @@ def load_U_Catalog_Options(data: object) -> "U_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return U_Catalog_Options(
+    return U_Catalog_Options.make(
         f=field_f,
         i=field_i,
         r=field_r,
@@ -28526,7 +27929,7 @@ def load_U_Constant(data: object) -> "U_Constant":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28559,22 +27962,20 @@ def load_U_Constant(data: object) -> "U_Constant":
         if field_type_ is not None and field_type_ != "U_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_Constant"')
+        pass  # fixed value for this field
 
     if "value" in data:
         field_value = load_UpperSet(data["value"])
     else:
         raise ValueError("Missing required field `value`")
 
-    return U_Constant(
+    return U_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         value=field_value,
     )
 
@@ -28609,7 +28010,7 @@ def load_U_Identity(data: object) -> "U_Identity":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28642,17 +28043,15 @@ def load_U_Identity(data: object) -> "U_Identity":
         if field_type_ is not None and field_type_ != "U_Identity":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_Identity`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_Identity"')
+        pass  # fixed value for this field
 
-    return U_Identity(
+    return U_Identity.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
     )
 
 
@@ -28686,7 +28085,7 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28719,7 +28118,7 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
         if field_type_ is not None and field_type_ != "U_L_Lift1_Constant":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_L_Lift1_Constant`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_L_Lift1_Constant"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_U1Map(data["m"])
@@ -28731,15 +28130,13 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return U_L_Lift1_Constant(
+    return U_L_Lift1_Constant.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         value=field_value,
     )
@@ -28775,7 +28172,7 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28808,7 +28205,7 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
         if field_type_ is not None and field_type_ != "U_L_Lift1_Transform":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_L_Lift1_Transform`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_L_Lift1_Transform"')
+        pass  # fixed value for this field
 
     if "m" in data:
         field_m = load_U1Map(data["m"])
@@ -28820,15 +28217,13 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return U_L_Lift1_Transform(
+    return U_L_Lift1_Transform.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
         m=field_m,
         transform=field_transform,
     )
@@ -28864,7 +28259,7 @@ def load_U_Unknown(data: object) -> "U_Unknown":
         if field_kind is not None and field_kind != "UMap":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
     else:
-        field_kind = json.loads('"UMap"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -28897,22 +28292,20 @@ def load_U_Unknown(data: object) -> "U_Unknown":
         if field_type_ is not None and field_type_ != "U_Unknown":
             raise ValueError(f"Invalid discriminator value for `type`: expected `U_Unknown`, got {field_type_}")
     else:
-        field_type_ = json.loads('"U_Unknown"')
+        pass  # fixed value for this field
 
-    return U_Unknown(
+    return U_Unknown.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
-        type_=field_type_,
     )
 
 
 def load_Unit(data: object) -> "Unit":
-    """Load Unit from a dictionary based on the "type" discriminator."""
+    """Load Unit from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -28947,7 +28340,7 @@ def load_Unit_None(data: object) -> "Unit_None":
         if field_kind != "Unit":
             raise ValueError(f"Expected `Unit`, got `{field_kind}`")
     else:
-        field_kind = json.loads('"Unit"')
+        pass  # fixed value for this field
 
     if "type" in data:
         field_type_ = load_str(data["type"])
@@ -28956,12 +28349,10 @@ def load_Unit_None(data: object) -> "Unit_None":
         if field_type_ is not None and field_type_ != "Unit_None":
             raise ValueError(f"Invalid discriminator value for `type`: expected `Unit_None`, got {field_type_}")
     else:
-        field_type_ = json.loads('"Unit_None"')
+        pass  # fixed value for this field
 
-    return Unit_None(
+    return Unit_None.make(
         description=field_description,
-        kind=field_kind,
-        type_=field_type_,
     )
 
 
@@ -28984,7 +28375,7 @@ def load_Unit_Single(data: object) -> "Unit_Single":
         if field_kind != "Unit":
             raise ValueError(f"Expected `Unit`, got `{field_kind}`")
     else:
-        field_kind = json.loads('"Unit"')
+        pass  # fixed value for this field
 
     if "type" in data:
         field_type_ = load_str(data["type"])
@@ -28993,17 +28384,15 @@ def load_Unit_Single(data: object) -> "Unit_Single":
         if field_type_ is not None and field_type_ != "Unit_Single":
             raise ValueError(f"Invalid discriminator value for `type`: expected `Unit_Single`, got {field_type_}")
     else:
-        field_type_ = json.loads('"Unit_Single"')
+        pass  # fixed value for this field
 
     if "units" in data:
         field_units = load_str(data["units"])
     else:
         raise ValueError("Missing required field `units`")
 
-    return Unit_Single(
+    return Unit_Single.make(
         description=field_description,
-        kind=field_kind,
-        type_=field_type_,
         units=field_units,
     )
 
@@ -29027,7 +28416,7 @@ def load_Unit_Vector(data: object) -> "Unit_Vector":
         if field_kind != "Unit":
             raise ValueError(f"Expected `Unit`, got `{field_kind}`")
     else:
-        field_kind = json.loads('"Unit"')
+        pass  # fixed value for this field
 
     if "type" in data:
         field_type_ = load_str(data["type"])
@@ -29036,7 +28425,7 @@ def load_Unit_Vector(data: object) -> "Unit_Vector":
         if field_type_ is not None and field_type_ != "Unit_Vector":
             raise ValueError(f"Invalid discriminator value for `type`: expected `Unit_Vector`, got {field_type_}")
     else:
-        field_type_ = json.loads('"Unit_Vector"')
+        pass  # fixed value for this field
 
     if "labels" in data:
         value = data["labels"]
@@ -29052,10 +28441,8 @@ def load_Unit_Vector(data: object) -> "Unit_Vector":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return Unit_Vector(
+    return Unit_Vector.make(
         description=field_description,
-        kind=field_kind,
-        type_=field_type_,
         labels=field_labels,
         subs=field_subs,
     )
@@ -29080,7 +28467,7 @@ def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
         if field_kind != "Unit":
             raise ValueError(f"Expected `Unit`, got `{field_kind}`")
     else:
-        field_kind = json.loads('"Unit"')
+        pass  # fixed value for this field
 
     if "type" in data:
         field_type_ = load_str(data["type"])
@@ -29089,7 +28476,7 @@ def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
         if field_type_ is not None and field_type_ != "Unit_Wrapped":
             raise ValueError(f"Invalid discriminator value for `type`: expected `Unit_Wrapped`, got {field_type_}")
     else:
-        field_type_ = json.loads('"Unit_Wrapped"')
+        pass  # fixed value for this field
 
     if "inside" in data:
         field_inside = load_list_of_Unit(data["inside"])
@@ -29106,10 +28493,8 @@ def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
     else:
         raise ValueError("Missing required field `shape`")
 
-    return Unit_Wrapped(
+    return Unit_Wrapped.make(
         description=field_description,
-        kind=field_kind,
-        type_=field_type_,
         inside=field_inside,
         name=field_name,
         shape=field_shape,
@@ -29117,7 +28502,7 @@ def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
 
 
 def load_UpperSet(data: object) -> "UpperSet":
-    """Load UpperSet from a dictionary based on the "type" discriminator."""
+    """Load UpperSet from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -29150,12 +28535,9 @@ def load_UpperSet_Unused(data: object) -> "UpperSet_Unused":
         if field_type_ is not None and field_type_ != "UpperSet_Unused":
             raise ValueError(f"Invalid discriminator value for `type`: expected `UpperSet_Unused`, got {field_type_}")
     else:
-        field_type_ = json.loads('"UpperSet_Unused"')
+        pass  # fixed value for this field
 
-    return UpperSet_Unused(
-        kind=field_kind,
-        type_=field_type_,
-    )
+    return UpperSet_Unused.make()
 
 
 def load_UpperSet_UpperClosure(data: object) -> "UpperSet_UpperClosure":
@@ -29177,22 +28559,20 @@ def load_UpperSet_UpperClosure(data: object) -> "UpperSet_UpperClosure":
         if field_type_ is not None and field_type_ != "UpperSet_UpperClosure":
             raise ValueError(f"Invalid discriminator value for `type`: expected `UpperSet_UpperClosure`, got {field_type_}")
     else:
-        field_type_ = json.loads('"UpperSet_UpperClosure"')
+        pass  # fixed value for this field
 
     if "points" in data:
         field_points = load_list_of_any(data["points"])
     else:
         raise ValueError("Missing required field `points`")
 
-    return UpperSet_UpperClosure(
-        kind=field_kind,
-        type_=field_type_,
+    return UpperSet_UpperClosure.make(
         points=field_points,
     )
 
 
 def load_Value(data: object) -> "Value":
-    """Load Value from a dictionary based on the "type" discriminator."""
+    """Load Value from a dictionary based on the `type` discriminator."""
     if not isinstance(data, dict):
         raise ValueError("Data must be a dictionary")
     data = cast(dict[str, object], data)
@@ -29235,7 +28615,7 @@ def load_VU(data: object) -> "VU":
         if field_kind is not None and field_kind != "Value":
             raise ValueError(f"Invalid discriminator value for `kind`: expected `Value`, got {field_kind}")
     else:
-        field_kind = json.loads('"Value"')
+        pass  # fixed value for this field
 
     if "version" in data:
         value = data["version"]
@@ -29262,7 +28642,7 @@ def load_VU(data: object) -> "VU":
         if field_type_ is not None and field_type_ != "VU":
             raise ValueError(f"Invalid discriminator value for `type`: expected `VU`, got {field_type_}")
     else:
-        field_type_ = json.loads('"VU"')
+        pass  # fixed value for this field
 
     if "poset" in data:
         field_poset = load_Poset(data["poset"])
@@ -29274,13 +28654,11 @@ def load_VU(data: object) -> "VU":
     else:
         raise ValueError("Missing required field `value`")
 
-    return VU(
+    return VU.make(
         description=field_description,
         hash=field_hash,
-        kind=field_kind,
         version=field_version,
         address=field_address,
-        type_=field_type_,
         poset=field_poset,
         value=field_value,
     )
@@ -29315,7 +28693,7 @@ class Address:
         repo: str | None = None,
     ) -> Self:
         """Create a new Address instance."""
-        type_ = "Address"
+        type_: Literal["Address"] = "Address"
         return cls(
             library=library,
             repo=repo,
@@ -29427,8 +28805,8 @@ class ComputeJob_F_to_R(ComputeJob):
         points: list[ComputePoint] | None = None,
     ) -> Self:
         """Create a new ComputeJob_F_to_R instance."""
-        kind = "ComputeJob"
-        type_ = "ComputeJob_F_to_R"
+        kind: Literal["ComputeJob"] = "ComputeJob"
+        type_: Literal["ComputeJob_F_to_R"] = "ComputeJob_F_to_R"
         return cls(
             description=description,
             hash=hash,
@@ -29474,8 +28852,8 @@ class ComputeJob_R_to_F(ComputeJob):
         points: list[ComputePoint] | None = None,
     ) -> Self:
         """Create a new ComputeJob_R_to_F instance."""
-        kind = "ComputeJob"
-        type_ = "ComputeJob_R_to_F"
+        kind: Literal["ComputeJob"] = "ComputeJob"
+        type_: Literal["ComputeJob_R_to_F"] = "ComputeJob_R_to_F"
         return cls(
             description=description,
             hash=hash,
@@ -29529,7 +28907,7 @@ class Connection:
     @classmethod
     def make(cls, *, source: ConnectionSource, target: ConnectionTarget) -> Self:
         """Create a new Connection instance."""
-        type_ = "Connection"
+        type_: Literal["Connection"] = "Connection"
         return cls(
             source=source,
             target=target,
@@ -29637,8 +29015,8 @@ class DP_All_Constants_And_F_Leq_R(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_All_Constants_And_F_Leq_R instance."""
-        kind = "DP"
-        type_ = "DP_All_Constants_And_F_Leq_R"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_All_Constants_And_F_Leq_R"] = "DP_All_Constants_And_F_Leq_R"
         return cls(
             description=description,
             hash=hash,
@@ -29680,8 +29058,8 @@ class DP_All_Constants_Leq_R(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_All_Constants_Leq_R instance."""
-        kind = "DP"
-        type_ = "DP_All_Constants_Leq_R"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_All_Constants_Leq_R"] = "DP_All_Constants_Leq_R"
         return cls(
             description=description,
             hash=hash,
@@ -29720,8 +29098,8 @@ class DP_All_Fi_Leq_R(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_All_Fi_Leq_R instance."""
-        kind = "DP"
-        type_ = "DP_All_Fi_Leq_R"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_All_Fi_Leq_R"] = "DP_All_Fi_Leq_R"
         return cls(
             description=description,
             hash=hash,
@@ -29762,8 +29140,8 @@ class DP_AmbientConversion(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_AmbientConversion instance."""
-        kind = "DP"
-        type_ = "DP_AmbientConversion"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_AmbientConversion"] = "DP_AmbientConversion"
         return cls(
             description=description,
             hash=hash,
@@ -29805,8 +29183,8 @@ class DP_Any_Constants_Or_F_Leq_R(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Any_Constants_Or_F_Leq_R instance."""
-        kind = "DP"
-        type_ = "DP_Any_Constants_Or_F_Leq_R"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Any_Constants_Or_F_Leq_R"] = "DP_Any_Constants_Or_F_Leq_R"
         return cls(
             description=description,
             hash=hash,
@@ -29845,8 +29223,8 @@ class DP_Any_Fi_Leq_R(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Any_Fi_Leq_R instance."""
-        kind = "DP"
-        type_ = "DP_Any_Fi_Leq_R"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Any_Fi_Leq_R"] = "DP_Any_Fi_Leq_R"
         return cls(
             description=description,
             hash=hash,
@@ -29898,8 +29276,8 @@ class DP_C_ExplicitApprox(DP):
         pessimistic_labels: list[str] | None = None,
     ) -> Self:
         """Create a new DP_C_ExplicitApprox instance."""
-        kind = "DP"
-        type_ = "DP_C_ExplicitApprox"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_C_ExplicitApprox"] = "DP_C_ExplicitApprox"
         return cls(
             description=description,
             hash=hash,
@@ -29948,8 +29326,8 @@ class DP_C_Intersection(DP):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new DP_C_Intersection instance."""
-        kind = "DP"
-        type_ = "DP_C_Intersection"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_C_Intersection"] = "DP_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -29996,8 +29374,8 @@ class DP_C_Parallel(DP):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new DP_C_Parallel instance."""
-        kind = "DP"
-        type_ = "DP_C_Parallel"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_C_Parallel"] = "DP_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -30044,8 +29422,8 @@ class DP_C_Series(DP):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new DP_C_Series instance."""
-        kind = "DP"
-        type_ = "DP_C_Series"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_C_Series"] = "DP_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -30088,8 +29466,8 @@ class DP_C_Trace(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_C_Trace instance."""
-        kind = "DP"
-        type_ = "DP_C_Trace"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_C_Trace"] = "DP_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -30135,8 +29513,8 @@ class DP_C_Union(DP):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new DP_C_Union instance."""
-        kind = "DP"
-        type_ = "DP_C_Union"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_C_Union"] = "DP_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -30179,8 +29557,8 @@ class DP_Catalog(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Catalog instance."""
-        kind = "DP"
-        type_ = "DP_Catalog"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Catalog"] = "DP_Catalog"
         return cls(
             description=description,
             hash=hash,
@@ -30278,8 +29656,8 @@ class DP_Compiled(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Compiled instance."""
-        kind = "DP"
-        type_ = "DP_Compiled"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Compiled"] = "DP_Compiled"
         return cls(
             description=description,
             hash=hash,
@@ -30331,8 +29709,8 @@ class DP_F_Leq_All_Constants(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_F_Leq_All_Constants instance."""
-        kind = "DP"
-        type_ = "DP_F_Leq_All_Constants"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_F_Leq_All_Constants"] = "DP_F_Leq_All_Constants"
         return cls(
             description=description,
             hash=hash,
@@ -30374,8 +29752,8 @@ class DP_F_Leq_All_R_And_Constants(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_F_Leq_All_R_And_Constants instance."""
-        kind = "DP"
-        type_ = "DP_F_Leq_All_R_And_Constants"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_F_Leq_All_R_And_Constants"] = "DP_F_Leq_All_R_And_Constants"
         return cls(
             description=description,
             hash=hash,
@@ -30414,8 +29792,8 @@ class DP_F_Leq_All_Ri(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_F_Leq_All_Ri instance."""
-        kind = "DP"
-        type_ = "DP_F_Leq_All_Ri"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_F_Leq_All_Ri"] = "DP_F_Leq_All_Ri"
         return cls(
             description=description,
             hash=hash,
@@ -30456,8 +29834,8 @@ class DP_F_Leq_Any_R_And_Constants(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_F_Leq_Any_R_And_Constants instance."""
-        kind = "DP"
-        type_ = "DP_F_Leq_Any_R_And_Constants"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_F_Leq_Any_R_And_Constants"] = "DP_F_Leq_Any_R_And_Constants"
         return cls(
             description=description,
             hash=hash,
@@ -30496,8 +29874,8 @@ class DP_F_Leq_Any_Ri(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_F_Leq_Any_Ri instance."""
-        kind = "DP"
-        type_ = "DP_F_Leq_Any_Ri"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_F_Leq_Any_Ri"] = "DP_F_Leq_Any_Ri"
         return cls(
             description=description,
             hash=hash,
@@ -30535,8 +29913,8 @@ class DP_False(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_False instance."""
-        kind = "DP"
-        type_ = "DP_False"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_False"] = "DP_False"
         return cls(
             description=description,
             hash=hash,
@@ -30577,8 +29955,8 @@ class DP_FuncNotMoreThan(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_FuncNotMoreThan instance."""
-        kind = "DP"
-        type_ = "DP_FuncNotMoreThan"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_FuncNotMoreThan"] = "DP_FuncNotMoreThan"
         return cls(
             description=description,
             hash=hash,
@@ -30626,8 +30004,8 @@ class DP_GenericConstant(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_GenericConstant instance."""
-        kind = "DP"
-        type_ = "DP_GenericConstant"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_GenericConstant"] = "DP_GenericConstant"
         return cls(
             description=description,
             hash=hash,
@@ -30668,8 +30046,8 @@ class DP_Identity(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Identity instance."""
-        kind = "DP"
-        type_ = "DP_Identity"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Identity"] = "DP_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -30713,8 +30091,8 @@ class DP_Iso(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Iso instance."""
-        kind = "DP"
-        type_ = "DP_Iso"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Iso"] = "DP_Iso"
         return cls(
             description=description,
             hash=hash,
@@ -30757,8 +30135,8 @@ class DP_LiftL(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_LiftL instance."""
-        kind = "DP"
-        type_ = "DP_LiftL"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_LiftL"] = "DP_LiftL"
         return cls(
             description=description,
             hash=hash,
@@ -30800,8 +30178,8 @@ class DP_LiftU(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_LiftU instance."""
-        kind = "DP"
-        type_ = "DP_LiftU"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_LiftU"] = "DP_LiftU"
         return cls(
             description=description,
             hash=hash,
@@ -30843,8 +30221,8 @@ class DP_ResNotLessThan(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_ResNotLessThan instance."""
-        kind = "DP"
-        type_ = "DP_ResNotLessThan"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_ResNotLessThan"] = "DP_ResNotLessThan"
         return cls(
             description=description,
             hash=hash,
@@ -30886,8 +30264,8 @@ class DP_True(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_True instance."""
-        kind = "DP"
-        type_ = "DP_True"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_True"] = "DP_True"
         return cls(
             description=description,
             hash=hash,
@@ -30926,8 +30304,8 @@ class DP_Unknown(DP):
         address: Address | None = None,
     ) -> Self:
         """Create a new DP_Unknown instance."""
-        kind = "DP"
-        type_ = "DP_Unknown"
+        kind: Literal["DP"] = "DP"
+        type_: Literal["DP_Unknown"] = "DP_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -30966,8 +30344,8 @@ class L1Check(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new L1Check instance."""
-        kind = "Check"
-        type_ = "L1Check"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["L1Check"] = "L1Check"
         return cls(
             description=description,
             hash=hash,
@@ -31075,8 +30453,8 @@ class L1_C_CodSum(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_CodSum instance."""
-        kind = "L1Map"
-        type_ = "L1_C_CodSum"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_CodSum"] = "L1_C_CodSum"
         return cls(
             description=description,
             hash=hash,
@@ -31117,8 +30495,8 @@ class L1_C_CodSumSmash(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_CodSumSmash instance."""
-        kind = "L1Map"
-        type_ = "L1_C_CodSumSmash"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_CodSumSmash"] = "L1_C_CodSumSmash"
         return cls(
             description=description,
             hash=hash,
@@ -31159,8 +30537,8 @@ class L1_C_DomUnion(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_DomUnion instance."""
-        kind = "L1Map"
-        type_ = "L1_C_DomUnion"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_DomUnion"] = "L1_C_DomUnion"
         return cls(
             description=description,
             hash=hash,
@@ -31201,8 +30579,8 @@ class L1_C_Intersection(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_Intersection instance."""
-        kind = "L1Map"
-        type_ = "L1_C_Intersection"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_Intersection"] = "L1_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -31243,8 +30621,8 @@ class L1_C_Parallel(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_Parallel instance."""
-        kind = "L1Map"
-        type_ = "L1_C_Parallel"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_Parallel"] = "L1_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -31285,8 +30663,8 @@ class L1_C_ProdIntersection(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_ProdIntersection instance."""
-        kind = "L1Map"
-        type_ = "L1_C_ProdIntersection"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_ProdIntersection"] = "L1_C_ProdIntersection"
         return cls(
             description=description,
             hash=hash,
@@ -31327,8 +30705,8 @@ class L1_C_Product(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_Product instance."""
-        kind = "L1Map"
-        type_ = "L1_C_Product"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_Product"] = "L1_C_Product"
         return cls(
             description=description,
             hash=hash,
@@ -31365,8 +30743,8 @@ class L1_C_RefineDomain(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_C_RefineDomain instance."""
-        kind = "L1Map"
-        type_ = "L1_C_RefineDomain"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_RefineDomain"] = "L1_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -31406,8 +30784,8 @@ class L1_C_Series(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_Series instance."""
-        kind = "L1Map"
-        type_ = "L1_C_Series"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_Series"] = "L1_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -31444,8 +30822,8 @@ class L1_C_Trace(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_C_Trace instance."""
-        kind = "L1Map"
-        type_ = "L1_C_Trace"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_Trace"] = "L1_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -31485,8 +30863,8 @@ class L1_C_Union(L1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L1_C_Union instance."""
-        kind = "L1Map"
-        type_ = "L1_C_Union"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_Union"] = "L1_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -31529,8 +30907,8 @@ class L1_C_WrapUnits(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_C_WrapUnits instance."""
-        kind = "L1Map"
-        type_ = "L1_C_WrapUnits"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_C_WrapUnits"] = "L1_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -31568,8 +30946,8 @@ class L1_Catalog(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_Catalog instance."""
-        kind = "L1Map"
-        type_ = "L1_Catalog"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Catalog"] = "L1_Catalog"
         return cls(
             description=description,
             hash=hash,
@@ -31625,8 +31003,8 @@ class L1_Constant(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_Constant instance."""
-        kind = "L1Map"
-        type_ = "L1_Constant"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Constant"] = "L1_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -31653,8 +31031,8 @@ class L1_Entire(L1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new L1_Entire instance."""
-        kind = "L1Map"
-        type_ = "L1_Entire"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Entire"] = "L1_Entire"
         return cls(
             description=description,
             hash=hash,
@@ -31689,8 +31067,8 @@ class L1_Explicit(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_Explicit instance."""
-        kind = "L1Map"
-        type_ = "L1_Explicit"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Explicit"] = "L1_Explicit"
         return cls(
             description=description,
             hash=hash,
@@ -31746,8 +31124,8 @@ class L1_FromFilter(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_FromFilter instance."""
-        kind = "L1Map"
-        type_ = "L1_FromFilter"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_FromFilter"] = "L1_FromFilter"
         return cls(
             description=description,
             hash=hash,
@@ -31774,8 +31152,8 @@ class L1_Identity(L1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new L1_Identity instance."""
-        kind = "L1Map"
-        type_ = "L1_Identity"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Identity"] = "L1_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -31801,8 +31179,8 @@ class L1_IntersectionOfPrinLowerSets(L1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new L1_IntersectionOfPrinLowerSets instance."""
-        kind = "L1Map"
-        type_ = "L1_IntersectionOfPrinLowerSets"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_IntersectionOfPrinLowerSets"] = "L1_IntersectionOfPrinLowerSets"
         return cls(
             description=description,
             hash=hash,
@@ -31840,8 +31218,8 @@ class L1_InvMul_Opt(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_InvMul_Opt instance."""
-        kind = "L1Map"
-        type_ = "L1_InvMul_Opt"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_InvMul_Opt"] = "L1_InvMul_Opt"
         return cls(
             description=description,
             hash=hash,
@@ -31881,8 +31259,8 @@ class L1_InvMul_Pes(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_InvMul_Pes instance."""
-        kind = "L1Map"
-        type_ = "L1_InvMul_Pes"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_InvMul_Pes"] = "L1_InvMul_Pes"
         return cls(
             description=description,
             hash=hash,
@@ -31922,8 +31300,8 @@ class L1_InvSum_Opt(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_InvSum_Opt instance."""
-        kind = "L1Map"
-        type_ = "L1_InvSum_Opt"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_InvSum_Opt"] = "L1_InvSum_Opt"
         return cls(
             description=description,
             hash=hash,
@@ -31963,8 +31341,8 @@ class L1_InvSum_Pes(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_InvSum_Pes instance."""
-        kind = "L1Map"
-        type_ = "L1_InvSum_Pes"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_InvSum_Pes"] = "L1_InvSum_Pes"
         return cls(
             description=description,
             hash=hash,
@@ -32001,8 +31379,8 @@ class L1_L_Linv(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_L_Linv instance."""
-        kind = "L1Map"
-        type_ = "L1_L_Linv"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_L_Linv"] = "L1_L_Linv"
         return cls(
             description=description,
             hash=hash,
@@ -32038,8 +31416,8 @@ class L1_Lift(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_Lift instance."""
-        kind = "L1Map"
-        type_ = "L1_Lift"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Lift"] = "L1_Lift"
         return cls(
             description=description,
             hash=hash,
@@ -32066,8 +31444,8 @@ class L1_RepresentPrincipalLowerSet(L1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new L1_RepresentPrincipalLowerSet instance."""
-        kind = "L1Map"
-        type_ = "L1_RepresentPrincipalLowerSet"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_RepresentPrincipalLowerSet"] = "L1_RepresentPrincipalLowerSet"
         return cls(
             description=description,
             hash=hash,
@@ -32102,8 +31480,8 @@ class L1_TopAlternating(L1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new L1_TopAlternating instance."""
-        kind = "L1Map"
-        type_ = "L1_TopAlternating"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_TopAlternating"] = "L1_TopAlternating"
         return cls(
             description=description,
             hash=hash,
@@ -32130,8 +31508,8 @@ class L1_UnionOfPrinLowerSets(L1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new L1_UnionOfPrinLowerSets instance."""
-        kind = "L1Map"
-        type_ = "L1_UnionOfPrinLowerSets"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_UnionOfPrinLowerSets"] = "L1_UnionOfPrinLowerSets"
         return cls(
             description=description,
             hash=hash,
@@ -32157,8 +31535,8 @@ class L1_Unknown(L1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new L1_Unknown instance."""
-        kind = "L1Map"
-        type_ = "L1_Unknown"
+        kind: Literal["L1Map"] = "L1Map"
+        type_: Literal["L1_Unknown"] = "L1_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -32194,8 +31572,8 @@ class LCheck(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new LCheck instance."""
-        kind = "Check"
-        type_ = "LCheck"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["LCheck"] = "LCheck"
         return cls(
             description=description,
             hash=hash,
@@ -32290,8 +31668,8 @@ class L_C_ITransform(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_C_ITransform instance."""
-        kind = "LMap"
-        type_ = "L_C_ITransform"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_ITransform"] = "L_C_ITransform"
         return cls(
             description=description,
             hash=hash,
@@ -32334,8 +31712,8 @@ class L_C_Intersection(LMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L_C_Intersection instance."""
-        kind = "LMap"
-        type_ = "L_C_Intersection"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_Intersection"] = "L_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -32378,8 +31756,8 @@ class L_C_Parallel(LMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L_C_Parallel instance."""
-        kind = "LMap"
-        type_ = "L_C_Parallel"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_Parallel"] = "L_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -32418,8 +31796,8 @@ class L_C_RefineDomain(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_C_RefineDomain instance."""
-        kind = "LMap"
-        type_ = "L_C_RefineDomain"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_RefineDomain"] = "L_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -32461,8 +31839,8 @@ class L_C_Series(LMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L_C_Series instance."""
-        kind = "LMap"
-        type_ = "L_C_Series"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_Series"] = "L_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -32504,8 +31882,8 @@ class L_C_Trace(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_C_Trace instance."""
-        kind = "LMap"
-        type_ = "L_C_Trace"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_Trace"] = "L_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -32548,8 +31926,8 @@ class L_C_Union(LMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new L_C_Union instance."""
-        kind = "LMap"
-        type_ = "L_C_Union"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_Union"] = "L_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -32597,8 +31975,8 @@ class L_C_WrapUnits(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_C_WrapUnits instance."""
-        kind = "LMap"
-        type_ = "L_C_WrapUnits"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_WrapUnits"] = "L_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -32639,8 +32017,8 @@ class L_Catalog(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_Catalog instance."""
-        kind = "LMap"
-        type_ = "L_Catalog"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_Catalog"] = "L_Catalog"
         return cls(
             description=description,
             hash=hash,
@@ -32701,8 +32079,8 @@ class L_Constant(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_Constant instance."""
-        kind = "LMap"
-        type_ = "L_Constant"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_Constant"] = "L_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -32737,8 +32115,8 @@ class L_Identity(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_Identity instance."""
-        kind = "LMap"
-        type_ = "L_Identity"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_Identity"] = "L_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -32778,8 +32156,8 @@ class L_L_Lift1_Constant(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_L_Lift1_Constant instance."""
-        kind = "LMap"
-        type_ = "L_L_Lift1_Constant"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_L_Lift1_Constant"] = "L_L_Lift1_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -32821,8 +32199,8 @@ class L_L_Lift1_Transform(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_L_Lift1_Transform instance."""
-        kind = "LMap"
-        type_ = "L_L_Lift1_Transform"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_L_Lift1_Transform"] = "L_L_Lift1_Transform"
         return cls(
             description=description,
             hash=hash,
@@ -32858,8 +32236,8 @@ class L_Unknown(LMap):
         version: str | None = None,
     ) -> Self:
         """Create a new L_Unknown instance."""
-        kind = "LMap"
-        type_ = "L_Unknown"
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_Unknown"] = "L_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -32897,8 +32275,8 @@ class LowerSet_LowerClosure(LowerSet):
     @classmethod
     def make(cls, *, points: list[Any]) -> Self:
         """Create a new LowerSet_LowerClosure instance."""
-        kind = "LowerSet"
-        type_ = "LowerSet_LowerClosure"
+        kind: Literal["LowerSet"] = "LowerSet"
+        type_: Literal["LowerSet_LowerClosure"] = "LowerSet_LowerClosure"
         return cls(
             kind=kind,
             type_=type_,
@@ -32917,8 +32295,8 @@ class LowerSet_Unused(LowerSet):
     @classmethod
     def make(cls) -> Self:
         """Create a new LowerSet_Unused instance."""
-        kind = "LowerSet"
-        type_ = "LowerSet_Unused"
+        kind: Literal["LowerSet"] = "LowerSet"
+        type_: Literal["LowerSet_Unused"] = "LowerSet_Unused"
         return cls(
             kind=kind,
             type_=type_,
@@ -33035,8 +32413,8 @@ class M_AddL(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_AddL instance."""
-        kind = "MonotoneMap"
-        type_ = "M_AddL"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_AddL"] = "M_AddL"
         return cls(
             description=description,
             hash=hash,
@@ -33075,8 +32453,8 @@ class M_AddLConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_AddLConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_AddLConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_AddLConstant"] = "M_AddLConstant"
         return cls(
             description=description,
             hash=hash,
@@ -33113,8 +32491,8 @@ class M_AddU(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_AddU instance."""
-        kind = "MonotoneMap"
-        type_ = "M_AddU"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_AddU"] = "M_AddU"
         return cls(
             description=description,
             hash=hash,
@@ -33153,8 +32531,8 @@ class M_AddUConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_AddUConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_AddUConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_AddUConstant"] = "M_AddUConstant"
         return cls(
             description=description,
             hash=hash,
@@ -33182,8 +32560,8 @@ class M_BottomIfNotTop(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_BottomIfNotTop instance."""
-        kind = "MonotoneMap"
-        type_ = "M_BottomIfNotTop"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_BottomIfNotTop"] = "M_BottomIfNotTop"
         return cls(
             description=description,
             hash=hash,
@@ -33222,8 +32600,8 @@ class M_C_Coproduct(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_Coproduct instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Coproduct"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Coproduct"] = "M_C_Coproduct"
         return cls(
             description=description,
             hash=hash,
@@ -33264,8 +32642,8 @@ class M_C_CoproductSmash(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_CoproductSmash instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_CoproductSmash"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_CoproductSmash"] = "M_C_CoproductSmash"
         return cls(
             description=description,
             hash=hash,
@@ -33306,8 +32684,8 @@ class M_C_DomProdCodSmash(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_DomProdCodSmash instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_DomProdCodSmash"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_DomProdCodSmash"] = "M_C_DomProdCodSmash"
         return cls(
             description=description,
             hash=hash,
@@ -33348,8 +32726,8 @@ class M_C_DomSmashCodProd(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_DomSmashCodProd instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_DomSmashCodProd"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_DomSmashCodProd"] = "M_C_DomSmashCodProd"
         return cls(
             description=description,
             hash=hash,
@@ -33390,8 +32768,8 @@ class M_C_DomUnion(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_DomUnion instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_DomUnion"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_DomUnion"] = "M_C_DomUnion"
         return cls(
             description=description,
             hash=hash,
@@ -33431,8 +32809,8 @@ class M_C_Leq_X(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_C_Leq_X instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Leq_X"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Leq_X"] = "M_C_Leq_X"
         return cls(
             description=description,
             hash=hash,
@@ -33469,8 +32847,8 @@ class M_C_LiftToSubsets(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_C_LiftToSubsets instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_LiftToSubsets"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_LiftToSubsets"] = "M_C_LiftToSubsets"
         return cls(
             description=description,
             hash=hash,
@@ -33509,8 +32887,8 @@ class M_C_Lt_X(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_C_Lt_X instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Lt_X"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Lt_X"] = "M_C_Lt_X"
         return cls(
             description=description,
             hash=hash,
@@ -33547,8 +32925,8 @@ class M_C_Op(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_C_Op instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Op"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Op"] = "M_C_Op"
         return cls(
             description=description,
             hash=hash,
@@ -33588,8 +32966,8 @@ class M_C_Parallel(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_Parallel instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Parallel"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Parallel"] = "M_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -33630,8 +33008,8 @@ class M_C_ParallelSmash(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_ParallelSmash instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_ParallelSmash"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_ParallelSmash"] = "M_C_ParallelSmash"
         return cls(
             description=description,
             hash=hash,
@@ -33672,8 +33050,8 @@ class M_C_Product(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_Product instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Product"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Product"] = "M_C_Product"
         return cls(
             description=description,
             hash=hash,
@@ -33714,8 +33092,8 @@ class M_C_ProductSmash(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_ProductSmash instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_ProductSmash"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_ProductSmash"] = "M_C_ProductSmash"
         return cls(
             description=description,
             hash=hash,
@@ -33752,8 +33130,8 @@ class M_C_RefineDomain(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_C_RefineDomain instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_RefineDomain"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_RefineDomain"] = "M_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -33793,8 +33171,8 @@ class M_C_Series(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_Series instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Series"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Series"] = "M_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -33835,8 +33213,8 @@ class M_C_Sum(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_Sum instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_Sum"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_Sum"] = "M_C_Sum"
         return cls(
             description=description,
             hash=hash,
@@ -33877,8 +33255,8 @@ class M_C_SumSmash(MonotoneMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new M_C_SumSmash instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_SumSmash"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_SumSmash"] = "M_C_SumSmash"
         return cls(
             description=description,
             hash=hash,
@@ -33921,8 +33299,8 @@ class M_C_WrapUnits(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_C_WrapUnits instance."""
-        kind = "MonotoneMap"
-        type_ = "M_C_WrapUnits"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_C_WrapUnits"] = "M_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -33960,8 +33338,8 @@ class M_Ceil0(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Ceil0 instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Ceil0"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Ceil0"] = "M_Ceil0"
         return cls(
             description=description,
             hash=hash,
@@ -33988,8 +33366,8 @@ class M_Coerce(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Coerce instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Coerce"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Coerce"] = "M_Coerce"
         return cls(
             description=description,
             hash=hash,
@@ -34024,8 +33402,8 @@ class M_Constant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Constant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Constant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Constant"] = "M_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -34064,8 +33442,8 @@ class M_ContainedInLowerSet(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_ContainedInLowerSet instance."""
-        kind = "MonotoneMap"
-        type_ = "M_ContainedInLowerSet"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_ContainedInLowerSet"] = "M_ContainedInLowerSet"
         return cls(
             description=description,
             hash=hash,
@@ -34105,8 +33483,8 @@ class M_ContainedInUpperSet(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_ContainedInUpperSet instance."""
-        kind = "MonotoneMap"
-        type_ = "M_ContainedInUpperSet"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_ContainedInUpperSet"] = "M_ContainedInUpperSet"
         return cls(
             description=description,
             hash=hash,
@@ -34146,8 +33524,8 @@ class M_DivideLConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_DivideLConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_DivideLConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_DivideLConstant"] = "M_DivideLConstant"
         return cls(
             description=description,
             hash=hash,
@@ -34187,8 +33565,8 @@ class M_DivideUConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_DivideUConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_DivideUConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_DivideUConstant"] = "M_DivideUConstant"
         return cls(
             description=description,
             hash=hash,
@@ -34216,8 +33594,8 @@ class M_Empty(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Empty instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Empty"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Empty"] = "M_Empty"
         return cls(
             description=description,
             hash=hash,
@@ -34252,8 +33630,8 @@ class M_Explicit(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Explicit instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Explicit"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Explicit"] = "M_Explicit"
         return cls(
             description=description,
             hash=hash,
@@ -34309,8 +33687,8 @@ class M_Floor0(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Floor0 instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Floor0"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Floor0"] = "M_Floor0"
         return cls(
             description=description,
             hash=hash,
@@ -34337,8 +33715,8 @@ class M_Id(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Id instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Id"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Id"] = "M_Id"
         return cls(
             description=description,
             hash=hash,
@@ -34376,8 +33754,8 @@ class M_IdentityBelowThreshold(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_IdentityBelowThreshold instance."""
-        kind = "MonotoneMap"
-        type_ = "M_IdentityBelowThreshold"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_IdentityBelowThreshold"] = "M_IdentityBelowThreshold"
         return cls(
             description=description,
             hash=hash,
@@ -34414,8 +33792,8 @@ class M_Injection(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Injection instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Injection"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Injection"] = "M_Injection"
         return cls(
             description=description,
             hash=hash,
@@ -34451,8 +33829,8 @@ class M_Join(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Join instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Join"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Join"] = "M_Join"
         return cls(
             description=description,
             hash=hash,
@@ -34491,8 +33869,8 @@ class M_JoinConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_JoinConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_JoinConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_JoinConstant"] = "M_JoinConstant"
         return cls(
             description=description,
             hash=hash,
@@ -34529,8 +33907,8 @@ class M_Leq(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Leq instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Leq"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Leq"] = "M_Leq"
         return cls(
             description=description,
             hash=hash,
@@ -34557,8 +33935,8 @@ class M_Lift(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Lift instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Lift"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Lift"] = "M_Lift"
         return cls(
             description=description,
             hash=hash,
@@ -34593,8 +33971,8 @@ class M_LiftToLowerSets(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_LiftToLowerSets instance."""
-        kind = "MonotoneMap"
-        type_ = "M_LiftToLowerSets"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_LiftToLowerSets"] = "M_LiftToLowerSets"
         return cls(
             description=description,
             hash=hash,
@@ -34630,8 +34008,8 @@ class M_LiftToUpperSets(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_LiftToUpperSets instance."""
-        kind = "MonotoneMap"
-        type_ = "M_LiftToUpperSets"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_LiftToUpperSets"] = "M_LiftToUpperSets"
         return cls(
             description=description,
             hash=hash,
@@ -34667,8 +34045,8 @@ class M_Meet(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Meet instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Meet"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Meet"] = "M_Meet"
         return cls(
             description=description,
             hash=hash,
@@ -34707,8 +34085,8 @@ class M_MeetConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_MeetConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_MeetConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_MeetConstant"] = "M_MeetConstant"
         return cls(
             description=description,
             hash=hash,
@@ -34745,8 +34123,8 @@ class M_MultiplyL(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_MultiplyL instance."""
-        kind = "MonotoneMap"
-        type_ = "M_MultiplyL"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_MultiplyL"] = "M_MultiplyL"
         return cls(
             description=description,
             hash=hash,
@@ -34785,8 +34163,8 @@ class M_MultiplyLConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_MultiplyLConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_MultiplyLConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_MultiplyLConstant"] = "M_MultiplyLConstant"
         return cls(
             description=description,
             hash=hash,
@@ -34823,8 +34201,8 @@ class M_MultiplyU(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_MultiplyU instance."""
-        kind = "MonotoneMap"
-        type_ = "M_MultiplyU"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_MultiplyU"] = "M_MultiplyU"
         return cls(
             description=description,
             hash=hash,
@@ -34863,8 +34241,8 @@ class M_MultiplyUConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_MultiplyUConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_MultiplyUConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_MultiplyUConstant"] = "M_MultiplyUConstant"
         return cls(
             description=description,
             hash=hash,
@@ -34907,8 +34285,8 @@ class M_PowerFracL(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_PowerFracL instance."""
-        kind = "MonotoneMap"
-        type_ = "M_PowerFracL"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_PowerFracL"] = "M_PowerFracL"
         return cls(
             description=description,
             hash=hash,
@@ -34952,8 +34330,8 @@ class M_PowerFracU(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_PowerFracU instance."""
-        kind = "MonotoneMap"
-        type_ = "M_PowerFracU"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_PowerFracU"] = "M_PowerFracU"
         return cls(
             description=description,
             hash=hash,
@@ -34982,8 +34360,8 @@ class M_ReprLowerSet(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_ReprLowerSet instance."""
-        kind = "MonotoneMap"
-        type_ = "M_ReprLowerSet"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_ReprLowerSet"] = "M_ReprLowerSet"
         return cls(
             description=description,
             hash=hash,
@@ -35009,8 +34387,8 @@ class M_ReprUpperSet(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_ReprUpperSet instance."""
-        kind = "MonotoneMap"
-        type_ = "M_ReprUpperSet"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_ReprUpperSet"] = "M_ReprUpperSet"
         return cls(
             description=description,
             hash=hash,
@@ -35036,8 +34414,8 @@ class M_RepresentPrincipalLowerSet_TotalOrderBounded(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_RepresentPrincipalLowerSet_TotalOrderBounded instance."""
-        kind = "MonotoneMap"
-        type_ = "M_RepresentPrincipalLowerSet_TotalOrderBounded"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_RepresentPrincipalLowerSet_TotalOrderBounded"] = "M_RepresentPrincipalLowerSet_TotalOrderBounded"
         return cls(
             description=description,
             hash=hash,
@@ -35063,8 +34441,8 @@ class M_RepresentPrincipalUpperSet_TotalOrderBounded(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_RepresentPrincipalUpperSet_TotalOrderBounded instance."""
-        kind = "MonotoneMap"
-        type_ = "M_RepresentPrincipalUpperSet_TotalOrderBounded"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_RepresentPrincipalUpperSet_TotalOrderBounded"] = "M_RepresentPrincipalUpperSet_TotalOrderBounded"
         return cls(
             description=description,
             hash=hash,
@@ -35105,8 +34483,8 @@ class M_RoundDown(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_RoundDown instance."""
-        kind = "MonotoneMap"
-        type_ = "M_RoundDown"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_RoundDown"] = "M_RoundDown"
         return cls(
             description=description,
             hash=hash,
@@ -35150,8 +34528,8 @@ class M_RoundUp(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_RoundUp instance."""
-        kind = "MonotoneMap"
-        type_ = "M_RoundUp"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_RoundUp"] = "M_RoundUp"
         return cls(
             description=description,
             hash=hash,
@@ -35195,8 +34573,8 @@ class M_ScaleL(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_ScaleL instance."""
-        kind = "MonotoneMap"
-        type_ = "M_ScaleL"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_ScaleL"] = "M_ScaleL"
         return cls(
             description=description,
             hash=hash,
@@ -35240,8 +34618,8 @@ class M_ScaleU(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_ScaleU instance."""
-        kind = "MonotoneMap"
-        type_ = "M_ScaleU"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_ScaleU"] = "M_ScaleU"
         return cls(
             description=description,
             hash=hash,
@@ -35279,8 +34657,8 @@ class M_SmashInjection(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_SmashInjection instance."""
-        kind = "MonotoneMap"
-        type_ = "M_SmashInjection"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_SmashInjection"] = "M_SmashInjection"
         return cls(
             description=description,
             hash=hash,
@@ -35319,8 +34697,8 @@ class M_SubLConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_SubLConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_SubLConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_SubLConstant"] = "M_SubLConstant"
         return cls(
             description=description,
             hash=hash,
@@ -35360,8 +34738,8 @@ class M_SubUConstant(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_SubUConstant instance."""
-        kind = "MonotoneMap"
-        type_ = "M_SubUConstant"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_SubUConstant"] = "M_SubUConstant"
         return cls(
             description=description,
             hash=hash,
@@ -35398,8 +34776,8 @@ class M_TakeIndex(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_TakeIndex instance."""
-        kind = "MonotoneMap"
-        type_ = "M_TakeIndex"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_TakeIndex"] = "M_TakeIndex"
         return cls(
             description=description,
             hash=hash,
@@ -35435,8 +34813,8 @@ class M_TakeRange(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_TakeRange instance."""
-        kind = "MonotoneMap"
-        type_ = "M_TakeRange"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_TakeRange"] = "M_TakeRange"
         return cls(
             description=description,
             hash=hash,
@@ -35472,8 +34850,8 @@ class M_Threshold1(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Threshold1 instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Threshold1"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Threshold1"] = "M_Threshold1"
         return cls(
             description=description,
             hash=hash,
@@ -35509,8 +34887,8 @@ class M_Threshold2(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_Threshold2 instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Threshold2"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Threshold2"] = "M_Threshold2"
         return cls(
             description=description,
             hash=hash,
@@ -35537,8 +34915,8 @@ class M_TopIfNotBottom(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_TopIfNotBottom instance."""
-        kind = "MonotoneMap"
-        type_ = "M_TopIfNotBottom"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_TopIfNotBottom"] = "M_TopIfNotBottom"
         return cls(
             description=description,
             hash=hash,
@@ -35564,8 +34942,8 @@ class M_Undefined(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Undefined instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Undefined"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Undefined"] = "M_Undefined"
         return cls(
             description=description,
             hash=hash,
@@ -35591,8 +34969,8 @@ class M_Unknown(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Unknown instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Unknown"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Unknown"] = "M_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -35618,8 +34996,8 @@ class M_Unlift(MonotoneMap):
         cls, *, cod: Poset, dom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new M_Unlift instance."""
-        kind = "MonotoneMap"
-        type_ = "M_Unlift"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_Unlift"] = "M_Unlift"
         return cls(
             description=description,
             hash=hash,
@@ -35657,8 +35035,8 @@ class M_X_Leq_C(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_X_Leq_C instance."""
-        kind = "MonotoneMap"
-        type_ = "M_X_Leq_C"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_X_Leq_C"] = "M_X_Leq_C"
         return cls(
             description=description,
             hash=hash,
@@ -35698,8 +35076,8 @@ class M_X_Lt_C(MonotoneMap):
         version: str | None = None,
     ) -> Self:
         """Create a new M_X_Lt_C instance."""
-        kind = "MonotoneMap"
-        type_ = "M_X_Lt_C"
+        kind: Literal["MonotoneMap"] = "MonotoneMap"
+        type_: Literal["M_X_Lt_C"] = "M_X_Lt_C"
         return cls(
             description=description,
             hash=hash,
@@ -35737,8 +35115,8 @@ class MapCheck(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new MapCheck instance."""
-        kind = "Check"
-        type_ = "MapCheck"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["MapCheck"] = "MapCheck"
         return cls(
             description=description,
             hash=hash,
@@ -35787,7 +35165,7 @@ class ModelFunctionality(ConnectionSource):
     @classmethod
     def make(cls, *, functionality: str) -> Self:
         """Create a new ModelFunctionality instance."""
-        type_ = "ModelFunctionality"
+        type_: Literal["ModelFunctionality"] = "ModelFunctionality"
         return cls(
             type_=type_,
             functionality=functionality,
@@ -35807,7 +35185,7 @@ class ModelRequirement(ConnectionTarget):
     @classmethod
     def make(cls, *, requirement: str) -> Self:
         """Create a new ModelRequirement instance."""
-        type_ = "ModelRequirement"
+        type_: Literal["ModelRequirement"] = "ModelRequirement"
         return cls(
             type_=type_,
             requirement=requirement,
@@ -35874,8 +35252,8 @@ class NDPInterface_Explicit(NDPInterface):
         address: Address | None = None,
     ) -> Self:
         """Create a new NDPInterface_Explicit instance."""
-        kind = "NDPInterface"
-        type_ = "NDPInterface_Explicit"
+        kind: Literal["NDPInterface"] = "NDPInterface"
+        type_: Literal["NDPInterface_Explicit"] = "NDPInterface_Explicit"
         return cls(
             description=description,
             hash=hash,
@@ -35926,8 +35304,8 @@ class NDPTemplate_Simple(NDPTemplate):
         address: Address | None = None,
     ) -> Self:
         """Create a new NDPTemplate_Simple instance."""
-        kind = "NDPTemplate"
-        type_ = "NDPTemplate_Simple"
+        kind: Literal["NDPTemplate"] = "NDPTemplate"
+        type_: Literal["NDPTemplate_Simple"] = "NDPTemplate_Simple"
         return cls(
             description=description,
             hash=hash,
@@ -35969,8 +35347,8 @@ class NDP_Composite(NDP):
         address: Address | None = None,
     ) -> Self:
         """Create a new NDP_Composite instance."""
-        kind = "NDP"
-        type_ = "NDP_Composite"
+        kind: Literal["NDP"] = "NDP"
+        type_: Literal["NDP_Composite"] = "NDP_Composite"
         return cls(
             description=description,
             hash=hash,
@@ -36013,8 +35391,8 @@ class NDP_Simple(NDP):
         address: Address | None = None,
     ) -> Self:
         """Create a new NDP_Simple instance."""
-        kind = "NDP"
-        type_ = "NDP_Simple"
+        kind: Literal["NDP"] = "NDP"
+        type_: Literal["NDP_Simple"] = "NDP_Simple"
         return cls(
             description=description,
             hash=hash,
@@ -36060,8 +35438,8 @@ class NDP_Sum(NDP):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new NDP_Sum instance."""
-        kind = "NDP"
-        type_ = "NDP_Sum"
+        kind: Literal["NDP"] = "NDP"
+        type_: Literal["NDP_Sum"] = "NDP_Sum"
         return cls(
             description=description,
             hash=hash,
@@ -36104,8 +35482,8 @@ class NDP_TemplateHole(NDP):
         address: Address | None = None,
     ) -> Self:
         """Create a new NDP_TemplateHole instance."""
-        kind = "NDP"
-        type_ = "NDP_TemplateHole"
+        kind: Literal["NDP"] = "NDP"
+        type_: Literal["NDP_TemplateHole"] = "NDP_TemplateHole"
         return cls(
             description=description,
             hash=hash,
@@ -36136,7 +35514,7 @@ class NodeFunctionality(ConnectionTarget):
     @classmethod
     def make(cls, *, node: str, node_functionality: str) -> Self:
         """Create a new NodeFunctionality instance."""
-        type_ = "NodeFunctionality"
+        type_: Literal["NodeFunctionality"] = "NodeFunctionality"
         return cls(
             type_=type_,
             node=node,
@@ -36159,7 +35537,7 @@ class NodeRequirement(ConnectionSource):
     @classmethod
     def make(cls, *, node: str, node_requirement: str) -> Self:
         """Create a new NodeRequirement instance."""
-        type_ = "NodeRequirement"
+        type_: Literal["NodeRequirement"] = "NodeRequirement"
         return cls(
             type_=type_,
             node=node,
@@ -36230,8 +35608,8 @@ class P_Bool(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_Bool instance."""
-        kind = "Poset"
-        type_ = "P_Bool"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Bool"] = "P_Bool"
         return cls(
             description=description,
             hash=hash,
@@ -36264,8 +35642,8 @@ class P_C_Arrow(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Arrow instance."""
-        kind = "Poset"
-        type_ = "P_C_Arrow"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Arrow"] = "P_C_Arrow"
         return cls(
             description=description,
             hash=hash,
@@ -36299,8 +35677,8 @@ class P_C_Discretized(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Discretized instance."""
-        kind = "Poset"
-        type_ = "P_C_Discretized"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Discretized"] = "P_C_Discretized"
         return cls(
             description=description,
             hash=hash,
@@ -36338,8 +35716,8 @@ class P_C_Lexicographic(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_C_Lexicographic instance."""
-        kind = "Poset"
-        type_ = "P_C_Lexicographic"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Lexicographic"] = "P_C_Lexicographic"
         return cls(
             description=description,
             hash=hash,
@@ -36374,8 +35752,8 @@ class P_C_LowerSets(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_LowerSets instance."""
-        kind = "Poset"
-        type_ = "P_C_LowerSets"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_LowerSets"] = "P_C_LowerSets"
         return cls(
             description=description,
             hash=hash,
@@ -36412,8 +35790,8 @@ class P_C_Multisets(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Multisets instance."""
-        kind = "Poset"
-        type_ = "P_C_Multisets"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Multisets"] = "P_C_Multisets"
         return cls(
             description=description,
             hash=hash,
@@ -36448,8 +35826,8 @@ class P_C_Opposite(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Opposite instance."""
-        kind = "Poset"
-        type_ = "P_C_Opposite"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Opposite"] = "P_C_Opposite"
         return cls(
             description=description,
             hash=hash,
@@ -36483,8 +35861,8 @@ class P_C_Power(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Power instance."""
-        kind = "Poset"
-        type_ = "P_C_Power"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Power"] = "P_C_Power"
         return cls(
             description=description,
             hash=hash,
@@ -36522,8 +35900,8 @@ class P_C_Product(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_C_Product instance."""
-        kind = "Poset"
-        type_ = "P_C_Product"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Product"] = "P_C_Product"
         return cls(
             description=description,
             hash=hash,
@@ -36562,8 +35940,8 @@ class P_C_ProductDS(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_C_ProductDS instance."""
-        kind = "Poset"
-        type_ = "P_C_ProductDS"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_ProductDS"] = "P_C_ProductDS"
         return cls(
             description=description,
             hash=hash,
@@ -36608,8 +35986,8 @@ class P_C_ProductSmash(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_C_ProductSmash instance."""
-        kind = "Poset"
-        type_ = "P_C_ProductSmash"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_ProductSmash"] = "P_C_ProductSmash"
         return cls(
             description=description,
             hash=hash,
@@ -36650,8 +36028,8 @@ class P_C_Sum(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_C_Sum instance."""
-        kind = "Poset"
-        type_ = "P_C_Sum"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Sum"] = "P_C_Sum"
         return cls(
             description=description,
             hash=hash,
@@ -36699,8 +36077,8 @@ class P_C_SumSmash(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_C_SumSmash instance."""
-        kind = "Poset"
-        type_ = "P_C_SumSmash"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_SumSmash"] = "P_C_SumSmash"
         return cls(
             description=description,
             hash=hash,
@@ -36738,8 +36116,8 @@ class P_C_Twisted(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Twisted instance."""
-        kind = "Poset"
-        type_ = "P_C_Twisted"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Twisted"] = "P_C_Twisted"
         return cls(
             description=description,
             hash=hash,
@@ -36776,8 +36154,8 @@ class P_C_Units(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_Units instance."""
-        kind = "Poset"
-        type_ = "P_C_Units"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_Units"] = "P_C_Units"
         return cls(
             description=description,
             hash=hash,
@@ -36812,8 +36190,8 @@ class P_C_UpperSets(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_C_UpperSets instance."""
-        kind = "Poset"
-        type_ = "P_C_UpperSets"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_C_UpperSets"] = "P_C_UpperSets"
         return cls(
             description=description,
             hash=hash,
@@ -36844,11 +36222,11 @@ class P_Decimal(Poset):
         hash: str | None = None,
         version: str | None = None,
         address: Address | None = None,
-        precision: int = json.loads("9"),
+        precision: int = 9,
     ) -> Self:
         """Create a new P_Decimal instance."""
-        kind = "Poset"
-        type_ = "P_Decimal"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Decimal"] = "P_Decimal"
         return cls(
             description=description,
             hash=hash,
@@ -36900,8 +36278,8 @@ class P_F_Bounded(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_F_Bounded instance."""
-        kind = "Poset"
-        type_ = "P_F_Bounded"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_Bounded"] = "P_F_Bounded"
         return cls(
             description=description,
             hash=hash,
@@ -36948,8 +36326,8 @@ class P_F_C_Intersection(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_F_C_Intersection instance."""
-        kind = "Poset"
-        type_ = "P_F_C_Intersection"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_C_Intersection"] = "P_F_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -36992,8 +36370,8 @@ class P_F_C_Union(Poset):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new P_F_C_Union instance."""
-        kind = "Poset"
-        type_ = "P_F_C_Union"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_C_Union"] = "P_F_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -37035,8 +36413,8 @@ class P_F_Interval(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_F_Interval instance."""
-        kind = "Poset"
-        type_ = "P_F_Interval"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_Interval"] = "P_F_Interval"
         return cls(
             description=description,
             hash=hash,
@@ -37075,8 +36453,8 @@ class P_F_LowerClosure(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_F_LowerClosure instance."""
-        kind = "Poset"
-        type_ = "P_F_LowerClosure"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_LowerClosure"] = "P_F_LowerClosure"
         return cls(
             description=description,
             hash=hash,
@@ -37114,8 +36492,8 @@ class P_F_Subposet(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_F_Subposet instance."""
-        kind = "Poset"
-        type_ = "P_F_Subposet"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_Subposet"] = "P_F_Subposet"
         return cls(
             description=description,
             hash=hash,
@@ -37153,8 +36531,8 @@ class P_F_UpperClosure(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_F_UpperClosure instance."""
-        kind = "Poset"
-        type_ = "P_F_UpperClosure"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_F_UpperClosure"] = "P_F_UpperClosure"
         return cls(
             description=description,
             hash=hash,
@@ -37196,8 +36574,8 @@ class P_Finite(Poset):
         aliases: dict[str, list[str]] | None = None,
     ) -> Self:
         """Create a new P_Finite instance."""
-        kind = "Poset"
-        type_ = "P_Finite"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Finite"] = "P_Finite"
         return cls(
             description=description,
             hash=hash,
@@ -37233,8 +36611,8 @@ class P_Float(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_Float instance."""
-        kind = "Poset"
-        type_ = "P_Float"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Float"] = "P_Float"
         return cls(
             description=description,
             hash=hash,
@@ -37274,8 +36652,8 @@ class P_Fractions(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_Fractions instance."""
-        kind = "Poset"
-        type_ = "P_Fractions"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Fractions"] = "P_Fractions"
         return cls(
             description=description,
             hash=hash,
@@ -37311,8 +36689,8 @@ class P_Integer(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_Integer instance."""
-        kind = "Poset"
-        type_ = "P_Integer"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Integer"] = "P_Integer"
         return cls(
             description=description,
             hash=hash,
@@ -37343,8 +36721,8 @@ class P_Unknown(Poset):
         address: Address | None = None,
     ) -> Self:
         """Create a new P_Unknown instance."""
-        kind = "Poset"
-        type_ = "P_Unknown"
+        kind: Literal["Poset"] = "Poset"
+        type_: Literal["P_Unknown"] = "P_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -37371,7 +36749,7 @@ class Projection:
     @classmethod
     def make(cls, *, index: int, ntot: int) -> Self:
         """Create a new Projection instance."""
-        type_ = "Projection"
+        type_: Literal["Projection"] = "Projection"
         return cls(
             index=index,
             ntot=ntot,
@@ -37420,7 +36798,7 @@ class QueryFixFunMinReqData(QueryData):
     @classmethod
     def make(cls, *, f: dict[str, Value], optimize_for: list[str], r: dict[str, Value]) -> Self:
         """Create a new QueryFixFunMinReqData instance."""
-        type_ = "QueryFixFunMinReqData"
+        type_: Literal["QueryFixFunMinReqData"] = "QueryFixFunMinReqData"
         return cls(
             type_=type_,
             f=f,
@@ -37446,7 +36824,7 @@ class QueryFixReqMaxFunData(QueryData):
     @classmethod
     def make(cls, *, f: dict[str, Value], optimize_for: list[str], r: dict[str, Value]) -> Self:
         """Create a new QueryFixReqMaxFunData instance."""
-        type_ = "QueryFixReqMaxFunData"
+        type_: Literal["QueryFixReqMaxFunData"] = "QueryFixReqMaxFunData"
         return cls(
             type_=type_,
             f=f,
@@ -37479,8 +36857,8 @@ class Query_Single(Query):
         address: Address | None = None,
     ) -> Self:
         """Create a new Query_Single instance."""
-        kind = "Query"
-        type_ = "Query_Single"
+        kind: Literal["Query"] = "Query"
+        type_: Literal["Query_Single"] = "Query_Single"
         return cls(
             description=description,
             hash=hash,
@@ -37511,7 +36889,7 @@ class Range:
     @classmethod
     def make(cls, *, ntot: int, start: int, stop: int) -> Self:
         """Create a new Range instance."""
-        type_ = "Range"
+        type_: Literal["Range"] = "Range"
         return cls(
             ntot=ntot,
             start=start,
@@ -37544,8 +36922,8 @@ class SL1Check(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1Check instance."""
-        kind = "Check"
-        type_ = "SL1Check"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["SL1Check"] = "SL1Check"
         return cls(
             description=description,
             hash=hash,
@@ -37670,8 +37048,8 @@ class SL1_C_CodSum(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_CodSum instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_CodSum"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_CodSum"] = "SL1_C_CodSum"
         return cls(
             description=description,
             hash=hash,
@@ -37716,8 +37094,8 @@ class SL1_C_CodSumSmash(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_CodSumSmash instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_CodSumSmash"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_CodSumSmash"] = "SL1_C_CodSumSmash"
         return cls(
             description=description,
             hash=hash,
@@ -37769,8 +37147,8 @@ class SL1_C_ExplicitApprox(SL1Map):
         pessimistic_labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_ExplicitApprox instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_ExplicitApprox"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_ExplicitApprox"] = "SL1_C_ExplicitApprox"
         return cls(
             description=description,
             hash=hash,
@@ -37817,8 +37195,8 @@ class SL1_C_Intersection(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_Intersection instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_Intersection"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_Intersection"] = "SL1_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -37863,8 +37241,8 @@ class SL1_C_Parallel(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_Parallel instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_Parallel"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_Parallel"] = "SL1_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -37909,8 +37287,8 @@ class SL1_C_ProdIntersection(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_ProdIntersection instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_ProdIntersection"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_ProdIntersection"] = "SL1_C_ProdIntersection"
         return cls(
             description=description,
             hash=hash,
@@ -37955,8 +37333,8 @@ class SL1_C_Product(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_Product instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_Product"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_Product"] = "SL1_C_Product"
         return cls(
             description=description,
             hash=hash,
@@ -37997,8 +37375,8 @@ class SL1_C_RefineDomain(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_C_RefineDomain instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_RefineDomain"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_RefineDomain"] = "SL1_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -38042,8 +37420,8 @@ class SL1_C_Series(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_Series instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_Series"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_Series"] = "SL1_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -38084,8 +37462,8 @@ class SL1_C_Trace(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_C_Trace instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_Trace"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_Trace"] = "SL1_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -38129,8 +37507,8 @@ class SL1_C_Union(SL1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL1_C_Union instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_Union"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_Union"] = "SL1_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -38177,8 +37555,8 @@ class SL1_C_WrapUnits(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_C_WrapUnits instance."""
-        kind = "SL1Map"
-        type_ = "SL1_C_WrapUnits"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_C_WrapUnits"] = "SL1_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -38220,8 +37598,8 @@ class SL1_Exact(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_Exact instance."""
-        kind = "SL1Map"
-        type_ = "SL1_Exact"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_Exact"] = "SL1_Exact"
         return cls(
             description=description,
             hash=hash,
@@ -38258,8 +37636,8 @@ class SL1_Identity(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_Identity instance."""
-        kind = "SL1Map"
-        type_ = "SL1_Identity"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_Identity"] = "SL1_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -38298,8 +37676,8 @@ class SL1_InvMultiply(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_InvMultiply instance."""
-        kind = "SL1Map"
-        type_ = "SL1_InvMultiply"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_InvMultiply"] = "SL1_InvMultiply"
         return cls(
             description=description,
             hash=hash,
@@ -38339,8 +37717,8 @@ class SL1_InvSum(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_InvSum instance."""
-        kind = "SL1Map"
-        type_ = "SL1_InvSum"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_InvSum"] = "SL1_InvSum"
         return cls(
             description=description,
             hash=hash,
@@ -38377,8 +37755,8 @@ class SL1_Unknown(SL1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SL1_Unknown instance."""
-        kind = "SL1Map"
-        type_ = "SL1_Unknown"
+        kind: Literal["SL1Map"] = "SL1Map"
+        type_: Literal["SL1_Unknown"] = "SL1_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -38416,8 +37794,8 @@ class SLCheck(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new SLCheck instance."""
-        kind = "Check"
-        type_ = "SLCheck"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["SLCheck"] = "SLCheck"
         return cls(
             description=description,
             hash=hash,
@@ -38541,8 +37919,8 @@ class SL_C_ITransform(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_C_ITransform instance."""
-        kind = "SLMap"
-        type_ = "SL_C_ITransform"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_ITransform"] = "SL_C_ITransform"
         return cls(
             description=description,
             hash=hash,
@@ -38589,8 +37967,8 @@ class SL_C_Intersection(SLMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL_C_Intersection instance."""
-        kind = "SLMap"
-        type_ = "SL_C_Intersection"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_Intersection"] = "SL_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -38637,8 +38015,8 @@ class SL_C_Parallel(SLMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL_C_Parallel instance."""
-        kind = "SLMap"
-        type_ = "SL_C_Parallel"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_Parallel"] = "SL_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -38681,8 +38059,8 @@ class SL_C_RefineDomain(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_C_RefineDomain instance."""
-        kind = "SLMap"
-        type_ = "SL_C_RefineDomain"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_RefineDomain"] = "SL_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -38728,8 +38106,8 @@ class SL_C_Series(SLMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL_C_Series instance."""
-        kind = "SLMap"
-        type_ = "SL_C_Series"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_Series"] = "SL_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -38775,8 +38153,8 @@ class SL_C_Trace(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_C_Trace instance."""
-        kind = "SLMap"
-        type_ = "SL_C_Trace"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_Trace"] = "SL_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -38823,8 +38201,8 @@ class SL_C_Union(SLMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL_C_Union instance."""
-        kind = "SLMap"
-        type_ = "SL_C_Union"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_Union"] = "SL_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -38876,8 +38254,8 @@ class SL_C_WrapUnits(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_C_WrapUnits instance."""
-        kind = "SLMap"
-        type_ = "SL_C_WrapUnits"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_WrapUnits"] = "SL_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -38919,8 +38297,8 @@ class SL_Identity(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_Identity instance."""
-        kind = "SLMap"
-        type_ = "SL_Identity"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_Identity"] = "SL_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -38961,8 +38339,8 @@ class SL_L_Exact(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_L_Exact instance."""
-        kind = "SLMap"
-        type_ = "SL_L_Exact"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_L_Exact"] = "SL_L_Exact"
         return cls(
             description=description,
             hash=hash,
@@ -39015,8 +38393,8 @@ class SL_L_Explicit_Approx(SLMap):
         pessimistic_labels: list[str] | None = None,
     ) -> Self:
         """Create a new SL_L_Explicit_Approx instance."""
-        kind = "SLMap"
-        type_ = "SL_L_Explicit_Approx"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_L_Explicit_Approx"] = "SL_L_Explicit_Approx"
         return cls(
             description=description,
             hash=hash,
@@ -39064,8 +38442,8 @@ class SL_L_Lift1_Constant(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_L_Lift1_Constant instance."""
-        kind = "SLMap"
-        type_ = "SL_L_Lift1_Constant"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_L_Lift1_Constant"] = "SL_L_Lift1_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -39111,8 +38489,8 @@ class SL_L_Lift1_Transform(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_L_Lift1_Transform instance."""
-        kind = "SLMap"
-        type_ = "SL_L_Lift1_Transform"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_L_Lift1_Transform"] = "SL_L_Lift1_Transform"
         return cls(
             description=description,
             hash=hash,
@@ -39152,8 +38530,8 @@ class SL_Unknown(SLMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SL_Unknown instance."""
-        kind = "SLMap"
-        type_ = "SL_Unknown"
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_Unknown"] = "SL_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -39192,8 +38570,8 @@ class SU1Check(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1Check instance."""
-        kind = "Check"
-        type_ = "SU1Check"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["SU1Check"] = "SU1Check"
         return cls(
             description=description,
             hash=hash,
@@ -39318,8 +38696,8 @@ class SU1_C_CodSum(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_CodSum instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_CodSum"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_CodSum"] = "SU1_C_CodSum"
         return cls(
             description=description,
             hash=hash,
@@ -39364,8 +38742,8 @@ class SU1_C_CodSumSmash(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_CodSumSmash instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_CodSumSmash"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_CodSumSmash"] = "SU1_C_CodSumSmash"
         return cls(
             description=description,
             hash=hash,
@@ -39417,8 +38795,8 @@ class SU1_C_ExplicitApprox(SU1Map):
         pessimistic_labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_ExplicitApprox instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_ExplicitApprox"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_ExplicitApprox"] = "SU1_C_ExplicitApprox"
         return cls(
             description=description,
             hash=hash,
@@ -39465,8 +38843,8 @@ class SU1_C_Intersection(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_Intersection instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_Intersection"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_Intersection"] = "SU1_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -39511,8 +38889,8 @@ class SU1_C_Parallel(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_Parallel instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_Parallel"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_Parallel"] = "SU1_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -39557,8 +38935,8 @@ class SU1_C_ProdIntersection(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_ProdIntersection instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_ProdIntersection"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_ProdIntersection"] = "SU1_C_ProdIntersection"
         return cls(
             description=description,
             hash=hash,
@@ -39603,8 +38981,8 @@ class SU1_C_Product(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_Product instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_Product"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_Product"] = "SU1_C_Product"
         return cls(
             description=description,
             hash=hash,
@@ -39645,8 +39023,8 @@ class SU1_C_RefineDomain(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_C_RefineDomain instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_RefineDomain"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_RefineDomain"] = "SU1_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -39690,8 +39068,8 @@ class SU1_C_Series(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_Series instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_Series"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_Series"] = "SU1_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -39732,8 +39110,8 @@ class SU1_C_Trace(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_C_Trace instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_Trace"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_Trace"] = "SU1_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -39777,8 +39155,8 @@ class SU1_C_Union(SU1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU1_C_Union instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_Union"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_Union"] = "SU1_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -39825,8 +39203,8 @@ class SU1_C_WrapUnits(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_C_WrapUnits instance."""
-        kind = "SU1Map"
-        type_ = "SU1_C_WrapUnits"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_C_WrapUnits"] = "SU1_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -39868,8 +39246,8 @@ class SU1_Exact(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_Exact instance."""
-        kind = "SU1Map"
-        type_ = "SU1_Exact"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_Exact"] = "SU1_Exact"
         return cls(
             description=description,
             hash=hash,
@@ -39906,8 +39284,8 @@ class SU1_Identity(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_Identity instance."""
-        kind = "SU1Map"
-        type_ = "SU1_Identity"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_Identity"] = "SU1_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -39946,8 +39324,8 @@ class SU1_InvMultiply(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_InvMultiply instance."""
-        kind = "SU1Map"
-        type_ = "SU1_InvMultiply"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_InvMultiply"] = "SU1_InvMultiply"
         return cls(
             description=description,
             hash=hash,
@@ -39987,8 +39365,8 @@ class SU1_InvSum(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_InvSum instance."""
-        kind = "SU1Map"
-        type_ = "SU1_InvSum"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_InvSum"] = "SU1_InvSum"
         return cls(
             description=description,
             hash=hash,
@@ -40025,8 +39403,8 @@ class SU1_Unknown(SU1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new SU1_Unknown instance."""
-        kind = "SU1Map"
-        type_ = "SU1_Unknown"
+        kind: Literal["SU1Map"] = "SU1Map"
+        type_: Literal["SU1_Unknown"] = "SU1_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -40064,8 +39442,8 @@ class SUCheck(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new SUCheck instance."""
-        kind = "Check"
-        type_ = "SUCheck"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["SUCheck"] = "SUCheck"
         return cls(
             description=description,
             hash=hash,
@@ -40189,8 +39567,8 @@ class SU_C_ITransform(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_C_ITransform instance."""
-        kind = "SUMap"
-        type_ = "SU_C_ITransform"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_ITransform"] = "SU_C_ITransform"
         return cls(
             description=description,
             hash=hash,
@@ -40237,8 +39615,8 @@ class SU_C_Intersection(SUMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU_C_Intersection instance."""
-        kind = "SUMap"
-        type_ = "SU_C_Intersection"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_Intersection"] = "SU_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -40285,8 +39663,8 @@ class SU_C_Parallel(SUMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU_C_Parallel instance."""
-        kind = "SUMap"
-        type_ = "SU_C_Parallel"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_Parallel"] = "SU_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -40329,8 +39707,8 @@ class SU_C_RefineDomain(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_C_RefineDomain instance."""
-        kind = "SUMap"
-        type_ = "SU_C_RefineDomain"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_RefineDomain"] = "SU_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -40376,8 +39754,8 @@ class SU_C_Series(SUMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU_C_Series instance."""
-        kind = "SUMap"
-        type_ = "SU_C_Series"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_Series"] = "SU_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -40423,8 +39801,8 @@ class SU_C_Trace(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_C_Trace instance."""
-        kind = "SUMap"
-        type_ = "SU_C_Trace"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_Trace"] = "SU_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -40471,8 +39849,8 @@ class SU_C_Union(SUMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU_C_Union instance."""
-        kind = "SUMap"
-        type_ = "SU_C_Union"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_Union"] = "SU_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -40524,8 +39902,8 @@ class SU_C_WrapUnits(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_C_WrapUnits instance."""
-        kind = "SUMap"
-        type_ = "SU_C_WrapUnits"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_WrapUnits"] = "SU_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -40567,8 +39945,8 @@ class SU_Identity(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_Identity instance."""
-        kind = "SUMap"
-        type_ = "SU_Identity"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_Identity"] = "SU_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -40609,8 +39987,8 @@ class SU_L_Exact(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_L_Exact instance."""
-        kind = "SUMap"
-        type_ = "SU_L_Exact"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_L_Exact"] = "SU_L_Exact"
         return cls(
             description=description,
             hash=hash,
@@ -40663,8 +40041,8 @@ class SU_L_Explicit_Approx(SUMap):
         pessimistic_labels: list[str] | None = None,
     ) -> Self:
         """Create a new SU_L_Explicit_Approx instance."""
-        kind = "SUMap"
-        type_ = "SU_L_Explicit_Approx"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_L_Explicit_Approx"] = "SU_L_Explicit_Approx"
         return cls(
             description=description,
             hash=hash,
@@ -40712,8 +40090,8 @@ class SU_L_Lift1_Constant(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_L_Lift1_Constant instance."""
-        kind = "SUMap"
-        type_ = "SU_L_Lift1_Constant"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_L_Lift1_Constant"] = "SU_L_Lift1_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -40759,8 +40137,8 @@ class SU_L_Lift1_Transform(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_L_Lift1_Transform instance."""
-        kind = "SUMap"
-        type_ = "SU_L_Lift1_Transform"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_L_Lift1_Transform"] = "SU_L_Lift1_Transform"
         return cls(
             description=description,
             hash=hash,
@@ -40800,8 +40178,8 @@ class SU_Unknown(SUMap):
         version: str | None = None,
     ) -> Self:
         """Create a new SU_Unknown instance."""
-        kind = "SUMap"
-        type_ = "SU_Unknown"
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_Unknown"] = "SU_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -40840,8 +40218,8 @@ class U1Check(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new U1Check instance."""
-        kind = "Check"
-        type_ = "U1Check"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["U1Check"] = "U1Check"
         return cls(
             description=description,
             hash=hash,
@@ -40950,8 +40328,8 @@ class U1_C_CodSum(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_CodSum instance."""
-        kind = "U1Map"
-        type_ = "U1_C_CodSum"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_CodSum"] = "U1_C_CodSum"
         return cls(
             description=description,
             hash=hash,
@@ -40992,8 +40370,8 @@ class U1_C_CodSumSmash(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_CodSumSmash instance."""
-        kind = "U1Map"
-        type_ = "U1_C_CodSumSmash"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_CodSumSmash"] = "U1_C_CodSumSmash"
         return cls(
             description=description,
             hash=hash,
@@ -41034,8 +40412,8 @@ class U1_C_DomUnion(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_DomUnion instance."""
-        kind = "U1Map"
-        type_ = "U1_C_DomUnion"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_DomUnion"] = "U1_C_DomUnion"
         return cls(
             description=description,
             hash=hash,
@@ -41076,8 +40454,8 @@ class U1_C_Intersection(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_Intersection instance."""
-        kind = "U1Map"
-        type_ = "U1_C_Intersection"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_Intersection"] = "U1_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -41118,8 +40496,8 @@ class U1_C_Parallel(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_Parallel instance."""
-        kind = "U1Map"
-        type_ = "U1_C_Parallel"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_Parallel"] = "U1_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -41160,8 +40538,8 @@ class U1_C_ProdIntersection(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_ProdIntersection instance."""
-        kind = "U1Map"
-        type_ = "U1_C_ProdIntersection"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_ProdIntersection"] = "U1_C_ProdIntersection"
         return cls(
             description=description,
             hash=hash,
@@ -41202,8 +40580,8 @@ class U1_C_Product(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_Product instance."""
-        kind = "U1Map"
-        type_ = "U1_C_Product"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_Product"] = "U1_C_Product"
         return cls(
             description=description,
             hash=hash,
@@ -41240,8 +40618,8 @@ class U1_C_RefineDomain(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_C_RefineDomain instance."""
-        kind = "U1Map"
-        type_ = "U1_C_RefineDomain"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_RefineDomain"] = "U1_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -41281,8 +40659,8 @@ class U1_C_Series(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_Series instance."""
-        kind = "U1Map"
-        type_ = "U1_C_Series"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_Series"] = "U1_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -41319,8 +40697,8 @@ class U1_C_Trace(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_C_Trace instance."""
-        kind = "U1Map"
-        type_ = "U1_C_Trace"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_Trace"] = "U1_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -41360,8 +40738,8 @@ class U1_C_Union(U1Map):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U1_C_Union instance."""
-        kind = "U1Map"
-        type_ = "U1_C_Union"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_Union"] = "U1_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -41404,8 +40782,8 @@ class U1_C_WrapUnits(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_C_WrapUnits instance."""
-        kind = "U1Map"
-        type_ = "U1_C_WrapUnits"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_C_WrapUnits"] = "U1_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -41443,8 +40821,8 @@ class U1_Catalog(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_Catalog instance."""
-        kind = "U1Map"
-        type_ = "U1_Catalog"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Catalog"] = "U1_Catalog"
         return cls(
             description=description,
             hash=hash,
@@ -41500,8 +40878,8 @@ class U1_Constant(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_Constant instance."""
-        kind = "U1Map"
-        type_ = "U1_Constant"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Constant"] = "U1_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -41528,8 +40906,8 @@ class U1_Entire(U1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new U1_Entire instance."""
-        kind = "U1Map"
-        type_ = "U1_Entire"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Entire"] = "U1_Entire"
         return cls(
             description=description,
             hash=hash,
@@ -41564,8 +40942,8 @@ class U1_Explicit(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_Explicit instance."""
-        kind = "U1Map"
-        type_ = "U1_Explicit"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Explicit"] = "U1_Explicit"
         return cls(
             description=description,
             hash=hash,
@@ -41621,8 +40999,8 @@ class U1_FromFilter(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_FromFilter instance."""
-        kind = "U1Map"
-        type_ = "U1_FromFilter"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_FromFilter"] = "U1_FromFilter"
         return cls(
             description=description,
             hash=hash,
@@ -41649,8 +41027,8 @@ class U1_Identity(U1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new U1_Identity instance."""
-        kind = "U1Map"
-        type_ = "U1_Identity"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Identity"] = "U1_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -41676,8 +41054,8 @@ class U1_IntersectionOfPrinUpperSets(U1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new U1_IntersectionOfPrinUpperSets instance."""
-        kind = "U1Map"
-        type_ = "U1_IntersectionOfPrinUpperSets"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_IntersectionOfPrinUpperSets"] = "U1_IntersectionOfPrinUpperSets"
         return cls(
             description=description,
             hash=hash,
@@ -41715,8 +41093,8 @@ class U1_InvMul_Opt(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_InvMul_Opt instance."""
-        kind = "U1Map"
-        type_ = "U1_InvMul_Opt"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_InvMul_Opt"] = "U1_InvMul_Opt"
         return cls(
             description=description,
             hash=hash,
@@ -41756,8 +41134,8 @@ class U1_InvMul_Pes(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_InvMul_Pes instance."""
-        kind = "U1Map"
-        type_ = "U1_InvMul_Pes"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_InvMul_Pes"] = "U1_InvMul_Pes"
         return cls(
             description=description,
             hash=hash,
@@ -41797,8 +41175,8 @@ class U1_InvSum_Opt(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_InvSum_Opt instance."""
-        kind = "U1Map"
-        type_ = "U1_InvSum_Opt"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_InvSum_Opt"] = "U1_InvSum_Opt"
         return cls(
             description=description,
             hash=hash,
@@ -41838,8 +41216,8 @@ class U1_InvSum_Pes(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_InvSum_Pes instance."""
-        kind = "U1Map"
-        type_ = "U1_InvSum_Pes"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_InvSum_Pes"] = "U1_InvSum_Pes"
         return cls(
             description=description,
             hash=hash,
@@ -41876,8 +41254,8 @@ class U1_L_Uinv(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_L_Uinv instance."""
-        kind = "U1Map"
-        type_ = "U1_L_Uinv"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_L_Uinv"] = "U1_L_Uinv"
         return cls(
             description=description,
             hash=hash,
@@ -41913,8 +41291,8 @@ class U1_Lift(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_Lift instance."""
-        kind = "U1Map"
-        type_ = "U1_Lift"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Lift"] = "U1_Lift"
         return cls(
             description=description,
             hash=hash,
@@ -41941,8 +41319,8 @@ class U1_RepresentPrincipalUpperSet(U1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new U1_RepresentPrincipalUpperSet instance."""
-        kind = "U1Map"
-        type_ = "U1_RepresentPrincipalUpperSet"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_RepresentPrincipalUpperSet"] = "U1_RepresentPrincipalUpperSet"
         return cls(
             description=description,
             hash=hash,
@@ -41977,8 +41355,8 @@ class U1_Uinv_Join(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_Uinv_Join instance."""
-        kind = "U1Map"
-        type_ = "U1_Uinv_Join"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Uinv_Join"] = "U1_Uinv_Join"
         return cls(
             description=description,
             hash=hash,
@@ -42017,8 +41395,8 @@ class U1_Uinv_JoinConstant(U1Map):
         version: str | None = None,
     ) -> Self:
         """Create a new U1_Uinv_JoinConstant instance."""
-        kind = "U1Map"
-        type_ = "U1_Uinv_JoinConstant"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Uinv_JoinConstant"] = "U1_Uinv_JoinConstant"
         return cls(
             description=description,
             hash=hash,
@@ -42046,8 +41424,8 @@ class U1_UnionOfPrinUpperSets(U1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new U1_UnionOfPrinUpperSets instance."""
-        kind = "U1Map"
-        type_ = "U1_UnionOfPrinUpperSets"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_UnionOfPrinUpperSets"] = "U1_UnionOfPrinUpperSets"
         return cls(
             description=description,
             hash=hash,
@@ -42073,8 +41451,8 @@ class U1_Unknown(U1Map):
         cls, *, kcod: Poset, kdom: Poset, description: str | None = None, hash: str | None = None, version: str | None = None
     ) -> Self:
         """Create a new U1_Unknown instance."""
-        kind = "U1Map"
-        type_ = "U1_Unknown"
+        kind: Literal["U1Map"] = "U1Map"
+        type_: Literal["U1_Unknown"] = "U1_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -42110,8 +41488,8 @@ class UCheck(Check):
         version: str | None = None,
     ) -> Self:
         """Create a new UCheck instance."""
-        kind = "Check"
-        type_ = "UCheck"
+        kind: Literal["Check"] = "Check"
+        type_: Literal["UCheck"] = "UCheck"
         return cls(
             description=description,
             hash=hash,
@@ -42206,8 +41584,8 @@ class U_C_ITransform(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_C_ITransform instance."""
-        kind = "UMap"
-        type_ = "U_C_ITransform"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_ITransform"] = "U_C_ITransform"
         return cls(
             description=description,
             hash=hash,
@@ -42250,8 +41628,8 @@ class U_C_Intersection(UMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U_C_Intersection instance."""
-        kind = "UMap"
-        type_ = "U_C_Intersection"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_Intersection"] = "U_C_Intersection"
         return cls(
             description=description,
             hash=hash,
@@ -42294,8 +41672,8 @@ class U_C_Parallel(UMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U_C_Parallel instance."""
-        kind = "UMap"
-        type_ = "U_C_Parallel"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_Parallel"] = "U_C_Parallel"
         return cls(
             description=description,
             hash=hash,
@@ -42334,8 +41712,8 @@ class U_C_RefineDomain(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_C_RefineDomain instance."""
-        kind = "UMap"
-        type_ = "U_C_RefineDomain"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_RefineDomain"] = "U_C_RefineDomain"
         return cls(
             description=description,
             hash=hash,
@@ -42377,8 +41755,8 @@ class U_C_Series(UMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U_C_Series instance."""
-        kind = "UMap"
-        type_ = "U_C_Series"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_Series"] = "U_C_Series"
         return cls(
             description=description,
             hash=hash,
@@ -42420,8 +41798,8 @@ class U_C_Trace(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_C_Trace instance."""
-        kind = "UMap"
-        type_ = "U_C_Trace"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_Trace"] = "U_C_Trace"
         return cls(
             description=description,
             hash=hash,
@@ -42464,8 +41842,8 @@ class U_C_Union(UMap):
         labels: list[str] | None = None,
     ) -> Self:
         """Create a new U_C_Union instance."""
-        kind = "UMap"
-        type_ = "U_C_Union"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_Union"] = "U_C_Union"
         return cls(
             description=description,
             hash=hash,
@@ -42513,8 +41891,8 @@ class U_C_WrapUnits(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_C_WrapUnits instance."""
-        kind = "UMap"
-        type_ = "U_C_WrapUnits"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_WrapUnits"] = "U_C_WrapUnits"
         return cls(
             description=description,
             hash=hash,
@@ -42555,8 +41933,8 @@ class U_Catalog(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_Catalog instance."""
-        kind = "UMap"
-        type_ = "U_Catalog"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_Catalog"] = "U_Catalog"
         return cls(
             description=description,
             hash=hash,
@@ -42617,8 +41995,8 @@ class U_Constant(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_Constant instance."""
-        kind = "UMap"
-        type_ = "U_Constant"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_Constant"] = "U_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -42653,8 +42031,8 @@ class U_Identity(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_Identity instance."""
-        kind = "UMap"
-        type_ = "U_Identity"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_Identity"] = "U_Identity"
         return cls(
             description=description,
             hash=hash,
@@ -42694,8 +42072,8 @@ class U_L_Lift1_Constant(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_L_Lift1_Constant instance."""
-        kind = "UMap"
-        type_ = "U_L_Lift1_Constant"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_L_Lift1_Constant"] = "U_L_Lift1_Constant"
         return cls(
             description=description,
             hash=hash,
@@ -42737,8 +42115,8 @@ class U_L_Lift1_Transform(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_L_Lift1_Transform instance."""
-        kind = "UMap"
-        type_ = "U_L_Lift1_Transform"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_L_Lift1_Transform"] = "U_L_Lift1_Transform"
         return cls(
             description=description,
             hash=hash,
@@ -42774,8 +42152,8 @@ class U_Unknown(UMap):
         version: str | None = None,
     ) -> Self:
         """Create a new U_Unknown instance."""
-        kind = "UMap"
-        type_ = "U_Unknown"
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_Unknown"] = "U_Unknown"
         return cls(
             description=description,
             hash=hash,
@@ -42814,8 +42192,8 @@ class Unit_None(Unit):
     @classmethod
     def make(cls, *, description: str | None = None) -> Self:
         """Create a new Unit_None instance."""
-        kind = "Unit"
-        type_ = "Unit_None"
+        kind: Literal["Unit"] = "Unit"
+        type_: Literal["Unit_None"] = "Unit_None"
         return cls(
             description=description,
             kind=kind,
@@ -42836,8 +42214,8 @@ class Unit_Single(Unit):
     @classmethod
     def make(cls, *, units: str, description: str | None = None) -> Self:
         """Create a new Unit_Single instance."""
-        kind = "Unit"
-        type_ = "Unit_Single"
+        kind: Literal["Unit"] = "Unit"
+        type_: Literal["Unit_Single"] = "Unit_Single"
         return cls(
             description=description,
             kind=kind,
@@ -42862,8 +42240,8 @@ class Unit_Vector(Unit):
     @classmethod
     def make(cls, *, subs: list[Unit], description: str | None = None, labels: list[str] | None = None) -> Self:
         """Create a new Unit_Vector instance."""
-        kind = "Unit"
-        type_ = "Unit_Vector"
+        kind: Literal["Unit"] = "Unit"
+        type_: Literal["Unit_Vector"] = "Unit_Vector"
         return cls(
             description=description,
             kind=kind,
@@ -42890,8 +42268,8 @@ class Unit_Wrapped(Unit):
     @classmethod
     def make(cls, *, inside: list[Unit], name: str, shape: Any, description: str | None = None) -> Self:
         """Create a new Unit_Wrapped instance."""
-        kind = "Unit"
-        type_ = "Unit_Wrapped"
+        kind: Literal["Unit"] = "Unit"
+        type_: Literal["Unit_Wrapped"] = "Unit_Wrapped"
         return cls(
             description=description,
             kind=kind,
@@ -42925,8 +42303,8 @@ class UpperSet_Unused(UpperSet):
     @classmethod
     def make(cls) -> Self:
         """Create a new UpperSet_Unused instance."""
-        kind = "UpperSet"
-        type_ = "UpperSet_Unused"
+        kind: Literal["UpperSet"] = "UpperSet"
+        type_: Literal["UpperSet_Unused"] = "UpperSet_Unused"
         return cls(
             kind=kind,
             type_=type_,
@@ -42946,8 +42324,8 @@ class UpperSet_UpperClosure(UpperSet):
     @classmethod
     def make(cls, *, points: list[Any]) -> Self:
         """Create a new UpperSet_UpperClosure instance."""
-        kind = "UpperSet"
-        type_ = "UpperSet_UpperClosure"
+        kind: Literal["UpperSet"] = "UpperSet"
+        type_: Literal["UpperSet_UpperClosure"] = "UpperSet_UpperClosure"
         return cls(
             kind=kind,
             type_=type_,
@@ -42993,8 +42371,8 @@ class VU(Value):
         address: Address | None = None,
     ) -> Self:
         """Create a new VU instance."""
-        kind = "Value"
-        type_ = "VU"
+        kind: Literal["Value"] = "Value"
+        type_: Literal["VU"] = "VU"
         return cls(
             description=description,
             hash=hash,
@@ -43013,9 +42391,34 @@ class VU(Value):
 def test_serialization_DP_C_ExplicitApprox_01():
     """Test serialization/deserialization of DP_C_ExplicitApprox example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","optimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_True","value":{"kind":"Value","poset":{"kind":"Poset","naked":[],"ranges":[],"subs":[],"type":"P_C_ProductSmash"},"type":"VU","value":[]}}],"pessimistic":[{"F":{"kind":"Poset","type":"P_Decimal"},"R":{"kind":"Poset","type":"P_Decimal"},"kind":"DP","type":"DP_False"}],"type":"DP_C_ExplicitApprox"}'
-    )
+    data = {
+        "F": {"kind": "Poset", "type": "P_Decimal"},
+        "R": {"kind": "Poset", "type": "P_Decimal"},
+        "kind": "DP",
+        "optimistic": [
+            {
+                "F": {"kind": "Poset", "type": "P_Decimal"},
+                "R": {"kind": "Poset", "type": "P_Decimal"},
+                "kind": "DP",
+                "type": "DP_True",
+                "value": {
+                    "kind": "Value",
+                    "poset": {"kind": "Poset", "naked": [], "ranges": [], "subs": [], "type": "P_C_ProductSmash"},
+                    "type": "VU",
+                    "value": [],
+                },
+            }
+        ],
+        "pessimistic": [
+            {
+                "F": {"kind": "Poset", "type": "P_Decimal"},
+                "R": {"kind": "Poset", "type": "P_Decimal"},
+                "kind": "DP",
+                "type": "DP_False",
+            }
+        ],
+        "type": "DP_C_ExplicitApprox",
+    }
 
     # Create instance from data
     instance = load_DP_C_ExplicitApprox(data)
@@ -43033,7 +42436,7 @@ def test_serialization_DP_C_ExplicitApprox_01():
 def test_serialization_P_Bool_01():
     """Test serialization/deserialization of P_Bool example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","type":"P_Bool"}')
+    data = {"kind": "Poset", "type": "P_Bool"}
 
     # Create instance from data
     instance = load_P_Bool(data)
@@ -43051,7 +42454,7 @@ def test_serialization_P_Bool_01():
 def test_serialization_P_C_Arrow_01():
     """Test serialization/deserialization of P_C_Arrow example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Arrow"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Arrow"}
 
     # Create instance from data
     instance = load_P_C_Arrow(data)
@@ -43069,7 +42472,7 @@ def test_serialization_P_C_Arrow_01():
 def test_serialization_P_C_Discretized_01():
     """Test serialization/deserialization of P_C_Discretized example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Bool"},"type":"P_C_Discretized"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Bool"}, "type": "P_C_Discretized"}
 
     # Create instance from data
     instance = load_P_C_Discretized(data)
@@ -43087,9 +42490,11 @@ def test_serialization_P_C_Discretized_01():
 def test_serialization_P_C_Lexicographic_01():
     """Test serialization/deserialization of P_C_Lexicographic example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Lexicographic"}'
-    )
+    data = {
+        "kind": "Poset",
+        "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+        "type": "P_C_Lexicographic",
+    }
 
     # Create instance from data
     instance = load_P_C_Lexicographic(data)
@@ -43107,7 +42512,7 @@ def test_serialization_P_C_Lexicographic_01():
 def test_serialization_P_C_LowerSets_01():
     """Test serialization/deserialization of P_C_LowerSets example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_LowerSets"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_LowerSets"}
 
     # Create instance from data
     instance = load_P_C_LowerSets(data)
@@ -43125,7 +42530,7 @@ def test_serialization_P_C_LowerSets_01():
 def test_serialization_P_C_Opposite_01():
     """Test serialization/deserialization of P_C_Opposite example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Opposite"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Opposite"}
 
     # Create instance from data
     instance = load_P_C_Opposite(data)
@@ -43143,7 +42548,7 @@ def test_serialization_P_C_Opposite_01():
 def test_serialization_P_C_Power_01():
     """Test serialization/deserialization of P_C_Power example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Power"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Power"}
 
     # Create instance from data
     instance = load_P_C_Power(data)
@@ -43161,9 +42566,11 @@ def test_serialization_P_C_Power_01():
 def test_serialization_P_C_Product_01():
     """Test serialization/deserialization of P_C_Product example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"}'
-    )
+    data = {
+        "kind": "Poset",
+        "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+        "type": "P_C_Product",
+    }
 
     # Create instance from data
     instance = load_P_C_Product(data)
@@ -43181,7 +42588,7 @@ def test_serialization_P_C_Product_01():
 def test_serialization_P_C_Product_02():
     """Test serialization/deserialization of P_C_Product example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","subs":[],"type":"P_C_Product"}')
+    data = {"kind": "Poset", "subs": [], "type": "P_C_Product"}
 
     # Create instance from data
     instance = load_P_C_Product(data)
@@ -43199,7 +42606,7 @@ def test_serialization_P_C_Product_02():
 def test_serialization_P_C_ProductSmash_01():
     """Test serialization/deserialization of P_C_ProductSmash example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","naked":[],"ranges":[],"subs":[],"type":"P_C_ProductSmash"}')
+    data = {"kind": "Poset", "naked": [], "ranges": [], "subs": [], "type": "P_C_ProductSmash"}
 
     # Create instance from data
     instance = load_P_C_ProductSmash(data)
@@ -43217,9 +42624,30 @@ def test_serialization_P_C_ProductSmash_01():
 def test_serialization_P_C_ProductSmash_02():
     """Test serialization/deserialization of P_C_ProductSmash example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","naked":[true,false,true],"ranges":[{"ntot":4,"start":0,"stop":1,"type":"Range"},{"ntot":4,"start":1,"stop":3,"type":"Range"},{"ntot":4,"start":3,"stop":4,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":1,"stop":2,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_ProductSmash"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_ProductSmash"}'
-    )
+    data = {
+        "kind": "Poset",
+        "naked": [True, False, True],
+        "ranges": [
+            {"ntot": 4, "start": 0, "stop": 1, "type": "Range"},
+            {"ntot": 4, "start": 1, "stop": 3, "type": "Range"},
+            {"ntot": 4, "start": 3, "stop": 4, "type": "Range"},
+        ],
+        "subs": [
+            {"kind": "Poset", "type": "P_Decimal"},
+            {
+                "kind": "Poset",
+                "naked": [True, True],
+                "ranges": [
+                    {"ntot": 2, "start": 0, "stop": 1, "type": "Range"},
+                    {"ntot": 2, "start": 1, "stop": 2, "type": "Range"},
+                ],
+                "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+                "type": "P_C_ProductSmash",
+            },
+            {"kind": "Poset", "type": "P_Decimal"},
+        ],
+        "type": "P_C_ProductSmash",
+    }
 
     # Create instance from data
     instance = load_P_C_ProductSmash(data)
@@ -43237,9 +42665,11 @@ def test_serialization_P_C_ProductSmash_02():
 def test_serialization_P_C_Sum_01():
     """Test serialization/deserialization of P_C_Sum example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Sum"}'
-    )
+    data = {
+        "kind": "Poset",
+        "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+        "type": "P_C_Sum",
+    }
 
     # Create instance from data
     instance = load_P_C_Sum(data)
@@ -43257,9 +42687,14 @@ def test_serialization_P_C_Sum_01():
 def test_serialization_P_C_SumSmash_01():
     """Test serialization/deserialization of P_C_SumSmash example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","naked":[true,true],"ranges":[{"ntot":2,"start":0,"stop":1,"type":"Range"},{"ntot":2,"start":0,"stop":1,"type":"Range"}],"subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"trivial":false,"type":"P_C_SumSmash"}'
-    )
+    data = {
+        "kind": "Poset",
+        "naked": [True, True],
+        "ranges": [{"ntot": 2, "start": 0, "stop": 1, "type": "Range"}, {"ntot": 2, "start": 0, "stop": 1, "type": "Range"}],
+        "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+        "trivial": False,
+        "type": "P_C_SumSmash",
+    }
 
     # Create instance from data
     instance = load_P_C_SumSmash(data)
@@ -43277,7 +42712,7 @@ def test_serialization_P_C_SumSmash_01():
 def test_serialization_P_C_Twisted_01():
     """Test serialization/deserialization of P_C_Twisted example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Twisted"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Twisted"}
 
     # Create instance from data
     instance = load_P_C_Twisted(data)
@@ -43295,9 +42730,12 @@ def test_serialization_P_C_Twisted_01():
 def test_serialization_P_C_Units_01():
     """Test serialization/deserialization of P_C_Units example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_Units","units":{"kind":"Unit","type":"Unit_Single","units":"m^2/s"}}'
-    )
+    data = {
+        "kind": "Poset",
+        "poset": {"kind": "Poset", "type": "P_Decimal"},
+        "type": "P_C_Units",
+        "units": {"kind": "Unit", "type": "Unit_Single", "units": "m^2/s"},
+    }
 
     # Create instance from data
     instance = load_P_C_Units(data)
@@ -43315,9 +42753,23 @@ def test_serialization_P_C_Units_01():
 def test_serialization_P_C_Units_02():
     """Test serialization/deserialization of P_C_Units example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Decimal"}],"type":"P_C_Product"},"type":"P_C_Units","units":{"kind":"Unit","subs":[{"kind":"Unit","type":"Unit_Single","units":"m"},{"kind":"Unit","type":"Unit_Single","units":"g"}],"type":"Unit_Vector"}}'
-    )
+    data = {
+        "kind": "Poset",
+        "poset": {
+            "kind": "Poset",
+            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Decimal"}],
+            "type": "P_C_Product",
+        },
+        "type": "P_C_Units",
+        "units": {
+            "kind": "Unit",
+            "subs": [
+                {"kind": "Unit", "type": "Unit_Single", "units": "m"},
+                {"kind": "Unit", "type": "Unit_Single", "units": "g"},
+            ],
+            "type": "Unit_Vector",
+        },
+    }
 
     # Create instance from data
     instance = load_P_C_Units(data)
@@ -43335,7 +42787,7 @@ def test_serialization_P_C_Units_02():
 def test_serialization_P_C_UpperSets_01():
     """Test serialization/deserialization of P_C_UpperSets example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_C_UpperSets"}')
+    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_UpperSets"}
 
     # Create instance from data
     instance = load_P_C_UpperSets(data)
@@ -43353,7 +42805,7 @@ def test_serialization_P_C_UpperSets_01():
 def test_serialization_P_Decimal_01():
     """Test serialization/deserialization of P_Decimal example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","precision":9,"type":"P_Decimal"}')
+    data = {"kind": "Poset", "precision": 9, "type": "P_Decimal"}
 
     # Create instance from data
     instance = load_P_Decimal(data)
@@ -43371,9 +42823,17 @@ def test_serialization_P_Decimal_01():
 def test_serialization_P_F_Bounded_01():
     """Test serialization/deserialization of P_F_Bounded example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"bottom":"0","bound_high":"+inf","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimal"},"step":"1","top":"+inf","type":"P_F_Bounded"}'
-    )
+    data = {
+        "bottom": "0",
+        "bound_high": "+inf",
+        "bound_low": "0",
+        "kind": "Poset",
+        "offset": "0",
+        "poset": {"kind": "Poset", "type": "P_Decimal"},
+        "step": "1",
+        "top": "+inf",
+        "type": "P_F_Bounded",
+    }
 
     # Create instance from data
     instance = load_P_F_Bounded(data)
@@ -43391,9 +42851,17 @@ def test_serialization_P_F_Bounded_01():
 def test_serialization_P_F_Bounded_02():
     """Test serialization/deserialization of P_F_Bounded example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"bottom":"-inf","bound_high":"+inf","bound_low":"-inf","kind":"Poset","offset":"1","poset":{"kind":"Poset","type":"P_Decimal"},"step":"2","top":"+inf","type":"P_F_Bounded"}'
-    )
+    data = {
+        "bottom": "-inf",
+        "bound_high": "+inf",
+        "bound_low": "-inf",
+        "kind": "Poset",
+        "offset": "1",
+        "poset": {"kind": "Poset", "type": "P_Decimal"},
+        "step": "2",
+        "top": "+inf",
+        "type": "P_F_Bounded",
+    }
 
     # Create instance from data
     instance = load_P_F_Bounded(data)
@@ -43411,9 +42879,17 @@ def test_serialization_P_F_Bounded_02():
 def test_serialization_P_F_Bounded_03():
     """Test serialization/deserialization of P_F_Bounded example 3."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"bottom":"-inf","bound_high":"6","bound_low":"0","kind":"Poset","offset":"0","poset":{"kind":"Poset","type":"P_Decimal"},"step":"1.5","top":"+inf","type":"P_F_Bounded"}'
-    )
+    data = {
+        "bottom": "-inf",
+        "bound_high": "6",
+        "bound_low": "0",
+        "kind": "Poset",
+        "offset": "0",
+        "poset": {"kind": "Poset", "type": "P_Decimal"},
+        "step": "1.5",
+        "top": "+inf",
+        "type": "P_F_Bounded",
+    }
 
     # Create instance from data
     instance = load_P_F_Bounded(data)
@@ -43431,9 +42907,15 @@ def test_serialization_P_F_Bounded_03():
 def test_serialization_P_F_C_Union_01():
     """Test serialization/deserialization of P_F_C_Union example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"ambient":{"kind":"Poset","type":"P_Decimal"},"kind":"Poset","subs":[{"high":"20","kind":"Poset","low":"10","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"},{"high":"35","kind":"Poset","low":"30","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"}],"type":"P_F_C_Union"}'
-    )
+    data = {
+        "ambient": {"kind": "Poset", "type": "P_Decimal"},
+        "kind": "Poset",
+        "subs": [
+            {"high": "20", "kind": "Poset", "low": "10", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Interval"},
+            {"high": "35", "kind": "Poset", "low": "30", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Interval"},
+        ],
+        "type": "P_F_C_Union",
+    }
 
     # Create instance from data
     instance = load_P_F_C_Union(data)
@@ -43451,7 +42933,7 @@ def test_serialization_P_F_C_Union_01():
 def test_serialization_P_F_Interval_01():
     """Test serialization/deserialization of P_F_Interval example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"high":"20","kind":"Poset","low":"10","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Interval"}')
+    data = {"high": "20", "kind": "Poset", "low": "10", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Interval"}
 
     # Create instance from data
     instance = load_P_F_Interval(data)
@@ -43469,9 +42951,16 @@ def test_serialization_P_F_Interval_01():
 def test_serialization_P_F_LowerClosure_01():
     """Test serialization/deserialization of P_F_LowerClosure example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","ls":{"kind":"LowerSet","points":[["10",true],["20",false]],"type":"LowerSet_LowerClosure"},"poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_LowerClosure"}'
-    )
+    data = {
+        "kind": "Poset",
+        "ls": {"kind": "LowerSet", "points": [["10", True], ["20", False]], "type": "LowerSet_LowerClosure"},
+        "poset": {
+            "kind": "Poset",
+            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+            "type": "P_C_Product",
+        },
+        "type": "P_F_LowerClosure",
+    }
 
     # Create instance from data
     instance = load_P_F_LowerClosure(data)
@@ -43489,9 +42978,7 @@ def test_serialization_P_F_LowerClosure_01():
 def test_serialization_P_F_Subposet_01():
     """Test serialization/deserialization of P_F_Subposet example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"elements":["0.1","0.2"],"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Subposet"}'
-    )
+    data = {"elements": ["0.1", "0.2"], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"}
 
     # Create instance from data
     instance = load_P_F_Subposet(data)
@@ -43509,7 +42996,7 @@ def test_serialization_P_F_Subposet_01():
 def test_serialization_P_F_Subposet_02():
     """Test serialization/deserialization of P_F_Subposet example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"elements":[],"kind":"Poset","poset":{"kind":"Poset","type":"P_Decimal"},"type":"P_F_Subposet"}')
+    data = {"elements": [], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"}
 
     # Create instance from data
     instance = load_P_F_Subposet(data)
@@ -43527,9 +43014,16 @@ def test_serialization_P_F_Subposet_02():
 def test_serialization_P_F_UpperClosure_01():
     """Test serialization/deserialization of P_F_UpperClosure example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"kind":"Poset","poset":{"kind":"Poset","subs":[{"kind":"Poset","type":"P_Decimal"},{"kind":"Poset","type":"P_Bool"}],"type":"P_C_Product"},"type":"P_F_UpperClosure","us":{"kind":"UpperSet","points":[["10",true],["20",false]],"type":"UpperSet_UpperClosure"}}'
-    )
+    data = {
+        "kind": "Poset",
+        "poset": {
+            "kind": "Poset",
+            "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
+            "type": "P_C_Product",
+        },
+        "type": "P_F_UpperClosure",
+        "us": {"kind": "UpperSet", "points": [["10", True], ["20", False]], "type": "UpperSet_UpperClosure"},
+    }
 
     # Create instance from data
     instance = load_P_F_UpperClosure(data)
@@ -43547,7 +43041,7 @@ def test_serialization_P_F_UpperClosure_01():
 def test_serialization_P_Finite_01():
     """Test serialization/deserialization of P_Finite example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"aliases":{},"elements":[],"kind":"Poset","relations":[],"type":"P_Finite"}')
+    data = {"aliases": {}, "elements": [], "kind": "Poset", "relations": [], "type": "P_Finite"}
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43565,7 +43059,7 @@ def test_serialization_P_Finite_01():
 def test_serialization_P_Finite_02():
     """Test serialization/deserialization of P_Finite example 2."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"elements":["a","b"],"kind":"Poset","relations":[],"type":"P_Finite"}')
+    data = {"elements": ["a", "b"], "kind": "Poset", "relations": [], "type": "P_Finite"}
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43583,7 +43077,7 @@ def test_serialization_P_Finite_02():
 def test_serialization_P_Finite_03():
     """Test serialization/deserialization of P_Finite example 3."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"elements":["a","b"],"kind":"Poset","relations":[["a","b"]],"type":"P_Finite"}')
+    data = {"elements": ["a", "b"], "kind": "Poset", "relations": [["a", "b"]], "type": "P_Finite"}
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43601,9 +43095,13 @@ def test_serialization_P_Finite_03():
 def test_serialization_P_Finite_04():
     """Test serialization/deserialization of P_Finite example 4."""
     # Test data from OpenAPI schema example
-    data = json.loads(
-        '{"aliases":{"a":["a1","a2"]},"elements":["a","b","c"],"kind":"Poset","relations":[["a","b"],["b","c"]],"type":"P_Finite"}'
-    )
+    data = {
+        "aliases": {"a": ["a1", "a2"]},
+        "elements": ["a", "b", "c"],
+        "kind": "Poset",
+        "relations": [["a", "b"], ["b", "c"]],
+        "type": "P_Finite",
+    }
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43621,7 +43119,7 @@ def test_serialization_P_Finite_04():
 def test_serialization_P_Float_01():
     """Test serialization/deserialization of P_Float example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","size":"f32","type":"P_Float"}')
+    data = {"kind": "Poset", "size": "f32", "type": "P_Float"}
 
     # Create instance from data
     instance = load_P_Float(data)
@@ -43639,7 +43137,7 @@ def test_serialization_P_Float_01():
 def test_serialization_P_Fractions_01():
     """Test serialization/deserialization of P_Fractions example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","max_abs_denominator":1000,"max_abs_numerator":1000,"size":"i32","type":"P_Fractions"}')
+    data = {"kind": "Poset", "max_abs_denominator": 1000, "max_abs_numerator": 1000, "size": "i32", "type": "P_Fractions"}
 
     # Create instance from data
     instance = load_P_Fractions(data)
@@ -43657,7 +43155,7 @@ def test_serialization_P_Fractions_01():
 def test_serialization_P_Integer_01():
     """Test serialization/deserialization of P_Integer example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","size":"i32","type":"P_Integer"}')
+    data = {"kind": "Poset", "size": "i32", "type": "P_Integer"}
 
     # Create instance from data
     instance = load_P_Integer(data)
@@ -43675,7 +43173,7 @@ def test_serialization_P_Integer_01():
 def test_serialization_P_Unknown_01():
     """Test serialization/deserialization of P_Unknown example 1."""
     # Test data from OpenAPI schema example
-    data = json.loads('{"kind":"Poset","type":"P_Unknown"}')
+    data = {"kind": "Poset", "type": "P_Unknown"}
 
     # Create instance from data
     instance = load_P_Unknown(data)
