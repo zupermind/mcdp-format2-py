@@ -3,7 +3,7 @@
 openapi: "3.1.1"
 info:
   title: "MCDP Format 2 schema"
-  version: "2.18.0"
+  version: "2.19.1"
   license:
     name: "Apache-2.0"
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
@@ -4662,7 +4662,6 @@ components:
                     x & \text{otherwise}
                 \end{cases}
             \end{equation}
-
             where $T \leq V$.
         required:
         - "threshold"
@@ -5610,17 +5609,7 @@ components:
         title: "Threshold map (f-to-r for DP\\_ResNotLessThan)"
         x-latex-schema:
           group: "g70_misc"
-          description: |
-            This map returns a constant value:
-            %
-            \begin{equation}
-                x\mapsto \begin{cases}
-                             x & \text{if } v \leq x \\
-                             v & \text{otherwise}
-                \end{cases}
-            \end{equation}
-
-            This map arises as the f-to-r map of DP\_ResNotLessThan.
+          description: ""
         required:
         - "type"
         - "value"
@@ -11826,14 +11815,7 @@ components:
             \newcommand{\posA}{\mathcal{A}}
             \newcommand{\posB}{\mathcal{B}}
           description: |
-            Computes the upper inverse $\Uinv(m)$ of the monotone map $m$.
-
-            For a monotone map $m: \posA \to \posB$, the upper inverse is defined as:
-            %
-            \begin{align}
-                (\Uinv f):\ \posB^{\op}&\to_{\Pos} P\_C\_UpperSets(\posA)\\
-                q&\mapsto\{p\in\posA\mid q\leq f(p)\}
-            \end{align}
+            Computes the upper inverse of the monotone map $m$.
         required:
         - "m"
         - "type"
