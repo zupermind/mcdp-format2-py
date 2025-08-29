@@ -1,6 +1,6 @@
 """mcdp-format2-py: Python bindings for MCDP Format 2"""
 
-__version__ = "2.17.2508291159"
+__version__ = "2.17.2508291305"
 
 from .formatter import *
 from .schemas import *
