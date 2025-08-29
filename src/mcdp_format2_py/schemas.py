@@ -39,15 +39,194 @@ def load_any(value: object) -> Any:
 
 
 # Collection type loaders
-def validate_enum_1978(
-    value: object,
-) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
+def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Explicit_Option(item) for item in value]
+
+
+def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Check_Data(item) for item in value]
+
+
+def load_list_of_UMap(value: object) -> list[UMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UMap(item) for item in value]
+
+
+def load_enum_ComputeJob_F_to_R_ComputeJob_R_to_F(value: object) -> Literal["ComputeJob_F_to_R", "ComputeJob_R_to_F"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
+    allowed_values = ["ComputeJob_F_to_R", "ComputeJob_R_to_F"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
+
+
+def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SUCheck_Data(item) for item in value]
+
+
+def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Catalog_Options(item) for item in value]
+
+
+def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_MapCheck_Data(item) for item in value]
+
+
+def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
+    value: object,
+) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_list_of_any(value: object) -> list[list[Any]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_any(item) for item in value]
+
+
+def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Check_Data(item) for item in value]
+
+
+def validate_enum_4eeb(
+    value: object,
+) -> Literal[
+    "SL_C_ITransform",
+    "SL_C_Intersection",
+    "SL_C_Parallel",
+    "SL_C_RefineDomain",
+    "SL_C_Series",
+    "SL_C_Trace",
+    "SL_C_Union",
+    "SL_C_WrapUnits",
+    "SL_Identity",
+    "SL_L_Exact",
+    "SL_L_Explicit_Approx",
+    "SL_L_Lift1_Constant",
+    "SL_L_Lift1_Transform",
+    "SL_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SL_C_ITransform",
+        "SL_C_Intersection",
+        "SL_C_Parallel",
+        "SL_C_RefineDomain",
+        "SL_C_Series",
+        "SL_C_Trace",
+        "SL_C_Union",
+        "SL_C_WrapUnits",
+        "SL_Identity",
+        "SL_L_Exact",
+        "SL_L_Explicit_Approx",
+        "SL_L_Lift1_Constant",
+        "SL_L_Lift1_Transform",
+        "SL_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_4f69(
+    value: object,
+) -> Literal[
+    "SU_C_ITransform",
+    "SU_C_Intersection",
+    "SU_C_Parallel",
+    "SU_C_RefineDomain",
+    "SU_C_Series",
+    "SU_C_Trace",
+    "SU_C_Union",
+    "SU_C_WrapUnits",
+    "SU_Identity",
+    "SU_L_Exact",
+    "SU_L_Explicit_Approx",
+    "SU_L_Lift1_Constant",
+    "SU_L_Lift1_Transform",
+    "SU_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SU_C_ITransform",
+        "SU_C_Intersection",
+        "SU_C_Parallel",
+        "SU_C_RefineDomain",
+        "SU_C_Series",
+        "SU_C_Trace",
+        "SU_C_Union",
+        "SU_C_WrapUnits",
+        "SU_Identity",
+        "SU_L_Exact",
+        "SU_L_Explicit_Approx",
+        "SU_L_Lift1_Constant",
+        "SU_L_Lift1_Transform",
+        "SU_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
+    value: object,
+) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_L1Map(value: object) -> list[L1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1Map(item) for item in value]
+
+
+def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1_Catalog_Options(item) for item in value]
+
+
+def load_list_of_LMap(value: object) -> list[LMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_LMap(item) for item in value]
 
 
 def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
@@ -57,11 +236,256 @@ def load_dict_of_str_NDPInterface(value: object) -> dict[str, NDPInterface]:
     return {k: load_NDPInterface(v) for k, v in value.items()}
 
 
-def load_list_of_SLMap(value: object) -> list[SLMap]:
+def load_dict_of_str_int(value: object) -> dict[str, int]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_int(v) for k, v in value.items()}
+
+
+def validate_enum_8a74(
+    value: object,
+) -> Literal[
+    "P_Bool",
+    "P_C_Arrow",
+    "P_C_Discretized",
+    "P_C_Lexicographic",
+    "P_C_LowerSets",
+    "P_C_Multisets",
+    "P_C_Opposite",
+    "P_C_Power",
+    "P_C_Product",
+    "P_C_ProductDS",
+    "P_C_ProductSmash",
+    "P_C_Sum",
+    "P_C_SumSmash",
+    "P_C_Twisted",
+    "P_C_Units",
+    "P_C_UpperSets",
+    "P_Decimal",
+    "P_F_Bounded",
+    "P_F_C_Intersection",
+    "P_F_C_Union",
+    "P_F_Interval",
+    "P_F_LowerClosure",
+    "P_F_Subposet",
+    "P_F_UpperClosure",
+    "P_Finite",
+    "P_Float",
+    "P_Fractions",
+    "P_Integer",
+    "P_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "P_Bool",
+        "P_C_Arrow",
+        "P_C_Discretized",
+        "P_C_Lexicographic",
+        "P_C_LowerSets",
+        "P_C_Multisets",
+        "P_C_Opposite",
+        "P_C_Power",
+        "P_C_Product",
+        "P_C_ProductDS",
+        "P_C_ProductSmash",
+        "P_C_Sum",
+        "P_C_SumSmash",
+        "P_C_Twisted",
+        "P_C_Units",
+        "P_C_UpperSets",
+        "P_Decimal",
+        "P_F_Bounded",
+        "P_F_C_Intersection",
+        "P_F_C_Union",
+        "P_F_Interval",
+        "P_F_LowerClosure",
+        "P_F_Subposet",
+        "P_F_UpperClosure",
+        "P_Finite",
+        "P_Float",
+        "P_Fractions",
+        "P_Integer",
+        "P_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_4700(
+    value: object,
+) -> Literal[
+    "L_C_ITransform",
+    "L_C_Intersection",
+    "L_C_Parallel",
+    "L_C_RefineDomain",
+    "L_C_Series",
+    "L_C_Trace",
+    "L_C_Union",
+    "L_C_WrapUnits",
+    "L_Catalog",
+    "L_Constant",
+    "L_Identity",
+    "L_L_Lift1_Constant",
+    "L_L_Lift1_Transform",
+    "L_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L_C_ITransform",
+        "L_C_Intersection",
+        "L_C_Parallel",
+        "L_C_RefineDomain",
+        "L_C_Series",
+        "L_C_Trace",
+        "L_C_Union",
+        "L_C_WrapUnits",
+        "L_Catalog",
+        "L_Constant",
+        "L_Identity",
+        "L_L_Lift1_Constant",
+        "L_L_Lift1_Transform",
+        "L_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_SLMap(item) for item in value]
+    return [load_MonotoneMap(item) for item in value]
+
+
+def validate_enum_2e3b(
+    value: object,
+) -> Literal[
+    "Check",
+    "ComputeJob",
+    "DP",
+    "L1Map",
+    "LMap",
+    "MonotoneMap",
+    "NDP",
+    "NDPInterface",
+    "NDPTemplate",
+    "Poset",
+    "Query",
+    "SL1Map",
+    "SLMap",
+    "SU1Map",
+    "SUMap",
+    "U1Map",
+    "UMap",
+    "Value",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "Check",
+        "ComputeJob",
+        "DP",
+        "L1Map",
+        "LMap",
+        "MonotoneMap",
+        "NDP",
+        "NDPInterface",
+        "NDPTemplate",
+        "Poset",
+        "Query",
+        "SL1Map",
+        "SLMap",
+        "SU1Map",
+        "SUMap",
+        "U1Map",
+        "UMap",
+        "Value",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Check_Data(item) for item in value]
+
+
+def load_list_of_bool(value: object) -> list[bool]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_bool(item) for item in value]
+
+
+def validate_enum_5d65(
+    value: object,
+) -> Literal[
+    "SL1_C_CodSum",
+    "SL1_C_CodSumSmash",
+    "SL1_C_ExplicitApprox",
+    "SL1_C_Intersection",
+    "SL1_C_Parallel",
+    "SL1_C_ProdIntersection",
+    "SL1_C_Product",
+    "SL1_C_RefineDomain",
+    "SL1_C_Series",
+    "SL1_C_Trace",
+    "SL1_C_Union",
+    "SL1_C_WrapUnits",
+    "SL1_Exact",
+    "SL1_Identity",
+    "SL1_InvMultiply",
+    "SL1_InvSum",
+    "SL1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "SL1_C_CodSum",
+        "SL1_C_CodSumSmash",
+        "SL1_C_ExplicitApprox",
+        "SL1_C_Intersection",
+        "SL1_C_Parallel",
+        "SL1_C_ProdIntersection",
+        "SL1_C_Product",
+        "SL1_C_RefineDomain",
+        "SL1_C_Series",
+        "SL1_C_Trace",
+        "SL1_C_Union",
+        "SL1_C_WrapUnits",
+        "SL1_Exact",
+        "SL1_Identity",
+        "SL1_InvMultiply",
+        "SL1_InvSum",
+        "SL1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_dict_of_str_Value(value: object) -> dict[str, Value]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Value(v) for k, v in value.items()}
 
 
 def validate_enum_5dfe(
@@ -105,6 +529,226 @@ def validate_enum_5dfe(
         "SU1_InvMultiply",
         "SU1_InvSum",
         "SU1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_NDP(v) for k, v in value.items()}
+
+
+def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelFunctionality", "NodeRequirement"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def validate_enum_a17d(
+    value: object,
+) -> Literal[
+    "L1_C_CodSum",
+    "L1_C_CodSumSmash",
+    "L1_C_DomUnion",
+    "L1_C_Intersection",
+    "L1_C_Parallel",
+    "L1_C_ProdIntersection",
+    "L1_C_Product",
+    "L1_C_RefineDomain",
+    "L1_C_Series",
+    "L1_C_Trace",
+    "L1_C_Union",
+    "L1_C_WrapUnits",
+    "L1_Catalog",
+    "L1_Constant",
+    "L1_Entire",
+    "L1_Explicit",
+    "L1_FromFilter",
+    "L1_Identity",
+    "L1_IntersectionOfPrinLowerSets",
+    "L1_InvMul_Opt",
+    "L1_InvMul_Pes",
+    "L1_InvSum_Opt",
+    "L1_InvSum_Pes",
+    "L1_L_Linv",
+    "L1_Lift",
+    "L1_RepresentPrincipalLowerSet",
+    "L1_TopAlternating",
+    "L1_UnionOfPrinLowerSets",
+    "L1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "L1_C_CodSum",
+        "L1_C_CodSumSmash",
+        "L1_C_DomUnion",
+        "L1_C_Intersection",
+        "L1_C_Parallel",
+        "L1_C_ProdIntersection",
+        "L1_C_Product",
+        "L1_C_RefineDomain",
+        "L1_C_Series",
+        "L1_C_Trace",
+        "L1_C_Union",
+        "L1_C_WrapUnits",
+        "L1_Catalog",
+        "L1_Constant",
+        "L1_Entire",
+        "L1_Explicit",
+        "L1_FromFilter",
+        "L1_Identity",
+        "L1_IntersectionOfPrinLowerSets",
+        "L1_InvMul_Opt",
+        "L1_InvMul_Pes",
+        "L1_InvSum_Opt",
+        "L1_InvSum_Pes",
+        "L1_L_Linv",
+        "L1_Lift",
+        "L1_RepresentPrincipalLowerSet",
+        "L1_TopAlternating",
+        "L1_UnionOfPrinLowerSets",
+        "L1_Unknown",
+    ]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_SL1Map(value: object) -> list[SL1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SL1Map(item) for item in value]
+
+
+def load_list_of_Poset(value: object) -> list[Poset]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Poset(item) for item in value]
+
+
+def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L_Catalog_Options(item) for item in value]
+
+
+def load_list_of_Connection(value: object) -> list[Connection]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Connection(item) for item in value]
+
+
+def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_UCheck_Data(item) for item in value]
+
+
+def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
+    value: object,
+) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_Range(value: object) -> list[Range]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_Range(item) for item in value]
+
+
+def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Check_Data(item) for item in value]
+
+
+def validate_enum_a898(
+    value: object,
+) -> Literal[
+    "U1_C_CodSum",
+    "U1_C_CodSumSmash",
+    "U1_C_DomUnion",
+    "U1_C_Intersection",
+    "U1_C_Parallel",
+    "U1_C_ProdIntersection",
+    "U1_C_Product",
+    "U1_C_RefineDomain",
+    "U1_C_Series",
+    "U1_C_Trace",
+    "U1_C_Union",
+    "U1_C_WrapUnits",
+    "U1_Catalog",
+    "U1_Constant",
+    "U1_Entire",
+    "U1_Explicit",
+    "U1_FromFilter",
+    "U1_Identity",
+    "U1_IntersectionOfPrinUpperSets",
+    "U1_InvMul_Opt",
+    "U1_InvMul_Pes",
+    "U1_InvSum_Opt",
+    "U1_InvSum_Pes",
+    "U1_L_Uinv",
+    "U1_Lift",
+    "U1_RepresentPrincipalUpperSet",
+    "U1_Uinv_Join",
+    "U1_Uinv_JoinConstant",
+    "U1_UnionOfPrinUpperSets",
+    "U1_Unknown",
+]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = [
+        "U1_C_CodSum",
+        "U1_C_CodSumSmash",
+        "U1_C_DomUnion",
+        "U1_C_Intersection",
+        "U1_C_Parallel",
+        "U1_C_ProdIntersection",
+        "U1_C_Product",
+        "U1_C_RefineDomain",
+        "U1_C_Series",
+        "U1_C_Trace",
+        "U1_C_Union",
+        "U1_C_WrapUnits",
+        "U1_Catalog",
+        "U1_Constant",
+        "U1_Entire",
+        "U1_Explicit",
+        "U1_FromFilter",
+        "U1_Identity",
+        "U1_IntersectionOfPrinUpperSets",
+        "U1_InvMul_Opt",
+        "U1_InvMul_Pes",
+        "U1_InvSum_Opt",
+        "U1_InvSum_Pes",
+        "U1_L_Uinv",
+        "U1_Lift",
+        "U1_RepresentPrincipalUpperSet",
+        "U1_Uinv_Join",
+        "U1_Uinv_JoinConstant",
+        "U1_UnionOfPrinUpperSets",
+        "U1_Unknown",
     ]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
@@ -266,25 +910,25 @@ def validate_enum_17f66(
     return value  # type: ignore
 
 
-def load_list_of_Connection(value: object) -> list[Connection]:
+def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_Connection(item) for item in value]
+    return [load_LCheck_Data(item) for item in value]
 
 
-def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_list_of_str(v) for k, v in value.items()}
-
-
-def load_list_of_UCheck_Data(value: object) -> list[UCheck_Data]:
+def load_list_of_SUMap(value: object) -> list[SUMap]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_UCheck_Data(item) for item in value]
+    return [load_SUMap(item) for item in value]
+
+
+def load_list_of_SLMap(value: object) -> list[SLMap]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SLMap(item) for item in value]
 
 
 def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["UpperSet_Unused", "UpperSet_UpperClosure"]:
@@ -296,298 +940,18 @@ def load_enum_UpperSet_Unused_UpperSet_UpperClosure(value: object) -> Literal["U
     return value  # type: ignore
 
 
-def load_list_of_MonotoneMap(value: object) -> list[MonotoneMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MonotoneMap(item) for item in value]
-
-
-def load_list_of_L_Catalog_Options(value: object) -> list[L_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L_Catalog_Options(item) for item in value]
-
-
-def validate_enum_a898(
-    value: object,
-) -> Literal[
-    "U1_C_CodSum",
-    "U1_C_CodSumSmash",
-    "U1_C_DomUnion",
-    "U1_C_Intersection",
-    "U1_C_Parallel",
-    "U1_C_ProdIntersection",
-    "U1_C_Product",
-    "U1_C_RefineDomain",
-    "U1_C_Series",
-    "U1_C_Trace",
-    "U1_C_Union",
-    "U1_C_WrapUnits",
-    "U1_Catalog",
-    "U1_Constant",
-    "U1_Entire",
-    "U1_Explicit",
-    "U1_FromFilter",
-    "U1_Identity",
-    "U1_IntersectionOfPrinUpperSets",
-    "U1_InvMul_Opt",
-    "U1_InvMul_Pes",
-    "U1_InvSum_Opt",
-    "U1_InvSum_Pes",
-    "U1_L_Uinv",
-    "U1_Lift",
-    "U1_RepresentPrincipalUpperSet",
-    "U1_Uinv_Join",
-    "U1_Uinv_JoinConstant",
-    "U1_UnionOfPrinUpperSets",
-    "U1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "U1_C_CodSum",
-        "U1_C_CodSumSmash",
-        "U1_C_DomUnion",
-        "U1_C_Intersection",
-        "U1_C_Parallel",
-        "U1_C_ProdIntersection",
-        "U1_C_Product",
-        "U1_C_RefineDomain",
-        "U1_C_Series",
-        "U1_C_Trace",
-        "U1_C_Union",
-        "U1_C_WrapUnits",
-        "U1_Catalog",
-        "U1_Constant",
-        "U1_Entire",
-        "U1_Explicit",
-        "U1_FromFilter",
-        "U1_Identity",
-        "U1_IntersectionOfPrinUpperSets",
-        "U1_InvMul_Opt",
-        "U1_InvMul_Pes",
-        "U1_InvSum_Opt",
-        "U1_InvSum_Pes",
-        "U1_L_Uinv",
-        "U1_Lift",
-        "U1_RepresentPrincipalUpperSet",
-        "U1_Uinv_Join",
-        "U1_Uinv_JoinConstant",
-        "U1_UnionOfPrinUpperSets",
-        "U1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def validate_enum_29e4(
-    value: object,
-) -> Literal[
-    "Check",
-    "DP",
-    "L1Map",
-    "LMap",
-    "MonotoneMap",
-    "NDP",
-    "NDPInterface",
-    "NDPTemplate",
-    "Poset",
-    "Query",
-    "SL1Map",
-    "SLMap",
-    "SU1Map",
-    "SUMap",
-    "U1Map",
-    "UMap",
-    "Value",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "Check",
-        "DP",
-        "L1Map",
-        "LMap",
-        "MonotoneMap",
-        "NDP",
-        "NDPInterface",
-        "NDPTemplate",
-        "Poset",
-        "Query",
-        "SL1Map",
-        "SLMap",
-        "SU1Map",
-        "SUMap",
-        "U1Map",
-        "UMap",
-        "Value",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SLCheck_Data(item) for item in value]
-
-
-def load_list_of_list_of_str(value: object) -> list[list[str]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_str(item) for item in value]
-
-
-def load_enum_NDP_Composite_NDP_Simple_NDP_Sum_NDP_TemplateHole(
-    value: object,
-) -> Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SL1Map(value: object) -> list[SL1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Map(item) for item in value]
-
-
-def validate_enum_4f69(
-    value: object,
-) -> Literal[
-    "SU_C_ITransform",
-    "SU_C_Intersection",
-    "SU_C_Parallel",
-    "SU_C_RefineDomain",
-    "SU_C_Series",
-    "SU_C_Trace",
-    "SU_C_Union",
-    "SU_C_WrapUnits",
-    "SU_Identity",
-    "SU_L_Exact",
-    "SU_L_Explicit_Approx",
-    "SU_L_Lift1_Constant",
-    "SU_L_Lift1_Transform",
-    "SU_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SU_C_ITransform",
-        "SU_C_Intersection",
-        "SU_C_Parallel",
-        "SU_C_RefineDomain",
-        "SU_C_Series",
-        "SU_C_Trace",
-        "SU_C_Union",
-        "SU_C_WrapUnits",
-        "SU_Identity",
-        "SU_L_Exact",
-        "SU_L_Explicit_Approx",
-        "SU_L_Lift1_Constant",
-        "SU_L_Lift1_Transform",
-        "SU_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_str(value: object) -> list[str]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_str(item) for item in value]
-
-
-def load_enum_QueryFixFunMinReqData_QueryFixReqMaxFunData(
-    value: object,
-) -> Literal["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["QueryFixFunMinReqData", "QueryFixReqMaxFunData"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_bool(value: object) -> list[bool]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_bool(item) for item in value]
-
-
-def validate_enum_4700(
-    value: object,
-) -> Literal[
-    "L_C_ITransform",
-    "L_C_Intersection",
-    "L_C_Parallel",
-    "L_C_RefineDomain",
-    "L_C_Series",
-    "L_C_Trace",
-    "L_C_Union",
-    "L_C_WrapUnits",
-    "L_Catalog",
-    "L_Constant",
-    "L_Identity",
-    "L_L_Lift1_Constant",
-    "L_L_Lift1_Transform",
-    "L_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L_C_ITransform",
-        "L_C_Intersection",
-        "L_C_Parallel",
-        "L_C_RefineDomain",
-        "L_C_Series",
-        "L_C_Trace",
-        "L_C_Union",
-        "L_C_WrapUnits",
-        "L_Catalog",
-        "L_Constant",
-        "L_Identity",
-        "L_L_Lift1_Constant",
-        "L_L_Lift1_Transform",
-        "L_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_UMap(value: object) -> list[UMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_UMap(item) for item in value]
-
-
-def load_list_of_SUCheck_Data(value: object) -> list[SUCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUCheck_Data(item) for item in value]
-
-
 def load_list_of_Unit(value: object) -> list[Unit]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
     return [load_Unit(item) for item in value]
+
+
+def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U_Catalog_Options(item) for item in value]
 
 
 def load_list_of_any(value: object) -> list[Any]:
@@ -597,10 +961,12 @@ def load_list_of_any(value: object) -> list[Any]:
     return [load_any(item) for item in value]
 
 
-def load_enum_LowerSet_LowerClosure_LowerSet_Unused(value: object) -> Literal["LowerSet_LowerClosure", "LowerSet_Unused"]:
+def validate_enum_19fd(
+    value: object,
+) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["LowerSet_LowerClosure", "LowerSet_Unused"]
+    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
@@ -677,6 +1043,96 @@ def validate_enum_b0de(
     return value  # type: ignore
 
 
+def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_Poset(v) for k, v in value.items()}
+
+
+def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_L1_Explicit_Option(item) for item in value]
+
+
+def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP_Catalog_Options(item) for item in value]
+
+
+def load_list_of_DP(value: object) -> list[DP]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_DP(item) for item in value]
+
+
+def load_list_of_SU1Map(value: object) -> list[SU1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_SU1Map(item) for item in value]
+
+
+def load_list_of_ComputePoint(value: object) -> list[ComputePoint]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_ComputePoint(item) for item in value]
+
+
+def load_list_of_list_of_str(value: object) -> list[list[str]]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_list_of_str(item) for item in value]
+
+
+def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_list_of_U1Map(value: object) -> list[U1Map]:
+    if not isinstance(value, list):
+        raise ValueError(f"Expected a list, got {type(value).__name__}")
+    value = cast(list[object], value)
+    return [load_U1Map(item) for item in value]
+
+
+def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["ModelRequirement", "NodeFunctionality"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
+def load_dict_of_str_list_of_str(value: object) -> dict[str, list[str]]:
+    if not isinstance(value, dict):
+        raise ValueError(f"Expected a dict, got {type(value).__name__}")
+    value = cast(dict[str, object], value)
+    return {k: load_list_of_str(v) for k, v in value.items()}
+
+
+def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
 def validate_enum_477e(
     value: object,
 ) -> Literal[
@@ -718,55 +1174,11 @@ def validate_enum_477e(
     return value  # type: ignore
 
 
-def load_list_of_U1Map(value: object) -> list[U1Map]:
+def load_list_of_SLCheck_Data(value: object) -> list[SLCheck_Data]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_U1Map(item) for item in value]
-
-
-def load_list_of_SU1Check_Data(value: object) -> list[SU1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Check_Data(item) for item in value]
-
-
-def load_list_of_U1Check_Data(value: object) -> list[U1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1Check_Data(item) for item in value]
-
-
-def load_list_of_list_of_any(value: object) -> list[list[Any]]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_list_of_any(item) for item in value]
-
-
-def load_list_of_LMap(value: object) -> list[LMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LMap(item) for item in value]
-
-
-def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", "i64", "i128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["i8", "i16", "i32", "i64", "i128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SUMap(value: object) -> list[SUMap]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SUMap(item) for item in value]
+    return [load_SLCheck_Data(item) for item in value]
 
 
 def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
@@ -776,409 +1188,22 @@ def load_list_of_M_Explicit_Option(value: object) -> list[M_Explicit_Option]:
     return [load_M_Explicit_Option(item) for item in value]
 
 
-def load_list_of_DP_Catalog_Options(value: object) -> list[DP_Catalog_Options]:
+def load_list_of_str(value: object) -> list[str]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
     value = cast(list[object], value)
-    return [load_DP_Catalog_Options(item) for item in value]
+    return [load_str(item) for item in value]
 
 
-def load_list_of_L1_Catalog_Options(value: object) -> list[L1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Catalog_Options(item) for item in value]
-
-
-def load_enum_ModelFunctionality_NodeRequirement(value: object) -> Literal["ModelFunctionality", "NodeRequirement"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelFunctionality", "NodeRequirement"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_U1_Explicit_Option(value: object) -> list[U1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Explicit_Option(item) for item in value]
-
-
-def validate_enum_a17d(
+def validate_enum_1978(
     value: object,
-) -> Literal[
-    "L1_C_CodSum",
-    "L1_C_CodSumSmash",
-    "L1_C_DomUnion",
-    "L1_C_Intersection",
-    "L1_C_Parallel",
-    "L1_C_ProdIntersection",
-    "L1_C_Product",
-    "L1_C_RefineDomain",
-    "L1_C_Series",
-    "L1_C_Trace",
-    "L1_C_Union",
-    "L1_C_WrapUnits",
-    "L1_Catalog",
-    "L1_Constant",
-    "L1_Entire",
-    "L1_Explicit",
-    "L1_FromFilter",
-    "L1_Identity",
-    "L1_IntersectionOfPrinLowerSets",
-    "L1_InvMul_Opt",
-    "L1_InvMul_Pes",
-    "L1_InvSum_Opt",
-    "L1_InvSum_Pes",
-    "L1_L_Linv",
-    "L1_Lift",
-    "L1_RepresentPrincipalLowerSet",
-    "L1_TopAlternating",
-    "L1_UnionOfPrinLowerSets",
-    "L1_Unknown",
-]:
+) -> Literal["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]:
     if not isinstance(value, str):
         raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "L1_C_CodSum",
-        "L1_C_CodSumSmash",
-        "L1_C_DomUnion",
-        "L1_C_Intersection",
-        "L1_C_Parallel",
-        "L1_C_ProdIntersection",
-        "L1_C_Product",
-        "L1_C_RefineDomain",
-        "L1_C_Series",
-        "L1_C_Trace",
-        "L1_C_Union",
-        "L1_C_WrapUnits",
-        "L1_Catalog",
-        "L1_Constant",
-        "L1_Entire",
-        "L1_Explicit",
-        "L1_FromFilter",
-        "L1_Identity",
-        "L1_IntersectionOfPrinLowerSets",
-        "L1_InvMul_Opt",
-        "L1_InvMul_Pes",
-        "L1_InvSum_Opt",
-        "L1_InvSum_Pes",
-        "L1_L_Linv",
-        "L1_Lift",
-        "L1_RepresentPrincipalLowerSet",
-        "L1_TopAlternating",
-        "L1_UnionOfPrinLowerSets",
-        "L1_Unknown",
-    ]
+    allowed_values = ["L1Check", "LCheck", "MapCheck", "SL1Check", "SLCheck", "SU1Check", "SUCheck", "U1Check", "UCheck"]
     if value not in allowed_values:
         raise ValueError(f"Expected one of {allowed_values}, got {value}")
     return value  # type: ignore
-
-
-def validate_enum_4eeb(
-    value: object,
-) -> Literal[
-    "SL_C_ITransform",
-    "SL_C_Intersection",
-    "SL_C_Parallel",
-    "SL_C_RefineDomain",
-    "SL_C_Series",
-    "SL_C_Trace",
-    "SL_C_Union",
-    "SL_C_WrapUnits",
-    "SL_Identity",
-    "SL_L_Exact",
-    "SL_L_Explicit_Approx",
-    "SL_L_Lift1_Constant",
-    "SL_L_Lift1_Transform",
-    "SL_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SL_C_ITransform",
-        "SL_C_Intersection",
-        "SL_C_Parallel",
-        "SL_C_RefineDomain",
-        "SL_C_Series",
-        "SL_C_Trace",
-        "SL_C_Union",
-        "SL_C_WrapUnits",
-        "SL_Identity",
-        "SL_L_Exact",
-        "SL_L_Explicit_Approx",
-        "SL_L_Lift1_Constant",
-        "SL_L_Lift1_Transform",
-        "SL_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def validate_enum_19fd(
-    value: object,
-) -> Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_L1Map(value: object) -> list[L1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Map(item) for item in value]
-
-
-def load_dict_of_str_Poset(value: object) -> dict[str, Poset]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Poset(v) for k, v in value.items()}
-
-
-def load_list_of_U_Catalog_Options(value: object) -> list[U_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U_Catalog_Options(item) for item in value]
-
-
-def load_list_of_L1_Explicit_Option(value: object) -> list[L1_Explicit_Option]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1_Explicit_Option(item) for item in value]
-
-
-def validate_enum_8a74(
-    value: object,
-) -> Literal[
-    "P_Bool",
-    "P_C_Arrow",
-    "P_C_Discretized",
-    "P_C_Lexicographic",
-    "P_C_LowerSets",
-    "P_C_Multisets",
-    "P_C_Opposite",
-    "P_C_Power",
-    "P_C_Product",
-    "P_C_ProductDS",
-    "P_C_ProductSmash",
-    "P_C_Sum",
-    "P_C_SumSmash",
-    "P_C_Twisted",
-    "P_C_Units",
-    "P_C_UpperSets",
-    "P_Decimal",
-    "P_F_Bounded",
-    "P_F_C_Intersection",
-    "P_F_C_Union",
-    "P_F_Interval",
-    "P_F_LowerClosure",
-    "P_F_Subposet",
-    "P_F_UpperClosure",
-    "P_Finite",
-    "P_Float",
-    "P_Fractions",
-    "P_Integer",
-    "P_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "P_Bool",
-        "P_C_Arrow",
-        "P_C_Discretized",
-        "P_C_Lexicographic",
-        "P_C_LowerSets",
-        "P_C_Multisets",
-        "P_C_Opposite",
-        "P_C_Power",
-        "P_C_Product",
-        "P_C_ProductDS",
-        "P_C_ProductSmash",
-        "P_C_Sum",
-        "P_C_SumSmash",
-        "P_C_Twisted",
-        "P_C_Units",
-        "P_C_UpperSets",
-        "P_Decimal",
-        "P_F_Bounded",
-        "P_F_C_Intersection",
-        "P_F_C_Union",
-        "P_F_Interval",
-        "P_F_LowerClosure",
-        "P_F_Subposet",
-        "P_F_UpperClosure",
-        "P_Finite",
-        "P_Float",
-        "P_Fractions",
-        "P_Integer",
-        "P_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_dict_of_str_Value(value: object) -> dict[str, Value]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_Value(v) for k, v in value.items()}
-
-
-def validate_enum_5d65(
-    value: object,
-) -> Literal[
-    "SL1_C_CodSum",
-    "SL1_C_CodSumSmash",
-    "SL1_C_ExplicitApprox",
-    "SL1_C_Intersection",
-    "SL1_C_Parallel",
-    "SL1_C_ProdIntersection",
-    "SL1_C_Product",
-    "SL1_C_RefineDomain",
-    "SL1_C_Series",
-    "SL1_C_Trace",
-    "SL1_C_Union",
-    "SL1_C_WrapUnits",
-    "SL1_Exact",
-    "SL1_Identity",
-    "SL1_InvMultiply",
-    "SL1_InvSum",
-    "SL1_Unknown",
-]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = [
-        "SL1_C_CodSum",
-        "SL1_C_CodSumSmash",
-        "SL1_C_ExplicitApprox",
-        "SL1_C_Intersection",
-        "SL1_C_Parallel",
-        "SL1_C_ProdIntersection",
-        "SL1_C_Product",
-        "SL1_C_RefineDomain",
-        "SL1_C_Series",
-        "SL1_C_Trace",
-        "SL1_C_Union",
-        "SL1_C_WrapUnits",
-        "SL1_Exact",
-        "SL1_Identity",
-        "SL1_InvMultiply",
-        "SL1_InvSum",
-        "SL1_Unknown",
-    ]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_DP(value: object) -> list[DP]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_DP(item) for item in value]
-
-
-def load_list_of_L1Check_Data(value: object) -> list[L1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_L1Check_Data(item) for item in value]
-
-
-def load_list_of_SL1Check_Data(value: object) -> list[SL1Check_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SL1Check_Data(item) for item in value]
-
-
-def load_list_of_Range(value: object) -> list[Range]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Range(item) for item in value]
-
-
-def load_list_of_LCheck_Data(value: object) -> list[LCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_LCheck_Data(item) for item in value]
-
-
-def load_enum_f8_f16_f32_f64_f80_f128(value: object) -> Literal["f8", "f16", "f32", "f64", "f80", "f128"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["f8", "f16", "f32", "f64", "f80", "f128"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_MapCheck_Data(value: object) -> list[MapCheck_Data]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_MapCheck_Data(item) for item in value]
-
-
-def load_dict_of_str_NDP(value: object) -> dict[str, NDP]:
-    if not isinstance(value, dict):
-        raise ValueError(f"Expected a dict, got {type(value).__name__}")
-    value = cast(dict[str, object], value)
-    return {k: load_NDP(v) for k, v in value.items()}
-
-
-def load_enum_Unit_None_Unit_Single_Unit_Vector_Unit_Wrapped(
-    value: object,
-) -> Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_enum_ModelRequirement_NodeFunctionality(value: object) -> Literal["ModelRequirement", "NodeFunctionality"]:
-    if not isinstance(value, str):
-        raise ValueError(f"Expected a string, got {type(value).__name__}")
-    allowed_values = ["ModelRequirement", "NodeFunctionality"]
-    if value not in allowed_values:
-        raise ValueError(f"Expected one of {allowed_values}, got {value}")
-    return value  # type: ignore
-
-
-def load_list_of_SU1Map(value: object) -> list[SU1Map]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_SU1Map(item) for item in value]
-
-
-def load_list_of_U1_Catalog_Options(value: object) -> list[U1_Catalog_Options]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_U1_Catalog_Options(item) for item in value]
-
-
-def load_list_of_Poset(value: object) -> list[Poset]:
-    if not isinstance(value, list):
-        raise ValueError(f"Expected a list, got {type(value).__name__}")
-    value = cast(list[object], value)
-    return [load_Poset(item) for item in value]
 
 
 # Schema loaders
@@ -1235,6 +1260,7 @@ def load_Root(data: object) -> "Root":
     discriminator: Any = data.get("kind")
     mapping = {
         "Check": load_Check,
+        "ComputeJob": load_ComputeJob,
         "DP": load_DP,
         "L1Map": load_L1Map,
         "LMap": load_LMap,
@@ -1277,6 +1303,264 @@ def load_Check(data: object) -> "Check":
     if discriminator in mapping:
         return mapping[discriminator](data)
     raise ValueError(f"Unknown discriminator value: {discriminator} for Check")
+
+
+def load_ComputeJob(data: object) -> "ComputeJob":
+    """Load ComputeJob from a dictionary based on the 'type' discriminator."""
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+    discriminator: Any = data.get("type")
+    mapping = {
+        "ComputeJob_F_to_R": load_ComputeJob_F_to_R,
+        "ComputeJob_R_to_F": load_ComputeJob_R_to_F,
+    }
+    if discriminator in mapping:
+        return mapping[discriminator](data)
+    raise ValueError(f"Unknown discriminator value: {discriminator} for ComputeJob")
+
+
+def load_ComputeJob_F_to_R(data: object) -> "ComputeJob_F_to_R":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "description" in data:
+        value = data["description"]
+        if value is None:
+            field_description = None
+        else:
+            field_description = load_str(value)
+    else:
+        field_description = None
+
+    if "hash" in data:
+        value = data["hash"]
+        if value is None:
+            field_hash = None
+        else:
+            field_hash = load_str(value)
+    else:
+        field_hash = None
+
+    if "kind" in data:
+        field_kind = load_str(data["kind"])
+        if field_kind != "ComputeJob":
+            raise ValueError(f"Expected 'ComputeJob', got {field_kind}'")
+        if field_kind is not None and field_kind != "ComputeJob":
+            raise ValueError(f"Invalid discriminator value for 'kind': expected 'ComputeJob', got {field_kind}")
+    else:
+        field_kind = json.loads('"ComputeJob"')
+
+    if "version" in data:
+        value = data["version"]
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+
+    if "address" in data:
+        value = data["address"]
+        if value is None:
+            field_address = None
+        else:
+            field_address = load_Address(value)
+    else:
+        field_address = None
+
+    if "axes" in data:
+        value = data["axes"]
+        if value is None:
+            field_axes = None
+        else:
+            field_axes = load_dict_of_str_int(value)
+    else:
+        field_axes = None
+
+    if "points" in data:
+        value = data["points"]
+        if value is None:
+            field_points = None
+        else:
+            field_points = load_list_of_ComputePoint(value)
+    else:
+        field_points = None
+
+    if "type" in data:
+        field_type_ = load_str(data["type"])
+        if field_type_ != "ComputeJob_F_to_R":
+            raise ValueError(f"Expected 'ComputeJob_F_to_R', got {field_type_}'")
+        if field_type_ is not None and field_type_ != "ComputeJob_F_to_R":
+            raise ValueError(f"Invalid discriminator value for 'type': expected 'ComputeJob_F_to_R', got {field_type_}")
+    else:
+        field_type_ = json.loads('"ComputeJob_F_to_R"')
+
+    if "f_b_r" in data:
+        field_f_b_r = load_SUMap(data["f_b_r"])
+    else:
+        raise ValueError("Missing required field 'f_b_r'")
+
+    if "f_i_r" in data:
+        field_f_i_r = load_SUMap(data["f_i_r"])
+    else:
+        raise ValueError("Missing required field 'f_i_r'")
+
+    if "f_r" in data:
+        field_f_r = load_SU1Map(data["f_r"])
+    else:
+        raise ValueError("Missing required field 'f_r'")
+
+    return ComputeJob_F_to_R(
+        description=field_description,
+        hash=field_hash,
+        kind=field_kind,
+        version=field_version,
+        address=field_address,
+        axes=field_axes,
+        points=field_points,
+        type_=field_type_,
+        f_b_r=field_f_b_r,
+        f_i_r=field_f_i_r,
+        f_r=field_f_r,
+    )
+
+
+def load_ComputeJob_R_to_F(data: object) -> "ComputeJob_R_to_F":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "description" in data:
+        value = data["description"]
+        if value is None:
+            field_description = None
+        else:
+            field_description = load_str(value)
+    else:
+        field_description = None
+
+    if "hash" in data:
+        value = data["hash"]
+        if value is None:
+            field_hash = None
+        else:
+            field_hash = load_str(value)
+    else:
+        field_hash = None
+
+    if "kind" in data:
+        field_kind = load_str(data["kind"])
+        if field_kind != "ComputeJob":
+            raise ValueError(f"Expected 'ComputeJob', got {field_kind}'")
+        if field_kind is not None and field_kind != "ComputeJob":
+            raise ValueError(f"Invalid discriminator value for 'kind': expected 'ComputeJob', got {field_kind}")
+    else:
+        field_kind = json.loads('"ComputeJob"')
+
+    if "version" in data:
+        value = data["version"]
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+
+    if "address" in data:
+        value = data["address"]
+        if value is None:
+            field_address = None
+        else:
+            field_address = load_Address(value)
+    else:
+        field_address = None
+
+    if "axes" in data:
+        value = data["axes"]
+        if value is None:
+            field_axes = None
+        else:
+            field_axes = load_dict_of_str_int(value)
+    else:
+        field_axes = None
+
+    if "points" in data:
+        value = data["points"]
+        if value is None:
+            field_points = None
+        else:
+            field_points = load_list_of_ComputePoint(value)
+    else:
+        field_points = None
+
+    if "type" in data:
+        field_type_ = load_str(data["type"])
+        if field_type_ != "ComputeJob_R_to_F":
+            raise ValueError(f"Expected 'ComputeJob_R_to_F', got {field_type_}'")
+        if field_type_ is not None and field_type_ != "ComputeJob_R_to_F":
+            raise ValueError(f"Invalid discriminator value for 'type': expected 'ComputeJob_R_to_F', got {field_type_}")
+    else:
+        field_type_ = json.loads('"ComputeJob_R_to_F"')
+
+    if "r_b_f" in data:
+        field_r_b_f = load_SLMap(data["r_b_f"])
+    else:
+        raise ValueError("Missing required field 'r_b_f'")
+
+    if "r_f" in data:
+        field_r_f = load_SL1Map(data["r_f"])
+    else:
+        raise ValueError("Missing required field 'r_f'")
+
+    if "r_i_f" in data:
+        field_r_i_f = load_SLMap(data["r_i_f"])
+    else:
+        raise ValueError("Missing required field 'r_i_f'")
+
+    return ComputeJob_R_to_F(
+        description=field_description,
+        hash=field_hash,
+        kind=field_kind,
+        version=field_version,
+        address=field_address,
+        axes=field_axes,
+        points=field_points,
+        type_=field_type_,
+        r_b_f=field_r_b_f,
+        r_f=field_r_f,
+        r_i_f=field_r_i_f,
+    )
+
+
+def load_ComputePoint(data: object) -> "ComputePoint":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "key" in data:
+        value = data["key"]
+        if value is None:
+            field_key = None
+        else:
+            field_key = load_str(value)
+    else:
+        field_key = None
+
+    if "value" in data:
+        value = data["value"]
+        if value is None:
+            field_value = None
+        else:
+            field_value = load_any(value)
+    else:
+        field_value = None
+
+    return ComputePoint(
+        key=field_key,
+        value=field_value,
+    )
 
 
 def load_Connection(data: object) -> "Connection":
@@ -17743,31 +18027,19 @@ def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
         field_type_ = json.loads('"QueryFixFunMinReqData"')
 
     if "f" in data:
-        value = data["f"]
-        if value is None:
-            field_f = None
-        else:
-            field_f = load_dict_of_str_Value(value)
+        field_f = load_dict_of_str_Value(data["f"])
     else:
-        field_f = None
+        raise ValueError("Missing required field 'f'")
 
     if "optimize_for" in data:
-        value = data["optimize_for"]
-        if value is None:
-            field_optimize_for = None
-        else:
-            field_optimize_for = load_list_of_str(value)
+        field_optimize_for = load_list_of_str(data["optimize_for"])
     else:
-        field_optimize_for = None
+        raise ValueError("Missing required field 'optimize_for'")
 
     if "r" in data:
-        value = data["r"]
-        if value is None:
-            field_r = None
-        else:
-            field_r = load_dict_of_str_Value(value)
+        field_r = load_dict_of_str_Value(data["r"])
     else:
-        field_r = None
+        raise ValueError("Missing required field 'r'")
 
     return QueryFixFunMinReqData(
         type_=field_type_,
@@ -17792,31 +18064,19 @@ def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
         field_type_ = json.loads('"QueryFixReqMaxFunData"')
 
     if "f" in data:
-        value = data["f"]
-        if value is None:
-            field_f = None
-        else:
-            field_f = load_dict_of_str_Value(value)
+        field_f = load_dict_of_str_Value(data["f"])
     else:
-        field_f = None
+        raise ValueError("Missing required field 'f'")
 
     if "optimize_for" in data:
-        value = data["optimize_for"]
-        if value is None:
-            field_optimize_for = None
-        else:
-            field_optimize_for = load_list_of_str(value)
+        field_optimize_for = load_list_of_str(data["optimize_for"])
     else:
-        field_optimize_for = None
+        raise ValueError("Missing required field 'optimize_for'")
 
     if "r" in data:
-        value = data["r"]
-        if value is None:
-            field_r = None
-        else:
-            field_r = load_dict_of_str_Value(value)
+        field_r = load_dict_of_str_Value(data["r"])
     else:
-        field_r = None
+        raise ValueError("Missing required field 'r'")
 
     return QueryFixReqMaxFunData(
         type_=field_type_,
@@ -29033,7 +29293,7 @@ class Address:
     spec: Literal["models", "templates", "values", "posets", "primitivedps", "interfaces", "queries"] = field()
     thing: str = field()
     type_: Literal["Address"] = field()
-    repo: str | None = field()
+    repo: str | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -29072,6 +29332,7 @@ class Address:
 class Root:
     kind: Literal[
         "Check",
+        "ComputeJob",
         "DP",
         "L1Map",
         "LMap",
@@ -29089,9 +29350,9 @@ class Root:
         "UMap",
         "Value",
     ] = field()
-    description: str | None = field()
-    hash: str | None = field()
-    version: str | None = field()
+    description: str | None | None = field()
+    hash: str | None | None = field()
+    version: str | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -29114,6 +29375,142 @@ class Check(Root):
         result = super().to_data()
         result["type"] = self.type_
         return result
+
+
+@dataclass(frozen=True)
+class ComputeJob(Root):
+    kind: Literal["ComputeJob"] = field()
+    address: Address | None | None = field()
+    axes: dict[str, int] | None | None = field()
+    points: list[ComputePoint] | None | None = field()
+    type_: Literal["ComputeJob_F_to_R", "ComputeJob_R_to_F"] = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        if self.address is not None:
+            result["address"] = self.address.to_data()
+        if self.axes is not None:
+            result["axes"] = self.axes
+        if self.points is not None:
+            result["points"] = [item.to_data() for item in self.points]
+        result["type"] = self.type_
+        return result
+
+
+@dataclass(frozen=True)
+class ComputeJob_F_to_R(ComputeJob):
+    kind: Literal["ComputeJob"] = field()
+    type_: Literal["ComputeJob_F_to_R"] = field()
+    f_b_r: SUMap = field()
+    f_i_r: SUMap = field()
+    f_r: SU1Map = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        result["f_b_r"] = self.f_b_r.to_data()
+        result["f_i_r"] = self.f_i_r.to_data()
+        result["f_r"] = self.f_r.to_data()
+        return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        f_b_r: SUMap,
+        f_i_r: SUMap,
+        f_r: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        axes: dict[str, int] | None = None,
+        points: list[ComputePoint] | None = None,
+    ) -> Self:
+        """Create a new ComputeJob_F_to_R instance."""
+        kind = "ComputeJob"
+        type_ = "ComputeJob_F_to_R"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            axes=axes,
+            points=points,
+            type_=type_,
+            f_b_r=f_b_r,
+            f_i_r=f_i_r,
+            f_r=f_r,
+        )
+
+
+@dataclass(frozen=True)
+class ComputeJob_R_to_F(ComputeJob):
+    kind: Literal["ComputeJob"] = field()
+    type_: Literal["ComputeJob_R_to_F"] = field()
+    r_b_f: SLMap = field()
+    r_f: SL1Map = field()
+    r_i_f: SLMap = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        result["r_b_f"] = self.r_b_f.to_data()
+        result["r_f"] = self.r_f.to_data()
+        result["r_i_f"] = self.r_i_f.to_data()
+        return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        r_b_f: SLMap,
+        r_f: SL1Map,
+        r_i_f: SLMap,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+        address: Address | None = None,
+        axes: dict[str, int] | None = None,
+        points: list[ComputePoint] | None = None,
+    ) -> Self:
+        """Create a new ComputeJob_R_to_F instance."""
+        kind = "ComputeJob"
+        type_ = "ComputeJob_R_to_F"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            address=address,
+            axes=axes,
+            points=points,
+            type_=type_,
+            r_b_f=r_b_f,
+            r_f=r_f,
+            r_i_f=r_i_f,
+        )
+
+
+@dataclass(frozen=True)
+class ComputePoint:
+    key: str | None | None = field()
+    value: Any | None | None = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        if self.key is not None:
+            result["key"] = self.key
+        if self.value is not None:
+            result["value"] = self.value
+        return result
+
+    @classmethod
+    def make(cls, *, key: str | None = None, value: Any | None = None) -> Self:
+        """Create a new ComputePoint instance."""
+        return cls(
+            key=key,
+            value=value,
+        )
 
 
 @dataclass(frozen=True)
@@ -29163,11 +29560,11 @@ class ConnectionTarget:
 @dataclass(frozen=True)
 class DP(Root):
     kind: Literal["DP"] = field()
-    B: Poset | None = field()
+    B: Poset | None | None = field()
     F: Poset = field()
-    I: Poset | None = field()
+    I: Poset | None | None = field()
     R: Poset = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal[
         "DP_All_Constants_And_F_Leq_R",
         "DP_All_Constants_Leq_R",
@@ -29469,9 +29866,9 @@ class DP_C_ExplicitApprox(DP):
     kind: Literal["DP"] = field()
     type_: Literal["DP_C_ExplicitApprox"] = field()
     optimistic: list[DP] = field()
-    optimistic_labels: list[str] | None = field()
+    optimistic_labels: list[str] | None | None = field()
     pessimistic: list[DP] = field()
-    pessimistic_labels: list[str] | None = field()
+    pessimistic_labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -29526,7 +29923,7 @@ class DP_C_Intersection(DP):
     kind: Literal["DP"] = field()
     type_: Literal["DP_C_Intersection"] = field()
     dps: list[DP] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -29574,7 +29971,7 @@ class DP_C_Parallel(DP):
     kind: Literal["DP"] = field()
     type_: Literal["DP_C_Parallel"] = field()
     dps: list[DP] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -29622,7 +30019,7 @@ class DP_C_Series(DP):
     kind: Literal["DP"] = field()
     type_: Literal["DP_C_Series"] = field()
     dps: list[DP] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -29713,7 +30110,7 @@ class DP_C_Union(DP):
     kind: Literal["DP"] = field()
     type_: Literal["DP_C_Union"] = field()
     dps: list[DP] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -30586,7 +30983,7 @@ class L1Check(Check):
 class L1Check_Data:
     x: Any = field()
     y: LowerSet = field()
-    elapsed: float | None = field()
+    elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -30655,7 +31052,7 @@ class L1Map(Root):
 class L1_C_CodSum(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_CodSum"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30697,7 +31094,7 @@ class L1_C_CodSum(L1Map):
 class L1_C_CodSumSmash(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_CodSumSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30739,7 +31136,7 @@ class L1_C_CodSumSmash(L1Map):
 class L1_C_DomUnion(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_DomUnion"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30781,7 +31178,7 @@ class L1_C_DomUnion(L1Map):
 class L1_C_Intersection(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30823,7 +31220,7 @@ class L1_C_Intersection(L1Map):
 class L1_C_Parallel(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30865,7 +31262,7 @@ class L1_C_Parallel(L1Map):
 class L1_C_ProdIntersection(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_ProdIntersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30907,7 +31304,7 @@ class L1_C_ProdIntersection(L1Map):
 class L1_C_Product(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_Product"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -30986,7 +31383,7 @@ class L1_C_RefineDomain(L1Map):
 class L1_C_Series(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31065,7 +31462,7 @@ class L1_C_Trace(L1Map):
 class L1_C_Union(L1Map):
     kind: Literal["L1Map"] = field()
     type_: Literal["L1_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[L1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31814,7 +32211,7 @@ class LCheck(Check):
 class LCheck_Data:
     x: Any = field()
     y: LowerSet = field()
-    elapsed: float | None = field()
+    elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -31913,7 +32310,7 @@ class L_C_ITransform(LMap):
 class L_C_Intersection(LMap):
     kind: Literal["LMap"] = field()
     type_: Literal["L_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -31957,7 +32354,7 @@ class L_C_Intersection(LMap):
 class L_C_Parallel(LMap):
     kind: Literal["LMap"] = field()
     type_: Literal["L_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32040,7 +32437,7 @@ class L_C_RefineDomain(LMap):
 class L_C_Series(LMap):
     kind: Literal["LMap"] = field()
     type_: Literal["L_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32127,7 +32524,7 @@ class L_C_Trace(LMap):
 class L_C_Union(LMap):
     kind: Literal["LMap"] = field()
     type_: Literal["L_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[LMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32802,7 +33199,7 @@ class M_BottomIfNotTop(MonotoneMap):
 class M_C_Coproduct(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_Coproduct"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32844,7 +33241,7 @@ class M_C_Coproduct(MonotoneMap):
 class M_C_CoproductSmash(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_CoproductSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32886,7 +33283,7 @@ class M_C_CoproductSmash(MonotoneMap):
 class M_C_DomProdCodSmash(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_DomProdCodSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32928,7 +33325,7 @@ class M_C_DomProdCodSmash(MonotoneMap):
 class M_C_DomSmashCodProd(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_DomSmashCodProd"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -32970,7 +33367,7 @@ class M_C_DomSmashCodProd(MonotoneMap):
 class M_C_DomUnion(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_DomUnion"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33168,7 +33565,7 @@ class M_C_Op(MonotoneMap):
 class M_C_Parallel(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33210,7 +33607,7 @@ class M_C_Parallel(MonotoneMap):
 class M_C_ParallelSmash(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_ParallelSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33252,7 +33649,7 @@ class M_C_ParallelSmash(MonotoneMap):
 class M_C_Product(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_Product"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33294,7 +33691,7 @@ class M_C_Product(MonotoneMap):
 class M_C_ProductSmash(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_ProductSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33373,7 +33770,7 @@ class M_C_RefineDomain(MonotoneMap):
 class M_C_Series(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33415,7 +33812,7 @@ class M_C_Series(MonotoneMap):
 class M_C_Sum(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_Sum"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -33457,7 +33854,7 @@ class M_C_Sum(MonotoneMap):
 class M_C_SumSmash(MonotoneMap):
     kind: Literal["MonotoneMap"] = field()
     type_: Literal["M_C_SumSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     maps: list[MonotoneMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -35357,7 +35754,7 @@ class MapCheck(Check):
 class MapCheck_Data:
     x: Any = field()
     y: Any = field()
-    elapsed: float | None = field()
+    elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -35424,7 +35821,7 @@ class NDP(Root):
     F: dict[str, Poset] = field()
     J: Poset = field()
     R: dict[str, Poset] = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal["NDP_Composite", "NDP_Simple", "NDP_Sum", "NDP_TemplateHole"] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -35442,7 +35839,7 @@ class NDP(Root):
 @dataclass(frozen=True)
 class NDPInterface(Root):
     kind: Literal["NDPInterface"] = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal["NDPInterface_Explicit"] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -35494,7 +35891,7 @@ class NDPInterface_Explicit(NDPInterface):
 @dataclass(frozen=True)
 class NDPTemplate(Root):
     kind: Literal["NDPTemplate"] = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal["NDPTemplate_Simple"] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -35638,7 +36035,7 @@ class NDP_Sum(NDP):
     kind: Literal["NDP"] = field()
     type_: Literal["NDP_Sum"] = field()
     dps: dict[str, NDP] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -35773,7 +36170,7 @@ class NodeRequirement(ConnectionSource):
 @dataclass(frozen=True)
 class Poset(Root):
     kind: Literal["Poset"] = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal[
         "P_Bool",
         "P_C_Arrow",
@@ -35919,7 +36316,7 @@ class P_C_Discretized(Poset):
 class P_C_Lexicographic(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_C_Lexicographic"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -36103,7 +36500,7 @@ class P_C_Power(Poset):
 class P_C_Product(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_C_Product"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -36143,7 +36540,7 @@ class P_C_Product(Poset):
 class P_C_ProductDS(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_C_ProductDS"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -36183,7 +36580,7 @@ class P_C_ProductDS(Poset):
 class P_C_ProductSmash(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_C_ProductSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     naked: list[bool] = field()
     ranges: list[Range] = field()
     subs: list[Poset] = field()
@@ -36231,7 +36628,7 @@ class P_C_ProductSmash(Poset):
 class P_C_Sum(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_C_Sum"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -36271,7 +36668,7 @@ class P_C_Sum(Poset):
 class P_C_SumSmash(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_C_SumSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     naked: list[bool] = field()
     ranges: list[Range] = field()
     subs: list[Poset] = field()
@@ -36527,7 +36924,7 @@ class P_F_C_Intersection(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_F_C_Intersection"] = field()
     ambient: Poset = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -36571,7 +36968,7 @@ class P_F_C_Union(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_F_C_Union"] = field()
     ambient: Poset = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Poset] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -36774,7 +37171,7 @@ class P_F_UpperClosure(Poset):
 class P_Finite(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_Finite"] = field()
-    aliases: dict[str, list[str]] | None = field()
+    aliases: dict[str, list[str]] | None | None = field()
     elements: list[str] = field()
     relations: list[list[str]] = field()
 
@@ -36985,7 +37382,7 @@ class Projection:
 @dataclass(frozen=True)
 class Query(Root):
     kind: Literal["Query"] = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal["Query_Single"] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37009,24 +37406,19 @@ class QueryData:
 @dataclass(frozen=True)
 class QueryFixFunMinReqData(QueryData):
     type_: Literal["QueryFixFunMinReqData"] = field()
-    f: dict[str, Value] | None = field()
-    optimize_for: list[str] | None = field()
-    r: dict[str, Value] | None = field()
+    f: dict[str, Value] = field()
+    optimize_for: list[str] = field()
+    r: dict[str, Value] = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
-        if self.f is not None:
-            result["f"] = {k: v.to_data() for k, v in self.f.items()}
-        if self.optimize_for is not None:
-            result["optimize_for"] = self.optimize_for
-        if self.r is not None:
-            result["r"] = {k: v.to_data() for k, v in self.r.items()}
+        result["f"] = {k: v.to_data() for k, v in self.f.items()}
+        result["optimize_for"] = self.optimize_for
+        result["r"] = {k: v.to_data() for k, v in self.r.items()}
         return result
 
     @classmethod
-    def make(
-        cls, *, f: dict[str, Value] | None = None, optimize_for: list[str] | None = None, r: dict[str, Value] | None = None
-    ) -> Self:
+    def make(cls, *, f: dict[str, Value], optimize_for: list[str], r: dict[str, Value]) -> Self:
         """Create a new QueryFixFunMinReqData instance."""
         type_ = "QueryFixFunMinReqData"
         return cls(
@@ -37040,24 +37432,19 @@ class QueryFixFunMinReqData(QueryData):
 @dataclass(frozen=True)
 class QueryFixReqMaxFunData(QueryData):
     type_: Literal["QueryFixReqMaxFunData"] = field()
-    f: dict[str, Value] | None = field()
-    optimize_for: list[str] | None = field()
-    r: dict[str, Value] | None = field()
+    f: dict[str, Value] = field()
+    optimize_for: list[str] = field()
+    r: dict[str, Value] = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
-        if self.f is not None:
-            result["f"] = {k: v.to_data() for k, v in self.f.items()}
-        if self.optimize_for is not None:
-            result["optimize_for"] = self.optimize_for
-        if self.r is not None:
-            result["r"] = {k: v.to_data() for k, v in self.r.items()}
+        result["f"] = {k: v.to_data() for k, v in self.f.items()}
+        result["optimize_for"] = self.optimize_for
+        result["r"] = {k: v.to_data() for k, v in self.r.items()}
         return result
 
     @classmethod
-    def make(
-        cls, *, f: dict[str, Value] | None = None, optimize_for: list[str] | None = None, r: dict[str, Value] | None = None
-    ) -> Self:
+    def make(cls, *, f: dict[str, Value], optimize_for: list[str], r: dict[str, Value]) -> Self:
         """Create a new QueryFixReqMaxFunData instance."""
         type_ = "QueryFixReqMaxFunData"
         return cls(
@@ -37177,8 +37564,8 @@ class SL1Check_Data:
     pess: Any = field()
     pess_y: LowerSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field()
-    pess_elapsed: float | None = field()
+    opt_elapsed: float | None | None = field()
+    pess_elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -37258,7 +37645,7 @@ class SL1Map(Root):
 class SL1_C_CodSum(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_CodSum"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37304,7 +37691,7 @@ class SL1_C_CodSum(SL1Map):
 class SL1_C_CodSumSmash(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_CodSumSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37351,9 +37738,9 @@ class SL1_C_ExplicitApprox(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_ExplicitApprox"] = field()
     optimistic: list[L1Map] = field()
-    optimistic_labels: list[str] | None = field()
+    optimistic_labels: list[str] | None | None = field()
     pessimistic: list[L1Map] = field()
-    pessimistic_labels: list[str] | None = field()
+    pessimistic_labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -37405,7 +37792,7 @@ class SL1_C_ExplicitApprox(SL1Map):
 class SL1_C_Intersection(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37451,7 +37838,7 @@ class SL1_C_Intersection(SL1Map):
 class SL1_C_Parallel(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37497,7 +37884,7 @@ class SL1_C_Parallel(SL1Map):
 class SL1_C_ProdIntersection(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_ProdIntersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37543,7 +37930,7 @@ class SL1_C_ProdIntersection(SL1Map):
 class SL1_C_Product(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_Product"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37630,7 +38017,7 @@ class SL1_C_RefineDomain(SL1Map):
 class SL1_C_Series(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -37717,7 +38104,7 @@ class SL1_C_Trace(SL1Map):
 class SL1_C_Union(SL1Map):
     kind: Literal["SL1Map"] = field()
     type_: Literal["SL1_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SL1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38049,8 +38436,8 @@ class SLCheck_Data:
     pess: Any = field()
     pess_y: LowerSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field()
-    pess_elapsed: float | None = field()
+    opt_elapsed: float | None | None = field()
+    pess_elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -38176,7 +38563,7 @@ class SL_C_ITransform(SLMap):
 class SL_C_Intersection(SLMap):
     kind: Literal["SLMap"] = field()
     type_: Literal["SL_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38224,7 +38611,7 @@ class SL_C_Intersection(SLMap):
 class SL_C_Parallel(SLMap):
     kind: Literal["SLMap"] = field()
     type_: Literal["SL_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38315,7 +38702,7 @@ class SL_C_RefineDomain(SLMap):
 class SL_C_Series(SLMap):
     kind: Literal["SLMap"] = field()
     type_: Literal["SL_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38410,7 +38797,7 @@ class SL_C_Trace(SLMap):
 class SL_C_Union(SLMap):
     kind: Literal["SLMap"] = field()
     type_: Literal["SL_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SLMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38596,9 +38983,9 @@ class SL_L_Explicit_Approx(SLMap):
     kind: Literal["SLMap"] = field()
     type_: Literal["SL_L_Explicit_Approx"] = field()
     optimistic: list[LMap] = field()
-    optimistic_labels: list[str] | None = field()
+    optimistic_labels: list[str] | None | None = field()
     pessimistic: list[LMap] = field()
-    pessimistic_labels: list[str] | None = field()
+    pessimistic_labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -38825,8 +39212,8 @@ class SU1Check_Data:
     pess: Any = field()
     pess_y: UpperSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field()
-    pess_elapsed: float | None = field()
+    opt_elapsed: float | None | None = field()
+    pess_elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -38906,7 +39293,7 @@ class SU1Map(Root):
 class SU1_C_CodSum(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_CodSum"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38952,7 +39339,7 @@ class SU1_C_CodSum(SU1Map):
 class SU1_C_CodSumSmash(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_CodSumSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -38999,9 +39386,9 @@ class SU1_C_ExplicitApprox(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_ExplicitApprox"] = field()
     optimistic: list[U1Map] = field()
-    optimistic_labels: list[str] | None = field()
+    optimistic_labels: list[str] | None | None = field()
     pessimistic: list[U1Map] = field()
-    pessimistic_labels: list[str] | None = field()
+    pessimistic_labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -39053,7 +39440,7 @@ class SU1_C_ExplicitApprox(SU1Map):
 class SU1_C_Intersection(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39099,7 +39486,7 @@ class SU1_C_Intersection(SU1Map):
 class SU1_C_Parallel(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39145,7 +39532,7 @@ class SU1_C_Parallel(SU1Map):
 class SU1_C_ProdIntersection(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_ProdIntersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39191,7 +39578,7 @@ class SU1_C_ProdIntersection(SU1Map):
 class SU1_C_Product(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_Product"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39278,7 +39665,7 @@ class SU1_C_RefineDomain(SU1Map):
 class SU1_C_Series(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39365,7 +39752,7 @@ class SU1_C_Trace(SU1Map):
 class SU1_C_Union(SU1Map):
     kind: Literal["SU1Map"] = field()
     type_: Literal["SU1_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SU1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39697,8 +40084,8 @@ class SUCheck_Data:
     pess: Any = field()
     pess_y: UpperSet = field()
     x: Any = field()
-    opt_elapsed: float | None = field()
-    pess_elapsed: float | None = field()
+    opt_elapsed: float | None | None = field()
+    pess_elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -39824,7 +40211,7 @@ class SU_C_ITransform(SUMap):
 class SU_C_Intersection(SUMap):
     kind: Literal["SUMap"] = field()
     type_: Literal["SU_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39872,7 +40259,7 @@ class SU_C_Intersection(SUMap):
 class SU_C_Parallel(SUMap):
     kind: Literal["SUMap"] = field()
     type_: Literal["SU_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -39963,7 +40350,7 @@ class SU_C_RefineDomain(SUMap):
 class SU_C_Series(SUMap):
     kind: Literal["SUMap"] = field()
     type_: Literal["SU_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40058,7 +40445,7 @@ class SU_C_Trace(SUMap):
 class SU_C_Union(SUMap):
     kind: Literal["SUMap"] = field()
     type_: Literal["SU_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[SUMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40244,9 +40631,9 @@ class SU_L_Explicit_Approx(SUMap):
     kind: Literal["SUMap"] = field()
     type_: Literal["SU_L_Explicit_Approx"] = field()
     optimistic: list[UMap] = field()
-    optimistic_labels: list[str] | None = field()
+    optimistic_labels: list[str] | None | None = field()
     pessimistic: list[UMap] = field()
-    pessimistic_labels: list[str] | None = field()
+    pessimistic_labels: list[str] | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -40470,7 +40857,7 @@ class U1Check(Check):
 class U1Check_Data:
     x: Any = field()
     y: UpperSet = field()
-    elapsed: float | None = field()
+    elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -40540,7 +40927,7 @@ class U1Map(Root):
 class U1_C_CodSum(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_CodSum"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40582,7 +40969,7 @@ class U1_C_CodSum(U1Map):
 class U1_C_CodSumSmash(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_CodSumSmash"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40624,7 +41011,7 @@ class U1_C_CodSumSmash(U1Map):
 class U1_C_DomUnion(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_DomUnion"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40666,7 +41053,7 @@ class U1_C_DomUnion(U1Map):
 class U1_C_Intersection(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40708,7 +41095,7 @@ class U1_C_Intersection(U1Map):
 class U1_C_Parallel(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40750,7 +41137,7 @@ class U1_C_Parallel(U1Map):
 class U1_C_ProdIntersection(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_ProdIntersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40792,7 +41179,7 @@ class U1_C_ProdIntersection(U1Map):
 class U1_C_Product(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_Product"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40871,7 +41258,7 @@ class U1_C_RefineDomain(U1Map):
 class U1_C_Series(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -40950,7 +41337,7 @@ class U1_C_Trace(U1Map):
 class U1_C_Union(U1Map):
     kind: Literal["U1Map"] = field()
     type_: Literal["U1_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[U1Map] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -41740,7 +42127,7 @@ class UCheck(Check):
 class UCheck_Data:
     x: Any = field()
     y: UpperSet = field()
-    elapsed: float | None = field()
+    elapsed: float | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -41839,7 +42226,7 @@ class U_C_ITransform(UMap):
 class U_C_Intersection(UMap):
     kind: Literal["UMap"] = field()
     type_: Literal["U_C_Intersection"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -41883,7 +42270,7 @@ class U_C_Intersection(UMap):
 class U_C_Parallel(UMap):
     kind: Literal["UMap"] = field()
     type_: Literal["U_C_Parallel"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -41966,7 +42353,7 @@ class U_C_RefineDomain(UMap):
 class U_C_Series(UMap):
     kind: Literal["UMap"] = field()
     type_: Literal["U_C_Series"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -42053,7 +42440,7 @@ class U_C_Trace(UMap):
 class U_C_Union(UMap):
     kind: Literal["UMap"] = field()
     type_: Literal["U_C_Union"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     ms: list[UMap] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -42405,7 +42792,7 @@ class U_Unknown(UMap):
 class Unit:
     kind: Literal["Unit"] = field()
     type_: Literal["Unit_None", "Unit_Single", "Unit_Vector", "Unit_Wrapped"] = field()
-    description: str | None = field()
+    description: str | None | None = field()
 
     def to_data(self) -> dict[str, Any]:
         result: dict[str, Any] = {}
@@ -42462,7 +42849,7 @@ class Unit_Single(Unit):
 @dataclass(frozen=True)
 class Unit_Vector(Unit):
     type_: Literal["Unit_Vector"] = field()
-    labels: list[str] | None = field()
+    labels: list[str] | None | None = field()
     subs: list[Unit] = field()
 
     def to_data(self) -> dict[str, Any]:
@@ -42571,7 +42958,7 @@ class UpperSet_UpperClosure(UpperSet):
 @dataclass(frozen=True)
 class Value(Root):
     kind: Literal["Value"] = field()
-    address: Address | None = field()
+    address: Address | None | None = field()
     type_: Literal["VU"] = field()
 
     def to_data(self) -> dict[str, Any]:
