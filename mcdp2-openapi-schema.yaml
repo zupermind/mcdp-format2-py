@@ -3,7 +3,7 @@
 openapi: "3.1.1"
 info:
   title: "MCDP Format 2 schema"
-  version: "2.19.1"
+  version: "2.20.0"
   license:
     name: "Apache-2.0"
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
@@ -2852,6 +2852,7 @@ components:
             - "L_C_RefineDomain"
             - "L_C_Series"
             - "L_C_Trace"
+            - "L_C_TraceL"
             - "L_C_Union"
             - "L_C_WrapUnits"
             - "L_Catalog"
@@ -2889,6 +2890,7 @@ components:
             L_C_RefineDomain: "#/components/schemas/L_C_RefineDomain"
             L_C_Series: "#/components/schemas/L_C_Series"
             L_C_Trace: "#/components/schemas/L_C_Trace"
+            L_C_TraceL: "#/components/schemas/L_C_TraceL"
             L_C_Union: "#/components/schemas/L_C_Union"
             L_C_WrapUnits: "#/components/schemas/L_C_WrapUnits"
             L_Catalog: "#/components/schemas/L_Catalog"
@@ -3085,6 +3087,41 @@ components:
         title: "Trace"
         x-latex-schema:
           group: "30_comp_single"
+          description: |
+            This is the trace of a LMap $m$.
+
+            Because of computation convenience, we also require the projection $m'$ of the LMap $m$ to a L1Map.
+        required:
+        - "m"
+        - "m_proj"
+        - "type"
+    L_C_TraceL:
+      allOf:
+      - $ref: "#/components/schemas/LMap"
+      - properties:
+          m:
+            $ref: "#/components/schemas/LMap"
+            x-latex-property:
+              symbol: "m"
+              description: |
+                The map to be transformed
+          m_proj:
+            $ref: "#/components/schemas/L1Map"
+            x-latex-property:
+              symbol: "m'"
+              description: |
+                The projection of the LMap $m$ to a L1Map.
+          type:
+            type: "string"
+            const: "L_C_TraceL"
+            enum:
+            - "L_C_TraceL"
+            default: "L_C_TraceL"
+        type: "object"
+        title: "Trace (second version with extra imp)"
+        x-latex-schema:
+          group: "30_comp_single"
+          excluded: true
           description: |
             This is the trace of a LMap $m$.
 
@@ -8983,6 +9020,7 @@ components:
             - "SL_C_RefineDomain"
             - "SL_C_Series"
             - "SL_C_Trace"
+            - "SL_C_TraceL"
             - "SL_C_Union"
             - "SL_C_WrapUnits"
             - "SL_Identity"
@@ -9038,6 +9076,7 @@ components:
             SL_C_RefineDomain: "#/components/schemas/SL_C_RefineDomain"
             SL_C_Series: "#/components/schemas/SL_C_Series"
             SL_C_Trace: "#/components/schemas/SL_C_Trace"
+            SL_C_TraceL: "#/components/schemas/SL_C_TraceL"
             SL_C_Union: "#/components/schemas/SL_C_Union"
             SL_C_WrapUnits: "#/components/schemas/SL_C_WrapUnits"
             SL_Identity: "#/components/schemas/SL_Identity"
@@ -9244,6 +9283,40 @@ components:
         title: "Trace of a SLMap."
         x-latex-schema:
           group: "23_comp_singe"
+          description: |
+            This is the generalization of L\_C\_Trace.
+            For computational convenience, we also require to have $m'$, the SL1Map projection of the SLMap $m$.
+        required:
+        - "m"
+        - "m_proj"
+        - "type"
+    SL_C_TraceL:
+      allOf:
+      - $ref: "#/components/schemas/SLMap"
+      - properties:
+          m:
+            $ref: "#/components/schemas/SLMap"
+            x-latex-property:
+              symbol: "m"
+              description: |
+                The SLMap to be transformed.
+          m_proj:
+            $ref: "#/components/schemas/SL1Map"
+            x-latex-property:
+              symbol: "m'"
+              description: |
+                The SL1Map projection of the SLMap $m$.
+          type:
+            type: "string"
+            const: "SL_C_TraceL"
+            enum:
+            - "SL_C_TraceL"
+            default: "SL_C_TraceL"
+        type: "object"
+        title: "Trace of a SLMap (second version)"
+        x-latex-schema:
+          group: "23_comp_singe"
+          excluded: true
           description: |
             This is the generalization of L\_C\_Trace.
             For computational convenience, we also require to have $m'$, the SL1Map projection of the SLMap $m$.
@@ -10195,6 +10268,7 @@ components:
             - "SU_C_RefineDomain"
             - "SU_C_Series"
             - "SU_C_Trace"
+            - "SU_C_TraceL"
             - "SU_C_Union"
             - "SU_C_WrapUnits"
             - "SU_Identity"
@@ -10232,6 +10306,7 @@ components:
             SU_C_RefineDomain: "#/components/schemas/SU_C_RefineDomain"
             SU_C_Series: "#/components/schemas/SU_C_Series"
             SU_C_Trace: "#/components/schemas/SU_C_Trace"
+            SU_C_TraceL: "#/components/schemas/SU_C_TraceL"
             SU_C_Union: "#/components/schemas/SU_C_Union"
             SU_C_WrapUnits: "#/components/schemas/SU_C_WrapUnits"
             SU_Identity: "#/components/schemas/SU_Identity"
@@ -10463,6 +10538,49 @@ components:
         title: "Trace of a SUMap."
         x-latex-schema:
           group: "30_comp_single"
+          description: |
+            This is the generalization of U\_C\_Trace.
+
+            For computational convenience, we also require to have $m'$, the SU1Map projection of the SUMap $m$.
+        required:
+        - "m"
+        - "m_proj"
+        - "type"
+        x-mcdp-sul:
+          params:
+          - "m"
+          functors:
+            kdom: "@(m)[0]"
+            kcod: "@(m)[0]"
+            kimp: "P_C_ProductSmash([kdom(m)[1], @(m)])"
+            opt: "@(m)"
+            pes: "@(m)"
+    SU_C_TraceL:
+      allOf:
+      - $ref: "#/components/schemas/SUMap"
+      - properties:
+          m:
+            $ref: "#/components/schemas/SUMap"
+            x-latex-property:
+              symbol: "m"
+              description: "Map to be transformed"
+          m_proj:
+            $ref: "#/components/schemas/SU1Map"
+            x-latex-property:
+              symbol: "m'"
+              description: |
+                The SU1Map projection of the SUMap $m$.
+          type:
+            type: "string"
+            const: "SU_C_TraceL"
+            enum:
+            - "SU_C_TraceL"
+            default: "SU_C_TraceL"
+        type: "object"
+        title: "Trace of a SUMap (second version)"
+        x-latex-schema:
+          group: "30_comp_single"
+          excluded: true
           description: |
             This is the generalization of U\_C\_Trace.
 
@@ -12065,6 +12183,7 @@ components:
             - "U_C_RefineDomain"
             - "U_C_Series"
             - "U_C_Trace"
+            - "U_C_TraceL"
             - "U_C_Union"
             - "U_C_WrapUnits"
             - "U_Catalog"
@@ -12102,6 +12221,7 @@ components:
             U_C_RefineDomain: "#/components/schemas/U_C_RefineDomain"
             U_C_Series: "#/components/schemas/U_C_Series"
             U_C_Trace: "#/components/schemas/U_C_Trace"
+            U_C_TraceL: "#/components/schemas/U_C_TraceL"
             U_C_Union: "#/components/schemas/U_C_Union"
             U_C_WrapUnits: "#/components/schemas/U_C_WrapUnits"
             U_Catalog: "#/components/schemas/U_Catalog"
@@ -12292,6 +12412,46 @@ components:
         title: "Trace"
         x-latex-schema:
           group: "30_comp_single"
+          description: |
+            This is the trace of a UMap $m$.
+
+            Because of computation convenience, we also require the projection $m'$ of the UMap $m$ to a U1Map.
+        required:
+        - "m"
+        - "m_proj"
+        - "type"
+        x-mcdp-ul:
+          params:
+          - "m"
+          functors:
+            kdom: "@(m)[0]"
+            kcod: "@(m)[0]"
+    U_C_TraceL:
+      allOf:
+      - $ref: "#/components/schemas/UMap"
+      - properties:
+          m:
+            $ref: "#/components/schemas/UMap"
+            x-latex-property:
+              symbol: "\\umor"
+              description: "The original map"
+          m_proj:
+            $ref: "#/components/schemas/U1Map"
+            x-latex-property:
+              symbol: "m'"
+              description: |
+                The projection of the UMap $m$.
+          type:
+            type: "string"
+            const: "U_C_TraceL"
+            enum:
+            - "U_C_TraceL"
+            default: "U_C_TraceL"
+        type: "object"
+        title: "Trace (second version with extra imp)"
+        x-latex-schema:
+          group: "30_comp_single"
+          excluded: true
           description: |
             This is the trace of a UMap $m$.
 

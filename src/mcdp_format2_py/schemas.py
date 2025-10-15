@@ -662,7 +662,7 @@ def validate_enum_2e3b(
     return value  # type: ignore
 
 
-def validate_enum_4700(
+def validate_enum_4ae7(
     value: object,
 ) -> Literal[
     "L_C_ITransform",
@@ -671,6 +671,7 @@ def validate_enum_4700(
     "L_C_RefineDomain",
     "L_C_Series",
     "L_C_Trace",
+    "L_C_TraceL",
     "L_C_Union",
     "L_C_WrapUnits",
     "L_Catalog",
@@ -689,6 +690,7 @@ def validate_enum_4700(
         "L_C_RefineDomain",
         "L_C_Series",
         "L_C_Trace",
+        "L_C_TraceL",
         "L_C_Union",
         "L_C_WrapUnits",
         "L_Catalog",
@@ -703,7 +705,7 @@ def validate_enum_4700(
     return value  # type: ignore
 
 
-def validate_enum_477e(
+def validate_enum_4b6e(
     value: object,
 ) -> Literal[
     "U_C_ITransform",
@@ -712,6 +714,7 @@ def validate_enum_477e(
     "U_C_RefineDomain",
     "U_C_Series",
     "U_C_Trace",
+    "U_C_TraceL",
     "U_C_Union",
     "U_C_WrapUnits",
     "U_Catalog",
@@ -730,6 +733,7 @@ def validate_enum_477e(
         "U_C_RefineDomain",
         "U_C_Series",
         "U_C_Trace",
+        "U_C_TraceL",
         "U_C_Union",
         "U_C_WrapUnits",
         "U_Catalog",
@@ -744,7 +748,7 @@ def validate_enum_477e(
     return value  # type: ignore
 
 
-def validate_enum_4eeb(
+def validate_enum_5325(
     value: object,
 ) -> Literal[
     "SL_C_ITransform",
@@ -753,6 +757,7 @@ def validate_enum_4eeb(
     "SL_C_RefineDomain",
     "SL_C_Series",
     "SL_C_Trace",
+    "SL_C_TraceL",
     "SL_C_Union",
     "SL_C_WrapUnits",
     "SL_Identity",
@@ -771,6 +776,7 @@ def validate_enum_4eeb(
         "SL_C_RefineDomain",
         "SL_C_Series",
         "SL_C_Trace",
+        "SL_C_TraceL",
         "SL_C_Union",
         "SL_C_WrapUnits",
         "SL_Identity",
@@ -785,7 +791,7 @@ def validate_enum_4eeb(
     return value  # type: ignore
 
 
-def validate_enum_4f69(
+def validate_enum_53ac(
     value: object,
 ) -> Literal[
     "SU_C_ITransform",
@@ -794,6 +800,7 @@ def validate_enum_4f69(
     "SU_C_RefineDomain",
     "SU_C_Series",
     "SU_C_Trace",
+    "SU_C_TraceL",
     "SU_C_Union",
     "SU_C_WrapUnits",
     "SU_Identity",
@@ -812,6 +819,7 @@ def validate_enum_4f69(
         "SU_C_RefineDomain",
         "SU_C_Series",
         "SU_C_Trace",
+        "SU_C_TraceL",
         "SU_C_Union",
         "SU_C_WrapUnits",
         "SU_Identity",
@@ -1243,11 +1251,12 @@ def load_Address(data: object) -> "Address":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Address.make(
+    return Address(
         library=field_library,
         repo=field_repo,
         spec=field_spec,
         thing=field_thing,
+        type_="Address",
     )
 
 
@@ -1411,13 +1420,15 @@ def load_ComputeJob_F_to_R(data: object) -> "ComputeJob_F_to_R":
     else:
         raise ValueError("Missing required field `f_r`")
 
-    return ComputeJob_F_to_R.make(
+    return ComputeJob_F_to_R(
         description=field_description,
         hash=field_hash,
+        kind="ComputeJob",
         version=field_version,
         address=field_address,
         axes=field_axes,
         points=field_points,
+        type_="ComputeJob_F_to_R",
         f_b_r=field_f_b_r,
         f_i_r=field_f_i_r,
         f_r=field_f_r,
@@ -1516,13 +1527,15 @@ def load_ComputeJob_R_to_F(data: object) -> "ComputeJob_R_to_F":
     else:
         raise ValueError("Missing required field `r_i_f`")
 
-    return ComputeJob_R_to_F.make(
+    return ComputeJob_R_to_F(
         description=field_description,
         hash=field_hash,
+        kind="ComputeJob",
         version=field_version,
         address=field_address,
         axes=field_axes,
         points=field_points,
+        type_="ComputeJob_R_to_F",
         r_b_f=field_r_b_f,
         r_f=field_r_f,
         r_i_f=field_r_i_f,
@@ -1552,7 +1565,7 @@ def load_ComputePoint(data: object) -> "ComputePoint":
     else:
         field_value = None
 
-    return ComputePoint.make(
+    return ComputePoint(
         key=field_key,
         value=field_value,
     )
@@ -1580,9 +1593,10 @@ def load_Connection(data: object) -> "Connection":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Connection.make(
+    return Connection(
         source=field_source,
         target=field_target,
+        type_="Connection",
     )
 
 
@@ -1752,15 +1766,17 @@ def load_DP_All_Constants_And_F_Leq_R(data: object) -> "DP_All_Constants_And_F_L
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_All_Constants_And_F_Leq_R.make(
+    return DP_All_Constants_And_F_Leq_R(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_All_Constants_And_F_Leq_R",
         constants=field_constants,
     )
 
@@ -1857,15 +1873,17 @@ def load_DP_All_Constants_Leq_R(data: object) -> "DP_All_Constants_Leq_R":
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_All_Constants_Leq_R.make(
+    return DP_All_Constants_Leq_R(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_All_Constants_Leq_R",
         constants=field_constants,
     )
 
@@ -1957,15 +1975,17 @@ def load_DP_All_Fi_Leq_R(data: object) -> "DP_All_Fi_Leq_R":
     else:
         pass  # fixed value for this field
 
-    return DP_All_Fi_Leq_R.make(
+    return DP_All_Fi_Leq_R(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_All_Fi_Leq_R",
     )
 
 
@@ -2061,15 +2081,17 @@ def load_DP_AmbientConversion(data: object) -> "DP_AmbientConversion":
     else:
         raise ValueError("Missing required field `common`")
 
-    return DP_AmbientConversion.make(
+    return DP_AmbientConversion(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_AmbientConversion",
         common=field_common,
     )
 
@@ -2166,15 +2188,17 @@ def load_DP_Any_Constants_Or_F_Leq_R(data: object) -> "DP_Any_Constants_Or_F_Leq
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_Any_Constants_Or_F_Leq_R.make(
+    return DP_Any_Constants_Or_F_Leq_R(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Any_Constants_Or_F_Leq_R",
         constants=field_constants,
     )
 
@@ -2266,15 +2290,17 @@ def load_DP_Any_Fi_Leq_R(data: object) -> "DP_Any_Fi_Leq_R":
     else:
         pass  # fixed value for this field
 
-    return DP_Any_Fi_Leq_R.make(
+    return DP_Any_Fi_Leq_R(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Any_Fi_Leq_R",
     )
 
 
@@ -2393,15 +2419,17 @@ def load_DP_C_ExplicitApprox(data: object) -> "DP_C_ExplicitApprox":
     else:
         field_pessimistic_labels = None
 
-    return DP_C_ExplicitApprox.make(
+    return DP_C_ExplicitApprox(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_C_ExplicitApprox",
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -2510,15 +2538,17 @@ def load_DP_C_Intersection(data: object) -> "DP_C_Intersection":
     else:
         field_labels = None
 
-    return DP_C_Intersection.make(
+    return DP_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_C_Intersection",
         dps=field_dps,
         labels=field_labels,
     )
@@ -2625,15 +2655,17 @@ def load_DP_C_Parallel(data: object) -> "DP_C_Parallel":
     else:
         field_labels = None
 
-    return DP_C_Parallel.make(
+    return DP_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_C_Parallel",
         dps=field_dps,
         labels=field_labels,
     )
@@ -2740,15 +2772,17 @@ def load_DP_C_Series(data: object) -> "DP_C_Series":
     else:
         field_labels = None
 
-    return DP_C_Series.make(
+    return DP_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_C_Series",
         dps=field_dps,
         labels=field_labels,
     )
@@ -2846,15 +2880,17 @@ def load_DP_C_Trace(data: object) -> "DP_C_Trace":
     else:
         raise ValueError("Missing required field `dp`")
 
-    return DP_C_Trace.make(
+    return DP_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_C_Trace",
         dp=field_dp,
     )
 
@@ -2960,15 +2996,17 @@ def load_DP_C_Union(data: object) -> "DP_C_Union":
     else:
         field_labels = None
 
-    return DP_C_Union.make(
+    return DP_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_C_Union",
         dps=field_dps,
         labels=field_labels,
     )
@@ -3066,15 +3104,17 @@ def load_DP_Catalog(data: object) -> "DP_Catalog":
     else:
         raise ValueError("Missing required field `options`")
 
-    return DP_Catalog.make(
+    return DP_Catalog(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Catalog",
         options=field_options,
     )
 
@@ -3104,7 +3144,7 @@ def load_DP_Catalog_Options(data: object) -> "DP_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return DP_Catalog_Options.make(
+    return DP_Catalog_Options(
         b=field_b,
         f=field_f,
         i=field_i,
@@ -3254,15 +3294,17 @@ def load_DP_Compiled(data: object) -> "DP_Compiled":
     else:
         raise ValueError("Missing required field `req`")
 
-    return DP_Compiled.make(
+    return DP_Compiled(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Compiled",
         f_b_r=field_f_b_r,
         f_i_r=field_f_i_r,
         f_r=field_f_r,
@@ -3369,15 +3411,17 @@ def load_DP_F_Leq_All_Constants(data: object) -> "DP_F_Leq_All_Constants":
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_F_Leq_All_Constants.make(
+    return DP_F_Leq_All_Constants(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_F_Leq_All_Constants",
         constants=field_constants,
     )
 
@@ -3476,15 +3520,17 @@ def load_DP_F_Leq_All_R_And_Constants(data: object) -> "DP_F_Leq_All_R_And_Const
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_F_Leq_All_R_And_Constants.make(
+    return DP_F_Leq_All_R_And_Constants(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_F_Leq_All_R_And_Constants",
         constants=field_constants,
     )
 
@@ -3576,15 +3622,17 @@ def load_DP_F_Leq_All_Ri(data: object) -> "DP_F_Leq_All_Ri":
     else:
         pass  # fixed value for this field
 
-    return DP_F_Leq_All_Ri.make(
+    return DP_F_Leq_All_Ri(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_F_Leq_All_Ri",
     )
 
 
@@ -3682,15 +3730,17 @@ def load_DP_F_Leq_Any_R_And_Constants(data: object) -> "DP_F_Leq_Any_R_And_Const
     else:
         raise ValueError("Missing required field `constants`")
 
-    return DP_F_Leq_Any_R_And_Constants.make(
+    return DP_F_Leq_Any_R_And_Constants(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_F_Leq_Any_R_And_Constants",
         constants=field_constants,
     )
 
@@ -3782,15 +3832,17 @@ def load_DP_F_Leq_Any_Ri(data: object) -> "DP_F_Leq_Any_Ri":
     else:
         pass  # fixed value for this field
 
-    return DP_F_Leq_Any_Ri.make(
+    return DP_F_Leq_Any_Ri(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_F_Leq_Any_Ri",
     )
 
 
@@ -3881,15 +3933,17 @@ def load_DP_False(data: object) -> "DP_False":
     else:
         pass  # fixed value for this field
 
-    return DP_False.make(
+    return DP_False(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_False",
     )
 
 
@@ -3985,15 +4039,17 @@ def load_DP_FuncNotMoreThan(data: object) -> "DP_FuncNotMoreThan":
     else:
         raise ValueError("Missing required field `limit`")
 
-    return DP_FuncNotMoreThan.make(
+    return DP_FuncNotMoreThan(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_FuncNotMoreThan",
         limit=field_limit,
     )
 
@@ -4100,15 +4156,17 @@ def load_DP_GenericConstant(data: object) -> "DP_GenericConstant":
     else:
         raise ValueError("Missing required field `upper_set`")
 
-    return DP_GenericConstant.make(
+    return DP_GenericConstant(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_GenericConstant",
         b_value=field_b_value,
         lower_set=field_lower_set,
         upper_set=field_upper_set,
@@ -4202,15 +4260,17 @@ def load_DP_Identity(data: object) -> "DP_Identity":
     else:
         pass  # fixed value for this field
 
-    return DP_Identity.make(
+    return DP_Identity(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Identity",
     )
 
 
@@ -4311,15 +4371,17 @@ def load_DP_Iso(data: object) -> "DP_Iso":
     else:
         raise ValueError("Missing required field `fwd`")
 
-    return DP_Iso.make(
+    return DP_Iso(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Iso",
         bwd=field_bwd,
         fwd=field_fwd,
     )
@@ -4417,15 +4479,17 @@ def load_DP_LiftL(data: object) -> "DP_LiftL":
     else:
         raise ValueError("Missing required field `m`")
 
-    return DP_LiftL.make(
+    return DP_LiftL(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_LiftL",
         m=field_m,
     )
 
@@ -4522,15 +4586,17 @@ def load_DP_LiftU(data: object) -> "DP_LiftU":
     else:
         raise ValueError("Missing required field `m`")
 
-    return DP_LiftU.make(
+    return DP_LiftU(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_LiftU",
         m=field_m,
     )
 
@@ -4627,15 +4693,17 @@ def load_DP_ResNotLessThan(data: object) -> "DP_ResNotLessThan":
     else:
         raise ValueError("Missing required field `limit`")
 
-    return DP_ResNotLessThan.make(
+    return DP_ResNotLessThan(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_ResNotLessThan",
         limit=field_limit,
     )
 
@@ -4732,15 +4800,17 @@ def load_DP_True(data: object) -> "DP_True":
     else:
         raise ValueError("Missing required field `value`")
 
-    return DP_True.make(
+    return DP_True(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_True",
         value=field_value,
     )
 
@@ -4832,15 +4902,17 @@ def load_DP_Unknown(data: object) -> "DP_Unknown":
     else:
         pass  # fixed value for this field
 
-    return DP_Unknown.make(
+    return DP_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="DP",
         version=field_version,
         B=field_B,
         F=field_F,
         I=field_I,
         R=field_R,
         address=field_address,
+        type_="DP_Unknown",
     )
 
 
@@ -4904,10 +4976,12 @@ def load_L1Check(data: object) -> "L1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1Check.make(
+    return L1Check(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="L1Check",
         data=field_data,
         m=field_m,
     )
@@ -4937,7 +5011,7 @@ def load_L1Check_Data(data: object) -> "L1Check_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return L1Check_Data.make(
+    return L1Check_Data(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -5060,12 +5134,14 @@ def load_L1_C_CodSum(data: object) -> "L1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_CodSum.make(
+    return L1_C_CodSum(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_CodSum",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5145,12 +5221,14 @@ def load_L1_C_CodSumSmash(data: object) -> "L1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_CodSumSmash.make(
+    return L1_C_CodSumSmash(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_CodSumSmash",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5230,12 +5308,14 @@ def load_L1_C_DomUnion(data: object) -> "L1_C_DomUnion":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_DomUnion.make(
+    return L1_C_DomUnion(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_DomUnion",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5315,12 +5395,14 @@ def load_L1_C_Intersection(data: object) -> "L1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Intersection.make(
+    return L1_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5400,12 +5482,14 @@ def load_L1_C_Parallel(data: object) -> "L1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Parallel.make(
+    return L1_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5485,12 +5569,14 @@ def load_L1_C_ProdIntersection(data: object) -> "L1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_ProdIntersection.make(
+    return L1_C_ProdIntersection(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_ProdIntersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5570,12 +5656,14 @@ def load_L1_C_Product(data: object) -> "L1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Product.make(
+    return L1_C_Product(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_Product",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5646,12 +5734,14 @@ def load_L1_C_RefineDomain(data: object) -> "L1_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_C_RefineDomain.make(
+    return L1_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_RefineDomain",
         m=field_m,
     )
 
@@ -5730,12 +5820,14 @@ def load_L1_C_Series(data: object) -> "L1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Series.make(
+    return L1_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5806,12 +5898,14 @@ def load_L1_C_Trace(data: object) -> "L1_C_Trace":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_C_Trace.make(
+    return L1_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_Trace",
         m=field_m,
     )
 
@@ -5890,12 +5984,14 @@ def load_L1_C_Union(data: object) -> "L1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L1_C_Union.make(
+    return L1_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -5976,12 +6072,14 @@ def load_L1_C_WrapUnits(data: object) -> "L1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_C_WrapUnits.make(
+    return L1_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -6053,12 +6151,14 @@ def load_L1_Catalog(data: object) -> "L1_Catalog":
     else:
         raise ValueError("Missing required field `options`")
 
-    return L1_Catalog.make(
+    return L1_Catalog(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Catalog",
         options=field_options,
     )
 
@@ -6078,7 +6178,7 @@ def load_L1_Catalog_Options(data: object) -> "L1_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return L1_Catalog_Options.make(
+    return L1_Catalog_Options(
         f=field_f,
         r=field_r,
     )
@@ -6149,12 +6249,14 @@ def load_L1_Constant(data: object) -> "L1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return L1_Constant.make(
+    return L1_Constant(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Constant",
         value=field_value,
     )
 
@@ -6219,12 +6321,14 @@ def load_L1_Entire(data: object) -> "L1_Entire":
     else:
         pass  # fixed value for this field
 
-    return L1_Entire.make(
+    return L1_Entire(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Entire",
     )
 
 
@@ -6293,12 +6397,14 @@ def load_L1_Explicit(data: object) -> "L1_Explicit":
     else:
         raise ValueError("Missing required field `options`")
 
-    return L1_Explicit.make(
+    return L1_Explicit(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Explicit",
         options=field_options,
     )
 
@@ -6318,7 +6424,7 @@ def load_L1_Explicit_Option(data: object) -> "L1_Explicit_Option":
     else:
         raise ValueError("Missing required field `y`")
 
-    return L1_Explicit_Option.make(
+    return L1_Explicit_Option(
         x=field_x,
         y=field_y,
     )
@@ -6389,12 +6495,14 @@ def load_L1_FromFilter(data: object) -> "L1_FromFilter":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_FromFilter.make(
+    return L1_FromFilter(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_FromFilter",
         m=field_m,
     )
 
@@ -6459,12 +6567,14 @@ def load_L1_Identity(data: object) -> "L1_Identity":
     else:
         pass  # fixed value for this field
 
-    return L1_Identity.make(
+    return L1_Identity(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Identity",
     )
 
 
@@ -6530,12 +6640,14 @@ def load_L1_IntersectionOfPrinLowerSets(data: object) -> "L1_IntersectionOfPrinL
     else:
         pass  # fixed value for this field
 
-    return L1_IntersectionOfPrinLowerSets.make(
+    return L1_IntersectionOfPrinLowerSets(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_IntersectionOfPrinLowerSets",
     )
 
 
@@ -6609,12 +6721,14 @@ def load_L1_InvMul_Opt(data: object) -> "L1_InvMul_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvMul_Opt.make(
+    return L1_InvMul_Opt(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_InvMul_Opt",
         n=field_n,
         opspace=field_opspace,
     )
@@ -6690,12 +6804,14 @@ def load_L1_InvMul_Pes(data: object) -> "L1_InvMul_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvMul_Pes.make(
+    return L1_InvMul_Pes(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_InvMul_Pes",
         n=field_n,
         opspace=field_opspace,
     )
@@ -6771,12 +6887,14 @@ def load_L1_InvSum_Opt(data: object) -> "L1_InvSum_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvSum_Opt.make(
+    return L1_InvSum_Opt(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_InvSum_Opt",
         n=field_n,
         opspace=field_opspace,
     )
@@ -6852,12 +6970,14 @@ def load_L1_InvSum_Pes(data: object) -> "L1_InvSum_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return L1_InvSum_Pes.make(
+    return L1_InvSum_Pes(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_InvSum_Pes",
         n=field_n,
         opspace=field_opspace,
     )
@@ -6928,12 +7048,14 @@ def load_L1_L_Linv(data: object) -> "L1_L_Linv":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_L_Linv.make(
+    return L1_L_Linv(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_L_Linv",
         m=field_m,
     )
 
@@ -7003,12 +7125,14 @@ def load_L1_Lift(data: object) -> "L1_Lift":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L1_Lift.make(
+    return L1_Lift(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Lift",
         m=field_m,
     )
 
@@ -7075,12 +7199,14 @@ def load_L1_RepresentPrincipalLowerSet(data: object) -> "L1_RepresentPrincipalLo
     else:
         pass  # fixed value for this field
 
-    return L1_RepresentPrincipalLowerSet.make(
+    return L1_RepresentPrincipalLowerSet(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_RepresentPrincipalLowerSet",
     )
 
 
@@ -7149,12 +7275,14 @@ def load_L1_TopAlternating(data: object) -> "L1_TopAlternating":
     else:
         raise ValueError("Missing required field `upper_bounds`")
 
-    return L1_TopAlternating.make(
+    return L1_TopAlternating(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_TopAlternating",
         upper_bounds=field_upper_bounds,
     )
 
@@ -7219,12 +7347,14 @@ def load_L1_UnionOfPrinLowerSets(data: object) -> "L1_UnionOfPrinLowerSets":
     else:
         pass  # fixed value for this field
 
-    return L1_UnionOfPrinLowerSets.make(
+    return L1_UnionOfPrinLowerSets(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_UnionOfPrinLowerSets",
     )
 
 
@@ -7288,12 +7418,14 @@ def load_L1_Unknown(data: object) -> "L1_Unknown":
     else:
         pass  # fixed value for this field
 
-    return L1_Unknown.make(
+    return L1_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="L1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="L1_Unknown",
     )
 
 
@@ -7357,10 +7489,12 @@ def load_LCheck(data: object) -> "LCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return LCheck.make(
+    return LCheck(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="LCheck",
         data=field_data,
         m=field_m,
     )
@@ -7390,7 +7524,7 @@ def load_LCheck_Data(data: object) -> "LCheck_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return LCheck_Data.make(
+    return LCheck_Data(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -7410,6 +7544,7 @@ def load_LMap(data: object) -> "LMap":
         "L_C_RefineDomain": load_L_C_RefineDomain,
         "L_C_Series": load_L_C_Series,
         "L_C_Trace": load_L_C_Trace,
+        "L_C_TraceL": load_L_C_TraceL,
         "L_C_Union": load_L_C_Union,
         "L_C_WrapUnits": load_L_C_WrapUnits,
         "L_Catalog": load_L_Catalog,
@@ -7499,13 +7634,15 @@ def load_L_C_ITransform(data: object) -> "L_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return L_C_ITransform.make(
+    return L_C_ITransform(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_ITransform",
         m=field_m,
         transform=field_transform,
     )
@@ -7590,13 +7727,15 @@ def load_L_C_Intersection(data: object) -> "L_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Intersection.make(
+    return L_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -7681,13 +7820,15 @@ def load_L_C_Parallel(data: object) -> "L_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Parallel.make(
+    return L_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -7763,13 +7904,15 @@ def load_L_C_RefineDomain(data: object) -> "L_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L_C_RefineDomain.make(
+    return L_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_RefineDomain",
         m=field_m,
     )
 
@@ -7853,13 +7996,15 @@ def load_L_C_Series(data: object) -> "L_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Series.make(
+    return L_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -7940,13 +8085,104 @@ def load_L_C_Trace(data: object) -> "L_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return L_C_Trace.make(
+    return L_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_Trace",
+        m=field_m,
+        m_proj=field_m_proj,
+    )
+
+
+def load_L_C_TraceL(data: object) -> "L_C_TraceL":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "description" in data:
+        value = data["description"]
+        if value is None:
+            field_description = None
+        else:
+            field_description = load_str(value)
+    else:
+        field_description = None
+
+    if "hash" in data:
+        value = data["hash"]
+        if value is None:
+            field_hash = None
+        else:
+            field_hash = load_str(value)
+    else:
+        field_hash = None
+
+    if "kind" in data:
+        field_kind = load_str(data["kind"])
+        if field_kind != "LMap":
+            raise ValueError(f"Expected `LMap`, got `{field_kind}`")
+        if field_kind is not None and field_kind != "LMap":
+            raise ValueError(f"Invalid discriminator value for `kind`: expected `LMap`, got {field_kind}")
+    else:
+        pass  # fixed value for this field
+
+    if "version" in data:
+        value = data["version"]
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+
+    if "kcod" in data:
+        field_kcod = load_Poset(data["kcod"])
+    else:
+        raise ValueError("Missing required field `kcod`")
+
+    if "kdom" in data:
+        field_kdom = load_Poset(data["kdom"])
+    else:
+        raise ValueError("Missing required field `kdom`")
+
+    if "kimp" in data:
+        field_kimp = load_Poset(data["kimp"])
+    else:
+        raise ValueError("Missing required field `kimp`")
+
+    if "type" in data:
+        field_type_ = load_str(data["type"])
+        if field_type_ != "L_C_TraceL":
+            raise ValueError(f"Expected `L_C_TraceL`, got `{field_type_}`")
+        if field_type_ is not None and field_type_ != "L_C_TraceL":
+            raise ValueError(f"Invalid discriminator value for `type`: expected `L_C_TraceL`, got {field_type_}")
+    else:
+        pass  # fixed value for this field
+
+    if "m" in data:
+        field_m = load_LMap(data["m"])
+    else:
+        raise ValueError("Missing required field `m`")
+
+    if "m_proj" in data:
+        field_m_proj = load_L1Map(data["m_proj"])
+    else:
+        raise ValueError("Missing required field `m_proj`")
+
+    return L_C_TraceL(
+        description=field_description,
+        hash=field_hash,
+        kind="LMap",
+        version=field_version,
+        kcod=field_kcod,
+        kdom=field_kdom,
+        kimp=field_kimp,
+        type_="L_C_TraceL",
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -8031,13 +8267,15 @@ def load_L_C_Union(data: object) -> "L_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return L_C_Union.make(
+    return L_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -8128,13 +8366,15 @@ def load_L_C_WrapUnits(data: object) -> "L_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return L_C_WrapUnits.make(
+    return L_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -8212,13 +8452,15 @@ def load_L_Catalog(data: object) -> "L_Catalog":
     else:
         raise ValueError("Missing required field `options`")
 
-    return L_Catalog.make(
+    return L_Catalog(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_Catalog",
         options=field_options,
     )
 
@@ -8243,7 +8485,7 @@ def load_L_Catalog_Options(data: object) -> "L_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return L_Catalog_Options.make(
+    return L_Catalog_Options(
         f=field_f,
         i=field_i,
         r=field_r,
@@ -8320,13 +8562,15 @@ def load_L_Constant(data: object) -> "L_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return L_Constant.make(
+    return L_Constant(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_Constant",
         value=field_value,
     )
 
@@ -8396,13 +8640,15 @@ def load_L_Identity(data: object) -> "L_Identity":
     else:
         pass  # fixed value for this field
 
-    return L_Identity.make(
+    return L_Identity(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_Identity",
     )
 
 
@@ -8481,13 +8727,15 @@ def load_L_L_Lift1_Constant(data: object) -> "L_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return L_L_Lift1_Constant.make(
+    return L_L_Lift1_Constant(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_L_Lift1_Constant",
         m=field_m,
         value=field_value,
     )
@@ -8568,13 +8816,15 @@ def load_L_L_Lift1_Transform(data: object) -> "L_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return L_L_Lift1_Transform.make(
+    return L_L_Lift1_Transform(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_L_Lift1_Transform",
         m=field_m,
         transform=field_transform,
     )
@@ -8645,13 +8895,15 @@ def load_L_Unknown(data: object) -> "L_Unknown":
     else:
         pass  # fixed value for this field
 
-    return L_Unknown.make(
+    return L_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="LMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="L_Unknown",
     )
 
 
@@ -8696,7 +8948,9 @@ def load_LowerSet_LowerClosure(data: object) -> "LowerSet_LowerClosure":
     else:
         raise ValueError("Missing required field `points`")
 
-    return LowerSet_LowerClosure.make(
+    return LowerSet_LowerClosure(
+        kind="LowerSet",
+        type_="LowerSet_LowerClosure",
         points=field_points,
     )
 
@@ -8722,7 +8976,10 @@ def load_LowerSet_Unused(data: object) -> "LowerSet_Unused":
     else:
         pass  # fixed value for this field
 
-    return LowerSet_Unused.make()
+    return LowerSet_Unused(
+        kind="LowerSet",
+        type_="LowerSet_Unused",
+    )
 
 
 def load_MonotoneMap(data: object) -> "MonotoneMap":
@@ -8874,12 +9131,14 @@ def load_M_AddL(data: object) -> "M_AddL":
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_AddL.make(
+    return M_AddL(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_AddL",
         opspaces=field_opspaces,
     )
 
@@ -8954,12 +9213,14 @@ def load_M_AddLConstant(data: object) -> "M_AddLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_AddLConstant.make(
+    return M_AddLConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_AddLConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -9030,12 +9291,14 @@ def load_M_AddU(data: object) -> "M_AddU":
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_AddU.make(
+    return M_AddU(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_AddU",
         opspaces=field_opspaces,
     )
 
@@ -9110,12 +9373,14 @@ def load_M_AddUConstant(data: object) -> "M_AddUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_AddUConstant.make(
+    return M_AddUConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_AddUConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -9181,12 +9446,14 @@ def load_M_BottomIfNotTop(data: object) -> "M_BottomIfNotTop":
     else:
         pass  # fixed value for this field
 
-    return M_BottomIfNotTop.make(
+    return M_BottomIfNotTop(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_BottomIfNotTop",
     )
 
 
@@ -9264,12 +9531,14 @@ def load_M_C_Coproduct(data: object) -> "M_C_Coproduct":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Coproduct.make(
+    return M_C_Coproduct(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Coproduct",
         labels=field_labels,
         maps=field_maps,
     )
@@ -9349,12 +9618,14 @@ def load_M_C_CoproductSmash(data: object) -> "M_C_CoproductSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_CoproductSmash.make(
+    return M_C_CoproductSmash(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_CoproductSmash",
         labels=field_labels,
         maps=field_maps,
     )
@@ -9434,12 +9705,14 @@ def load_M_C_DomProdCodSmash(data: object) -> "M_C_DomProdCodSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_DomProdCodSmash.make(
+    return M_C_DomProdCodSmash(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_DomProdCodSmash",
         labels=field_labels,
         maps=field_maps,
     )
@@ -9519,12 +9792,14 @@ def load_M_C_DomSmashCodProd(data: object) -> "M_C_DomSmashCodProd":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_DomSmashCodProd.make(
+    return M_C_DomSmashCodProd(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_DomSmashCodProd",
         labels=field_labels,
         maps=field_maps,
     )
@@ -9604,12 +9879,14 @@ def load_M_C_DomUnion(data: object) -> "M_C_DomUnion":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_DomUnion.make(
+    return M_C_DomUnion(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_DomUnion",
         labels=field_labels,
         maps=field_maps,
     )
@@ -9685,12 +9962,14 @@ def load_M_C_Leq_X(data: object) -> "M_C_Leq_X":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_C_Leq_X.make(
+    return M_C_Leq_X(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Leq_X",
         opspace=field_opspace,
         value=field_value,
     )
@@ -9761,12 +10040,14 @@ def load_M_C_LiftToSubsets(data: object) -> "M_C_LiftToSubsets":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_LiftToSubsets.make(
+    return M_C_LiftToSubsets(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_LiftToSubsets",
         m=field_m,
     )
 
@@ -9841,12 +10122,14 @@ def load_M_C_Lt_X(data: object) -> "M_C_Lt_X":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_C_Lt_X.make(
+    return M_C_Lt_X(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Lt_X",
         opspace=field_opspace,
         value=field_value,
     )
@@ -9917,12 +10200,14 @@ def load_M_C_Op(data: object) -> "M_C_Op":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_Op.make(
+    return M_C_Op(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Op",
         m=field_m,
     )
 
@@ -10001,12 +10286,14 @@ def load_M_C_Parallel(data: object) -> "M_C_Parallel":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Parallel.make(
+    return M_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Parallel",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10086,12 +10373,14 @@ def load_M_C_ParallelSmash(data: object) -> "M_C_ParallelSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_ParallelSmash.make(
+    return M_C_ParallelSmash(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_ParallelSmash",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10171,12 +10460,14 @@ def load_M_C_Product(data: object) -> "M_C_Product":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Product.make(
+    return M_C_Product(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Product",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10256,12 +10547,14 @@ def load_M_C_ProductSmash(data: object) -> "M_C_ProductSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_ProductSmash.make(
+    return M_C_ProductSmash(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_ProductSmash",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10332,12 +10625,14 @@ def load_M_C_RefineDomain(data: object) -> "M_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_RefineDomain.make(
+    return M_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_RefineDomain",
         m=field_m,
     )
 
@@ -10416,12 +10711,14 @@ def load_M_C_Series(data: object) -> "M_C_Series":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Series.make(
+    return M_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Series",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10501,12 +10798,14 @@ def load_M_C_Sum(data: object) -> "M_C_Sum":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_Sum.make(
+    return M_C_Sum(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_Sum",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10586,12 +10885,14 @@ def load_M_C_SumSmash(data: object) -> "M_C_SumSmash":
     else:
         raise ValueError("Missing required field `maps`")
 
-    return M_C_SumSmash.make(
+    return M_C_SumSmash(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_SumSmash",
         labels=field_labels,
         maps=field_maps,
     )
@@ -10672,12 +10973,14 @@ def load_M_C_WrapUnits(data: object) -> "M_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_C_WrapUnits.make(
+    return M_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_C_WrapUnits",
         cod_units=field_cod_units,
         dom_units=field_dom_units,
         m=field_m,
@@ -10749,12 +11052,14 @@ def load_M_Ceil0(data: object) -> "M_Ceil0":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_Ceil0.make(
+    return M_Ceil0(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Ceil0",
         opspace=field_opspace,
     )
 
@@ -10819,12 +11124,14 @@ def load_M_Coerce(data: object) -> "M_Coerce":
     else:
         pass  # fixed value for this field
 
-    return M_Coerce.make(
+    return M_Coerce(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Coerce",
     )
 
 
@@ -10893,12 +11200,14 @@ def load_M_Constant(data: object) -> "M_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_Constant.make(
+    return M_Constant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Constant",
         value=field_value,
     )
 
@@ -10973,12 +11282,14 @@ def load_M_ContainedInLowerSet(data: object) -> "M_ContainedInLowerSet":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_ContainedInLowerSet.make(
+    return M_ContainedInLowerSet(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_ContainedInLowerSet",
         lower_set=field_lower_set,
         opspace=field_opspace,
     )
@@ -11054,12 +11365,14 @@ def load_M_ContainedInUpperSet(data: object) -> "M_ContainedInUpperSet":
     else:
         raise ValueError("Missing required field `upper_set`")
 
-    return M_ContainedInUpperSet.make(
+    return M_ContainedInUpperSet(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_ContainedInUpperSet",
         opspace=field_opspace,
         upper_set=field_upper_set,
     )
@@ -11135,12 +11448,14 @@ def load_M_DivideLConstant(data: object) -> "M_DivideLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_DivideLConstant.make(
+    return M_DivideLConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_DivideLConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -11216,12 +11531,14 @@ def load_M_DivideUConstant(data: object) -> "M_DivideUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_DivideUConstant.make(
+    return M_DivideUConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_DivideUConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -11287,12 +11604,14 @@ def load_M_Empty(data: object) -> "M_Empty":
     else:
         pass  # fixed value for this field
 
-    return M_Empty.make(
+    return M_Empty(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Empty",
     )
 
 
@@ -11361,12 +11680,14 @@ def load_M_Explicit(data: object) -> "M_Explicit":
     else:
         raise ValueError("Missing required field `options`")
 
-    return M_Explicit.make(
+    return M_Explicit(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Explicit",
         options=field_options,
     )
 
@@ -11386,7 +11707,7 @@ def load_M_Explicit_Option(data: object) -> "M_Explicit_Option":
     else:
         raise ValueError("Missing required field `y`")
 
-    return M_Explicit_Option.make(
+    return M_Explicit_Option(
         x=field_x,
         y=field_y,
     )
@@ -11457,12 +11778,14 @@ def load_M_Floor0(data: object) -> "M_Floor0":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_Floor0.make(
+    return M_Floor0(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Floor0",
         opspace=field_opspace,
     )
 
@@ -11527,12 +11850,14 @@ def load_M_Id(data: object) -> "M_Id":
     else:
         pass  # fixed value for this field
 
-    return M_Id.make(
+    return M_Id(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Id",
     )
 
 
@@ -11606,12 +11931,14 @@ def load_M_IdentityBelowThreshold(data: object) -> "M_IdentityBelowThreshold":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_IdentityBelowThreshold.make(
+    return M_IdentityBelowThreshold(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_IdentityBelowThreshold",
         threshold=field_threshold,
         value=field_value,
     )
@@ -11682,12 +12009,14 @@ def load_M_Injection(data: object) -> "M_Injection":
     else:
         raise ValueError("Missing required field `index`")
 
-    return M_Injection.make(
+    return M_Injection(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Injection",
         index=field_index,
     )
 
@@ -11757,12 +12086,14 @@ def load_M_Join(data: object) -> "M_Join":
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_Join.make(
+    return M_Join(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Join",
         opspaces=field_opspaces,
     )
 
@@ -11837,12 +12168,14 @@ def load_M_JoinConstant(data: object) -> "M_JoinConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_JoinConstant.make(
+    return M_JoinConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_JoinConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -11913,12 +12246,14 @@ def load_M_Leq(data: object) -> "M_Leq":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_Leq.make(
+    return M_Leq(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Leq",
         opspace=field_opspace,
     )
 
@@ -11983,12 +12318,14 @@ def load_M_Lift(data: object) -> "M_Lift":
     else:
         pass  # fixed value for this field
 
-    return M_Lift.make(
+    return M_Lift(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Lift",
     )
 
 
@@ -12057,12 +12394,14 @@ def load_M_LiftToLowerSets(data: object) -> "M_LiftToLowerSets":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_LiftToLowerSets.make(
+    return M_LiftToLowerSets(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_LiftToLowerSets",
         m=field_m,
     )
 
@@ -12132,12 +12471,14 @@ def load_M_LiftToUpperSets(data: object) -> "M_LiftToUpperSets":
     else:
         raise ValueError("Missing required field `m`")
 
-    return M_LiftToUpperSets.make(
+    return M_LiftToUpperSets(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_LiftToUpperSets",
         m=field_m,
     )
 
@@ -12207,12 +12548,14 @@ def load_M_Meet(data: object) -> "M_Meet":
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_Meet.make(
+    return M_Meet(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Meet",
         opspaces=field_opspaces,
     )
 
@@ -12287,12 +12630,14 @@ def load_M_MeetConstant(data: object) -> "M_MeetConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_MeetConstant.make(
+    return M_MeetConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_MeetConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -12363,12 +12708,14 @@ def load_M_MultiplyL(data: object) -> "M_MultiplyL":
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_MultiplyL.make(
+    return M_MultiplyL(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_MultiplyL",
         opspaces=field_opspaces,
     )
 
@@ -12443,12 +12790,14 @@ def load_M_MultiplyLConstant(data: object) -> "M_MultiplyLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_MultiplyLConstant.make(
+    return M_MultiplyLConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_MultiplyLConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -12519,12 +12868,14 @@ def load_M_MultiplyU(data: object) -> "M_MultiplyU":
     else:
         raise ValueError("Missing required field `opspaces`")
 
-    return M_MultiplyU.make(
+    return M_MultiplyU(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_MultiplyU",
         opspaces=field_opspaces,
     )
 
@@ -12599,12 +12950,14 @@ def load_M_MultiplyUConstant(data: object) -> "M_MultiplyUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_MultiplyUConstant.make(
+    return M_MultiplyUConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_MultiplyUConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -12685,12 +13038,14 @@ def load_M_PowerFracL(data: object) -> "M_PowerFracL":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_PowerFracL.make(
+    return M_PowerFracL(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_PowerFracL",
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -12772,12 +13127,14 @@ def load_M_PowerFracU(data: object) -> "M_PowerFracU":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_PowerFracU.make(
+    return M_PowerFracU(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_PowerFracU",
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -12844,12 +13201,14 @@ def load_M_ReprLowerSet(data: object) -> "M_ReprLowerSet":
     else:
         pass  # fixed value for this field
 
-    return M_ReprLowerSet.make(
+    return M_ReprLowerSet(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_ReprLowerSet",
     )
 
 
@@ -12913,12 +13272,14 @@ def load_M_ReprUpperSet(data: object) -> "M_ReprUpperSet":
     else:
         pass  # fixed value for this field
 
-    return M_ReprUpperSet.make(
+    return M_ReprUpperSet(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_ReprUpperSet",
     )
 
 
@@ -12984,12 +13345,14 @@ def load_M_RepresentPrincipalLowerSet_TotalOrderBounded(data: object) -> "M_Repr
     else:
         pass  # fixed value for this field
 
-    return M_RepresentPrincipalLowerSet_TotalOrderBounded.make(
+    return M_RepresentPrincipalLowerSet_TotalOrderBounded(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_RepresentPrincipalLowerSet_TotalOrderBounded",
     )
 
 
@@ -13055,12 +13418,14 @@ def load_M_RepresentPrincipalUpperSet_TotalOrderBounded(data: object) -> "M_Repr
     else:
         pass  # fixed value for this field
 
-    return M_RepresentPrincipalUpperSet_TotalOrderBounded.make(
+    return M_RepresentPrincipalUpperSet_TotalOrderBounded(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_RepresentPrincipalUpperSet_TotalOrderBounded",
     )
 
 
@@ -13139,12 +13504,14 @@ def load_M_RoundDown(data: object) -> "M_RoundDown":
     else:
         raise ValueError("Missing required field `step`")
 
-    return M_RoundDown.make(
+    return M_RoundDown(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_RoundDown",
         offset=field_offset,
         opspace=field_opspace,
         step=field_step,
@@ -13226,12 +13593,14 @@ def load_M_RoundUp(data: object) -> "M_RoundUp":
     else:
         raise ValueError("Missing required field `step`")
 
-    return M_RoundUp.make(
+    return M_RoundUp(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_RoundUp",
         offset=field_offset,
         opspace=field_opspace,
         step=field_step,
@@ -13313,12 +13682,14 @@ def load_M_ScaleL(data: object) -> "M_ScaleL":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_ScaleL.make(
+    return M_ScaleL(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_ScaleL",
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -13400,12 +13771,14 @@ def load_M_ScaleU(data: object) -> "M_ScaleU":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return M_ScaleU.make(
+    return M_ScaleU(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_ScaleU",
         den=field_den,
         num=field_num,
         opspace=field_opspace,
@@ -13477,12 +13850,14 @@ def load_M_SmashInjection(data: object) -> "M_SmashInjection":
     else:
         raise ValueError("Missing required field `index`")
 
-    return M_SmashInjection.make(
+    return M_SmashInjection(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_SmashInjection",
         index=field_index,
     )
 
@@ -13557,12 +13932,14 @@ def load_M_SubLConstant(data: object) -> "M_SubLConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_SubLConstant.make(
+    return M_SubLConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_SubLConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -13638,12 +14015,14 @@ def load_M_SubUConstant(data: object) -> "M_SubUConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_SubUConstant.make(
+    return M_SubUConstant(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_SubUConstant",
         opspace=field_opspace,
         value=field_value,
     )
@@ -13714,12 +14093,14 @@ def load_M_TakeIndex(data: object) -> "M_TakeIndex":
     else:
         raise ValueError("Missing required field `projection`")
 
-    return M_TakeIndex.make(
+    return M_TakeIndex(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_TakeIndex",
         projection=field_projection,
     )
 
@@ -13789,12 +14170,14 @@ def load_M_TakeRange(data: object) -> "M_TakeRange":
     else:
         raise ValueError("Missing required field `range`")
 
-    return M_TakeRange.make(
+    return M_TakeRange(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_TakeRange",
         range=field_range,
     )
 
@@ -13864,12 +14247,14 @@ def load_M_Threshold1(data: object) -> "M_Threshold1":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_Threshold1.make(
+    return M_Threshold1(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Threshold1",
         value=field_value,
     )
 
@@ -13939,12 +14324,14 @@ def load_M_Threshold2(data: object) -> "M_Threshold2":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_Threshold2.make(
+    return M_Threshold2(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Threshold2",
         value=field_value,
     )
 
@@ -14009,12 +14396,14 @@ def load_M_TopIfNotBottom(data: object) -> "M_TopIfNotBottom":
     else:
         pass  # fixed value for this field
 
-    return M_TopIfNotBottom.make(
+    return M_TopIfNotBottom(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_TopIfNotBottom",
     )
 
 
@@ -14078,12 +14467,14 @@ def load_M_Undefined(data: object) -> "M_Undefined":
     else:
         pass  # fixed value for this field
 
-    return M_Undefined.make(
+    return M_Undefined(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Undefined",
     )
 
 
@@ -14147,12 +14538,14 @@ def load_M_Unknown(data: object) -> "M_Unknown":
     else:
         pass  # fixed value for this field
 
-    return M_Unknown.make(
+    return M_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Unknown",
     )
 
 
@@ -14216,12 +14609,14 @@ def load_M_Unlift(data: object) -> "M_Unlift":
     else:
         pass  # fixed value for this field
 
-    return M_Unlift.make(
+    return M_Unlift(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_Unlift",
     )
 
 
@@ -14295,12 +14690,14 @@ def load_M_X_Leq_C(data: object) -> "M_X_Leq_C":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_X_Leq_C.make(
+    return M_X_Leq_C(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_X_Leq_C",
         opspace=field_opspace,
         value=field_value,
     )
@@ -14376,12 +14773,14 @@ def load_M_X_Lt_C(data: object) -> "M_X_Lt_C":
     else:
         raise ValueError("Missing required field `value`")
 
-    return M_X_Lt_C.make(
+    return M_X_Lt_C(
         description=field_description,
         hash=field_hash,
+        kind="MonotoneMap",
         version=field_version,
         cod=field_cod,
         dom=field_dom,
+        type_="M_X_Lt_C",
         opspace=field_opspace,
         value=field_value,
     )
@@ -14447,10 +14846,12 @@ def load_MapCheck(data: object) -> "MapCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return MapCheck.make(
+    return MapCheck(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="MapCheck",
         data=field_data,
         m=field_m,
     )
@@ -14480,7 +14881,7 @@ def load_MapCheck_Data(data: object) -> "MapCheck_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return MapCheck_Data.make(
+    return MapCheck_Data(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -14506,7 +14907,8 @@ def load_ModelFunctionality(data: object) -> "ModelFunctionality":
     else:
         raise ValueError("Missing required field `functionality`")
 
-    return ModelFunctionality.make(
+    return ModelFunctionality(
+        type_="ModelFunctionality",
         functionality=field_functionality,
     )
 
@@ -14530,7 +14932,8 @@ def load_ModelRequirement(data: object) -> "ModelRequirement":
     else:
         raise ValueError("Missing required field `requirement`")
 
-    return ModelRequirement.make(
+    return ModelRequirement(
+        type_="ModelRequirement",
         requirement=field_requirement,
     )
 
@@ -14635,11 +15038,13 @@ def load_NDPInterface_Explicit(data: object) -> "NDPInterface_Explicit":
     else:
         raise ValueError("Missing required field `rs`")
 
-    return NDPInterface_Explicit.make(
+    return NDPInterface_Explicit(
         description=field_description,
         hash=field_hash,
+        kind="NDPInterface",
         version=field_version,
         address=field_address,
+        type_="NDPInterface_Explicit",
         fs=field_fs,
         rs=field_rs,
     )
@@ -14728,11 +15133,13 @@ def load_NDPTemplate_Simple(data: object) -> "NDPTemplate_Simple":
     else:
         raise ValueError("Missing required field `parameters`")
 
-    return NDPTemplate_Simple.make(
+    return NDPTemplate_Simple(
         description=field_description,
         hash=field_hash,
+        kind="NDPTemplate",
         version=field_version,
         address=field_address,
+        type_="NDPTemplate_Simple",
         ndp=field_ndp,
         parameters=field_parameters,
     )
@@ -14827,15 +15234,17 @@ def load_NDP_Composite(data: object) -> "NDP_Composite":
     else:
         raise ValueError("Missing required field `nodes`")
 
-    return NDP_Composite.make(
+    return NDP_Composite(
         description=field_description,
         hash=field_hash,
+        kind="NDP",
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
+        type_="NDP_Composite",
         connections=field_connections,
         nodes=field_nodes,
     )
@@ -14925,15 +15334,17 @@ def load_NDP_Simple(data: object) -> "NDP_Simple":
     else:
         raise ValueError("Missing required field `dp`")
 
-    return NDP_Simple.make(
+    return NDP_Simple(
         description=field_description,
         hash=field_hash,
+        kind="NDP",
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
+        type_="NDP_Simple",
         dp=field_dp,
     )
 
@@ -15031,15 +15442,17 @@ def load_NDP_Sum(data: object) -> "NDP_Sum":
     else:
         field_labels = None
 
-    return NDP_Sum.make(
+    return NDP_Sum(
         description=field_description,
         hash=field_hash,
+        kind="NDP",
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
+        type_="NDP_Sum",
         dps=field_dps,
         labels=field_labels,
     )
@@ -15129,15 +15542,17 @@ def load_NDP_TemplateHole(data: object) -> "NDP_TemplateHole":
     else:
         raise ValueError("Missing required field `parameter_name`")
 
-    return NDP_TemplateHole.make(
+    return NDP_TemplateHole(
         description=field_description,
         hash=field_hash,
+        kind="NDP",
         version=field_version,
         C=field_C,
         F=field_F,
         J=field_J,
         R=field_R,
         address=field_address,
+        type_="NDP_TemplateHole",
         parameter_name=field_parameter_name,
     )
 
@@ -15166,7 +15581,8 @@ def load_NodeFunctionality(data: object) -> "NodeFunctionality":
     else:
         raise ValueError("Missing required field `node_functionality`")
 
-    return NodeFunctionality.make(
+    return NodeFunctionality(
+        type_="NodeFunctionality",
         node=field_node,
         node_functionality=field_node_functionality,
     )
@@ -15196,7 +15612,8 @@ def load_NodeRequirement(data: object) -> "NodeRequirement":
     else:
         raise ValueError("Missing required field `node_requirement`")
 
-    return NodeRequirement.make(
+    return NodeRequirement(
+        type_="NodeRequirement",
         node=field_node,
         node_requirement=field_node_requirement,
     )
@@ -15303,11 +15720,13 @@ def load_P_Bool(data: object) -> "P_Bool":
     else:
         pass  # fixed value for this field
 
-    return P_Bool.make(
+    return P_Bool(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Bool",
     )
 
 
@@ -15375,11 +15794,13 @@ def load_P_C_Arrow(data: object) -> "P_C_Arrow":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Arrow.make(
+    return P_C_Arrow(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Arrow",
         poset=field_poset,
     )
 
@@ -15448,11 +15869,13 @@ def load_P_C_Discretized(data: object) -> "P_C_Discretized":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Discretized.make(
+    return P_C_Discretized(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Discretized",
         poset=field_poset,
     )
 
@@ -15530,11 +15953,13 @@ def load_P_C_Lexicographic(data: object) -> "P_C_Lexicographic":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_Lexicographic.make(
+    return P_C_Lexicographic(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Lexicographic",
         labels=field_labels,
         subs=field_subs,
     )
@@ -15604,11 +16029,13 @@ def load_P_C_LowerSets(data: object) -> "P_C_LowerSets":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_LowerSets.make(
+    return P_C_LowerSets(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_LowerSets",
         poset=field_poset,
     )
 
@@ -15682,11 +16109,13 @@ def load_P_C_Multisets(data: object) -> "P_C_Multisets":
     else:
         raise ValueError("Missing required field `values`")
 
-    return P_C_Multisets.make(
+    return P_C_Multisets(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Multisets",
         counts=field_counts,
         values=field_values,
     )
@@ -15756,11 +16185,13 @@ def load_P_C_Opposite(data: object) -> "P_C_Opposite":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Opposite.make(
+    return P_C_Opposite(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Opposite",
         poset=field_poset,
     )
 
@@ -15829,11 +16260,13 @@ def load_P_C_Power(data: object) -> "P_C_Power":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Power.make(
+    return P_C_Power(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Power",
         poset=field_poset,
     )
 
@@ -15911,11 +16344,13 @@ def load_P_C_Product(data: object) -> "P_C_Product":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_Product.make(
+    return P_C_Product(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Product",
         labels=field_labels,
         subs=field_subs,
     )
@@ -15994,11 +16429,13 @@ def load_P_C_ProductDS(data: object) -> "P_C_ProductDS":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_ProductDS.make(
+    return P_C_ProductDS(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_ProductDS",
         labels=field_labels,
         subs=field_subs,
     )
@@ -16087,11 +16524,13 @@ def load_P_C_ProductSmash(data: object) -> "P_C_ProductSmash":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_ProductSmash.make(
+    return P_C_ProductSmash(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_ProductSmash",
         labels=field_labels,
         naked=field_naked,
         ranges=field_ranges,
@@ -16172,11 +16611,13 @@ def load_P_C_Sum(data: object) -> "P_C_Sum":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_C_Sum.make(
+    return P_C_Sum(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Sum",
         labels=field_labels,
         subs=field_subs,
     )
@@ -16270,11 +16711,13 @@ def load_P_C_SumSmash(data: object) -> "P_C_SumSmash":
     else:
         raise ValueError("Missing required field `trivial`")
 
-    return P_C_SumSmash.make(
+    return P_C_SumSmash(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_SumSmash",
         labels=field_labels,
         naked=field_naked,
         ranges=field_ranges,
@@ -16347,11 +16790,13 @@ def load_P_C_Twisted(data: object) -> "P_C_Twisted":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_Twisted.make(
+    return P_C_Twisted(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Twisted",
         poset=field_poset,
     )
 
@@ -16425,11 +16870,13 @@ def load_P_C_Units(data: object) -> "P_C_Units":
     else:
         raise ValueError("Missing required field `units`")
 
-    return P_C_Units.make(
+    return P_C_Units(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_Units",
         poset=field_poset,
         units=field_units,
     )
@@ -16499,11 +16946,13 @@ def load_P_C_UpperSets(data: object) -> "P_C_UpperSets":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_C_UpperSets.make(
+    return P_C_UpperSets(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_C_UpperSets",
         poset=field_poset,
     )
 
@@ -16572,11 +17021,13 @@ def load_P_Decimal(data: object) -> "P_Decimal":
     else:
         field_precision = 9
 
-    return P_Decimal.make(
+    return P_Decimal(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Decimal",
         precision=field_precision,
     )
 
@@ -16675,11 +17126,13 @@ def load_P_F_Bounded(data: object) -> "P_F_Bounded":
     else:
         raise ValueError("Missing required field `top`")
 
-    return P_F_Bounded.make(
+    return P_F_Bounded(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_Bounded",
         bottom=field_bottom,
         bound_high=field_bound_high,
         bound_low=field_bound_low,
@@ -16768,11 +17221,13 @@ def load_P_F_C_Intersection(data: object) -> "P_F_C_Intersection":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_F_C_Intersection.make(
+    return P_F_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_C_Intersection",
         ambient=field_ambient,
         labels=field_labels,
         subs=field_subs,
@@ -16857,11 +17312,13 @@ def load_P_F_C_Union(data: object) -> "P_F_C_Union":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return P_F_C_Union.make(
+    return P_F_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_C_Union",
         ambient=field_ambient,
         labels=field_labels,
         subs=field_subs,
@@ -16942,11 +17399,13 @@ def load_P_F_Interval(data: object) -> "P_F_Interval":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_F_Interval.make(
+    return P_F_Interval(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_Interval",
         high=field_high,
         low=field_low,
         poset=field_poset,
@@ -17022,11 +17481,13 @@ def load_P_F_LowerClosure(data: object) -> "P_F_LowerClosure":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_F_LowerClosure.make(
+    return P_F_LowerClosure(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_LowerClosure",
         ls=field_ls,
         poset=field_poset,
     )
@@ -17101,11 +17562,13 @@ def load_P_F_Subposet(data: object) -> "P_F_Subposet":
     else:
         raise ValueError("Missing required field `poset`")
 
-    return P_F_Subposet.make(
+    return P_F_Subposet(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_Subposet",
         elements=field_elements,
         poset=field_poset,
     )
@@ -17180,11 +17643,13 @@ def load_P_F_UpperClosure(data: object) -> "P_F_UpperClosure":
     else:
         raise ValueError("Missing required field `us`")
 
-    return P_F_UpperClosure.make(
+    return P_F_UpperClosure(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_F_UpperClosure",
         poset=field_poset,
         us=field_us,
     )
@@ -17268,11 +17733,13 @@ def load_P_Finite(data: object) -> "P_Finite":
     else:
         raise ValueError("Missing required field `relations`")
 
-    return P_Finite.make(
+    return P_Finite(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Finite",
         aliases=field_aliases,
         elements=field_elements,
         relations=field_relations,
@@ -17343,11 +17810,13 @@ def load_P_Float(data: object) -> "P_Float":
     else:
         raise ValueError("Missing required field `size`")
 
-    return P_Float.make(
+    return P_Float(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Float",
         size=field_size,
     )
 
@@ -17426,11 +17895,13 @@ def load_P_Fractions(data: object) -> "P_Fractions":
     else:
         raise ValueError("Missing required field `size`")
 
-    return P_Fractions.make(
+    return P_Fractions(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Fractions",
         max_abs_denominator=field_max_abs_denominator,
         max_abs_numerator=field_max_abs_numerator,
         size=field_size,
@@ -17501,11 +17972,13 @@ def load_P_Integer(data: object) -> "P_Integer":
     else:
         raise ValueError("Missing required field `size`")
 
-    return P_Integer.make(
+    return P_Integer(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Integer",
         size=field_size,
     )
 
@@ -17569,11 +18042,13 @@ def load_P_Unknown(data: object) -> "P_Unknown":
     else:
         pass  # fixed value for this field
 
-    return P_Unknown.make(
+    return P_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="Poset",
         version=field_version,
         address=field_address,
+        type_="P_Unknown",
     )
 
 
@@ -17599,9 +18074,10 @@ def load_Projection(data: object) -> "Projection":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Projection.make(
+    return Projection(
         index=field_index,
         ntot=field_ntot,
+        type_="Projection",
     )
 
 
@@ -17663,7 +18139,8 @@ def load_QueryFixFunMinReqData(data: object) -> "QueryFixFunMinReqData":
     else:
         raise ValueError("Missing required field `r`")
 
-    return QueryFixFunMinReqData.make(
+    return QueryFixFunMinReqData(
+        type_="QueryFixFunMinReqData",
         f=field_f,
         optimize_for=field_optimize_for,
         r=field_r,
@@ -17699,7 +18176,8 @@ def load_QueryFixReqMaxFunData(data: object) -> "QueryFixReqMaxFunData":
     else:
         raise ValueError("Missing required field `r`")
 
-    return QueryFixReqMaxFunData.make(
+    return QueryFixReqMaxFunData(
+        type_="QueryFixReqMaxFunData",
         f=field_f,
         optimize_for=field_optimize_for,
         r=field_r,
@@ -17775,11 +18253,13 @@ def load_Query_Single(data: object) -> "Query_Single":
     else:
         raise ValueError("Missing required field `query_data`")
 
-    return Query_Single.make(
+    return Query_Single(
         description=field_description,
         hash=field_hash,
+        kind="Query",
         version=field_version,
         address=field_address,
+        type_="Query_Single",
         model=field_model,
         query_data=field_query_data,
     )
@@ -17812,10 +18292,11 @@ def load_Range(data: object) -> "Range":
     else:
         raise ValueError("Missing required field `type`")
 
-    return Range.make(
+    return Range(
         ntot=field_ntot,
         start=field_start,
         stop=field_stop,
+        type_="Range",
     )
 
 
@@ -17879,10 +18360,12 @@ def load_SL1Check(data: object) -> "SL1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1Check.make(
+    return SL1Check(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="SL1Check",
         data=field_data,
         m=field_m,
     )
@@ -17936,7 +18419,7 @@ def load_SL1Check_Data(data: object) -> "SL1Check_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SL1Check_Data.make(
+    return SL1Check_Data(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -18061,14 +18544,16 @@ def load_SL1_C_CodSum(data: object) -> "SL1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_CodSum.make(
+    return SL1_C_CodSum(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_CodSum",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18158,14 +18643,16 @@ def load_SL1_C_CodSumSmash(data: object) -> "SL1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_CodSumSmash.make(
+    return SL1_C_CodSumSmash(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_CodSumSmash",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18269,14 +18756,16 @@ def load_SL1_C_ExplicitApprox(data: object) -> "SL1_C_ExplicitApprox":
     else:
         field_pessimistic_labels = None
 
-    return SL1_C_ExplicitApprox.make(
+    return SL1_C_ExplicitApprox(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_ExplicitApprox",
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -18368,14 +18857,16 @@ def load_SL1_C_Intersection(data: object) -> "SL1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Intersection.make(
+    return SL1_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18465,14 +18956,16 @@ def load_SL1_C_Parallel(data: object) -> "SL1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Parallel.make(
+    return SL1_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18562,14 +19055,16 @@ def load_SL1_C_ProdIntersection(data: object) -> "SL1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_ProdIntersection.make(
+    return SL1_C_ProdIntersection(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_ProdIntersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18659,14 +19154,16 @@ def load_SL1_C_Product(data: object) -> "SL1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Product.make(
+    return SL1_C_Product(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_Product",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18747,14 +19244,16 @@ def load_SL1_C_RefineDomain(data: object) -> "SL1_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_C_RefineDomain.make(
+    return SL1_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_RefineDomain",
         m=field_m,
     )
 
@@ -18843,14 +19342,16 @@ def load_SL1_C_Series(data: object) -> "SL1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Series.make(
+    return SL1_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -18931,14 +19432,16 @@ def load_SL1_C_Trace(data: object) -> "SL1_C_Trace":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_C_Trace.make(
+    return SL1_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_Trace",
         m=field_m,
     )
 
@@ -19027,14 +19530,16 @@ def load_SL1_C_Union(data: object) -> "SL1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL1_C_Union.make(
+    return SL1_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -19125,14 +19630,16 @@ def load_SL1_C_WrapUnits(data: object) -> "SL1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_C_WrapUnits.make(
+    return SL1_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -19214,14 +19721,16 @@ def load_SL1_Exact(data: object) -> "SL1_Exact":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL1_Exact.make(
+    return SL1_Exact(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_Exact",
         m=field_m,
     )
 
@@ -19296,14 +19805,16 @@ def load_SL1_Identity(data: object) -> "SL1_Identity":
     else:
         pass  # fixed value for this field
 
-    return SL1_Identity.make(
+    return SL1_Identity(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_Identity",
     )
 
 
@@ -19382,14 +19893,16 @@ def load_SL1_InvMultiply(data: object) -> "SL1_InvMultiply":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SL1_InvMultiply.make(
+    return SL1_InvMultiply(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_InvMultiply",
         opspace=field_opspace,
     )
 
@@ -19469,14 +19982,16 @@ def load_SL1_InvSum(data: object) -> "SL1_InvSum":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SL1_InvSum.make(
+    return SL1_InvSum(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_InvSum",
         opspace=field_opspace,
     )
 
@@ -19551,14 +20066,16 @@ def load_SL1_Unknown(data: object) -> "SL1_Unknown":
     else:
         pass  # fixed value for this field
 
-    return SL1_Unknown.make(
+    return SL1_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="SL1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SL1_Unknown",
     )
 
 
@@ -19622,10 +20139,12 @@ def load_SLCheck(data: object) -> "SLCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SLCheck.make(
+    return SLCheck(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="SLCheck",
         data=field_data,
         m=field_m,
     )
@@ -19679,7 +20198,7 @@ def load_SLCheck_Data(data: object) -> "SLCheck_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SLCheck_Data.make(
+    return SLCheck_Data(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -19703,6 +20222,7 @@ def load_SLMap(data: object) -> "SLMap":
         "SL_C_RefineDomain": load_SL_C_RefineDomain,
         "SL_C_Series": load_SL_C_Series,
         "SL_C_Trace": load_SL_C_Trace,
+        "SL_C_TraceL": load_SL_C_TraceL,
         "SL_C_Union": load_SL_C_Union,
         "SL_C_WrapUnits": load_SL_C_WrapUnits,
         "SL_Identity": load_SL_Identity,
@@ -19802,15 +20322,17 @@ def load_SL_C_ITransform(data: object) -> "SL_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SL_C_ITransform.make(
+    return SL_C_ITransform(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_ITransform",
         m=field_m,
         transform=field_transform,
     )
@@ -19905,15 +20427,17 @@ def load_SL_C_Intersection(data: object) -> "SL_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Intersection.make(
+    return SL_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -20008,15 +20532,17 @@ def load_SL_C_Parallel(data: object) -> "SL_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Parallel.make(
+    return SL_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -20102,15 +20628,17 @@ def load_SL_C_RefineDomain(data: object) -> "SL_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL_C_RefineDomain.make(
+    return SL_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_RefineDomain",
         m=field_m,
     )
 
@@ -20204,15 +20732,17 @@ def load_SL_C_Series(data: object) -> "SL_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Series.make(
+    return SL_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -20303,15 +20833,118 @@ def load_SL_C_Trace(data: object) -> "SL_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return SL_C_Trace.make(
+    return SL_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_Trace",
+        m=field_m,
+        m_proj=field_m_proj,
+    )
+
+
+def load_SL_C_TraceL(data: object) -> "SL_C_TraceL":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "description" in data:
+        value = data["description"]
+        if value is None:
+            field_description = None
+        else:
+            field_description = load_str(value)
+    else:
+        field_description = None
+
+    if "hash" in data:
+        value = data["hash"]
+        if value is None:
+            field_hash = None
+        else:
+            field_hash = load_str(value)
+    else:
+        field_hash = None
+
+    if "kind" in data:
+        field_kind = load_str(data["kind"])
+        if field_kind != "SLMap":
+            raise ValueError(f"Expected `SLMap`, got `{field_kind}`")
+        if field_kind is not None and field_kind != "SLMap":
+            raise ValueError(f"Invalid discriminator value for `kind`: expected `SLMap`, got {field_kind}")
+    else:
+        pass  # fixed value for this field
+
+    if "version" in data:
+        value = data["version"]
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+
+    if "kcod" in data:
+        field_kcod = load_Poset(data["kcod"])
+    else:
+        raise ValueError("Missing required field `kcod`")
+
+    if "kdom" in data:
+        field_kdom = load_Poset(data["kdom"])
+    else:
+        raise ValueError("Missing required field `kdom`")
+
+    if "kimp" in data:
+        field_kimp = load_Poset(data["kimp"])
+    else:
+        raise ValueError("Missing required field `kimp`")
+
+    if "opt" in data:
+        field_opt = load_Poset(data["opt"])
+    else:
+        raise ValueError("Missing required field `opt`")
+
+    if "pes" in data:
+        field_pes = load_Poset(data["pes"])
+    else:
+        raise ValueError("Missing required field `pes`")
+
+    if "type" in data:
+        field_type_ = load_str(data["type"])
+        if field_type_ != "SL_C_TraceL":
+            raise ValueError(f"Expected `SL_C_TraceL`, got `{field_type_}`")
+        if field_type_ is not None and field_type_ != "SL_C_TraceL":
+            raise ValueError(f"Invalid discriminator value for `type`: expected `SL_C_TraceL`, got {field_type_}")
+    else:
+        pass  # fixed value for this field
+
+    if "m" in data:
+        field_m = load_SLMap(data["m"])
+    else:
+        raise ValueError("Missing required field `m`")
+
+    if "m_proj" in data:
+        field_m_proj = load_SL1Map(data["m_proj"])
+    else:
+        raise ValueError("Missing required field `m_proj`")
+
+    return SL_C_TraceL(
+        description=field_description,
+        hash=field_hash,
+        kind="SLMap",
+        version=field_version,
+        kcod=field_kcod,
+        kdom=field_kdom,
+        kimp=field_kimp,
+        opt=field_opt,
+        pes=field_pes,
+        type_="SL_C_TraceL",
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -20406,15 +21039,17 @@ def load_SL_C_Union(data: object) -> "SL_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SL_C_Union.make(
+    return SL_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -20515,15 +21150,17 @@ def load_SL_C_WrapUnits(data: object) -> "SL_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL_C_WrapUnits.make(
+    return SL_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -20606,15 +21243,17 @@ def load_SL_Identity(data: object) -> "SL_Identity":
     else:
         pass  # fixed value for this field
 
-    return SL_Identity.make(
+    return SL_Identity(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_Identity",
     )
 
 
@@ -20698,15 +21337,17 @@ def load_SL_L_Exact(data: object) -> "SL_L_Exact":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SL_L_Exact.make(
+    return SL_L_Exact(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_L_Exact",
         m=field_m,
     )
 
@@ -20814,15 +21455,17 @@ def load_SL_L_Explicit_Approx(data: object) -> "SL_L_Explicit_Approx":
     else:
         field_pessimistic_labels = None
 
-    return SL_L_Explicit_Approx.make(
+    return SL_L_Explicit_Approx(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_L_Explicit_Approx",
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -20915,15 +21558,17 @@ def load_SL_L_Lift1_Constant(data: object) -> "SL_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return SL_L_Lift1_Constant.make(
+    return SL_L_Lift1_Constant(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_L_Lift1_Constant",
         m=field_m,
         value=field_value,
     )
@@ -21014,15 +21659,17 @@ def load_SL_L_Lift1_Transform(data: object) -> "SL_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SL_L_Lift1_Transform.make(
+    return SL_L_Lift1_Transform(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_L_Lift1_Transform",
         m=field_m,
         transform=field_transform,
     )
@@ -21103,15 +21750,17 @@ def load_SL_Unknown(data: object) -> "SL_Unknown":
     else:
         pass  # fixed value for this field
 
-    return SL_Unknown.make(
+    return SL_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="SLMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SL_Unknown",
     )
 
 
@@ -21175,10 +21824,12 @@ def load_SU1Check(data: object) -> "SU1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1Check.make(
+    return SU1Check(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="SU1Check",
         data=field_data,
         m=field_m,
     )
@@ -21232,7 +21883,7 @@ def load_SU1Check_Data(data: object) -> "SU1Check_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SU1Check_Data.make(
+    return SU1Check_Data(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -21357,14 +22008,16 @@ def load_SU1_C_CodSum(data: object) -> "SU1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_CodSum.make(
+    return SU1_C_CodSum(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_CodSum",
         labels=field_labels,
         ms=field_ms,
     )
@@ -21454,14 +22107,16 @@ def load_SU1_C_CodSumSmash(data: object) -> "SU1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_CodSumSmash.make(
+    return SU1_C_CodSumSmash(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_CodSumSmash",
         labels=field_labels,
         ms=field_ms,
     )
@@ -21565,14 +22220,16 @@ def load_SU1_C_ExplicitApprox(data: object) -> "SU1_C_ExplicitApprox":
     else:
         field_pessimistic_labels = None
 
-    return SU1_C_ExplicitApprox.make(
+    return SU1_C_ExplicitApprox(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_ExplicitApprox",
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -21664,14 +22321,16 @@ def load_SU1_C_Intersection(data: object) -> "SU1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Intersection.make(
+    return SU1_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -21761,14 +22420,16 @@ def load_SU1_C_Parallel(data: object) -> "SU1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Parallel.make(
+    return SU1_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -21858,14 +22519,16 @@ def load_SU1_C_ProdIntersection(data: object) -> "SU1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_ProdIntersection.make(
+    return SU1_C_ProdIntersection(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_ProdIntersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -21955,14 +22618,16 @@ def load_SU1_C_Product(data: object) -> "SU1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Product.make(
+    return SU1_C_Product(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_Product",
         labels=field_labels,
         ms=field_ms,
     )
@@ -22043,14 +22708,16 @@ def load_SU1_C_RefineDomain(data: object) -> "SU1_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_C_RefineDomain.make(
+    return SU1_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_RefineDomain",
         m=field_m,
     )
 
@@ -22139,14 +22806,16 @@ def load_SU1_C_Series(data: object) -> "SU1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Series.make(
+    return SU1_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -22227,14 +22896,16 @@ def load_SU1_C_Trace(data: object) -> "SU1_C_Trace":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_C_Trace.make(
+    return SU1_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_Trace",
         m=field_m,
     )
 
@@ -22323,14 +22994,16 @@ def load_SU1_C_Union(data: object) -> "SU1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU1_C_Union.make(
+    return SU1_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -22421,14 +23094,16 @@ def load_SU1_C_WrapUnits(data: object) -> "SU1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_C_WrapUnits.make(
+    return SU1_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -22510,14 +23185,16 @@ def load_SU1_Exact(data: object) -> "SU1_Exact":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU1_Exact.make(
+    return SU1_Exact(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_Exact",
         m=field_m,
     )
 
@@ -22592,14 +23269,16 @@ def load_SU1_Identity(data: object) -> "SU1_Identity":
     else:
         pass  # fixed value for this field
 
-    return SU1_Identity.make(
+    return SU1_Identity(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_Identity",
     )
 
 
@@ -22678,14 +23357,16 @@ def load_SU1_InvMultiply(data: object) -> "SU1_InvMultiply":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SU1_InvMultiply.make(
+    return SU1_InvMultiply(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_InvMultiply",
         opspace=field_opspace,
     )
 
@@ -22765,14 +23446,16 @@ def load_SU1_InvSum(data: object) -> "SU1_InvSum":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return SU1_InvSum.make(
+    return SU1_InvSum(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_InvSum",
         opspace=field_opspace,
     )
 
@@ -22847,14 +23530,16 @@ def load_SU1_Unknown(data: object) -> "SU1_Unknown":
     else:
         pass  # fixed value for this field
 
-    return SU1_Unknown.make(
+    return SU1_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="SU1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         opt=field_opt,
         pes=field_pes,
+        type_="SU1_Unknown",
     )
 
 
@@ -22918,10 +23603,12 @@ def load_SUCheck(data: object) -> "SUCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SUCheck.make(
+    return SUCheck(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="SUCheck",
         data=field_data,
         m=field_m,
     )
@@ -22975,7 +23662,7 @@ def load_SUCheck_Data(data: object) -> "SUCheck_Data":
     else:
         raise ValueError("Missing required field `x`")
 
-    return SUCheck_Data.make(
+    return SUCheck_Data(
         opt=field_opt,
         opt_elapsed=field_opt_elapsed,
         opt_y=field_opt_y,
@@ -22999,6 +23686,7 @@ def load_SUMap(data: object) -> "SUMap":
         "SU_C_RefineDomain": load_SU_C_RefineDomain,
         "SU_C_Series": load_SU_C_Series,
         "SU_C_Trace": load_SU_C_Trace,
+        "SU_C_TraceL": load_SU_C_TraceL,
         "SU_C_Union": load_SU_C_Union,
         "SU_C_WrapUnits": load_SU_C_WrapUnits,
         "SU_Identity": load_SU_Identity,
@@ -23098,15 +23786,17 @@ def load_SU_C_ITransform(data: object) -> "SU_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SU_C_ITransform.make(
+    return SU_C_ITransform(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_ITransform",
         m=field_m,
         transform=field_transform,
     )
@@ -23201,15 +23891,17 @@ def load_SU_C_Intersection(data: object) -> "SU_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Intersection.make(
+    return SU_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -23304,15 +23996,17 @@ def load_SU_C_Parallel(data: object) -> "SU_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Parallel.make(
+    return SU_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -23398,15 +24092,17 @@ def load_SU_C_RefineDomain(data: object) -> "SU_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU_C_RefineDomain.make(
+    return SU_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_RefineDomain",
         m=field_m,
     )
 
@@ -23500,15 +24196,17 @@ def load_SU_C_Series(data: object) -> "SU_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Series.make(
+    return SU_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -23599,15 +24297,118 @@ def load_SU_C_Trace(data: object) -> "SU_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return SU_C_Trace.make(
+    return SU_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_Trace",
+        m=field_m,
+        m_proj=field_m_proj,
+    )
+
+
+def load_SU_C_TraceL(data: object) -> "SU_C_TraceL":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "description" in data:
+        value = data["description"]
+        if value is None:
+            field_description = None
+        else:
+            field_description = load_str(value)
+    else:
+        field_description = None
+
+    if "hash" in data:
+        value = data["hash"]
+        if value is None:
+            field_hash = None
+        else:
+            field_hash = load_str(value)
+    else:
+        field_hash = None
+
+    if "kind" in data:
+        field_kind = load_str(data["kind"])
+        if field_kind != "SUMap":
+            raise ValueError(f"Expected `SUMap`, got `{field_kind}`")
+        if field_kind is not None and field_kind != "SUMap":
+            raise ValueError(f"Invalid discriminator value for `kind`: expected `SUMap`, got {field_kind}")
+    else:
+        pass  # fixed value for this field
+
+    if "version" in data:
+        value = data["version"]
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+
+    if "kcod" in data:
+        field_kcod = load_Poset(data["kcod"])
+    else:
+        raise ValueError("Missing required field `kcod`")
+
+    if "kdom" in data:
+        field_kdom = load_Poset(data["kdom"])
+    else:
+        raise ValueError("Missing required field `kdom`")
+
+    if "kimp" in data:
+        field_kimp = load_Poset(data["kimp"])
+    else:
+        raise ValueError("Missing required field `kimp`")
+
+    if "opt" in data:
+        field_opt = load_Poset(data["opt"])
+    else:
+        raise ValueError("Missing required field `opt`")
+
+    if "pes" in data:
+        field_pes = load_Poset(data["pes"])
+    else:
+        raise ValueError("Missing required field `pes`")
+
+    if "type" in data:
+        field_type_ = load_str(data["type"])
+        if field_type_ != "SU_C_TraceL":
+            raise ValueError(f"Expected `SU_C_TraceL`, got `{field_type_}`")
+        if field_type_ is not None and field_type_ != "SU_C_TraceL":
+            raise ValueError(f"Invalid discriminator value for `type`: expected `SU_C_TraceL`, got {field_type_}")
+    else:
+        pass  # fixed value for this field
+
+    if "m" in data:
+        field_m = load_SUMap(data["m"])
+    else:
+        raise ValueError("Missing required field `m`")
+
+    if "m_proj" in data:
+        field_m_proj = load_SU1Map(data["m_proj"])
+    else:
+        raise ValueError("Missing required field `m_proj`")
+
+    return SU_C_TraceL(
+        description=field_description,
+        hash=field_hash,
+        kind="SUMap",
+        version=field_version,
+        kcod=field_kcod,
+        kdom=field_kdom,
+        kimp=field_kimp,
+        opt=field_opt,
+        pes=field_pes,
+        type_="SU_C_TraceL",
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -23702,15 +24503,17 @@ def load_SU_C_Union(data: object) -> "SU_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return SU_C_Union.make(
+    return SU_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -23811,15 +24614,17 @@ def load_SU_C_WrapUnits(data: object) -> "SU_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU_C_WrapUnits.make(
+    return SU_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -23902,15 +24707,17 @@ def load_SU_Identity(data: object) -> "SU_Identity":
     else:
         pass  # fixed value for this field
 
-    return SU_Identity.make(
+    return SU_Identity(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_Identity",
     )
 
 
@@ -23994,15 +24801,17 @@ def load_SU_L_Exact(data: object) -> "SU_L_Exact":
     else:
         raise ValueError("Missing required field `m`")
 
-    return SU_L_Exact.make(
+    return SU_L_Exact(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_L_Exact",
         m=field_m,
     )
 
@@ -24110,15 +24919,17 @@ def load_SU_L_Explicit_Approx(data: object) -> "SU_L_Explicit_Approx":
     else:
         field_pessimistic_labels = None
 
-    return SU_L_Explicit_Approx.make(
+    return SU_L_Explicit_Approx(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_L_Explicit_Approx",
         optimistic=field_optimistic,
         optimistic_labels=field_optimistic_labels,
         pessimistic=field_pessimistic,
@@ -24211,15 +25022,17 @@ def load_SU_L_Lift1_Constant(data: object) -> "SU_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return SU_L_Lift1_Constant.make(
+    return SU_L_Lift1_Constant(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_L_Lift1_Constant",
         m=field_m,
         value=field_value,
     )
@@ -24310,15 +25123,17 @@ def load_SU_L_Lift1_Transform(data: object) -> "SU_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return SU_L_Lift1_Transform.make(
+    return SU_L_Lift1_Transform(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_L_Lift1_Transform",
         m=field_m,
         transform=field_transform,
     )
@@ -24399,15 +25214,17 @@ def load_SU_Unknown(data: object) -> "SU_Unknown":
     else:
         pass  # fixed value for this field
 
-    return SU_Unknown.make(
+    return SU_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="SUMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
         opt=field_opt,
         pes=field_pes,
+        type_="SU_Unknown",
     )
 
 
@@ -24471,10 +25288,12 @@ def load_U1Check(data: object) -> "U1Check":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1Check.make(
+    return U1Check(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="U1Check",
         data=field_data,
         m=field_m,
     )
@@ -24504,7 +25323,7 @@ def load_U1Check_Data(data: object) -> "U1Check_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return U1Check_Data.make(
+    return U1Check_Data(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -24628,12 +25447,14 @@ def load_U1_C_CodSum(data: object) -> "U1_C_CodSum":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_CodSum.make(
+    return U1_C_CodSum(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_CodSum",
         labels=field_labels,
         ms=field_ms,
     )
@@ -24713,12 +25534,14 @@ def load_U1_C_CodSumSmash(data: object) -> "U1_C_CodSumSmash":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_CodSumSmash.make(
+    return U1_C_CodSumSmash(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_CodSumSmash",
         labels=field_labels,
         ms=field_ms,
     )
@@ -24798,12 +25621,14 @@ def load_U1_C_DomUnion(data: object) -> "U1_C_DomUnion":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_DomUnion.make(
+    return U1_C_DomUnion(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_DomUnion",
         labels=field_labels,
         ms=field_ms,
     )
@@ -24883,12 +25708,14 @@ def load_U1_C_Intersection(data: object) -> "U1_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Intersection.make(
+    return U1_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -24968,12 +25795,14 @@ def load_U1_C_Parallel(data: object) -> "U1_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Parallel.make(
+    return U1_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -25053,12 +25882,14 @@ def load_U1_C_ProdIntersection(data: object) -> "U1_C_ProdIntersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_ProdIntersection.make(
+    return U1_C_ProdIntersection(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_ProdIntersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -25138,12 +25969,14 @@ def load_U1_C_Product(data: object) -> "U1_C_Product":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Product.make(
+    return U1_C_Product(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_Product",
         labels=field_labels,
         ms=field_ms,
     )
@@ -25214,12 +26047,14 @@ def load_U1_C_RefineDomain(data: object) -> "U1_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_C_RefineDomain.make(
+    return U1_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_RefineDomain",
         m=field_m,
     )
 
@@ -25298,12 +26133,14 @@ def load_U1_C_Series(data: object) -> "U1_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Series.make(
+    return U1_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -25374,12 +26211,14 @@ def load_U1_C_Trace(data: object) -> "U1_C_Trace":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_C_Trace.make(
+    return U1_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_Trace",
         m=field_m,
     )
 
@@ -25458,12 +26297,14 @@ def load_U1_C_Union(data: object) -> "U1_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U1_C_Union.make(
+    return U1_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -25544,12 +26385,14 @@ def load_U1_C_WrapUnits(data: object) -> "U1_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_C_WrapUnits.make(
+    return U1_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         m=field_m,
@@ -25621,12 +26464,14 @@ def load_U1_Catalog(data: object) -> "U1_Catalog":
     else:
         raise ValueError("Missing required field `options`")
 
-    return U1_Catalog.make(
+    return U1_Catalog(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Catalog",
         options=field_options,
     )
 
@@ -25646,7 +26491,7 @@ def load_U1_Catalog_Options(data: object) -> "U1_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return U1_Catalog_Options.make(
+    return U1_Catalog_Options(
         f=field_f,
         r=field_r,
     )
@@ -25717,12 +26562,14 @@ def load_U1_Constant(data: object) -> "U1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return U1_Constant.make(
+    return U1_Constant(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Constant",
         value=field_value,
     )
 
@@ -25787,12 +26634,14 @@ def load_U1_Entire(data: object) -> "U1_Entire":
     else:
         pass  # fixed value for this field
 
-    return U1_Entire.make(
+    return U1_Entire(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Entire",
     )
 
 
@@ -25861,12 +26710,14 @@ def load_U1_Explicit(data: object) -> "U1_Explicit":
     else:
         raise ValueError("Missing required field `options`")
 
-    return U1_Explicit.make(
+    return U1_Explicit(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Explicit",
         options=field_options,
     )
 
@@ -25886,7 +26737,7 @@ def load_U1_Explicit_Option(data: object) -> "U1_Explicit_Option":
     else:
         raise ValueError("Missing required field `y`")
 
-    return U1_Explicit_Option.make(
+    return U1_Explicit_Option(
         x=field_x,
         y=field_y,
     )
@@ -25957,12 +26808,14 @@ def load_U1_FromFilter(data: object) -> "U1_FromFilter":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_FromFilter.make(
+    return U1_FromFilter(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_FromFilter",
         m=field_m,
     )
 
@@ -26027,12 +26880,14 @@ def load_U1_Identity(data: object) -> "U1_Identity":
     else:
         pass  # fixed value for this field
 
-    return U1_Identity.make(
+    return U1_Identity(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Identity",
     )
 
 
@@ -26098,12 +26953,14 @@ def load_U1_IntersectionOfPrinUpperSets(data: object) -> "U1_IntersectionOfPrinU
     else:
         pass  # fixed value for this field
 
-    return U1_IntersectionOfPrinUpperSets.make(
+    return U1_IntersectionOfPrinUpperSets(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_IntersectionOfPrinUpperSets",
     )
 
 
@@ -26177,12 +27034,14 @@ def load_U1_InvMul_Opt(data: object) -> "U1_InvMul_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvMul_Opt.make(
+    return U1_InvMul_Opt(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_InvMul_Opt",
         n=field_n,
         opspace=field_opspace,
     )
@@ -26258,12 +27117,14 @@ def load_U1_InvMul_Pes(data: object) -> "U1_InvMul_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvMul_Pes.make(
+    return U1_InvMul_Pes(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_InvMul_Pes",
         n=field_n,
         opspace=field_opspace,
     )
@@ -26339,12 +27200,14 @@ def load_U1_InvSum_Opt(data: object) -> "U1_InvSum_Opt":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvSum_Opt.make(
+    return U1_InvSum_Opt(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_InvSum_Opt",
         n=field_n,
         opspace=field_opspace,
     )
@@ -26420,12 +27283,14 @@ def load_U1_InvSum_Pes(data: object) -> "U1_InvSum_Pes":
     else:
         raise ValueError("Missing required field `opspace`")
 
-    return U1_InvSum_Pes.make(
+    return U1_InvSum_Pes(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_InvSum_Pes",
         n=field_n,
         opspace=field_opspace,
     )
@@ -26496,12 +27361,14 @@ def load_U1_L_Uinv(data: object) -> "U1_L_Uinv":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_L_Uinv.make(
+    return U1_L_Uinv(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_L_Uinv",
         m=field_m,
     )
 
@@ -26571,12 +27438,14 @@ def load_U1_Lift(data: object) -> "U1_Lift":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U1_Lift.make(
+    return U1_Lift(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Lift",
         m=field_m,
     )
 
@@ -26643,12 +27512,14 @@ def load_U1_RepresentPrincipalUpperSet(data: object) -> "U1_RepresentPrincipalUp
     else:
         pass  # fixed value for this field
 
-    return U1_RepresentPrincipalUpperSet.make(
+    return U1_RepresentPrincipalUpperSet(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_RepresentPrincipalUpperSet",
     )
 
 
@@ -26717,12 +27588,14 @@ def load_U1_Uinv_Join(data: object) -> "U1_Uinv_Join":
     else:
         raise ValueError("Missing required field `lower_bounds`")
 
-    return U1_Uinv_Join.make(
+    return U1_Uinv_Join(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Uinv_Join",
         lower_bounds=field_lower_bounds,
     )
 
@@ -26797,12 +27670,14 @@ def load_U1_Uinv_JoinConstant(data: object) -> "U1_Uinv_JoinConstant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return U1_Uinv_JoinConstant.make(
+    return U1_Uinv_JoinConstant(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Uinv_JoinConstant",
         join1_dom=field_join1_dom,
         value=field_value,
     )
@@ -26868,12 +27743,14 @@ def load_U1_UnionOfPrinUpperSets(data: object) -> "U1_UnionOfPrinUpperSets":
     else:
         pass  # fixed value for this field
 
-    return U1_UnionOfPrinUpperSets.make(
+    return U1_UnionOfPrinUpperSets(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_UnionOfPrinUpperSets",
     )
 
 
@@ -26937,12 +27814,14 @@ def load_U1_Unknown(data: object) -> "U1_Unknown":
     else:
         pass  # fixed value for this field
 
-    return U1_Unknown.make(
+    return U1_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="U1Map",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
+        type_="U1_Unknown",
     )
 
 
@@ -27006,10 +27885,12 @@ def load_UCheck(data: object) -> "UCheck":
     else:
         raise ValueError("Missing required field `m`")
 
-    return UCheck.make(
+    return UCheck(
         description=field_description,
         hash=field_hash,
+        kind="Check",
         version=field_version,
+        type_="UCheck",
         data=field_data,
         m=field_m,
     )
@@ -27039,7 +27920,7 @@ def load_UCheck_Data(data: object) -> "UCheck_Data":
     else:
         raise ValueError("Missing required field `y`")
 
-    return UCheck_Data.make(
+    return UCheck_Data(
         elapsed=field_elapsed,
         x=field_x,
         y=field_y,
@@ -27059,6 +27940,7 @@ def load_UMap(data: object) -> "UMap":
         "U_C_RefineDomain": load_U_C_RefineDomain,
         "U_C_Series": load_U_C_Series,
         "U_C_Trace": load_U_C_Trace,
+        "U_C_TraceL": load_U_C_TraceL,
         "U_C_Union": load_U_C_Union,
         "U_C_WrapUnits": load_U_C_WrapUnits,
         "U_Catalog": load_U_Catalog,
@@ -27148,13 +28030,15 @@ def load_U_C_ITransform(data: object) -> "U_C_ITransform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return U_C_ITransform.make(
+    return U_C_ITransform(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_ITransform",
         m=field_m,
         transform=field_transform,
     )
@@ -27239,13 +28123,15 @@ def load_U_C_Intersection(data: object) -> "U_C_Intersection":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Intersection.make(
+    return U_C_Intersection(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_Intersection",
         labels=field_labels,
         ms=field_ms,
     )
@@ -27330,13 +28216,15 @@ def load_U_C_Parallel(data: object) -> "U_C_Parallel":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Parallel.make(
+    return U_C_Parallel(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_Parallel",
         labels=field_labels,
         ms=field_ms,
     )
@@ -27412,13 +28300,15 @@ def load_U_C_RefineDomain(data: object) -> "U_C_RefineDomain":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U_C_RefineDomain.make(
+    return U_C_RefineDomain(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_RefineDomain",
         m=field_m,
     )
 
@@ -27502,13 +28392,15 @@ def load_U_C_Series(data: object) -> "U_C_Series":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Series.make(
+    return U_C_Series(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_Series",
         labels=field_labels,
         ms=field_ms,
     )
@@ -27589,13 +28481,104 @@ def load_U_C_Trace(data: object) -> "U_C_Trace":
     else:
         raise ValueError("Missing required field `m_proj`")
 
-    return U_C_Trace.make(
+    return U_C_Trace(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_Trace",
+        m=field_m,
+        m_proj=field_m_proj,
+    )
+
+
+def load_U_C_TraceL(data: object) -> "U_C_TraceL":
+    if not isinstance(data, dict):
+        raise ValueError("Data must be a dictionary")
+    data = cast(dict[str, object], data)
+
+    if "description" in data:
+        value = data["description"]
+        if value is None:
+            field_description = None
+        else:
+            field_description = load_str(value)
+    else:
+        field_description = None
+
+    if "hash" in data:
+        value = data["hash"]
+        if value is None:
+            field_hash = None
+        else:
+            field_hash = load_str(value)
+    else:
+        field_hash = None
+
+    if "kind" in data:
+        field_kind = load_str(data["kind"])
+        if field_kind != "UMap":
+            raise ValueError(f"Expected `UMap`, got `{field_kind}`")
+        if field_kind is not None and field_kind != "UMap":
+            raise ValueError(f"Invalid discriminator value for `kind`: expected `UMap`, got {field_kind}")
+    else:
+        pass  # fixed value for this field
+
+    if "version" in data:
+        value = data["version"]
+        if value is None:
+            field_version = None
+        else:
+            field_version = load_str(value)
+    else:
+        field_version = None
+
+    if "kcod" in data:
+        field_kcod = load_Poset(data["kcod"])
+    else:
+        raise ValueError("Missing required field `kcod`")
+
+    if "kdom" in data:
+        field_kdom = load_Poset(data["kdom"])
+    else:
+        raise ValueError("Missing required field `kdom`")
+
+    if "kimp" in data:
+        field_kimp = load_Poset(data["kimp"])
+    else:
+        raise ValueError("Missing required field `kimp`")
+
+    if "type" in data:
+        field_type_ = load_str(data["type"])
+        if field_type_ != "U_C_TraceL":
+            raise ValueError(f"Expected `U_C_TraceL`, got `{field_type_}`")
+        if field_type_ is not None and field_type_ != "U_C_TraceL":
+            raise ValueError(f"Invalid discriminator value for `type`: expected `U_C_TraceL`, got {field_type_}")
+    else:
+        pass  # fixed value for this field
+
+    if "m" in data:
+        field_m = load_UMap(data["m"])
+    else:
+        raise ValueError("Missing required field `m`")
+
+    if "m_proj" in data:
+        field_m_proj = load_U1Map(data["m_proj"])
+    else:
+        raise ValueError("Missing required field `m_proj`")
+
+    return U_C_TraceL(
+        description=field_description,
+        hash=field_hash,
+        kind="UMap",
+        version=field_version,
+        kcod=field_kcod,
+        kdom=field_kdom,
+        kimp=field_kimp,
+        type_="U_C_TraceL",
         m=field_m,
         m_proj=field_m_proj,
     )
@@ -27680,13 +28663,15 @@ def load_U_C_Union(data: object) -> "U_C_Union":
     else:
         raise ValueError("Missing required field `ms`")
 
-    return U_C_Union.make(
+    return U_C_Union(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_Union",
         labels=field_labels,
         ms=field_ms,
     )
@@ -27777,13 +28762,15 @@ def load_U_C_WrapUnits(data: object) -> "U_C_WrapUnits":
     else:
         raise ValueError("Missing required field `m`")
 
-    return U_C_WrapUnits.make(
+    return U_C_WrapUnits(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_C_WrapUnits",
         kcod_units=field_kcod_units,
         kdom_units=field_kdom_units,
         kimp_units=field_kimp_units,
@@ -27861,13 +28848,15 @@ def load_U_Catalog(data: object) -> "U_Catalog":
     else:
         raise ValueError("Missing required field `options`")
 
-    return U_Catalog.make(
+    return U_Catalog(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_Catalog",
         options=field_options,
     )
 
@@ -27892,7 +28881,7 @@ def load_U_Catalog_Options(data: object) -> "U_Catalog_Options":
     else:
         raise ValueError("Missing required field `r`")
 
-    return U_Catalog_Options.make(
+    return U_Catalog_Options(
         f=field_f,
         i=field_i,
         r=field_r,
@@ -27969,13 +28958,15 @@ def load_U_Constant(data: object) -> "U_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return U_Constant.make(
+    return U_Constant(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_Constant",
         value=field_value,
     )
 
@@ -28045,13 +29036,15 @@ def load_U_Identity(data: object) -> "U_Identity":
     else:
         pass  # fixed value for this field
 
-    return U_Identity.make(
+    return U_Identity(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_Identity",
     )
 
 
@@ -28130,13 +29123,15 @@ def load_U_L_Lift1_Constant(data: object) -> "U_L_Lift1_Constant":
     else:
         raise ValueError("Missing required field `value`")
 
-    return U_L_Lift1_Constant.make(
+    return U_L_Lift1_Constant(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_L_Lift1_Constant",
         m=field_m,
         value=field_value,
     )
@@ -28217,13 +29212,15 @@ def load_U_L_Lift1_Transform(data: object) -> "U_L_Lift1_Transform":
     else:
         raise ValueError("Missing required field `transform`")
 
-    return U_L_Lift1_Transform.make(
+    return U_L_Lift1_Transform(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_L_Lift1_Transform",
         m=field_m,
         transform=field_transform,
     )
@@ -28294,13 +29291,15 @@ def load_U_Unknown(data: object) -> "U_Unknown":
     else:
         pass  # fixed value for this field
 
-    return U_Unknown.make(
+    return U_Unknown(
         description=field_description,
         hash=field_hash,
+        kind="UMap",
         version=field_version,
         kcod=field_kcod,
         kdom=field_kdom,
         kimp=field_kimp,
+        type_="U_Unknown",
     )
 
 
@@ -28351,8 +29350,10 @@ def load_Unit_None(data: object) -> "Unit_None":
     else:
         pass  # fixed value for this field
 
-    return Unit_None.make(
+    return Unit_None(
         description=field_description,
+        kind="Unit",
+        type_="Unit_None",
     )
 
 
@@ -28391,8 +29392,10 @@ def load_Unit_Single(data: object) -> "Unit_Single":
     else:
         raise ValueError("Missing required field `units`")
 
-    return Unit_Single.make(
+    return Unit_Single(
         description=field_description,
+        kind="Unit",
+        type_="Unit_Single",
         units=field_units,
     )
 
@@ -28441,8 +29444,10 @@ def load_Unit_Vector(data: object) -> "Unit_Vector":
     else:
         raise ValueError("Missing required field `subs`")
 
-    return Unit_Vector.make(
+    return Unit_Vector(
         description=field_description,
+        kind="Unit",
+        type_="Unit_Vector",
         labels=field_labels,
         subs=field_subs,
     )
@@ -28493,8 +29498,10 @@ def load_Unit_Wrapped(data: object) -> "Unit_Wrapped":
     else:
         raise ValueError("Missing required field `shape`")
 
-    return Unit_Wrapped.make(
+    return Unit_Wrapped(
         description=field_description,
+        kind="Unit",
+        type_="Unit_Wrapped",
         inside=field_inside,
         name=field_name,
         shape=field_shape,
@@ -28537,7 +29544,10 @@ def load_UpperSet_Unused(data: object) -> "UpperSet_Unused":
     else:
         pass  # fixed value for this field
 
-    return UpperSet_Unused.make()
+    return UpperSet_Unused(
+        kind="UpperSet",
+        type_="UpperSet_Unused",
+    )
 
 
 def load_UpperSet_UpperClosure(data: object) -> "UpperSet_UpperClosure":
@@ -28566,7 +29576,9 @@ def load_UpperSet_UpperClosure(data: object) -> "UpperSet_UpperClosure":
     else:
         raise ValueError("Missing required field `points`")
 
-    return UpperSet_UpperClosure.make(
+    return UpperSet_UpperClosure(
+        kind="UpperSet",
+        type_="UpperSet_UpperClosure",
         points=field_points,
     )
 
@@ -28654,11 +29666,13 @@ def load_VU(data: object) -> "VU":
     else:
         raise ValueError("Missing required field `value`")
 
-    return VU.make(
+    return VU(
         description=field_description,
         hash=field_hash,
+        kind="Value",
         version=field_version,
         address=field_address,
+        type_="VU",
         poset=field_poset,
         value=field_value,
     )
@@ -31622,6 +32636,7 @@ class LMap(Root):
         "L_C_RefineDomain",
         "L_C_Series",
         "L_C_Trace",
+        "L_C_TraceL",
         "L_C_Union",
         "L_C_WrapUnits",
         "L_Catalog",
@@ -31884,6 +32899,49 @@ class L_C_Trace(LMap):
         """Create a new L_C_Trace instance."""
         kind: Literal["LMap"] = "LMap"
         type_: Literal["L_C_Trace"] = "L_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
+
+
+@dataclass(frozen=True)
+class L_C_TraceL(LMap):
+    kind: Literal["LMap"] = field()
+    type_: Literal["L_C_TraceL"] = field()
+    m: LMap = field()
+    m_proj: L1Map = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        result["m"] = self.m.to_data()
+        result["m_proj"] = self.m_proj.to_data()
+        return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: LMap,
+        m_proj: L1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new L_C_TraceL instance."""
+        kind: Literal["LMap"] = "LMap"
+        type_: Literal["L_C_TraceL"] = "L_C_TraceL"
         return cls(
             description=description,
             hash=hash,
@@ -37869,6 +38927,7 @@ class SLMap(Root):
         "SL_C_RefineDomain",
         "SL_C_Series",
         "SL_C_Trace",
+        "SL_C_TraceL",
         "SL_C_Union",
         "SL_C_WrapUnits",
         "SL_Identity",
@@ -38155,6 +39214,53 @@ class SL_C_Trace(SLMap):
         """Create a new SL_C_Trace instance."""
         kind: Literal["SLMap"] = "SLMap"
         type_: Literal["SL_C_Trace"] = "SL_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
+
+
+@dataclass(frozen=True)
+class SL_C_TraceL(SLMap):
+    kind: Literal["SLMap"] = field()
+    type_: Literal["SL_C_TraceL"] = field()
+    m: SLMap = field()
+    m_proj: SL1Map = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        result["m"] = self.m.to_data()
+        result["m_proj"] = self.m_proj.to_data()
+        return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SLMap,
+        m_proj: SL1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SL_C_TraceL instance."""
+        kind: Literal["SLMap"] = "SLMap"
+        type_: Literal["SL_C_TraceL"] = "SL_C_TraceL"
         return cls(
             description=description,
             hash=hash,
@@ -39517,6 +40623,7 @@ class SUMap(Root):
         "SU_C_RefineDomain",
         "SU_C_Series",
         "SU_C_Trace",
+        "SU_C_TraceL",
         "SU_C_Union",
         "SU_C_WrapUnits",
         "SU_Identity",
@@ -39803,6 +40910,53 @@ class SU_C_Trace(SUMap):
         """Create a new SU_C_Trace instance."""
         kind: Literal["SUMap"] = "SUMap"
         type_: Literal["SU_C_Trace"] = "SU_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            opt=opt,
+            pes=pes,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
+
+
+@dataclass(frozen=True)
+class SU_C_TraceL(SUMap):
+    kind: Literal["SUMap"] = field()
+    type_: Literal["SU_C_TraceL"] = field()
+    m: SUMap = field()
+    m_proj: SU1Map = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        result["m"] = self.m.to_data()
+        result["m_proj"] = self.m_proj.to_data()
+        return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        opt: Poset,
+        pes: Poset,
+        m: SUMap,
+        m_proj: SU1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new SU_C_TraceL instance."""
+        kind: Literal["SUMap"] = "SUMap"
+        type_: Literal["SU_C_TraceL"] = "SU_C_TraceL"
         return cls(
             description=description,
             hash=hash,
@@ -41538,6 +42692,7 @@ class UMap(Root):
         "U_C_RefineDomain",
         "U_C_Series",
         "U_C_Trace",
+        "U_C_TraceL",
         "U_C_Union",
         "U_C_WrapUnits",
         "U_Catalog",
@@ -41800,6 +42955,49 @@ class U_C_Trace(UMap):
         """Create a new U_C_Trace instance."""
         kind: Literal["UMap"] = "UMap"
         type_: Literal["U_C_Trace"] = "U_C_Trace"
+        return cls(
+            description=description,
+            hash=hash,
+            kind=kind,
+            version=version,
+            kcod=kcod,
+            kdom=kdom,
+            kimp=kimp,
+            type_=type_,
+            m=m,
+            m_proj=m_proj,
+        )
+
+
+@dataclass(frozen=True)
+class U_C_TraceL(UMap):
+    kind: Literal["UMap"] = field()
+    type_: Literal["U_C_TraceL"] = field()
+    m: UMap = field()
+    m_proj: U1Map = field()
+
+    def to_data(self) -> dict[str, Any]:
+        result = super().to_data()
+        result["m"] = self.m.to_data()
+        result["m_proj"] = self.m_proj.to_data()
+        return result
+
+    @classmethod
+    def make(
+        cls,
+        *,
+        kcod: Poset,
+        kdom: Poset,
+        kimp: Poset,
+        m: UMap,
+        m_proj: U1Map,
+        description: str | None = None,
+        hash: str | None = None,
+        version: str | None = None,
+    ) -> Self:
+        """Create a new U_C_TraceL instance."""
+        kind: Literal["UMap"] = "UMap"
+        type_: Literal["U_C_TraceL"] = "U_C_TraceL"
         return cls(
             description=description,
             hash=hash,
@@ -42391,7 +43589,7 @@ class VU(Value):
 def test_serialization_DP_C_ExplicitApprox_01():
     """Test serialization/deserialization of DP_C_ExplicitApprox example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "F": {"kind": "Poset", "type": "P_Decimal"},
         "R": {"kind": "Poset", "type": "P_Decimal"},
         "kind": "DP",
@@ -42436,7 +43634,7 @@ def test_serialization_DP_C_ExplicitApprox_01():
 def test_serialization_P_Bool_01():
     """Test serialization/deserialization of P_Bool example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "type": "P_Bool"}
+    data: object = {"kind": "Poset", "type": "P_Bool"}
 
     # Create instance from data
     instance = load_P_Bool(data)
@@ -42454,7 +43652,7 @@ def test_serialization_P_Bool_01():
 def test_serialization_P_C_Arrow_01():
     """Test serialization/deserialization of P_C_Arrow example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Arrow"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Arrow"}
 
     # Create instance from data
     instance = load_P_C_Arrow(data)
@@ -42472,7 +43670,7 @@ def test_serialization_P_C_Arrow_01():
 def test_serialization_P_C_Discretized_01():
     """Test serialization/deserialization of P_C_Discretized example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Bool"}, "type": "P_C_Discretized"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Bool"}, "type": "P_C_Discretized"}
 
     # Create instance from data
     instance = load_P_C_Discretized(data)
@@ -42490,7 +43688,7 @@ def test_serialization_P_C_Discretized_01():
 def test_serialization_P_C_Lexicographic_01():
     """Test serialization/deserialization of P_C_Lexicographic example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
         "type": "P_C_Lexicographic",
@@ -42512,7 +43710,7 @@ def test_serialization_P_C_Lexicographic_01():
 def test_serialization_P_C_LowerSets_01():
     """Test serialization/deserialization of P_C_LowerSets example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_LowerSets"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_LowerSets"}
 
     # Create instance from data
     instance = load_P_C_LowerSets(data)
@@ -42530,7 +43728,7 @@ def test_serialization_P_C_LowerSets_01():
 def test_serialization_P_C_Opposite_01():
     """Test serialization/deserialization of P_C_Opposite example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Opposite"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Opposite"}
 
     # Create instance from data
     instance = load_P_C_Opposite(data)
@@ -42548,7 +43746,7 @@ def test_serialization_P_C_Opposite_01():
 def test_serialization_P_C_Power_01():
     """Test serialization/deserialization of P_C_Power example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Power"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Power"}
 
     # Create instance from data
     instance = load_P_C_Power(data)
@@ -42566,7 +43764,7 @@ def test_serialization_P_C_Power_01():
 def test_serialization_P_C_Product_01():
     """Test serialization/deserialization of P_C_Product example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
         "type": "P_C_Product",
@@ -42588,7 +43786,7 @@ def test_serialization_P_C_Product_01():
 def test_serialization_P_C_Product_02():
     """Test serialization/deserialization of P_C_Product example 2."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "subs": [], "type": "P_C_Product"}
+    data: object = {"kind": "Poset", "subs": [], "type": "P_C_Product"}
 
     # Create instance from data
     instance = load_P_C_Product(data)
@@ -42606,7 +43804,7 @@ def test_serialization_P_C_Product_02():
 def test_serialization_P_C_ProductSmash_01():
     """Test serialization/deserialization of P_C_ProductSmash example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "naked": [], "ranges": [], "subs": [], "type": "P_C_ProductSmash"}
+    data: object = {"kind": "Poset", "naked": [], "ranges": [], "subs": [], "type": "P_C_ProductSmash"}
 
     # Create instance from data
     instance = load_P_C_ProductSmash(data)
@@ -42624,7 +43822,7 @@ def test_serialization_P_C_ProductSmash_01():
 def test_serialization_P_C_ProductSmash_02():
     """Test serialization/deserialization of P_C_ProductSmash example 2."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "naked": [True, False, True],
         "ranges": [
@@ -42665,7 +43863,7 @@ def test_serialization_P_C_ProductSmash_02():
 def test_serialization_P_C_Sum_01():
     """Test serialization/deserialization of P_C_Sum example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "subs": [{"kind": "Poset", "type": "P_Decimal"}, {"kind": "Poset", "type": "P_Bool"}],
         "type": "P_C_Sum",
@@ -42687,7 +43885,7 @@ def test_serialization_P_C_Sum_01():
 def test_serialization_P_C_SumSmash_01():
     """Test serialization/deserialization of P_C_SumSmash example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "naked": [True, True],
         "ranges": [{"ntot": 2, "start": 0, "stop": 1, "type": "Range"}, {"ntot": 2, "start": 0, "stop": 1, "type": "Range"}],
@@ -42712,7 +43910,7 @@ def test_serialization_P_C_SumSmash_01():
 def test_serialization_P_C_Twisted_01():
     """Test serialization/deserialization of P_C_Twisted example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Twisted"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_Twisted"}
 
     # Create instance from data
     instance = load_P_C_Twisted(data)
@@ -42730,7 +43928,7 @@ def test_serialization_P_C_Twisted_01():
 def test_serialization_P_C_Units_01():
     """Test serialization/deserialization of P_C_Units example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "poset": {"kind": "Poset", "type": "P_Decimal"},
         "type": "P_C_Units",
@@ -42753,7 +43951,7 @@ def test_serialization_P_C_Units_01():
 def test_serialization_P_C_Units_02():
     """Test serialization/deserialization of P_C_Units example 2."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "poset": {
             "kind": "Poset",
@@ -42787,7 +43985,7 @@ def test_serialization_P_C_Units_02():
 def test_serialization_P_C_UpperSets_01():
     """Test serialization/deserialization of P_C_UpperSets example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_UpperSets"}
+    data: object = {"kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_C_UpperSets"}
 
     # Create instance from data
     instance = load_P_C_UpperSets(data)
@@ -42805,7 +44003,7 @@ def test_serialization_P_C_UpperSets_01():
 def test_serialization_P_Decimal_01():
     """Test serialization/deserialization of P_Decimal example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "precision": 9, "type": "P_Decimal"}
+    data: object = {"kind": "Poset", "precision": 9, "type": "P_Decimal"}
 
     # Create instance from data
     instance = load_P_Decimal(data)
@@ -42823,7 +44021,7 @@ def test_serialization_P_Decimal_01():
 def test_serialization_P_F_Bounded_01():
     """Test serialization/deserialization of P_F_Bounded example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "bottom": "0",
         "bound_high": "+inf",
         "bound_low": "0",
@@ -42851,7 +44049,7 @@ def test_serialization_P_F_Bounded_01():
 def test_serialization_P_F_Bounded_02():
     """Test serialization/deserialization of P_F_Bounded example 2."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "bottom": "-inf",
         "bound_high": "+inf",
         "bound_low": "-inf",
@@ -42879,7 +44077,7 @@ def test_serialization_P_F_Bounded_02():
 def test_serialization_P_F_Bounded_03():
     """Test serialization/deserialization of P_F_Bounded example 3."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "bottom": "-inf",
         "bound_high": "6",
         "bound_low": "0",
@@ -42907,7 +44105,7 @@ def test_serialization_P_F_Bounded_03():
 def test_serialization_P_F_C_Union_01():
     """Test serialization/deserialization of P_F_C_Union example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "ambient": {"kind": "Poset", "type": "P_Decimal"},
         "kind": "Poset",
         "subs": [
@@ -42933,7 +44131,13 @@ def test_serialization_P_F_C_Union_01():
 def test_serialization_P_F_Interval_01():
     """Test serialization/deserialization of P_F_Interval example 1."""
     # Test data from OpenAPI schema example
-    data = {"high": "20", "kind": "Poset", "low": "10", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Interval"}
+    data: object = {
+        "high": "20",
+        "kind": "Poset",
+        "low": "10",
+        "poset": {"kind": "Poset", "type": "P_Decimal"},
+        "type": "P_F_Interval",
+    }
 
     # Create instance from data
     instance = load_P_F_Interval(data)
@@ -42951,7 +44155,7 @@ def test_serialization_P_F_Interval_01():
 def test_serialization_P_F_LowerClosure_01():
     """Test serialization/deserialization of P_F_LowerClosure example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "ls": {"kind": "LowerSet", "points": [["10", True], ["20", False]], "type": "LowerSet_LowerClosure"},
         "poset": {
@@ -42978,7 +44182,12 @@ def test_serialization_P_F_LowerClosure_01():
 def test_serialization_P_F_Subposet_01():
     """Test serialization/deserialization of P_F_Subposet example 1."""
     # Test data from OpenAPI schema example
-    data = {"elements": ["0.1", "0.2"], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"}
+    data: object = {
+        "elements": ["0.1", "0.2"],
+        "kind": "Poset",
+        "poset": {"kind": "Poset", "type": "P_Decimal"},
+        "type": "P_F_Subposet",
+    }
 
     # Create instance from data
     instance = load_P_F_Subposet(data)
@@ -42996,7 +44205,7 @@ def test_serialization_P_F_Subposet_01():
 def test_serialization_P_F_Subposet_02():
     """Test serialization/deserialization of P_F_Subposet example 2."""
     # Test data from OpenAPI schema example
-    data = {"elements": [], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"}
+    data: object = {"elements": [], "kind": "Poset", "poset": {"kind": "Poset", "type": "P_Decimal"}, "type": "P_F_Subposet"}
 
     # Create instance from data
     instance = load_P_F_Subposet(data)
@@ -43014,7 +44223,7 @@ def test_serialization_P_F_Subposet_02():
 def test_serialization_P_F_UpperClosure_01():
     """Test serialization/deserialization of P_F_UpperClosure example 1."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "kind": "Poset",
         "poset": {
             "kind": "Poset",
@@ -43041,7 +44250,7 @@ def test_serialization_P_F_UpperClosure_01():
 def test_serialization_P_Finite_01():
     """Test serialization/deserialization of P_Finite example 1."""
     # Test data from OpenAPI schema example
-    data = {"aliases": {}, "elements": [], "kind": "Poset", "relations": [], "type": "P_Finite"}
+    data: object = {"aliases": {}, "elements": [], "kind": "Poset", "relations": [], "type": "P_Finite"}
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43059,7 +44268,7 @@ def test_serialization_P_Finite_01():
 def test_serialization_P_Finite_02():
     """Test serialization/deserialization of P_Finite example 2."""
     # Test data from OpenAPI schema example
-    data = {"elements": ["a", "b"], "kind": "Poset", "relations": [], "type": "P_Finite"}
+    data: object = {"elements": ["a", "b"], "kind": "Poset", "relations": [], "type": "P_Finite"}
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43077,7 +44286,7 @@ def test_serialization_P_Finite_02():
 def test_serialization_P_Finite_03():
     """Test serialization/deserialization of P_Finite example 3."""
     # Test data from OpenAPI schema example
-    data = {"elements": ["a", "b"], "kind": "Poset", "relations": [["a", "b"]], "type": "P_Finite"}
+    data: object = {"elements": ["a", "b"], "kind": "Poset", "relations": [["a", "b"]], "type": "P_Finite"}
 
     # Create instance from data
     instance = load_P_Finite(data)
@@ -43095,7 +44304,7 @@ def test_serialization_P_Finite_03():
 def test_serialization_P_Finite_04():
     """Test serialization/deserialization of P_Finite example 4."""
     # Test data from OpenAPI schema example
-    data = {
+    data: object = {
         "aliases": {"a": ["a1", "a2"]},
         "elements": ["a", "b", "c"],
         "kind": "Poset",
@@ -43119,7 +44328,7 @@ def test_serialization_P_Finite_04():
 def test_serialization_P_Float_01():
     """Test serialization/deserialization of P_Float example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "size": "f32", "type": "P_Float"}
+    data: object = {"kind": "Poset", "size": "f32", "type": "P_Float"}
 
     # Create instance from data
     instance = load_P_Float(data)
@@ -43137,7 +44346,7 @@ def test_serialization_P_Float_01():
 def test_serialization_P_Fractions_01():
     """Test serialization/deserialization of P_Fractions example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "max_abs_denominator": 1000, "max_abs_numerator": 1000, "size": "i32", "type": "P_Fractions"}
+    data: object = {"kind": "Poset", "max_abs_denominator": 1000, "max_abs_numerator": 1000, "size": "i32", "type": "P_Fractions"}
 
     # Create instance from data
     instance = load_P_Fractions(data)
@@ -43155,7 +44364,7 @@ def test_serialization_P_Fractions_01():
 def test_serialization_P_Integer_01():
     """Test serialization/deserialization of P_Integer example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "size": "i32", "type": "P_Integer"}
+    data: object = {"kind": "Poset", "size": "i32", "type": "P_Integer"}
 
     # Create instance from data
     instance = load_P_Integer(data)
@@ -43173,7 +44382,7 @@ def test_serialization_P_Integer_01():
 def test_serialization_P_Unknown_01():
     """Test serialization/deserialization of P_Unknown example 1."""
     # Test data from OpenAPI schema example
-    data = {"kind": "Poset", "type": "P_Unknown"}
+    data: object = {"kind": "Poset", "type": "P_Unknown"}
 
     # Create instance from data
     instance = load_P_Unknown(data)
