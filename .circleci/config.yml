@@ -15,6 +15,7 @@ workflows:
             ignore: /.*/
 jobs:
   test-313-src:
+    max_auto_reruns: 0
     environment:
       COLUMNS: '160'
       # default is /usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -141,12 +142,6 @@ jobs:
           else
               echo "Target $TARGET not defined"
           fi
-    # - run:
-    #     name: Notebooks
-    #     command: |
-    #       make -C notebooks cleanup all
-
-
     - run:
         name: post-circle-tests
         command: |
@@ -185,4 +180,4 @@ jobs:
           timeout 1m ./codecov || true
     resource_class: small
 
-# sigil 6164e11f6c433603d3755d636ca9dab2
+# sigil 5f93f62a7f3edf7ce7c205f7422d5093
