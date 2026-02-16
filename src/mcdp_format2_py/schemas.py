@@ -177,6 +177,17 @@ def load_enum_i8_i16_i32_i64_i128(value: object) -> Literal["i8", "i16", "i32", 
     return value  # type: ignore
 
 
+def load_enum_i8_u8_i16_u16_i32_u32_i64_u64_i128_u128(
+    value: object,
+) -> Literal["i8", "u8", "i16", "u16", "i32", "u32", "i64", "u64", "i128", "u128"]:
+    if not isinstance(value, str):
+        raise ValueError(f"Expected a string, got {type(value).__name__}")
+    allowed_values = ["i8", "u8", "i16", "u16", "i32", "u32", "i64", "u64", "i128", "u128"]
+    if value not in allowed_values:
+        raise ValueError(f"Expected one of {allowed_values}, got {value}")
+    return value  # type: ignore
+
+
 def load_list_of_ComputePoint(value: object) -> list[ComputePoint]:
     if not isinstance(value, list):
         raise ValueError(f"Expected a list, got {type(value).__name__}")
@@ -17968,7 +17979,7 @@ def load_P_Integer(data: object) -> "P_Integer":
         pass  # fixed value for this field
 
     if "size" in data:
-        field_size = load_enum_i8_i16_i32_i64_i128(data["size"])
+        field_size = load_enum_i8_u8_i16_u16_i32_u32_i64_u64_i128_u128(data["size"])
     else:
         raise ValueError("Missing required field `size`")
 
@@ -37729,7 +37740,7 @@ class P_Fractions(Poset):
 class P_Integer(Poset):
     kind: Literal["Poset"] = field()
     type_: Literal["P_Integer"] = field()
-    size: Literal["i8", "i16", "i32", "i64", "i128"] = field()
+    size: Literal["i8", "u8", "i16", "u16", "i32", "u32", "i64", "u64", "i128", "u128"] = field()
 
     def to_data(self) -> dict[str, Any]:
         result = super().to_data()
@@ -37740,7 +37751,7 @@ class P_Integer(Poset):
     def make(
         cls,
         *,
-        size: Literal["i8", "i16", "i32", "i64", "i128"],
+        size: Literal["i8", "u8", "i16", "u16", "i32", "u32", "i64", "u64", "i128", "u128"],
         description: str | None = None,
         hash: str | None = None,
         version: str | None = None,
