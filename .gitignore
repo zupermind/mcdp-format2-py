@@ -44,7 +44,6 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
-nosetests.xml
 coverage.xml
 *.cover
 *.py,cover
@@ -129,4 +128,4 @@ dmypy.json
 .pyre/
 out
 
-# sigil 681cf7a819fdf43be77c89e78c87b374
+# sigil 4ffce045060666b75039a393349b95b4
