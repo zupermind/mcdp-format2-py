@@ -20,12 +20,21 @@ jobs:
       CONTEXT_NAME: << pipeline.parameters.context_name >>
       DEPS_INSTALL_TIMEOUT: '10m'
       COVER_PACKAGES: mcdp_format2_py
-      TEST_PACKAGES: ''
+      TEST_PACKAGES: mcdp_format2_py
     docker:
     - image: docker.io/${DOCKER_TARGET_ORG}/${DOCKER_REPO_PREFIX}zuper-ci-3.13:${Z_DISTRO}
     working_directory: ~/repo
     steps:
     - checkout
+    - run:
+        name: Report tool versions
+        command: |
+          export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
+          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
+          saferun --version
+          zuper-rs-lint --version
+          python3 --version
+          python3 -m pip --version
     - run:
         name: Avoid hosts unknown for Github
         command: |
@@ -43,7 +52,7 @@ jobs:
           export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
           echo PIP_INDEX_URL="${PIP_INDEX_URL}"
           printf '%s\n' 'cbor2>=5.0.0' 'colorama>=0.4.0' 'ruamel.yaml>=0.17.0' > .requirements.txt
-          timeout ${DEPS_INSTALL_TIMEOUT} python3 -m pip install  -r .requirements.txt
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-deps --heartbeat 30s --stats-interval 5s -- timeout ${DEPS_INSTALL_TIMEOUT} python3 -m pip install -r .requirements.txt
           rm .requirements.txt
     - run:
         name: Install testing deps
@@ -51,7 +60,7 @@ jobs:
           export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
           echo PIP_INDEX_URL="${PIP_INDEX_URL}"
           : > .requirements_tests.txt
-          timeout ${DEPS_INSTALL_TIMEOUT} python3 -m pip install  -r .requirements_tests.txt
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-testing-deps --heartbeat 30s --stats-interval 5s -- timeout ${DEPS_INSTALL_TIMEOUT} python3 -m pip install -r .requirements_tests.txt
           rm .requirements_tests.txt
     - run:
         name: Python stats
@@ -70,14 +79,14 @@ jobs:
         command: |
           export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
           echo PIP_INDEX_URL="${PIP_INDEX_URL}"
-          python3 -m pip install -e . --prefix ~/.local --no-deps
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-project --heartbeat 30s --stats-interval 5s -- python3 -m pip install -e . --prefix ~/.local --no-deps
     - run:
         name: Make docs
         command: |
           FILE=src/conf.py
           mkdir -p out/docs
           if test -f "$FILE"; then
-              sphinx-build src out/docs
+              saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/docs --heartbeat 30s --stats-interval 5s -- sphinx-build src out/docs
           fi
     - store_artifacts:
         path: out/docs
@@ -94,37 +103,46 @@ jobs:
           fi
     - run:
         name: pre-circle-tests
-        command: |
-          TARGET=pre-circle-tests
-          if make -n $TARGET ; then
-              make $TARGET
-          else
-              echo "Target $TARGET not defined"
-          fi
+        command: saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/pre-circle-tests --heartbeat 30s --stats-interval 5s -- make pre-circle-tests
     - run:
-        name: post-circle-tests
-        when: always
+        name: mcdp_format2_py
         command: |
-          TARGET=post-circle-tests
-          if make -n $TARGET ; then
-              make $TARGET
-          else
-              echo "Target $TARGET not defined"
+          export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
+          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
+          test_list=.circleci/mcdp_format2_py.tests
+          if [ ! -f "$test_list" ]; then
+            echo "$test_list is absent; no tests selected"
+            exit 0
           fi
+          set -euxo pipefail
+          TEST_MODULES=$(split-tests <.circleci/mcdp_format2_py.tests)
+          echo "TEST_MODULES=[$TEST_MODULES]"
+          if [ -z "$TEST_MODULES" ]; then
+            echo "$TEST_MODULES is empty"
+            exit 0
+          else
+            echo "$TEST_MODULES is NOT empty"
+          fi
+          mkdir -p out/test-results
+          xunit_output=$PWD/out/test-results/nose-${CIRCLE_NODE_INDEX}-mcdp_format2_py-xunit.xml
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/test-mcdp_format2_py --heartbeat 30s --stats-interval 5s -- timeout 30m nose2 --with-coverage --plugin nose2.plugins.junitxml --junit-xml --junit-xml-path ${xunit_output} $TEST_MODULES
     - store_test_results:
         path: out/test-results
     - run:
         name: Coverage report
         command: |
-          coverage combine || true
-          coverage html -d out/coverage/${CIRCLE_NODE_INDEX} || true
-          coverage xml || true
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-combine --heartbeat 30s --stats-interval 5s -- coverage combine || true
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-html --heartbeat 30s --stats-interval 5s -- coverage html -d out/coverage/${CIRCLE_NODE_INDEX} || true
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-xml --heartbeat 30s --stats-interval 5s -- coverage xml || true
     - store_artifacts:
         path: out/coverage
         destination: coverage
     - store_artifacts:
         path: out/tests
         destination: tests
+    - store_artifacts:
+        path: out/saferun
+        destination: saferun
     - run:
         name: CodeCov
         command: |
@@ -133,7 +151,7 @@ jobs:
           timeout 1m ./codecov || true
     resource_class: small.gen2
 
-# sigil 92d31b43c60d30efae0b928df66bb4c0
+# sigil 76f42f7a019993b76c50b8f762b0bba5
 # Agents: DO NOT MODIFY THIS FILE DIRECTLY - it is autogenerated using zuper-cli template from project.pp1.yaml
 # It is very likely you can obtain what you want by modifying the config.
 # In any case you need the user's explicit permissions.
