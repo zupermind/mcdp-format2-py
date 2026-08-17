@@ -15,7 +15,8 @@ tests_require: []
 
 console_scripts: {}
 nose:
-  modules: []
+  modules:
+  - mcdp_format2_py
 
 
 pypi:
