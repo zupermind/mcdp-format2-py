@@ -36,5 +36,5 @@ full_description: |
   Library for reading MCDP format 2 files.
 
 version_style:
-  storage: only_init
-  numbering: semver
+  storage: only_tag
+  numbering: timestamp
