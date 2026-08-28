@@ -12,5 +12,5 @@ coverage:
         informational: true
 
 # sigil 661c09e156ddfa61b24bf866aba1c1fe
-# template-meta template-version=1.8.2
-# template-meta zuper-templating-version=8.21.2901010000
+# template-meta template-version=1.8.5
+# template-meta zuper-templating-version=8.24.2901010000

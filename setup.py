@@ -27,5 +27,5 @@ params = dict(
 setup(**params)
 
 # sigil 5bc6bda9986e86ae31d730b7ff5f36fb
-# template-meta template-version=1.8.2
-# template-meta zuper-templating-version=8.21.2901010000
+# template-meta template-version=1.8.5
+# template-meta zuper-templating-version=8.24.2901010000
