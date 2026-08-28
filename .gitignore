@@ -129,3 +129,5 @@ dmypy.json
 out
 
 # sigil 4ffce045060666b75039a393349b95b4
+# template-meta template-version=1.8.2
+# template-meta zuper-templating-version=8.21.2901010000
