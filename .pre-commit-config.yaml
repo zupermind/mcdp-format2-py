@@ -42,5 +42,5 @@ files: (^src/.*py)|(.*yaml)
 exclude: '.pre-commit-config.yaml|(.*autogen.*py)'
 
 # sigil f6872e085fe9bd19b2afebd99dff214f
-# template-meta template-version=1.8.5
-# template-meta zuper-templating-version=8.24.2901010000
+# template-meta template-version=1.8.7
+# template-meta zuper-templating-version=8.25.2901010000
