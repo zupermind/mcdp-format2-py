@@ -3,11 +3,15 @@ name = "mcdp-format2-py"
 version = "7.2"
 readme = ""
 description = ""
-authors = [{ name = "Andrea Censi", email = "AndreaCensi@users.noreply.github.com" }]
-dependencies = ["cbor2>=5.0.0", "colorama>=0.4.0", "ruamel.yaml>=0.17.0"]
+authors = [{name = "Andrea Censi", email = "AndreaCensi@users.noreply.github.com"}]
+dependencies = [
+    "cbor2>=5.0.0",
+    "colorama>=0.4.0",
+    "ruamel.yaml>=0.17.0",]
 
 [project.optional-dependencies]
-test = []
+test = [
+    ]
 
 [tool.poetry]
 name = "mcdp-format2-py"
@@ -15,8 +19,8 @@ version = "7.2"
 description = "Library for reading MCDP format 2 files"
 authors = ["Andrea Censi <AndreaCensi@users.noreply.github.com>"]
 packages = [
-    { from = "src", include = "mcdp_format2_py" },
-]
+    {from = "src", include = "mcdp_format2_py"},
+    ]
 
 [tool.poetry.dependencies]
 cbor2 = ">=5.0.0"
@@ -27,5 +31,6 @@ colorama = ">=0.4.0"
 python = ">=3.12"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = [
+    "poetry-core>=1.0.0",]
 build-backend = "poetry.core.masonry.api"
