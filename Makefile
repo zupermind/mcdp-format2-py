@@ -65,5 +65,5 @@ endif
 -include extra.mk
 
 # sigil 2406de0482d2214e656f648d0470e7a0
-# template-meta template-version=2.0
-# template-meta zuper-templating-version=8.28.2901010000
+# template-meta template-version=2.1
+# template-meta zuper-templating-version=8.29.2901010000

@@ -37,5 +37,5 @@ force-wrap-aliases = false
 case-sensitive = false
 
 # sigil e9b1e0180635c6f48e7da2ff048a6368
-# template-meta template-version=2.0
-# template-meta zuper-templating-version=8.28.2901010000
+# template-meta template-version=2.1
+# template-meta zuper-templating-version=8.29.2901010000
