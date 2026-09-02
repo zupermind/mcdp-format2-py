@@ -43,4 +43,4 @@ exclude: '.pre-commit-config.yaml|(.*autogen.*py)'
 
 # sigil f6872e085fe9bd19b2afebd99dff214f
 # template-meta template-version=2.1
-# template-meta zuper-templating-version=8.29.2901010000
+# template-meta zuper-templating-version=8.31.2901010000

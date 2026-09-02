@@ -28,4 +28,4 @@ setup(**params)
 
 # sigil 5bc6bda9986e86ae31d730b7ff5f36fb
 # template-meta template-version=2.1
-# template-meta zuper-templating-version=8.29.2901010000
+# template-meta zuper-templating-version=8.31.2901010000
