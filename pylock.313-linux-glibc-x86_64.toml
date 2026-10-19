@@ -1,0 +1,66 @@
+created-by = "uv"
+environments = ["implementation_name == 'cpython' and platform_python_implementation == 'CPython' and python_version == '3.13' and python_full_version == '3.13.9' and implementation_version == '3.13.9' and sys_platform == 'linux' and platform_machine == 'x86_64' and os_name == 'posix' and platform_system == 'Linux'"]
+lock-version = "1.0"
+requires-python = "==3.13.9"
+
+[[packages]]
+marker = "implementation_version == '3.13.9' and python_full_version == '3.13.9' and implementation_name == 'cpython' and os_name == 'posix' and platform_machine == 'x86_64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'"
+name = "cbor2"
+version = "6.1.5"
+
+[[packages.wheels]]
+url = "https://artifactory.zuper.ai/repository/pypi-virtual-stage-src/packages/cbor2/6.1.5/cbor2-6.1.5-cp313-cp313-manylinux_2_28_x86_64.whl"
+
+[packages.wheels.hashes]
+sha256 = "833db11fbea9808b080e5340d5f96615e28a6a6617618a4331e60082d0dc1ca4"
+
+[[packages]]
+marker = "implementation_version == '3.13.9' and python_full_version == '3.13.9' and implementation_name == 'cpython' and os_name == 'posix' and platform_machine == 'x86_64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'"
+name = "colorama"
+version = "0.4.6"
+
+[[packages.wheels]]
+url = "https://artifactory.zuper.ai/repository/pypi-virtual-stage-src/packages/colorama/0.4.6/colorama-0.4.6-py2.py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+
+[[packages]]
+marker = "implementation_version == '3.13.9' and python_full_version == '3.13.9' and implementation_name == 'cpython' and os_name == 'posix' and platform_machine == 'x86_64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'"
+name = "poetry-core"
+version = "2.5.0"
+
+[[packages.wheels]]
+url = "https://artifactory.zuper.ai/repository/pypi-virtual-stage-src/packages/poetry-core/2.5.0/poetry_core-2.5.0-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "98ee465b66f7e14bb9fbe68fb5e00d0cff184f036993ec94610ae4b5612f3add"
+
+[[packages]]
+marker = "implementation_version == '3.13.9' and python_full_version == '3.13.9' and implementation_name == 'cpython' and os_name == 'posix' and platform_machine == 'x86_64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'"
+name = "ruamel-yaml"
+version = "0.19.1"
+
+[[packages.wheels]]
+url = "https://artifactory.zuper.ai/repository/pypi-virtual-stage-src/packages/ruamel-yaml/0.19.1/ruamel_yaml-0.19.1-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "27592957fedf6e0b62f281e96effd28043345e0e66001f97683aa9a40c667c93"
+
+[tool.zuper-python-utils]
+generator-version = "1.11.2610191931"
+platform = "x86_64-unknown-linux-gnu"
+python-version = "3.13.9"
+requirements = ["cbor2>=5.0.0", "colorama>=0.4.0", "poetry-core>=1.0.0", "ruamel.yaml>=0.17.0"]
+resolver-version = "uv 0.12.2"
+source-project = "project.pp1.yaml"
+workflow-lock-sha256 = "d03a9a85109e2ccd617cc63c7d06ae56488a4b033e6c38c6b6b6818a73923013"
+
+[tool.zuper-python-utils.workflow]
+descriptor = "project.pp1.yaml"
+index = "https://artifactory.zuper.ai/repository/pypi-virtual-stage-src/simple"
+input-sha256 = "2884211b98e44f5413caf15e03f1ac3350fb45a5c64c033c8e8cd41155632338"
+origin = "sources"
+platforms = ["aarch64-unknown-linux-gnu", "x86_64-unknown-linux-gnu"]
+python-versions = ["3.13.9"]
+schema = 1

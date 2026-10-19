@@ -1,0 +1,11 @@
+# Avoid manually changing this file - use `zuper-changetrack modify` instead
+branch: z7-stage-v7-2610-OPS-564-python-lock
+category: changed
+commits: []
+date: '2026-10-19'
+description: The committed dependency lock is regenerated with zuper-python-utils 1.11 and now covers linux x86_64 and arm64, the platforms on which CI runs its tests (PYTHON-DEPENDENCY-LOCK-FIRST-PLATFORMS). CI is re-templated and pins the zuper-ci-3.13 image that carries zuper-python-utils 1.11; test_python_versions declares that image's exact patch, 3.13.9 (ZPU-LOCK-UPDATE-MATRIX). Minor version 2.21.0.
+issues:
+- OPS-564
+kind: build
+status: COMPLETED
+title: Lock the dependencies with zuper-python-utils 1.11 for linux x86_64 and arm64; CI on the Python 3.13.9 image

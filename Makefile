@@ -10,11 +10,11 @@ ifneq ($(filter contracts,$(deployed_packages)),)
 test_environment :=
 endif
 
-.PHONY: all template bump upload black install-deps install-testing-deps test coverage-combine docs
+.PHONY: all template bump upload black install-deps install-testing-deps install-local-tools test coverage-combine docs
 
 
 template:
-	zuper-cli template
+	zuper-templating template
 
 bump:
 	zuper-cli bump
@@ -26,25 +26,27 @@ black:
 	black -l 110 --target-version py312 src
 
 install-deps:
-	pip3 install --user shyaml
+	python3 -m pip install --user shyaml
 	shyaml get-values install_requires < project.pp1.yaml > .requirements.txt
-	pip3 install --user --upgrade -r .requirements.txt
+	python3 -m pip install --user --upgrade -r .requirements.txt
 	rm .requirements.txt
 
-install-testing-deps:
-	pip3 install --user shyaml
+install-testing-deps: install-local-tools
 	shyaml get-values tests_require < project.pp1.yaml > .requirements_tests.txt
-	pip3 install --user --upgrade -r .requirements_tests.txt
+	python3 -m pip install --user --upgrade -r .requirements_tests.txt
 	rm .requirements_tests.txt
 
-	pip install \
+# Developer bootstrap; generated CI uses the tools already in its image.
+install-local-tools:
+	python3 -m pip install --user \
+		shyaml\
 		pipdeptree\
 		bumpversion\
 		nose2\
 		nose2-html-report\
 		pre-commit\
 		coverage\
-		codecov\
+		codecov-cli==11.3.1\
 		sphinx\
 		sphinx-rtd-theme
 
@@ -64,6 +66,6 @@ endif
 
 -include extra.mk
 
-# sigil 2406de0482d2214e656f648d0470e7a0
-# template-meta template-version=2.1
-# template-meta zuper-templating-version=8.31.2901010000
+# sigil 96b258f227c46095bc1fa639d3e4bf0d
+# template-meta template-version=2.6
+# template-meta zuper-templating-version=16.9.2610181445

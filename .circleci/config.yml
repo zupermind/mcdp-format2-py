@@ -12,6 +12,30 @@ workflows:
         filters:
           tags:
             ignore: /.*/
+        name: test-py313-src-run-1-of-1
+        logical_job: test-313-src
+    - lint:
+        context: << pipeline.git.branch starts-with "z7-prod" and "z7-prod" or pipeline.git.branch starts-with "z7-stage" and "z7-stage" or pipeline.parameters.context_name >>
+        filters:
+          tags:
+            ignore: /.*/
+  lint-pr-ready:
+    jobs:
+    - lint-pr-ready:
+        context: << pipeline.git.branch starts-with "z7-prod" and "z7-prod" or pipeline.git.branch starts-with "z7-stage" and "z7-stage" or pipeline.parameters.context_name >>
+        filters:
+          tags:
+            ignore: /.*/
+  fresh:
+    jobs:
+    - lint-fresh:
+        context: << pipeline.git.branch starts-with "z7-prod" and "z7-prod" or pipeline.git.branch starts-with "z7-stage" and "z7-stage" or pipeline.parameters.context_name >>
+        filters:
+          branches:
+            ignore:
+            - /^z7-(stage|prod)-v[0-9]+$/
+          tags:
+            ignore: /.*/
 jobs:
   test-313-src:
     environment:
@@ -21,8 +45,9 @@ jobs:
       DEPS_INSTALL_TIMEOUT: '10m'
       COVER_PACKAGES: mcdp_format2_py
       TEST_PACKAGES: mcdp_format2_py
+      ZUPER_CIRCLE_LOGICAL_JOB: << parameters.logical_job >>
     docker:
-    - image: docker.io/${DOCKER_TARGET_ORG}/${DOCKER_REPO_PREFIX}zuper-ci-3.13:${Z_DISTRO}
+    - image: docker.io/zupermind/zuper-ci-3.13:z7-stage-v1@sha256:3841c333a36cb9dea51d07dfe146e55b02dd20f1bf4d2d73424ddab43ac5e168
       auth:
         username: $DOCKER_IO_READONLY_USERNAME
         password: $DOCKER_IO_READONLY_TOKEN
@@ -33,7 +58,6 @@ jobs:
         name: Report tool versions
         command: |
           export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
-          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
           saferun --version
           zuper-rs-lint --version
           python3 --version
@@ -50,39 +74,36 @@ jobs:
         path: build-stats
         destination: build-stats
     - run:
-        name: Install deps
+        name: Configure the Python package index
         command: |
-          export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
-          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
-          printf '%s\n' 'cbor2>=5.0.0' 'colorama>=0.4.0' 'ruamel.yaml>=0.17.0' > .requirements.txt
-          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-deps --heartbeat 30s --stats-interval 5s -- timeout ${DEPS_INSTALL_TIMEOUT} python3 -m pip install -r .requirements.txt
-          rm .requirements.txt
+          printf 'export UV_DEFAULT_INDEX=%q\n' "${PIP_INDEX_URL_SRC:?}" >> "${BASH_ENV}"
     - run:
-        name: Install testing deps
+        name: Report lock tool versions
         command: |
-          export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
-          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
-          : > .requirements_tests.txt
-          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-testing-deps --heartbeat 30s --stats-interval 5s -- timeout ${DEPS_INSTALL_TIMEOUT} python3 -m pip install -r .requirements_tests.txt
-          rm .requirements_tests.txt
+          uv --version
+          zuper-python-utils --version
+    - run:
+        name: Check the Python dependency lock
+        command: saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/check-lockfile --heartbeat 30s --stats-interval 5s -- zuper-python-utils check-lockfile
+    - run:
+        name: Install the locked dependencies
+        command: |
+          uv venv --python python3 --no-python-downloads .ci-venv
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-locked-deps --heartbeat 30s --stats-interval 5s -- timeout ${DEPS_INSTALL_TIMEOUT} zuper-python-utils install-lockfile --python .ci-venv/bin/python
+          printf 'export VIRTUAL_ENV=%q\n' "${PWD}/.ci-venv" >> "${BASH_ENV}"
+          printf 'export PATH=%q:"${PATH}"\n' "${PWD}/.ci-venv/bin" >> "${BASH_ENV}"
     - run:
         name: Python stats
         command: |
-          export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
-          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
-          #pipdeptree >  build-stats/pipdeptree.txt
-          python3 -m pip  list   | sort | tee  build-stats/pip-list.txt
-          python3 -m pip  freeze | sort | tee  build-stats/pip-freeze.txt
-          python3 -m pip cache list | tee  build-stats/pip-cache.txt
+          uv pip list --python .ci-venv/bin/python | tee build-stats/pip-list.txt
+          uv pip freeze --python .ci-venv/bin/python | sort | tee build-stats/pip-freeze.txt
+    - run:
+        name: Install the project without dependencies
+        command: |
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-project --heartbeat 30s --stats-interval 5s -- uv pip install --python .ci-venv/bin/python --no-deps --no-build-isolation --no-index --editable .
     - store_artifacts:
         path: build-stats
         destination: build-stats
-    - run:
-        name: setup.py develop
-        command: |
-          export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
-          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
-          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/install-project --heartbeat 30s --stats-interval 5s -- python3 -m pip install -e . --prefix ~/.local --no-deps
     - run:
         name: Make docs
         command: |
@@ -117,7 +138,6 @@ jobs:
         name: mcdp_format2_py
         command: |
           export PIP_INDEX_URL="${PIP_INDEX_URL_SRC}"
-          echo PIP_INDEX_URL="${PIP_INDEX_URL}"
           test_list=.circleci/mcdp_format2_py.tests
           if [ ! -f "$test_list" ]; then
             echo "$test_list is absent; no tests selected"
@@ -133,6 +153,7 @@ jobs:
             echo "$TEST_MODULES is NOT empty"
           fi
           mkdir -p out/test-results
+          : > out/test-results/tests-selected
           xunit_output=$PWD/out/test-results/nose-${CIRCLE_NODE_INDEX}-mcdp_format2_py-xunit.xml
           saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/test-mcdp_format2_py --heartbeat 30s --stats-interval 5s -- timeout 30m nose2 --with-coverage --plugin nose2.plugins.junitxml --junit-xml --junit-xml-path ${xunit_output} $TEST_MODULES
     - run:
@@ -150,9 +171,19 @@ jobs:
     - run:
         name: Coverage report
         command: |
-          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-combine --heartbeat 30s --stats-interval 5s -- coverage combine || true
-          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-html --heartbeat 30s --stats-interval 5s -- coverage html -d out/coverage/${CIRCLE_NODE_INDEX} || true
-          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-xml --heartbeat 30s --stats-interval 5s -- coverage xml || true
+          set -eu
+          if [ ! -f out/test-results/tests-selected ]; then
+            echo "No tests selected; no coverage to report or upload"
+            exit 0
+          fi
+          for data in .coverage.*; do
+            if [ -f "$data" ]; then
+              saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-combine --heartbeat 30s --stats-interval 5s -- coverage combine --append
+              break
+            fi
+          done
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-html --heartbeat 30s --stats-interval 5s -- coverage html -d out/coverage/${CIRCLE_NODE_INDEX}
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/coverage-xml --heartbeat 30s --stats-interval 5s -- coverage xml
     - store_artifacts:
         path: out/coverage
         destination: coverage
@@ -165,12 +196,147 @@ jobs:
     - run:
         name: CodeCov
         command: |
-          timeout 1m curl -O https://uploader.codecov.io/latest/linux/codecov || true
-          chmod +x codecov || true
-          timeout 1m ./codecov || true
-    resource_class: zuper-ci-ns/r1
+          if [ ! -f out/test-results/tests-selected ]; then
+            echo "No tests selected; no coverage to report or upload"
+            exit 0
+          fi
+          saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/codecov-upload --heartbeat 30s --stats-interval 5s -- timeout 1m codecovcli upload-coverage --fail-on-error --disable-search --file coverage.xml
+    resource_class: zuper-ci-ns/c1m6
+    parameters:
+      logical_job:
+        type: string
+        default: test-313-src
+  lint:
+    environment:
+      ZUPER_RS_LINT_OUTPUT_DIR: out/zuper-rs-lint
+      ZUPER_RS_LINT_TEST_RESULTS_DIR: out/test-results
+    docker:
+    - image: docker.io/zupermind/zuper-rs-ci-checks:z7-stage-v1@sha256:9c80c3fd943e0922f1838db655790f3a23e192ac1548fd8cb9706fed5d9f7b2e
+      auth:
+        username: $DOCKER_IO_READONLY_USERNAME
+        password: $DOCKER_IO_READONLY_TOKEN
+    resource_class: small
+    steps:
+    - checkout
+    - run:
+        name: Initialize Git submodules
+        command: zuper-rs-ci-tools initialize-git-submodules
+    - run:
+        name: Configure the Zuper registry
+        command: |
+          {
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_INDEX=%q\n' "${CARGO_REGISTRY_READ_URL:?}"
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_TOKEN=%q\n' "${CARGO_REGISTRY_TOKEN:?}"
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_CREDENTIAL_PROVIDER=cargo:token\n'
+          } >> "${BASH_ENV}"
+    - run:
+        name: Report tool versions
+        command: |
+          saferun --version
+          zuper-rs-lint --version
+    - run:
+        name: Generate timeless lint reports
+        command: saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/lint --heartbeat 30s --stats-interval 5s -- zuper-rs-lint run --suite ci-timeless --html-report "${ZUPER_RS_LINT_OUTPUT_DIR}/report.html" --junit-report "${ZUPER_RS_LINT_TEST_RESULTS_DIR}/zuper-rs-lint.xml"
+    - store_test_results:
+        path: out/test-results
+    - store_artifacts:
+        path: out/zuper-rs-lint
+        destination: zuper-rs-lint
+    - store_artifacts:
+        path: out/saferun
+        destination: saferun
+  lint-pr-ready:
+    environment:
+      ZUPER_RS_LINT_OUTPUT_DIR: out/zuper-rs-lint
+      ZUPER_RS_LINT_TEST_RESULTS_DIR: out/test-results
+    docker:
+    - image: docker.io/zupermind/zuper-rs-ci-checks:z7-stage-v1@sha256:9c80c3fd943e0922f1838db655790f3a23e192ac1548fd8cb9706fed5d9f7b2e
+      auth:
+        username: $DOCKER_IO_READONLY_USERNAME
+        password: $DOCKER_IO_READONLY_TOKEN
+    resource_class: small
+    steps:
+    - checkout
+    - run:
+        name: Initialize Git submodules
+        command: zuper-rs-ci-tools initialize-git-submodules
+    - run:
+        name: Configure the Zuper registry
+        command: |
+          {
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_INDEX=%q\n' "${CARGO_REGISTRY_READ_URL:?}"
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_TOKEN=%q\n' "${CARGO_REGISTRY_TOKEN:?}"
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_CREDENTIAL_PROVIDER=cargo:token\n'
+          } >> "${BASH_ENV}"
+    - run:
+        name: Report tool versions
+        command: |
+          saferun --version
+          zuper-rs-lint --version
+    - run:
+        name: Resolve pull-request base context
+        command: zuper-rs-ci-tools resolve-pr-base
+    - run:
+        name: Generate pull-request readiness lint reports
+        command: saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/lint-pr-ready --heartbeat 30s --stats-interval 5s -- zuper-rs-lint run --suite pull-request --json-report "${ZUPER_RS_LINT_OUTPUT_DIR}/report.json" --html-report "${ZUPER_RS_LINT_OUTPUT_DIR}/report.html" --junit-report "${ZUPER_RS_LINT_TEST_RESULTS_DIR}/zuper-rs-lint.xml"
+    - store_test_results:
+        path: out/test-results
+    - store_artifacts:
+        path: out/zuper-rs-lint
+        destination: zuper-rs-lint
+    - store_artifacts:
+        path: out/saferun
+        destination: saferun
+  lint-fresh:
+    environment:
+      COLUMNS: '160'
+      ZUPER_RS_LINT_OUTPUT_DIR: out/zuper-rs-lint
+      ZUPER_RS_LINT_TEST_RESULTS_DIR: out/test-results
+    docker:
+    - image: docker.io/zupermind/zuper-ci-3.13:z7-stage-v1@sha256:3841c333a36cb9dea51d07dfe146e55b02dd20f1bf4d2d73424ddab43ac5e168
+      auth:
+        username: $DOCKER_IO_READONLY_USERNAME
+        password: $DOCKER_IO_READONLY_TOKEN
+    resource_class: small
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - run:
+        name: Report tool versions
+        command: |
+          saferun --version
+          zuper-rs-lint --version
+          python3 --version
+          uv --version
+          zuper-python-utils --version
+    - run:
+        name: Configure the Zuper registry
+        command: |
+          {
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_INDEX=%q\n' "${CARGO_REGISTRY_READ_URL:?}"
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_TOKEN=%q\n' "${CARGO_REGISTRY_TOKEN:?}"
+            printf 'export CARGO_REGISTRIES_ZUPER_REGISTRY_CREDENTIAL_PROVIDER=cargo:token\n'
+          } >> "${BASH_ENV}"
+    - run:
+        name: Configure the Python package index
+        command: |
+          printf 'export UV_DEFAULT_INDEX=%q\n' "${PIP_INDEX_URL_SRC:?}" >> "${BASH_ENV}"
+    - run:
+        name: Check the Python dependency lock
+        command: saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/check-lockfile --heartbeat 30s --stats-interval 5s -- zuper-python-utils check-lockfile
+    - run:
+        name: Generate fresh zuper-rs-lint reports
+        command: saferun run --no-direnv --standalone --report-dir out/saferun/${CIRCLE_JOB}/node-${CIRCLE_NODE_INDEX}/lint --heartbeat 30s --stats-interval 5s -- zuper-rs-lint run --suite ci-fresh --html-report "${ZUPER_RS_LINT_OUTPUT_DIR}/report.html" --junit-report "${ZUPER_RS_LINT_TEST_RESULTS_DIR}/zuper-rs-lint.xml"
+    - store_test_results:
+        path: out/test-results
+    - store_artifacts:
+        path: out/zuper-rs-lint
+        destination: zuper-rs-lint
+    - store_artifacts:
+        path: out/saferun
+        destination: saferun
 
-# sigil 61d02b17e3627f438817a47e78de98d5
+# sigil 6de08b46e13604b796703908da81b48e
 # template-meta agent-advice=Do not modify this file directly; it is autogenerated by zuper-templating from project.pp1.yaml. Modify project.pp1.yaml instead; direct changes require explicit user permission.
-# template-meta template-version=2.1
-# template-meta zuper-templating-version=8.31.2901010000
+# template-meta template-version=2.6
+# template-meta zuper-templating-version=16.9.2610181445
