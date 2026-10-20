@@ -1,0 +1,11 @@
+# Avoid manually changing this file - use `zuper-changetrack modify` instead
+branch: z7-stage-v7-2610-OPS-564-version-major
+category: fixed
+commits: []
+date: '2026-10-20'
+description: '__version__ is 7.3, the major of the z7-stage-v7 checkout, and setup.json and pyproject.toml are regenerated to say 7.3. The OPS-564 lock change had bumped the old major to 2.21.0, which the observer refuses to tag: zuper-utils-build binder, major lines, UTQ(423): "Every publishable crate, package, and image of one checkout MUST have the checkout''s major." 7.3 is above the 7.2 that the metadata declared before. Also re-templated with zuper-templating 16.10 (the CI job PATH keeps /opt/ci-venv/bin).'
+issues:
+- OPS-564
+kind: build
+status: COMPLETED
+title: Version 7.3 on the v7 line
