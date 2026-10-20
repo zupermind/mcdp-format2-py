@@ -24,6 +24,10 @@ pypi:
 
 circleci:
   active: true
+  more_packages:
+  - nose2
+  - coverage
+  - poetry-core
   test_python_versions: ['3.13.9']
 
 python_syntax_version: '3.12'
