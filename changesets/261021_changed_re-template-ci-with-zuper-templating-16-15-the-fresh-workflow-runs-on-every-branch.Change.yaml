@@ -1,0 +1,11 @@
+# Avoid manually changing this file - use `zuper-changetrack modify` instead
+branch: z7-stage-v7-2610-OPS-606-retemplate-1615
+category: changed
+commits: []
+date: '2026-10-21'
+description: The CircleCI configuration is regenerated with zuper-templating 16.15 (from 16.10.2610200043). The fresh workflow and its lint-fresh job now run on every branch, the series branches included, and ignore tags (ZT-PY-CI-FRESH); the CI images are pinned to their current z7-stage-v1 digests. Minor version 7.4, since a change to the CI configuration is not a maintenance change (VERSION-MAINTENANCE-CHANGE).
+issues:
+- OPS-606
+kind: ci
+status: COMPLETED
+title: 'Re-template CI with zuper-templating 16.15: the fresh workflow runs on every branch'
